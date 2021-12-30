@@ -168,7 +168,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
 
     steps:
       - checkout:
@@ -210,7 +210,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
 
     steps:
       - checkout:
@@ -253,7 +253,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
 
     steps:
       - checkout:
@@ -295,7 +295,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
 
     steps:
       - checkout:
@@ -337,7 +337,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
     steps:
       - checkout:
           path: ~/app/
@@ -388,7 +388,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
     steps:
       - checkout:
           path: ~/app/
@@ -434,7 +434,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
     steps:
       - checkout:
           path: ~/app/
@@ -490,7 +490,7 @@ jobs:
 
     environment:
       BUILD_NUMBER: << pipeline.number >>
-      VERSION_NUMBER: 0.0.<< pipeline.number >>
+      VERSION_NUMBER: 0.2.<< pipeline.number >>
     steps:
       - checkout:
           path: ~/app/

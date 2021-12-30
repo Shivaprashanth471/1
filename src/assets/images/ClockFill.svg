@@ -1,0 +1,13 @@
+<svg id="Clock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#10c4d3"/>
+      <stop offset="1" stop-color="#4fe6af"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_144" data-name="Rectangle 144" width="24" height="24" fill="none"/>
+  <g id="Clock-2" data-name="Clock" transform="translate(2 2)">
+    <rect id="Rectangle_129" data-name="Rectangle 129" width="20" height="20" rx="5" fill="url(#linear-gradient)"/>
+    <path id="Path_140" data-name="Path 140" d="M222.744,161.985a.749.749,0,0,1-.53.22.785.785,0,0,1-.53-.22l-2.66-2.66a2.771,2.771,0,0,1-.8-1.95v-3.75a.75.75,0,0,1,1.5,0v3.75a1.24,1.24,0,0,0,.37.89l2.65,2.66a.737.737,0,0,1,0,1.06Z" transform="translate(-208.978 -148.203)" fill="#fff"/>
+  </g>
+</svg>

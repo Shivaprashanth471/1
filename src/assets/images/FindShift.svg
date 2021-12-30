@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Icon_feather-search" data-name="Icon feather-search" transform="translate(1 1)">
+    <path id="Path_360" data-name="Path 360" class="cls-1" d="M14.468,25.436a10.968,10.968,0,1,1,7.756-3.212A10.9,10.9,0,0,1,14.468,25.436Zm0-19.936a8.968,8.968,0,1,0,8.968,8.968A8.978,8.978,0,0,0,14.468,5.5Z" transform="translate(-4.5 -4.5)"/>
+    <path id="Path_361" data-name="Path 361" class="cls-1" d="M29.464,30.464a1,1,0,0,1-.707-.293l-4.489-4.489a1,1,0,1,1,1.414-1.414l4.489,4.489a1,1,0,0,1-.707,1.707Z" transform="translate(-7.464 -7.464)"/>
+  </g>
+</svg>

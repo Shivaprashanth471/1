@@ -1,0 +1,35 @@
+<svg id="Clock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke: #28d1c5;
+      }
+
+      .cls-3 {
+        stroke: #334f65;
+        stroke-width: 1.5px;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#10c4d3"/>
+      <stop offset="1" stop-color="#4fe6af"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_269" data-name="Rectangle 269" class="cls-1" width="24" height="24"/>
+  <g id="Clock-2" data-name="Clock">
+    <path id="Path_302" data-name="Path 302" class="cls-2" d="M184.765,181.673l-2.658-2.658a2,2,0,0,1-.586-1.414v-3.759" transform="translate(-169.521 -166.429)"/>
+    <rect id="Rectangle_270" data-name="Rectangle 270" class="cls-3" width="20" height="20" rx="5" transform="translate(2 2)"/>
+  </g>
+</svg>

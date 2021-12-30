@@ -1,0 +1,8 @@
+app_identifier("com.vitawerk") # The bundle identifier of your app
+# apple_id("aditya@tericsoft.com") # Your Apple email address
+apple_id("banda.santhosh007@gmail.com") # Your Apple email address
+
+team_id('T9568U56FN')
+# itc_team_id()
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

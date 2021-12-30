@@ -1,0 +1,237 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+commit = last_git_commit
+
+platform :ios do
+
+  desc 'Generate certificates and provisioning profiles'
+  lane :match_certificates do |options|
+    match(app_identifier: ['com.vitawerk', 'com.vitawerk.notifications'], readonly: false, type: 'appstore', force: true)
+    match(app_identifier: ['com.vitawerk.dev', 'com.vitawerk.dev.notifications'], readonly: false, type: 'development', force: true)
+  end
+
+  desc 'Fetch certificates and provisioning profiles'
+  private_lane :certificates do |options|
+    if options[:cert_type] == "development"
+        match(app_identifier: ['com.vitawerk.dev', 'com.vitawerk.dev.notifications'], readonly: true, type: options[:cert_type])
+    else
+        match(app_identifier: ['com.vitawerk', 'com.vitawerk.notifications'], readonly: true, type: options[:cert_type])
+    end
+  end
+
+  desc 'bump build version'
+  private_lane :bump_build_version do
+    increment_build_number(build_number: ENV['BUILD_NUMBER'], xcodeproj: './ios/vitawerks.xcodeproj')
+    increment_version_number(version_number: ENV['VERSION_NUMBER'], bump_type: 'patch', xcodeproj: './ios/vitawerks.xcodeproj')
+  end
+
+  desc 'Fetch certificates. Build the iOS application.'
+  private_lane :build do |options|
+    # if options[:scheme] != "vitawerks-Prod"
+    #     bump_build_version unless options[:skip_bump]
+    # end
+    bump_build_version unless options[:skip_bump]
+    cocoapods(podfile: "./ios/Podfile")
+    certificates(options)
+    gym(
+        scheme: options[:scheme],
+        clean: true,
+        workspace: './ios/vitawerks.xcworkspace',
+        export_method: options[:build_type],
+        output_name: "vitawerks.ipa",
+        output_directory: './builds'
+    )
+  end
+
+  desc 'Fetch certificates, build and upload to App Center.'
+  private_lane :deploy_to_app_center do |options|
+    build(options)
+    appcenter_upload(
+        api_token: options[:api_token],
+        owner_name: "Vitawerks",
+        app_name: options[:app_name],
+        file: "./builds/vitawerks.ipa",
+        release_notes: commit[:message],
+        notify_testers: true
+    )
+  end
+
+  desc "development build (local)"
+  lane :development do
+    build({:build_type => 'development', :cert_type => 'development', :scheme => 'vitawerks'})
+  end
+
+  desc "local deploy to target device"
+  lane :distribute_to_device do
+      build({:build_type => 'development', :cert_type => 'development', :skip_bump => true, :scheme => 'vitawerks'}) unless ENV['SKIP_BUILD']
+      install_on_device(
+          device_id: ENV['DEVICE_UDID'],
+          ipa: "./builds/vitawerks.ipa",
+      )
+  end
+
+#   desc "distribute staging build to app center"
+#   lane :distribute_staging do
+#       setup_circle_ci
+#       api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_DEV_IOS']
+#       app_name = "vitawerks-B2B-Android-Dev-1"
+#       deploy_to_app_center({:build_type => 'development', :app_name => app_name, :api_token => api_token, :shield_name => 'Staging', :cert_type => 'development', :scheme => 'vitawerks-Staging'})
+#   end
+
+  desc "distribute test build to app center"
+  lane :distribute_qa do
+      setup_circle_ci
+      api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_TEST_IOS']
+      app_name = "vitawerks-B2B-IOS-QA"
+      deploy_to_app_center({:build_type => 'development', :app_name => app_name, :api_token => api_token, :shield_name => 'QA', :cert_type => 'development', :scheme => 'vitawerks-QA'})
+  end
+
+  desc "distribute uat build to app center"
+  lane :distribute_uat do
+      setup_circle_ci
+      api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_UAT_IOS']
+      app_name = "vitawerks-B2B-IOS-UAT"
+      deploy_to_app_center({:build_type => 'development', :app_name => app_name, :api_token => api_token, :shield_name => 'UAT', :cert_type => 'development', :scheme => 'vitawerks-UAT'})
+  end
+
+  desc "distribute prod build to app center"
+  lane :distribute_prod do
+      setup_circle_ci
+      api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_PROD_IOS']
+      app_name = "vitawerks-B2B-IOS-Prod"
+      deploy_to_app_center({:build_type => 'app-store', :app_name => app_name, :api_token => api_token, :cert_type => 'appstore', :scheme => 'vitawerks-Prod'})
+  end
+
+#   desc "testflight deploy (beta)"
+#   lane :beta do
+#       setup_circle_ci
+#       build({:build_type => 'app-store', :cert_type => 'appstore', :scheme => 'vitawerks-Prod'}) unless ENV['SKIP_BUILD']
+#       upload_to_testflight(
+#         username: 'banda.santhosh007@gmail.com',
+#         app_platform: 'ios',
+#         ipa: "./builds/vitawerks.ipa",
+#         skip_submission: true,
+#         skip_waiting_for_build_processing: true
+#       )
+#   end
+
+#   desc "appstore deploy (prod)"
+#   lane :distribute_to_appstore do
+#       setup_circle_ci
+#       build({:build_type => 'app-store', :cert_type => 'appstore', :scheme => 'vitawerks-Prod'}) unless ENV['SKIP_BUILD']
+#       upload_to_app_store(
+#         ipa: "./builds/vitawerks.ipa",
+#         force: true
+#       )
+#   end
+
+  desc "Refresh provisioning Profiles"
+  lane :refresh_profiles do
+    match(
+        type: "development",
+        # git_basic_authorization: Base64.encode64("adityasharma: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")
+        force: true)
+    match(
+        type: "appstore",
+        force: true)
+  end
+
+  desc "Register new device"
+  lane :register_new_device do  |options|
+    device_name = prompt(text: "Enter the device name: ")
+    device_udid = prompt(text: "Enter the device UDID: ")
+    device_hash = {}
+    device_hash[device_name] = device_udid
+    register_devices(
+        devices: device_hash
+    )
+    refresh_profiles
+  end
+end
+
+platform :android do
+    desc 'Build the Android application.'
+    private_lane :build do |options|
+      if options[:build_type] != "Release" # todo
+          gradle(task: 'clean assemble', build_type: options[:build_type], project_dir: 'android/', properties: { 'versionCode' => ENV['BUILD_NUMBER'], 'versionName' => ENV['VERSION_NUMBER'] } )
+      elsif options[:build_type] == "Release"
+          gradle(task: 'clean bundle', build_type: options[:build_type], project_dir: 'android/',
+          print_command: false,
+          properties: {
+              'versionCode' => ENV['BUILD_NUMBER'], 'versionName' => ENV['VERSION_NUMBER'],
+              "android.injected.signing.store.file" => "/home/circleci/app/vitawerks_B2B_react_native_app/vitawerk.keystore",
+              "android.injected.signing.store.password" => ENV['ANDROID_KEY_PASSWORD'],
+              "android.injected.signing.key.alias" => ENV['ANDROID_KEY_ALIAS'],
+              "android.injected.signing.key.password" => ENV['ANDROID_KEY_PASSWORD']
+           }
+           )
+      end
+    end
+
+    desc "development build (local)"
+    lane :development do
+        build({:build_type => 'debug', :cert_type => 'development'})
+    end
+
+    desc 'build and upload to App Center.'
+    private_lane :deploy_to_app_center do |options|
+        build(options)
+        if options[:build_type] == "Release"
+          APK_LOCATION = "#{lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]}"
+        elsif options[:build_type] != "Release"
+          APK_LOCATION = "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+        end
+        print('APK Location -> ', APK_LOCATION)
+        appcenter_upload(
+                api_token: options[:api_token],
+                owner_name: "Vitawerks",
+                app_name: options[:app_name],
+                app_os: 'Android',
+                release_notes: commit[:message],
+                file: APK_LOCATION,
+                notify_testers: true
+            )
+    end
+
+    desc "development build and deploy to app center"
+    lane :distribute_staging do |options|
+        api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_DEV_ANDROID']
+        app_name = "vitawerks-B2B-Android-Staging"
+        deploy_to_app_center({:build_type => 'Staging',:app_name => app_name, :api_token => api_token, :shield_name => 'Staging', :cert_type => 'staging'}) unless ENV['SKIP_BUILD']
+    end
+
+    desc "QA build and deploy to app center"
+    lane :distribute_qa do |options|
+        api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_TEST_ANDROID']
+        app_name = "vitawerks-B2B-Android-QA"
+        deploy_to_app_center({:build_type => 'Qa',:app_name => app_name, :api_token => api_token, :shield_name => 'QA', :cert_type => 'development'}) unless ENV['SKIP_BUILD']
+    end
+
+    desc "uat build and deploy to app center"
+    lane :distribute_uat do |options|
+        api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_UAT_ANDROID']
+        app_name = "vitawerks-B2B-Android-UAT"
+        deploy_to_app_center({:build_type => 'Uat',:app_name => app_name, :api_token => api_token, :shield_name => 'UAT', :cert_type => 'Uat'}) unless ENV['SKIP_BUILD']
+    end
+
+    desc "build and deploy production app to app center"
+    lane :distribute_prod do |options|
+        api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_PROD_ANDROID']
+        app_name = "vitawerks-B2B-Android-Prod"
+        deploy_to_app_center({:build_type => 'Release', :app_name => app_name, :api_token => api_token, :cert_type => 'Release'}) unless ENV['SKIP_BUILD']
+    end
+
+end

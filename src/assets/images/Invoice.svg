@@ -1,0 +1,37 @@
+<svg id="Invoice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke: #1ac9cd;
+      }
+
+      .cls-3 {
+        stroke: #334f65;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#10c4d3"/>
+      <stop offset="1" stop-color="#4fe6af"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_290" data-name="Rectangle 290" class="cls-1" width="24" height="24"/>
+  <g id="Invoice-2" data-name="Invoice">
+    <line id="Line_51" data-name="Line 51" class="cls-2" x2="4.769" transform="translate(9.615 16.747)"/>
+    <line id="Line_52" data-name="Line 52" class="cls-2" x2="8" transform="translate(8 13.236)"/>
+    <path id="Path_321" data-name="Path 321" class="cls-3" d="M98.871,256.8a5,5,0,0,1,4.408,4.965v8a5,5,0,0,1-5,5h-6a5,5,0,0,1-5-5v-8a5,5,0,0,1,4.554-4.98" transform="translate(-83.279 -252.763)"/>
+    <rect id="Rectangle_291" data-name="Rectangle 291" class="cls-3" width="6.452" height="3.967" rx="1.984" transform="translate(8.774 2)"/>
+  </g>
+</svg>

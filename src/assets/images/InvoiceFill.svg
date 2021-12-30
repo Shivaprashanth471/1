@@ -1,0 +1,15 @@
+<svg id="Invoice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#10c4d3"/>
+      <stop offset="1" stop-color="#4fe6af"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_159" data-name="Rectangle 159" width="24" height="24" fill="none"/>
+  <g id="Invoice-2" data-name="Invoice" transform="translate(3.8 2)">
+    <path id="Path_170" data-name="Path 170" d="M221.773,149.721a1.532,1.532,0,0,1-1.528,1.528H217.7a1.523,1.523,0,1,1,0-3.046h2.543a1.53,1.53,0,0,1,1.528,1.518Z" transform="translate(-210.774 -148.203)" fill="#334f65"/>
+    <path id="Path_171" data-name="Path 171" d="M227.182,154.872v8.2a5.129,5.129,0,0,1-5.128,5.128H215.9a5.129,5.129,0,0,1-5.128-5.128v-8.2a5.108,5.108,0,0,1,4.389-5.056,2.554,2.554,0,0,0,2.543,2.461h2.543a2.561,2.561,0,0,0,2.543-2.461,5.117,5.117,0,0,1,4.389,5.056Z" transform="translate(-210.774 -148.203)" fill="url(#linear-gradient)"/>
+    <path id="Path_172" data-name="Path 172" d="M222.186,162.819a.768.768,0,0,1-.769.769h-4.892a.769.769,0,0,1,0-1.538h4.892a.762.762,0,0,1,.769.769Z" transform="translate(-210.774 -148.203)" fill="#fff"/>
+    <path id="Path_173" data-name="Path 173" d="M223.847,159.209a.768.768,0,0,1-.769.769h-8.2a.769.769,0,1,1,0-1.538h8.2a.775.775,0,0,1,.769.769Z" transform="translate(-210.774 -148.203)" fill="#fff"/>
+  </g>
+</svg>

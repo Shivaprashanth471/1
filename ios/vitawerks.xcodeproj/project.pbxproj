@@ -1,0 +1,3509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00E356F31AD99517003FC87E /* vitawerksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* vitawerksTests.m */; };
+		04480D1DC7B340D5ACB3989C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E6324AC20E40EDB1B9735A /* placeholder.png */; };
+		0AFC4BD1BDFB4E49927C5E9E /* NunitoSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9ABB598ECCE04271827683E9 /* NunitoSans-ExtraLight.ttf */; };
+		0D86C0C0B5D74CE98D45A5C9 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A68BFBFB6B2488F8E67BFFA /* Lato-BoldItalic.ttf */; };
+		11A5DA2DA9B4439B8CF70D44 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0575D99B60FD4614B3F761D6 /* Lato-ThinItalic.ttf */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		13D2B3EF130E4B008FF0D211 /* NunitoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2615211A9A41C8936DEEFF /* NunitoSans-Regular.ttf */; };
+		17D4BFB8EC2B41209B8D3BCD /* NunitoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D614B9F112540C29DB35F27 /* NunitoSans-Italic.ttf */; };
+		1A0FEE9936614B7757E8971C /* libPods-vitawerks-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F281FA37BC93A6A84749BD6 /* libPods-vitawerks-tvOSTests.a */; };
+		22D75330484743B18945FC58 /* NunitoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFF16F33147B4609952DD46A /* NunitoSans-Light.ttf */; };
+		2763519A99BE4660A4562050 /* NunitoSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A86CFD5CCAD345FDAAF669A8 /* NunitoSans-SemiBoldItalic.ttf */; };
+		282CEC1E8BA14DB2B032B7E1 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E67EEF56D35D4C9DA6192F0A /* Rubik-MediumItalic.ttf */; };
+		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* vitawerksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* vitawerksTests.m */; };
+		3A716AE19C074AB2BD6CBD55 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB274706D45E4301826AC28E /* Rubik-SemiBold.ttf */; };
+		3FB9D463FF584452BD26585C /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7BDA44B10124124B134FEEC /* Lato-Black.ttf */; };
+		475EAC28610147A48F2374D8 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70E578EAF8074E37B150E06C /* Rubik-Regular.ttf */; };
+		49833ACB0AF742BD9CF9F09B /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCCF372C42314EEB936A8016 /* Lato-BlackItalic.ttf */; };
+		4C1C2B1426F44BB0869D22FE /* NunitoSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1E3EE8A9DC9455DA3547F02 /* NunitoSans-LightItalic.ttf */; };
+		535086CD4D934260AE213347 /* NunitoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF86754B6AED43D9B144308A /* NunitoSans-SemiBold.ttf */; };
+		5A6A20A11B37437BB898E00A /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7ADAF623CC54E569D8707B6 /* Rubik-SemiBoldItalic.ttf */; };
+		5D3B0ACFB0EB46DC9744A0D7 /* password.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0883AEA69B7C43848D18C216 /* password.svg */; };
+		65876B0E021C418A95302D1B /* NunitoSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 720622C1906E4EB4962FF194 /* NunitoSans-ExtraBoldItalic.ttf */; };
+		6F71A1D24C6ED57D5CE3B5E6 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA592093F894E767561922 /* libPods-OneSignalNotificationServiceExtension.a */; };
+		715719C05E194DF0973F2669 /* NunitoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCAD5DF24FCB43D09102BEDE /* NunitoSans-Bold.ttf */; };
+		7159E7C12A4C426E9E267433 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9571927FCCD74CEA96CECB13 /* Lato-Regular.ttf */; };
+		7486EABF60D34E01B300DB42 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8048C98850C6426C858AD3D7 /* logo.png */; };
+		74B900E24CA342728000696D /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = C2017D0FEBC74AFB9438054D /* Search.png */; };
+		79852B1A8EEA4CB2A775D46A /* NunitoSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56A0A6F8C9F140D4BAFED2F1 /* NunitoSans-BlackItalic.ttf */; };
+		7D79C3D9A5494266B4A58917 /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89057339DBBE4F9993012406 /* NunitoSans-ExtraLightItalic.ttf */; };
+		7F3933D9276E61B400A52BCA /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3933D8276E61B400A52BCA /* NotificationService.m */; };
+		7FE5A3D4276E6039001092BF /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7FE5A3CD276E6039001092BF /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		804052AF21F6400F9B65FDE7 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889FF1FDB6A64C3892BE1E9C /* Rubik-BlackItalic.ttf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8A254EA04D9745D5B8C1F8E7 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C0F197992646DBB5B2E600 /* Rubik-LightItalic.ttf */; };
+		8D78027FE17E4E4693121E49 /* clear.svg in Resources */ = {isa = PBXBuildFile; fileRef = F1552B62985F4D4C85C14EEC /* clear.svg */; };
+		8E68887573424BFAAC2412E0 /* check.svg in Resources */ = {isa = PBXBuildFile; fileRef = D75AC2C7636647569C5D5092 /* check.svg */; };
+		8EF1388626864FF8862D0B84 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB233F2B3D2743C0A23A9400 /* Lato-LightItalic.ttf */; };
+		92E9EECB22C245C387A649B4 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF3CAB9A754B22B1966501 /* Lato-Italic.ttf */; };
+		94A650D1594D49C28891A7CF /* NunitoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEB1EAC178AD4CD99249B7BB /* NunitoSans-Black.ttf */; };
+		996E66A1A7974699A864C325 /* reload.svg in Resources */ = {isa = PBXBuildFile; fileRef = F4D8DF41A1114A79A2B29C12 /* reload.svg */; };
+		9DC450376A2D4D0E8E81FF7A /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC5209487DFD4FD6B12E3DCF /* Lato-Bold.ttf */; };
+		A05F5C604A0F4E4196D928E4 /* eye-open.svg in Resources */ = {isa = PBXBuildFile; fileRef = 002DD51AB61848BCA4EC1D35 /* eye-open.svg */; };
+		A25F3713B11B4D689AB8571C /* lock.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1F90B5A3E7224AF7A74B991E /* lock.svg */; };
+		AB9752E211ED422BA62DAE20 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8A09EB4C61B4787AD83F41B /* Rubik-ExtraBold.ttf */; };
+		B472AE65CD154A678D5FEFEA /* NunitoSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A44C150BCD049D2A8C59CEC /* NunitoSans-ExtraBold.ttf */; };
+		BB3F145325FA4D81B4C5595C /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9874BB417D040F8BEFB45B0 /* Rubik-Black.ttf */; };
+		BC241D91590E444EA1106967 /* datepicker.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6C1A17A28FC64DE7BAF41B75 /* datepicker.svg */; };
+		BEC6F1E59CEC49139BE58620 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0887F6BFC8A542D9B6750256 /* Lato-Thin.ttf */; };
+		CCB9EF1331920BE66BAC51AE /* libPods-vitawerks-vitawerksTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6752B06A377E1CF29E24E43 /* libPods-vitawerks-vitawerksTests.a */; };
+		CE0E55E6341441CDA049FA47 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F5005552625480B9FCF1E4E /* Rubik-Light.ttf */; };
+		CE8B6330F28742EFA79FA0F2 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AAA835AD6A1448F8E4042CD /* Lato-Light.ttf */; };
+		D22A1A46D9504A63B355D797 /* back.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0A7FF13D501A490DA886390F /* back.svg */; };
+		D794FFB1902F4600B6488C01 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D96E8D7C7EBE4C44816FCCFE /* Rubik-Bold.ttf */; };
+		D918CAF80C8B43818BB7525B /* NunitoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 791FA6A5E2A645D6A2F10344 /* NunitoSans-BoldItalic.ttf */; };
+		DB8EED9ED6614A9EA81A3AF5 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE366C71723A421B8D961C19 /* Rubik-Medium.ttf */; };
+		DE2F88285EB34F46B11D2888 /* error_outline.svg in Resources */ = {isa = PBXBuildFile; fileRef = B04972549B634F5A954508E2 /* error_outline.svg */; };
+		E1EE8E6D7C2E0B263AEBD42F /* libPods-vitawerks-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 815DE8DC3C7C931148BDBAF4 /* libPods-vitawerks-tvOS.a */; };
+		F23B08A6A2084F3181D511E6 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37DAF0CDC8C64D3FA073090D /* Rubik-BoldItalic.ttf */; };
+		F286629D5FAA4D5E87576959 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E4EB12AB856408CAA2DA1C6 /* Rubik-ExtraBoldItalic.ttf */; };
+		F5096DAC87346E4303359CF2 /* libPods-vitawerks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E272D0753B087277CF9441 /* libPods-vitawerks.a */; };
+		F7E9AF3C11C8483194C69062 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B3D4083673D41148F43066F /* Rubik-Italic.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = vitawerks;
+		};
+		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
+			remoteInfo = "vitawerks-tvOS";
+		};
+		7FE5A3D2276E6039001092BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7FE5A3CC276E6039001092BF;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7FE5A3DF276E6039001092BF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7FE5A3D4276E6039001092BF /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		002DD51AB61848BCA4EC1D35 /* eye-open.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "eye-open.svg"; path = "../src/assets/images/eye-open.svg"; sourceTree = "<group>"; };
+		005200CBFB86FB7D7064B10A /* Pods-vitawerks-vitawerksTests.qa debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.qa debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.qa debug.xcconfig"; sourceTree = "<group>"; };
+		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		00E356EE1AD99517003FC87E /* vitawerksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vitawerksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* vitawerksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vitawerksTests.m; sourceTree = "<group>"; };
+		03F63353D973996CC9A06E1A /* Pods-vitawerks-vitawerksTests.staging debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.staging debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.staging debug.xcconfig"; sourceTree = "<group>"; };
+		056FA3692A1F607C5EA005EA /* Pods-OneSignalNotificationServiceExtension.prod release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.prod release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.prod release.xcconfig"; sourceTree = "<group>"; };
+		0575D99B60FD4614B3F761D6 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-ThinItalic.ttf"; path = "../src/assets/fonts/lato/Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
+		05D319A510F61594DC436FB8 /* Pods-vitawerks-tvOSTests.staging release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.staging release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.staging release.xcconfig"; sourceTree = "<group>"; };
+		066F6901E6BAB04EFD0D60A2 /* Pods-vitawerks.prod debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.prod debug.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.prod debug.xcconfig"; sourceTree = "<group>"; };
+		0830CD2315B64CDE83AE7C80 /* Pods-vitawerks-vitawerksTests.qa release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.qa release.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.qa release.xcconfig"; sourceTree = "<group>"; };
+		0883AEA69B7C43848D18C216 /* password.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = password.svg; path = ../src/assets/images/password.svg; sourceTree = "<group>"; };
+		0887F6BFC8A542D9B6750256 /* Lato-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Thin.ttf"; path = "../src/assets/fonts/lato/Lato-Thin.ttf"; sourceTree = "<group>"; };
+		0A7FF13D501A490DA886390F /* back.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = back.svg; path = ../src/assets/images/back.svg; sourceTree = "<group>"; };
+		0AD99296D393D8DCF4DB15FA /* Pods-vitawerks-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		0B84C2373A961D1489952A5B /* Pods-vitawerks-tvOS.uat release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.uat release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.uat release.xcconfig"; sourceTree = "<group>"; };
+		0E4EB12AB856408CAA2DA1C6 /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/rubik/Rubik-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		101E51493AF984AE2AA9B736 /* Pods-vitawerks-tvOSTests.uat debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.uat debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.uat debug.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* VitaWerks (Debug).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VitaWerks (Debug).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = vitawerks/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = vitawerks/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = vitawerks/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = vitawerks/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = vitawerks/main.m; sourceTree = "<group>"; };
+		14CC95A31153CB1902F2A06B /* Pods-vitawerks-tvOS.staging debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.staging debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.staging debug.xcconfig"; sourceTree = "<group>"; };
+		1A68BFBFB6B2488F8E67BFFA /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../src/assets/fonts/lato/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		1AAA835AD6A1448F8E4042CD /* Lato-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Light.ttf"; path = "../src/assets/fonts/lato/Lato-Light.ttf"; sourceTree = "<group>"; };
+		1F90B5A3E7224AF7A74B991E /* lock.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = lock.svg; path = ../src/assets/images/lock.svg; sourceTree = "<group>"; };
+		21C0F197992646DBB5B2E600 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../src/assets/fonts/rubik/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
+		2A44C150BCD049D2A8C59CEC /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* vitawerks-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vitawerks-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* vitawerks-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "vitawerks-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D055EF9B48670C8A0E5B8DF /* Pods-vitawerks-tvOS.staging release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.staging release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.staging release.xcconfig"; sourceTree = "<group>"; };
+		2EA881DDE555CE3440ACF6D4 /* Pods-vitawerks-vitawerksTests.prod release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.prod release.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.prod release.xcconfig"; sourceTree = "<group>"; };
+		31F75AE8B88B3F26B7B16CA5 /* Pods-vitawerks-vitawerksTests.prod debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.prod debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.prod debug.xcconfig"; sourceTree = "<group>"; };
+		35E6324AC20E40EDB1B9735A /* placeholder.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = placeholder.png; path = ../src/assets/images/placeholder.png; sourceTree = "<group>"; };
+		37DAF0CDC8C64D3FA073090D /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BoldItalic.ttf"; path = "../src/assets/fonts/rubik/Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3AAAB8A88BF7204EF594F426 /* Pods-vitawerks-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3AF98283FF6BF4A738A9BDEB /* Pods-vitawerks-vitawerksTests.staging release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.staging release.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.staging release.xcconfig"; sourceTree = "<group>"; };
+		3D2631155E1B40EF20629C78 /* Pods-vitawerks.prod release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.prod release.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.prod release.xcconfig"; sourceTree = "<group>"; };
+		462E35B8E6B68E61FAEA000C /* Pods-vitawerks.uat release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.uat release.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.uat release.xcconfig"; sourceTree = "<group>"; };
+		46E272D0753B087277CF9441 /* libPods-vitawerks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vitawerks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F281FA37BC93A6A84749BD6 /* libPods-vitawerks-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vitawerks-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52C29120BE65C144E76F552B /* Pods-vitawerks-tvOSTests.prod debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.prod debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.prod debug.xcconfig"; sourceTree = "<group>"; };
+		56A0A6F8C9F140D4BAFED2F1 /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
+		56DFD65A2DAAA736BFE70C06 /* Pods-OneSignalNotificationServiceExtension.prod debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.prod debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.prod debug.xcconfig"; sourceTree = "<group>"; };
+		5A2615211A9A41C8936DEEFF /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Regular.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-Regular.ttf"; sourceTree = "<group>"; };
+		5B3D4083673D41148F43066F /* Rubik-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Italic.ttf"; path = "../src/assets/fonts/rubik/Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		667D5DF5B954FF044FAFCE90 /* Pods-vitawerks-tvOS.uat debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.uat debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.uat debug.xcconfig"; sourceTree = "<group>"; };
+		6C1A17A28FC64DE7BAF41B75 /* datepicker.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = datepicker.svg; path = ../src/assets/images/datepicker.svg; sourceTree = "<group>"; };
+		70E578EAF8074E37B150E06C /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../src/assets/fonts/rubik/Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		720622C1906E4EB4962FF194 /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		78AFE21E901C88F7E964772A /* Pods-vitawerks-vitawerksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.debug.xcconfig"; sourceTree = "<group>"; };
+		791FA6A5E2A645D6A2F10344 /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		7ABA4F0A31C941CF76267A64 /* Pods-vitawerks-tvOSTests.prod release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.prod release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.prod release.xcconfig"; sourceTree = "<group>"; };
+		7BBF3CAB9A754B22B1966501 /* Lato-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Italic.ttf"; path = "../src/assets/fonts/lato/Lato-Italic.ttf"; sourceTree = "<group>"; };
+		7D614B9F112540C29DB35F27 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
+		7F3933D8276E61B400A52BCA /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		7F3933DA276E630000A52BCA /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		7F5005552625480B9FCF1E4E /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../src/assets/fonts/rubik/Rubik-Light.ttf"; sourceTree = "<group>"; };
+		7F7E3D9B25CD3FFA00BF83FF /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		7FA062A8396B875FEBAFDC35 /* Pods-OneSignalNotificationServiceExtension.qa debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.qa debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.qa debug.xcconfig"; sourceTree = "<group>"; };
+		7FE5A3C8276E5F70001092BF /* vitawerks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = vitawerks.entitlements; path = vitawerks/vitawerks.entitlements; sourceTree = "<group>"; };
+		7FE5A3CD276E6039001092BF /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FE5A3D1276E6039001092BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FFB04AC276E9A5B00D4789C /* NotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		7FFB04AD276EA5C800D4789C /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirGoogleMaps; path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps"; sourceTree = "<group>"; };
+		7FFB04AE276EA5E300D4789C /* AirMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirMaps; path = "../node_modules/react-native-maps/lib/ios/AirMaps"; sourceTree = "<group>"; };
+		8048C98850C6426C858AD3D7 /* logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = logo.png; path = ../src/assets/images/logo.png; sourceTree = "<group>"; };
+		808B244B37D541F53A96F56D /* Pods-vitawerks-tvOS.prod debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.prod debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.prod debug.xcconfig"; sourceTree = "<group>"; };
+		815DE8DC3C7C931148BDBAF4 /* libPods-vitawerks-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vitawerks-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = vitawerks/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84F9BB2438C61130BEB7460D /* Pods-vitawerks-vitawerksTests.uat release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.uat release.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.uat release.xcconfig"; sourceTree = "<group>"; };
+		889FF1FDB6A64C3892BE1E9C /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BlackItalic.ttf"; path = "../src/assets/fonts/rubik/Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
+		89057339DBBE4F9993012406 /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		8AE56C5021350F225391D18F /* Pods-vitawerks-tvOSTests.qa release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.qa release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.qa release.xcconfig"; sourceTree = "<group>"; };
+		8E445954D489654CAD907E3A /* Pods-vitawerks.qa release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.qa release.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.qa release.xcconfig"; sourceTree = "<group>"; };
+		913BE797FA2E2014005508EC /* Pods-OneSignalNotificationServiceExtension.qa release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.qa release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.qa release.xcconfig"; sourceTree = "<group>"; };
+		931D56A4109C718E19FB0098 /* Pods-vitawerks-vitawerksTests.uat debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-vitawerksTests.uat debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests.uat debug.xcconfig"; sourceTree = "<group>"; };
+		9571927FCCD74CEA96CECB13 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../src/assets/fonts/lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		9ABB598ECCE04271827683E9 /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		9BA6D1B44C3018C003923851 /* Pods-vitawerks.staging release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.staging release.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.staging release.xcconfig"; sourceTree = "<group>"; };
+		9BD2964BA83866E0075C1828 /* Pods-vitawerks-tvOS.qa release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.qa release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.qa release.xcconfig"; sourceTree = "<group>"; };
+		A76921B007E739EF01B35C5E /* Pods-OneSignalNotificationServiceExtension.uat release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.uat release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.uat release.xcconfig"; sourceTree = "<group>"; };
+		A7BDA44B10124124B134FEEC /* Lato-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Black.ttf"; path = "../src/assets/fonts/lato/Lato-Black.ttf"; sourceTree = "<group>"; };
+		A86CFD5CCAD345FDAAF669A8 /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		AB274706D45E4301826AC28E /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-SemiBold.ttf"; path = "../src/assets/fonts/rubik/Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
+		AC5209487DFD4FD6B12E3DCF /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../src/assets/fonts/lato/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		AEB1EAC178AD4CD99249B7BB /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Black.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-Black.ttf"; sourceTree = "<group>"; };
+		B04972549B634F5A954508E2 /* error_outline.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = error_outline.svg; path = ../src/assets/images/error_outline.svg; sourceTree = "<group>"; };
+		B395D2BC21EF8EF2E610FDDD /* Pods-vitawerks-tvOSTests.staging debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.staging debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.staging debug.xcconfig"; sourceTree = "<group>"; };
+		B9962F88860EACBA38B67960 /* Pods-vitawerks-tvOSTests.uat release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.uat release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.uat release.xcconfig"; sourceTree = "<group>"; };
+		BC3306972782FD9CB13F72A0 /* Pods-vitawerks.staging debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.staging debug.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.staging debug.xcconfig"; sourceTree = "<group>"; };
+		BE8BF536CBD98C51260CBF72 /* Pods-vitawerks-tvOS.prod release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.prod release.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.prod release.xcconfig"; sourceTree = "<group>"; };
+		C2017D0FEBC74AFB9438054D /* Search.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Search.png; path = ../src/assets/images/Search.png; sourceTree = "<group>"; };
+		C7ADAF623CC54E569D8707B6 /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-SemiBoldItalic.ttf"; path = "../src/assets/fonts/rubik/Rubik-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C8A09EB4C61B4787AD83F41B /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-ExtraBold.ttf"; path = "../src/assets/fonts/rubik/Rubik-ExtraBold.ttf"; sourceTree = "<group>"; };
+		CABB21672FA3197D44BB1113 /* Pods-vitawerks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.debug.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.debug.xcconfig"; sourceTree = "<group>"; };
+		CCAD5DF24FCB43D09102BEDE /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
+		CFF16F33147B4609952DD46A /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
+		D00A5C8E4E9B7B0877841A83 /* Pods-OneSignalNotificationServiceExtension.staging release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.staging release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.staging release.xcconfig"; sourceTree = "<group>"; };
+		D1E3EE8A9DC9455DA3547F02 /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-LightItalic.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		D75AC2C7636647569C5D5092 /* check.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = check.svg; path = ../src/assets/images/check.svg; sourceTree = "<group>"; };
+		D96E8D7C7EBE4C44816FCCFE /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../src/assets/fonts/rubik/Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		DB233F2B3D2743C0A23A9400 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-LightItalic.ttf"; path = "../src/assets/fonts/lato/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		DC2BE2CF7CADD7D7E5157586 /* Pods-vitawerks-tvOSTests.qa debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOSTests.qa debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOSTests/Pods-vitawerks-tvOSTests.qa debug.xcconfig"; sourceTree = "<group>"; };
+		DC49406BF2AD5657E751943F /* Pods-OneSignalNotificationServiceExtension.uat debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.uat debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.uat debug.xcconfig"; sourceTree = "<group>"; };
+		DCCF372C42314EEB936A8016 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BlackItalic.ttf"; path = "../src/assets/fonts/lato/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
+		E362703E74E7F2946E6A1F9E /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		E487AEB7B5BEE1309F40E6D4 /* Pods-vitawerks.uat debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.uat debug.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.uat debug.xcconfig"; sourceTree = "<group>"; };
+		E6752B06A377E1CF29E24E43 /* libPods-vitawerks-vitawerksTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vitawerks-vitawerksTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E67EEF56D35D4C9DA6192F0A /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-MediumItalic.ttf"; path = "../src/assets/fonts/rubik/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
+		E9874BB417D040F8BEFB45B0 /* Rubik-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Black.ttf"; path = "../src/assets/fonts/rubik/Rubik-Black.ttf"; sourceTree = "<group>"; };
+		EAF9F342D7B2B52DD25244FA /* Pods-vitawerks.qa debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks.qa debug.xcconfig"; path = "Target Support Files/Pods-vitawerks/Pods-vitawerks.qa debug.xcconfig"; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EE366C71723A421B8D961C19 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../src/assets/fonts/rubik/Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		F1552B62985F4D4C85C14EEC /* clear.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = clear.svg; path = ../src/assets/images/clear.svg; sourceTree = "<group>"; };
+		F2E28D501A2F8F2750C462C2 /* Pods-vitawerks-tvOS.qa debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vitawerks-tvOS.qa debug.xcconfig"; path = "Target Support Files/Pods-vitawerks-tvOS/Pods-vitawerks-tvOS.qa debug.xcconfig"; sourceTree = "<group>"; };
+		F4D8DF41A1114A79A2B29C12 /* reload.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = reload.svg; path = ../src/assets/images/reload.svg; sourceTree = "<group>"; };
+		FABA592093F894E767561922 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEAF90E3BD256FF199ABDC28 /* Pods-OneSignalNotificationServiceExtension.staging debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.staging debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.staging debug.xcconfig"; sourceTree = "<group>"; };
+		FF86754B6AED43D9B144308A /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../src/assets/fonts/nutino/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCB9EF1331920BE66BAC51AE /* libPods-vitawerks-vitawerksTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5096DAC87346E4303359CF2 /* libPods-vitawerks.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4781E0B4A5D006451C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EE8E6D7C2E0B263AEBD42F /* libPods-vitawerks-tvOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48D1E0B4A5D006451C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0FEE9936614B7757E8971C /* libPods-vitawerks-tvOSTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FE5A3CA276E6039001092BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F71A1D24C6ED57D5CE3B5E6 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* vitawerksTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F21AD99517003FC87E /* vitawerksTests.m */,
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = vitawerksTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* vitawerks */ = {
+			isa = PBXGroup;
+			children = (
+				7FE5A3C8276E5F70001092BF /* vitawerks.entitlements */,
+				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				13B07FB71A68108700A75B9A /* main.m */,
+			);
+			name = vitawerks;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				FABA592093F894E767561922 /* libPods-OneSignalNotificationServiceExtension.a */,
+				46E272D0753B087277CF9441 /* libPods-vitawerks.a */,
+				815DE8DC3C7C931148BDBAF4 /* libPods-vitawerks-tvOS.a */,
+				4F281FA37BC93A6A84749BD6 /* libPods-vitawerks-tvOSTests.a */,
+				E6752B06A377E1CF29E24E43 /* libPods-vitawerks-vitawerksTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DD2DAB8819EFD9ECD41B143 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E362703E74E7F2946E6A1F9E /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				56DFD65A2DAAA736BFE70C06 /* Pods-OneSignalNotificationServiceExtension.prod debug.xcconfig */,
+				DC49406BF2AD5657E751943F /* Pods-OneSignalNotificationServiceExtension.uat debug.xcconfig */,
+				7FA062A8396B875FEBAFDC35 /* Pods-OneSignalNotificationServiceExtension.qa debug.xcconfig */,
+				FEAF90E3BD256FF199ABDC28 /* Pods-OneSignalNotificationServiceExtension.staging debug.xcconfig */,
+				056FA3692A1F607C5EA005EA /* Pods-OneSignalNotificationServiceExtension.prod release.xcconfig */,
+				D00A5C8E4E9B7B0877841A83 /* Pods-OneSignalNotificationServiceExtension.staging release.xcconfig */,
+				913BE797FA2E2014005508EC /* Pods-OneSignalNotificationServiceExtension.qa release.xcconfig */,
+				A76921B007E739EF01B35C5E /* Pods-OneSignalNotificationServiceExtension.uat release.xcconfig */,
+				CABB21672FA3197D44BB1113 /* Pods-vitawerks.debug.xcconfig */,
+				066F6901E6BAB04EFD0D60A2 /* Pods-vitawerks.prod debug.xcconfig */,
+				E487AEB7B5BEE1309F40E6D4 /* Pods-vitawerks.uat debug.xcconfig */,
+				EAF9F342D7B2B52DD25244FA /* Pods-vitawerks.qa debug.xcconfig */,
+				BC3306972782FD9CB13F72A0 /* Pods-vitawerks.staging debug.xcconfig */,
+				3D2631155E1B40EF20629C78 /* Pods-vitawerks.prod release.xcconfig */,
+				9BA6D1B44C3018C003923851 /* Pods-vitawerks.staging release.xcconfig */,
+				8E445954D489654CAD907E3A /* Pods-vitawerks.qa release.xcconfig */,
+				462E35B8E6B68E61FAEA000C /* Pods-vitawerks.uat release.xcconfig */,
+				0AD99296D393D8DCF4DB15FA /* Pods-vitawerks-tvOS.debug.xcconfig */,
+				808B244B37D541F53A96F56D /* Pods-vitawerks-tvOS.prod debug.xcconfig */,
+				667D5DF5B954FF044FAFCE90 /* Pods-vitawerks-tvOS.uat debug.xcconfig */,
+				F2E28D501A2F8F2750C462C2 /* Pods-vitawerks-tvOS.qa debug.xcconfig */,
+				14CC95A31153CB1902F2A06B /* Pods-vitawerks-tvOS.staging debug.xcconfig */,
+				BE8BF536CBD98C51260CBF72 /* Pods-vitawerks-tvOS.prod release.xcconfig */,
+				2D055EF9B48670C8A0E5B8DF /* Pods-vitawerks-tvOS.staging release.xcconfig */,
+				9BD2964BA83866E0075C1828 /* Pods-vitawerks-tvOS.qa release.xcconfig */,
+				0B84C2373A961D1489952A5B /* Pods-vitawerks-tvOS.uat release.xcconfig */,
+				3AAAB8A88BF7204EF594F426 /* Pods-vitawerks-tvOSTests.debug.xcconfig */,
+				52C29120BE65C144E76F552B /* Pods-vitawerks-tvOSTests.prod debug.xcconfig */,
+				101E51493AF984AE2AA9B736 /* Pods-vitawerks-tvOSTests.uat debug.xcconfig */,
+				DC2BE2CF7CADD7D7E5157586 /* Pods-vitawerks-tvOSTests.qa debug.xcconfig */,
+				B395D2BC21EF8EF2E610FDDD /* Pods-vitawerks-tvOSTests.staging debug.xcconfig */,
+				7ABA4F0A31C941CF76267A64 /* Pods-vitawerks-tvOSTests.prod release.xcconfig */,
+				05D319A510F61594DC436FB8 /* Pods-vitawerks-tvOSTests.staging release.xcconfig */,
+				8AE56C5021350F225391D18F /* Pods-vitawerks-tvOSTests.qa release.xcconfig */,
+				B9962F88860EACBA38B67960 /* Pods-vitawerks-tvOSTests.uat release.xcconfig */,
+				78AFE21E901C88F7E964772A /* Pods-vitawerks-vitawerksTests.debug.xcconfig */,
+				31F75AE8B88B3F26B7B16CA5 /* Pods-vitawerks-vitawerksTests.prod debug.xcconfig */,
+				931D56A4109C718E19FB0098 /* Pods-vitawerks-vitawerksTests.uat debug.xcconfig */,
+				005200CBFB86FB7D7064B10A /* Pods-vitawerks-vitawerksTests.qa debug.xcconfig */,
+				03F63353D973996CC9A06E1A /* Pods-vitawerks-vitawerksTests.staging debug.xcconfig */,
+				2EA881DDE555CE3440ACF6D4 /* Pods-vitawerks-vitawerksTests.prod release.xcconfig */,
+				3AF98283FF6BF4A738A9BDEB /* Pods-vitawerks-vitawerksTests.staging release.xcconfig */,
+				0830CD2315B64CDE83AE7C80 /* Pods-vitawerks-vitawerksTests.qa release.xcconfig */,
+				84F9BB2438C61130BEB7460D /* Pods-vitawerks-vitawerksTests.uat release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7FE5A3CE276E6039001092BF /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				7FFB04AC276E9A5B00D4789C /* NotificationService.h */,
+				7F3933DA276E630000A52BCA /* OneSignalNotificationServiceExtension.entitlements */,
+				7FE5A3D1276E6039001092BF /* Info.plist */,
+				7F3933D8276E61B400A52BCA /* NotificationService.m */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				7FFB04AE276EA5E300D4789C /* AirMaps */,
+				7FFB04AD276EA5C800D4789C /* AirGoogleMaps */,
+				7F7E3D9B25CD3FFA00BF83FF /* Config.xcconfig */,
+				13B07FAE1A68108700A75B9A /* vitawerks */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* vitawerksTests */,
+				7FE5A3CE276E6039001092BF /* OneSignalNotificationServiceExtension */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				CFD33901D29245F4B7147708 /* Resources */,
+				7DD2DAB8819EFD9ECD41B143 /* Pods */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* VitaWerks (Debug).app */,
+				00E356EE1AD99517003FC87E /* vitawerksTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* vitawerks-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* vitawerks-tvOSTests.xctest */,
+				7FE5A3CD276E6039001092BF /* OneSignalNotificationServiceExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFD33901D29245F4B7147708 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A7BDA44B10124124B134FEEC /* Lato-Black.ttf */,
+				DCCF372C42314EEB936A8016 /* Lato-BlackItalic.ttf */,
+				AC5209487DFD4FD6B12E3DCF /* Lato-Bold.ttf */,
+				1A68BFBFB6B2488F8E67BFFA /* Lato-BoldItalic.ttf */,
+				7BBF3CAB9A754B22B1966501 /* Lato-Italic.ttf */,
+				1AAA835AD6A1448F8E4042CD /* Lato-Light.ttf */,
+				DB233F2B3D2743C0A23A9400 /* Lato-LightItalic.ttf */,
+				9571927FCCD74CEA96CECB13 /* Lato-Regular.ttf */,
+				0887F6BFC8A542D9B6750256 /* Lato-Thin.ttf */,
+				0575D99B60FD4614B3F761D6 /* Lato-ThinItalic.ttf */,
+				E9874BB417D040F8BEFB45B0 /* Rubik-Black.ttf */,
+				889FF1FDB6A64C3892BE1E9C /* Rubik-BlackItalic.ttf */,
+				D96E8D7C7EBE4C44816FCCFE /* Rubik-Bold.ttf */,
+				37DAF0CDC8C64D3FA073090D /* Rubik-BoldItalic.ttf */,
+				C8A09EB4C61B4787AD83F41B /* Rubik-ExtraBold.ttf */,
+				0E4EB12AB856408CAA2DA1C6 /* Rubik-ExtraBoldItalic.ttf */,
+				5B3D4083673D41148F43066F /* Rubik-Italic.ttf */,
+				7F5005552625480B9FCF1E4E /* Rubik-Light.ttf */,
+				21C0F197992646DBB5B2E600 /* Rubik-LightItalic.ttf */,
+				EE366C71723A421B8D961C19 /* Rubik-Medium.ttf */,
+				E67EEF56D35D4C9DA6192F0A /* Rubik-MediumItalic.ttf */,
+				70E578EAF8074E37B150E06C /* Rubik-Regular.ttf */,
+				AB274706D45E4301826AC28E /* Rubik-SemiBold.ttf */,
+				C7ADAF623CC54E569D8707B6 /* Rubik-SemiBoldItalic.ttf */,
+				0A7FF13D501A490DA886390F /* back.svg */,
+				D75AC2C7636647569C5D5092 /* check.svg */,
+				F1552B62985F4D4C85C14EEC /* clear.svg */,
+				6C1A17A28FC64DE7BAF41B75 /* datepicker.svg */,
+				B04972549B634F5A954508E2 /* error_outline.svg */,
+				002DD51AB61848BCA4EC1D35 /* eye-open.svg */,
+				1F90B5A3E7224AF7A74B991E /* lock.svg */,
+				8048C98850C6426C858AD3D7 /* logo.png */,
+				0883AEA69B7C43848D18C216 /* password.svg */,
+				35E6324AC20E40EDB1B9735A /* placeholder.png */,
+				F4D8DF41A1114A79A2B29C12 /* reload.svg */,
+				C2017D0FEBC74AFB9438054D /* Search.png */,
+				AEB1EAC178AD4CD99249B7BB /* NunitoSans-Black.ttf */,
+				56A0A6F8C9F140D4BAFED2F1 /* NunitoSans-BlackItalic.ttf */,
+				CCAD5DF24FCB43D09102BEDE /* NunitoSans-Bold.ttf */,
+				791FA6A5E2A645D6A2F10344 /* NunitoSans-BoldItalic.ttf */,
+				2A44C150BCD049D2A8C59CEC /* NunitoSans-ExtraBold.ttf */,
+				720622C1906E4EB4962FF194 /* NunitoSans-ExtraBoldItalic.ttf */,
+				9ABB598ECCE04271827683E9 /* NunitoSans-ExtraLight.ttf */,
+				89057339DBBE4F9993012406 /* NunitoSans-ExtraLightItalic.ttf */,
+				7D614B9F112540C29DB35F27 /* NunitoSans-Italic.ttf */,
+				CFF16F33147B4609952DD46A /* NunitoSans-Light.ttf */,
+				D1E3EE8A9DC9455DA3547F02 /* NunitoSans-LightItalic.ttf */,
+				5A2615211A9A41C8936DEEFF /* NunitoSans-Regular.ttf */,
+				FF86754B6AED43D9B144308A /* NunitoSans-SemiBold.ttf */,
+				A86CFD5CCAD345FDAAF669A8 /* NunitoSans-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* vitawerksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "vitawerksTests" */;
+			buildPhases = (
+				5F16827A0FD2419A069FFFB6 /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+				5823F9820EF29B00AFBF97B1 /* [CP] Embed Pods Frameworks */,
+				554A040A0EAB181D0214206D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = vitawerksTests;
+			productName = vitawerksTests;
+			productReference = 00E356EE1AD99517003FC87E /* vitawerksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* vitawerks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "vitawerks" */;
+			buildPhases = (
+				0A9258759AF5FE188030FA85 /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				7FE5A3DF276E6039001092BF /* Embed App Extensions */,
+				DE53F396384D3B892316D4F5 /* [CP] Embed Pods Frameworks */,
+				3638EEAA81E5A3A29669BB1A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7FE5A3D3276E6039001092BF /* PBXTargetDependency */,
+			);
+			name = vitawerks;
+			productName = vitawerks;
+			productReference = 13B07F961A680F5B00A75B9A /* VitaWerks (Debug).app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D02E47A1E0B4A5D006451C7 /* vitawerks-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "vitawerks-tvOS" */;
+			buildPhases = (
+				189BD09458218C4EC623A8A9 /* [CP] Check Pods Manifest.lock */,
+				FD10A7F122414F3F0027D42C /* Start Packager */,
+				2D02E4771E0B4A5D006451C7 /* Sources */,
+				2D02E4781E0B4A5D006451C7 /* Frameworks */,
+				2D02E4791E0B4A5D006451C7 /* Resources */,
+				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "vitawerks-tvOS";
+			productName = "vitawerks-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* vitawerks-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D02E48F1E0B4A5D006451C7 /* vitawerks-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "vitawerks-tvOSTests" */;
+			buildPhases = (
+				F6C1E102630184E56B3C067B /* [CP] Check Pods Manifest.lock */,
+				2D02E48C1E0B4A5D006451C7 /* Sources */,
+				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
+				2D02E48E1E0B4A5D006451C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
+			);
+			name = "vitawerks-tvOSTests";
+			productName = "vitawerks-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* vitawerks-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7FE5A3CC276E6039001092BF /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FE5A3D5276E6039001092BF /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				CF936559B89904FC9692B37A /* [CP] Check Pods Manifest.lock */,
+				7FE5A3C9276E6039001092BF /* Sources */,
+				7FE5A3CA276E6039001092BF /* Frameworks */,
+				7FE5A3CB276E6039001092BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 7FE5A3CD276E6039001092BF /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = T9568U56FN;
+						ProvisioningStyle = Manual;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = T9568U56FN;
+						LastSwiftMigration = 1120;
+						ProvisioningStyle = Manual;
+					};
+					2D02E47A1E0B4A5D006451C7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Manual;
+					};
+					2D02E48F1E0B4A5D006451C7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = T9568U56FN;
+						ProvisioningStyle = Manual;
+						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					7FE5A3CC276E6039001092BF = {
+						CreatedOnToolsVersion = 13.1;
+						DevelopmentTeam = T9568U56FN;
+						LastSwiftMigration = 1310;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "vitawerks" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* vitawerks */,
+				00E356ED1AD99517003FC87E /* vitawerksTests */,
+				2D02E47A1E0B4A5D006451C7 /* vitawerks-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* vitawerks-tvOSTests */,
+				7FE5A3CC276E6039001092BF /* OneSignalNotificationServiceExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				3FB9D463FF584452BD26585C /* Lato-Black.ttf in Resources */,
+				49833ACB0AF742BD9CF9F09B /* Lato-BlackItalic.ttf in Resources */,
+				9DC450376A2D4D0E8E81FF7A /* Lato-Bold.ttf in Resources */,
+				0D86C0C0B5D74CE98D45A5C9 /* Lato-BoldItalic.ttf in Resources */,
+				92E9EECB22C245C387A649B4 /* Lato-Italic.ttf in Resources */,
+				CE8B6330F28742EFA79FA0F2 /* Lato-Light.ttf in Resources */,
+				8EF1388626864FF8862D0B84 /* Lato-LightItalic.ttf in Resources */,
+				7159E7C12A4C426E9E267433 /* Lato-Regular.ttf in Resources */,
+				BEC6F1E59CEC49139BE58620 /* Lato-Thin.ttf in Resources */,
+				11A5DA2DA9B4439B8CF70D44 /* Lato-ThinItalic.ttf in Resources */,
+				BB3F145325FA4D81B4C5595C /* Rubik-Black.ttf in Resources */,
+				804052AF21F6400F9B65FDE7 /* Rubik-BlackItalic.ttf in Resources */,
+				D794FFB1902F4600B6488C01 /* Rubik-Bold.ttf in Resources */,
+				F23B08A6A2084F3181D511E6 /* Rubik-BoldItalic.ttf in Resources */,
+				AB9752E211ED422BA62DAE20 /* Rubik-ExtraBold.ttf in Resources */,
+				F286629D5FAA4D5E87576959 /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				F7E9AF3C11C8483194C69062 /* Rubik-Italic.ttf in Resources */,
+				CE0E55E6341441CDA049FA47 /* Rubik-Light.ttf in Resources */,
+				8A254EA04D9745D5B8C1F8E7 /* Rubik-LightItalic.ttf in Resources */,
+				DB8EED9ED6614A9EA81A3AF5 /* Rubik-Medium.ttf in Resources */,
+				282CEC1E8BA14DB2B032B7E1 /* Rubik-MediumItalic.ttf in Resources */,
+				475EAC28610147A48F2374D8 /* Rubik-Regular.ttf in Resources */,
+				3A716AE19C074AB2BD6CBD55 /* Rubik-SemiBold.ttf in Resources */,
+				5A6A20A11B37437BB898E00A /* Rubik-SemiBoldItalic.ttf in Resources */,
+				D22A1A46D9504A63B355D797 /* back.svg in Resources */,
+				8E68887573424BFAAC2412E0 /* check.svg in Resources */,
+				8D78027FE17E4E4693121E49 /* clear.svg in Resources */,
+				BC241D91590E444EA1106967 /* datepicker.svg in Resources */,
+				DE2F88285EB34F46B11D2888 /* error_outline.svg in Resources */,
+				A05F5C604A0F4E4196D928E4 /* eye-open.svg in Resources */,
+				A25F3713B11B4D689AB8571C /* lock.svg in Resources */,
+				7486EABF60D34E01B300DB42 /* logo.png in Resources */,
+				5D3B0ACFB0EB46DC9744A0D7 /* password.svg in Resources */,
+				04480D1DC7B340D5ACB3989C /* placeholder.png in Resources */,
+				996E66A1A7974699A864C325 /* reload.svg in Resources */,
+				74B900E24CA342728000696D /* Search.png in Resources */,
+				94A650D1594D49C28891A7CF /* NunitoSans-Black.ttf in Resources */,
+				79852B1A8EEA4CB2A775D46A /* NunitoSans-BlackItalic.ttf in Resources */,
+				715719C05E194DF0973F2669 /* NunitoSans-Bold.ttf in Resources */,
+				D918CAF80C8B43818BB7525B /* NunitoSans-BoldItalic.ttf in Resources */,
+				B472AE65CD154A678D5FEFEA /* NunitoSans-ExtraBold.ttf in Resources */,
+				65876B0E021C418A95302D1B /* NunitoSans-ExtraBoldItalic.ttf in Resources */,
+				0AFC4BD1BDFB4E49927C5E9E /* NunitoSans-ExtraLight.ttf in Resources */,
+				7D79C3D9A5494266B4A58917 /* NunitoSans-ExtraLightItalic.ttf in Resources */,
+				17D4BFB8EC2B41209B8D3BCD /* NunitoSans-Italic.ttf in Resources */,
+				22D75330484743B18945FC58 /* NunitoSans-Light.ttf in Resources */,
+				4C1C2B1426F44BB0869D22FE /* NunitoSans-LightItalic.ttf in Resources */,
+				13D2B3EF130E4B008FF0D211 /* NunitoSans-Regular.ttf in Resources */,
+				535086CD4D934260AE213347 /* NunitoSans-SemiBold.ttf in Resources */,
+				2763519A99BE4660A4562050 /* NunitoSans-SemiBoldItalic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4791E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FE5A3CB276E6039001092BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		0A9258759AF5FE188030FA85 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-vitawerks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		189BD09458218C4EC623A8A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-vitawerks-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		3638EEAA81E5A3A29669BB1A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vitawerks/Pods-vitawerks-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-vitawerks/Pods-vitawerks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		554A040A0EAB181D0214206D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5823F9820EF29B00AFBF97B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignal.framework/OneSignal",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OneSignal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-vitawerks-vitawerksTests/Pods-vitawerks-vitawerksTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F16827A0FD2419A069FFFB6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-vitawerks-vitawerksTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF936559B89904FC9692B37A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE53F396384D3B892316D4F5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vitawerks/Pods-vitawerks-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignal.framework/OneSignal",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OneSignal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-vitawerks/Pods-vitawerks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6C1E102630184E56B3C067B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-vitawerks-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F122414F3F0027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E356F31AD99517003FC87E /* vitawerksTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4771E0B4A5D006451C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
+				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48C1E0B4A5D006451C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DCD954D1E0B4F2C00145EB5 /* vitawerksTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FE5A3C9276E6039001092BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F3933D9276E61B400A52BCA /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* vitawerks */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D02E47A1E0B4A5D006451C7 /* vitawerks-tvOS */;
+			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		7FE5A3D3276E6039001092BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7FE5A3CC276E6039001092BF /* OneSignalNotificationServiceExtension */;
+			targetProxy = 7FE5A3D2276E6039001092BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78AFE21E901C88F7E964772A /* Pods-vitawerks-vitawerksTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = Debug;
+		};
+		00E356F71AD99517003FC87E /* Prod Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EA881DDE555CE3440ACF6D4 /* Pods-vitawerks-vitawerksTests.prod release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Prod Release";
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CABB21672FA3197D44BB1113 /* Pods-vitawerks.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev;
+				PRODUCT_NAME = "VitaWerks (Debug)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Prod Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D2631155E1B40EF20629C78 /* Pods-vitawerks.prod release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk;
+				PRODUCT_NAME = VitaWerks;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.vitawerk";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Prod Release";
+		};
+		2D02E4971E0B4A5E006451C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AD99296D393D8DCF4DB15FA /* Pods-vitawerks-tvOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		2D02E4981E0B4A5E006451C7 /* Prod Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE8BF536CBD98C51260CBF72 /* Pods-vitawerks-tvOS.prod release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Prod Release";
+		};
+		2D02E4991E0B4A5E006451C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AAAB8A88BF7204EF594F426 /* Pods-vitawerks-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		2D02E49A1E0B4A5E006451C7 /* Prod Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7ABA4F0A31C941CF76267A64 /* Pods-vitawerks-tvOSTests.prod release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Prod Release";
+		};
+		7F9B7F3125CC29FE002B4A59 /* Staging Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "vitawerks Staging Debug";
+				SDKROOT = iphoneos;
+			};
+			name = "Staging Debug";
+		};
+		7F9B7F3225CC29FE002B4A59 /* Staging Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC3306972782FD9CB13F72A0 /* Pods-vitawerks.staging debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev;
+				PRODUCT_NAME = "VitaWerks (Staging)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Staging Debug";
+		};
+		7F9B7F3325CC29FE002B4A59 /* Staging Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03F63353D973996CC9A06E1A /* Pods-vitawerks-vitawerksTests.staging debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Staging Debug";
+		};
+		7F9B7F3425CC29FE002B4A59 /* Staging Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14CC95A31153CB1902F2A06B /* Pods-vitawerks-tvOS.staging debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Staging Debug";
+		};
+		7F9B7F3525CC29FE002B4A59 /* Staging Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B395D2BC21EF8EF2E610FDDD /* Pods-vitawerks-tvOSTests.staging debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Staging Debug";
+		};
+		7F9B7F3625CC2A21002B4A59 /* Qa Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "vitawerks QA Debug";
+				SDKROOT = iphoneos;
+			};
+			name = "Qa Debug";
+		};
+		7F9B7F3725CC2A21002B4A59 /* Qa Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAF9F342D7B2B52DD25244FA /* Pods-vitawerks.qa debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev;
+				PRODUCT_NAME = "VitaWerks (QA)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Qa Debug";
+		};
+		7F9B7F3825CC2A21002B4A59 /* Qa Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 005200CBFB86FB7D7064B10A /* Pods-vitawerks-vitawerksTests.qa debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Qa Debug";
+		};
+		7F9B7F3925CC2A21002B4A59 /* Qa Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2E28D501A2F8F2750C462C2 /* Pods-vitawerks-tvOS.qa debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Qa Debug";
+		};
+		7F9B7F3A25CC2A21002B4A59 /* Qa Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC2BE2CF7CADD7D7E5157586 /* Pods-vitawerks-tvOSTests.qa debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Qa Debug";
+		};
+		7F9B7F3B25CC2A29002B4A59 /* Uat Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "vitawerks UAT Debug";
+				SDKROOT = iphoneos;
+			};
+			name = "Uat Debug";
+		};
+		7F9B7F3C25CC2A29002B4A59 /* Uat Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E487AEB7B5BEE1309F40E6D4 /* Pods-vitawerks.uat debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev;
+				PRODUCT_NAME = "VitaWerks (UAT)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Uat Debug";
+		};
+		7F9B7F3D25CC2A29002B4A59 /* Uat Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 931D56A4109C718E19FB0098 /* Pods-vitawerks-vitawerksTests.uat debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Uat Debug";
+		};
+		7F9B7F3E25CC2A29002B4A59 /* Uat Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 667D5DF5B954FF044FAFCE90 /* Pods-vitawerks-tvOS.uat debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Uat Debug";
+		};
+		7F9B7F3F25CC2A29002B4A59 /* Uat Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 101E51493AF984AE2AA9B736 /* Pods-vitawerks-tvOSTests.uat debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Uat Debug";
+		};
+		7F9B7F4025CC2A31002B4A59 /* Prod Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "vitawerks Prod Debug";
+				SDKROOT = iphoneos;
+			};
+			name = "Prod Debug";
+		};
+		7F9B7F4125CC2A31002B4A59 /* Prod Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 066F6901E6BAB04EFD0D60A2 /* Pods-vitawerks.prod debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk;
+				PRODUCT_NAME = VitaWerks;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.vitawerk";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Prod Debug";
+		};
+		7F9B7F4225CC2A31002B4A59 /* Prod Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31F75AE8B88B3F26B7B16CA5 /* Pods-vitawerks-vitawerksTests.prod debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Prod Debug";
+		};
+		7F9B7F4325CC2A31002B4A59 /* Prod Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 808B244B37D541F53A96F56D /* Pods-vitawerks-tvOS.prod debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Prod Debug";
+		};
+		7F9B7F4425CC2A31002B4A59 /* Prod Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52C29120BE65C144E76F552B /* Pods-vitawerks-tvOSTests.prod debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Prod Debug";
+		};
+		7F9B7F4525CC2A3D002B4A59 /* Staging Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "vitawerks Staging";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Staging Release";
+		};
+		7F9B7F4625CC2A3D002B4A59 /* Staging Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BA6D1B44C3018C003923851 /* Pods-vitawerks.staging release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev;
+				PRODUCT_NAME = "VitaWerks (Staging)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Staging Release";
+		};
+		7F9B7F4725CC2A3D002B4A59 /* Staging Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AF98283FF6BF4A738A9BDEB /* Pods-vitawerks-vitawerksTests.staging release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Staging Release";
+		};
+		7F9B7F4825CC2A3D002B4A59 /* Staging Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D055EF9B48670C8A0E5B8DF /* Pods-vitawerks-tvOS.staging release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Staging Release";
+		};
+		7F9B7F4925CC2A3D002B4A59 /* Staging Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05D319A510F61594DC436FB8 /* Pods-vitawerks-tvOSTests.staging release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Staging Release";
+		};
+		7F9B7F4A25CC2A48002B4A59 /* Qa Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "vitawerks QA";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Qa Release";
+		};
+		7F9B7F4B25CC2A48002B4A59 /* Qa Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E445954D489654CAD907E3A /* Pods-vitawerks.qa release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev;
+				PRODUCT_NAME = "VitaWerks (QA)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Qa Release";
+		};
+		7F9B7F4C25CC2A48002B4A59 /* Qa Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0830CD2315B64CDE83AE7C80 /* Pods-vitawerks-vitawerksTests.qa release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Qa Release";
+		};
+		7F9B7F4D25CC2A48002B4A59 /* Qa Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BD2964BA83866E0075C1828 /* Pods-vitawerks-tvOS.qa release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Qa Release";
+		};
+		7F9B7F4E25CC2A48002B4A59 /* Qa Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AE56C5021350F225391D18F /* Pods-vitawerks-tvOSTests.qa release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Qa Release";
+		};
+		7F9B7F4F25CC2A51002B4A59 /* Uat Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "vitawerks UAT";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Uat Release";
+		};
+		7F9B7F5025CC2A51002B4A59 /* Uat Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 462E35B8E6B68E61FAEA000C /* Pods-vitawerks.uat release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 19;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev;
+				PRODUCT_NAME = "VitaWerks (UAT)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Uat Release";
+		};
+		7F9B7F5125CC2A51002B4A59 /* Uat Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84F9BB2438C61130BEB7460D /* Pods-vitawerks-vitawerksTests.uat release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				INFOPLIST_FILE = vitawerksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks.app/vitawerks";
+			};
+			name = "Uat Release";
+		};
+		7F9B7F5225CC2A51002B4A59 /* Uat Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B84C2373A961D1489952A5B /* Pods-vitawerks-tvOS.uat release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vitawerks-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = "Uat Release";
+		};
+		7F9B7F5325CC2A51002B4A59 /* Uat Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9962F88860EACBA38B67960 /* Pods-vitawerks-tvOSTests.uat release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "vitawerks-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.vitawerks-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vitawerks-tvOS.app/vitawerks-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = "Uat Release";
+		};
+		7FE5A3D6276E6039001092BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E362703E74E7F2946E6A1F9E /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T9568U56FN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev.notifications";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7FE5A3D7276E6039001092BF /* Prod Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56DFD65A2DAAA736BFE70C06 /* Pods-OneSignalNotificationServiceExtension.prod debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.vitawerk.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Prod Debug";
+		};
+		7FE5A3D8276E6039001092BF /* Uat Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC49406BF2AD5657E751943F /* Pods-OneSignalNotificationServiceExtension.uat debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Uat Debug";
+		};
+		7FE5A3D9276E6039001092BF /* Qa Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FA062A8396B875FEBAFDC35 /* Pods-OneSignalNotificationServiceExtension.qa debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Qa Debug";
+		};
+		7FE5A3DA276E6039001092BF /* Staging Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEAF90E3BD256FF199ABDC28 /* Pods-OneSignalNotificationServiceExtension.staging debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Staging Debug";
+		};
+		7FE5A3DB276E6039001092BF /* Prod Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 056FA3692A1F607C5EA005EA /* Pods-OneSignalNotificationServiceExtension.prod release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.vitawerk.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Prod Release";
+		};
+		7FE5A3DC276E6039001092BF /* Staging Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D00A5C8E4E9B7B0877841A83 /* Pods-OneSignalNotificationServiceExtension.staging release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Staging Release";
+		};
+		7FE5A3DD276E6039001092BF /* Qa Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 913BE797FA2E2014005508EC /* Pods-OneSignalNotificationServiceExtension.qa release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Qa Release";
+		};
+		7FE5A3DE276E6039001092BF /* Uat Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A76921B007E739EF01B35C5E /* Pods-OneSignalNotificationServiceExtension.uat release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T9568U56FN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitawerk.dev.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.vitawerk.dev.notifications";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Uat Release";
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "vitawerks Debug";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Prod Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = vitawerks;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Prod Release";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "vitawerksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* Debug */,
+				7F9B7F4225CC2A31002B4A59 /* Prod Debug */,
+				7F9B7F3D25CC2A29002B4A59 /* Uat Debug */,
+				7F9B7F3825CC2A21002B4A59 /* Qa Debug */,
+				7F9B7F3325CC29FE002B4A59 /* Staging Debug */,
+				00E356F71AD99517003FC87E /* Prod Release */,
+				7F9B7F4725CC2A3D002B4A59 /* Staging Release */,
+				7F9B7F4C25CC2A48002B4A59 /* Qa Release */,
+				7F9B7F5125CC2A51002B4A59 /* Uat Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Staging Release";
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "vitawerks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				7F9B7F4125CC2A31002B4A59 /* Prod Debug */,
+				7F9B7F3C25CC2A29002B4A59 /* Uat Debug */,
+				7F9B7F3725CC2A21002B4A59 /* Qa Debug */,
+				7F9B7F3225CC29FE002B4A59 /* Staging Debug */,
+				13B07F951A680F5B00A75B9A /* Prod Release */,
+				7F9B7F4625CC2A3D002B4A59 /* Staging Release */,
+				7F9B7F4B25CC2A48002B4A59 /* Qa Release */,
+				7F9B7F5025CC2A51002B4A59 /* Uat Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Staging Release";
+		};
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "vitawerks-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D02E4971E0B4A5E006451C7 /* Debug */,
+				7F9B7F4325CC2A31002B4A59 /* Prod Debug */,
+				7F9B7F3E25CC2A29002B4A59 /* Uat Debug */,
+				7F9B7F3925CC2A21002B4A59 /* Qa Debug */,
+				7F9B7F3425CC29FE002B4A59 /* Staging Debug */,
+				2D02E4981E0B4A5E006451C7 /* Prod Release */,
+				7F9B7F4825CC2A3D002B4A59 /* Staging Release */,
+				7F9B7F4D25CC2A48002B4A59 /* Qa Release */,
+				7F9B7F5225CC2A51002B4A59 /* Uat Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Staging Release";
+		};
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "vitawerks-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D02E4991E0B4A5E006451C7 /* Debug */,
+				7F9B7F4425CC2A31002B4A59 /* Prod Debug */,
+				7F9B7F3F25CC2A29002B4A59 /* Uat Debug */,
+				7F9B7F3A25CC2A21002B4A59 /* Qa Debug */,
+				7F9B7F3525CC29FE002B4A59 /* Staging Debug */,
+				2D02E49A1E0B4A5E006451C7 /* Prod Release */,
+				7F9B7F4925CC2A3D002B4A59 /* Staging Release */,
+				7F9B7F4E25CC2A48002B4A59 /* Qa Release */,
+				7F9B7F5325CC2A51002B4A59 /* Uat Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Staging Release";
+		};
+		7FE5A3D5276E6039001092BF /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FE5A3D6276E6039001092BF /* Debug */,
+				7FE5A3D7276E6039001092BF /* Prod Debug */,
+				7FE5A3D8276E6039001092BF /* Uat Debug */,
+				7FE5A3D9276E6039001092BF /* Qa Debug */,
+				7FE5A3DA276E6039001092BF /* Staging Debug */,
+				7FE5A3DB276E6039001092BF /* Prod Release */,
+				7FE5A3DC276E6039001092BF /* Staging Release */,
+				7FE5A3DD276E6039001092BF /* Qa Release */,
+				7FE5A3DE276E6039001092BF /* Uat Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Staging Release";
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "vitawerks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				7F9B7F4025CC2A31002B4A59 /* Prod Debug */,
+				7F9B7F3B25CC2A29002B4A59 /* Uat Debug */,
+				7F9B7F3625CC2A21002B4A59 /* Qa Debug */,
+				7F9B7F3125CC29FE002B4A59 /* Staging Debug */,
+				83CBBA211A601CBA00E9B192 /* Prod Release */,
+				7F9B7F4525CC2A3D002B4A59 /* Staging Release */,
+				7F9B7F4A25CC2A48002B4A59 /* Qa Release */,
+				7F9B7F4F25CC2A51002B4A59 /* Uat Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Staging Release";
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

@@ -190,6 +190,9 @@ jobs:
       #          paths:
       #            - vendor/bundle
       - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
           name: Build and Distribute Staging
           command: bundle exec fastlane ios distribute_staging
           no_output_timeout: 15m
@@ -233,6 +236,9 @@ jobs:
       #          paths:
       #            - vendor/bundle
       - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
           name: Build and Distribute QA
           command: bundle exec fastlane ios distribute_qa
           no_output_timeout: 15m
@@ -275,6 +281,9 @@ jobs:
       #          paths:
       #            - vendor/bundle
       - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
           name: Build and Distribute UAT
           command: bundle exec fastlane ios distribute_uat
           no_output_timeout: 15m
@@ -316,6 +325,9 @@ jobs:
       #          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
       #          paths:
       #            - vendor/bundle
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
       - run:
           name: Build and Distribute Prod
           command: bundle exec fastlane ios distribute_prod
@@ -363,6 +375,9 @@ jobs:
       #          paths:
       #            - vendor/bundle
       - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
           name: Build and Distribute Staging
           command: bundle exec fastlane android distribute_staging
           no_output_timeout: 15m
@@ -404,6 +419,9 @@ jobs:
       #          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
       #          paths:
       #            - vendor/bundle
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
       - run:
           name: Build and Distribute QA
           command: bundle exec fastlane android distribute_qa
@@ -456,6 +474,9 @@ jobs:
       #          paths:
       #            - vendor/bundle
       - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
           name: Build and Distribute UAT
           command: bundle exec fastlane android distribute_uat
           no_output_timeout: 15m
@@ -496,6 +517,10 @@ jobs:
       #          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
       #          paths:
       #            - vendor/bundle
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+
       - run:
           name: Build and Distribute Prod
           command: bundle exec fastlane android distribute_prod

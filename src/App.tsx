@@ -14,12 +14,21 @@ import NetInfo from '@react-native-community/netinfo';
 import {Provider} from 'react-redux';
 import store from './store';
 import {NetworkChangeSubject} from './helpers/Communications';
-import {Colors} from './constants';
+import {Colors, ENV} from './constants';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './navigation/MainNavigator';
 import ErrorComponent from './components/core/ErrorComponent';
-import {CommonFunctions} from './helpers';
+
 import OneSignalComponent from './components/core/OneSignalComponent';
+import analytics from '@segment/analytics-react-native';
+
+analytics
+	.setup(ENV.segmentKey, {
+		recordScreenViews: true,
+		trackAppLifecycleEvents: true,
+	})
+	.then(() => console.log('Analytics is ready'))
+	.catch(err => console.error('Something went wrong', err));
 
 NetInfo.addEventListener(info => {
 	NetworkChangeSubject.next(info.isConnected);
@@ -42,6 +51,7 @@ const App = () => {
 			setIsConnected(connected);
 		},
 	);
+
 	useEffect(() => {
 		return () => {
 			NetworkChangeSubscription.unsubscribe();

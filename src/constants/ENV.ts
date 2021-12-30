@@ -4,6 +4,7 @@ import {Platform} from 'react-native';
 export interface ENVTypes {
 	apiUrl: string;
 	oneSignalKey: string;
+	segmentKey: string;
 	googleMapKey: string;
 	mode: string;
 	buildType: string;
@@ -12,6 +13,7 @@ export interface ENVTypes {
 console.log(Config, 'Config; ');
 const ENV: ENVTypes = {
 	apiUrl: Config.API_URL, //'https://test.api.vitawerks.com/'
+	segmentKey: Config.SEGMENT_KEY,
 	googleMapKey:
 		Platform.OS === 'ios'
 			? Config.GOOGLEMAPS_IOS_KEY

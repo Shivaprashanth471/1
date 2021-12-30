@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
 	Modal,
 	StatusBar,
@@ -25,6 +25,7 @@ import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import FormikInputComponent from '../../components/core/FormikInputComponent';
 import {TSAPIResponseType} from '../../helpers/ApiFunctions';
 import {CONTACTUS_PHONE_NUMBER} from '../../helpers/CommonFunctions';
+import analytics from '@segment/analytics-react-native';
 
 // Login api
 const loginSchema = yup.object().shape({
@@ -60,6 +61,12 @@ export interface LoginAPIResponse {
 // end login api
 
 const LoginScreen = (props: any) => {
+	useEffect(() => {
+		analytics.screen('Login Opened');
+		return () => {
+			analytics.screen('Login Exit');
+		};
+	}, []);
 	const [isPassword, setIsPassword] = useState(true);
 	const dispatch = useDispatch();
 	const [modalVisible, setModalVisible] = useState(false);
@@ -89,10 +96,10 @@ const LoginScreen = (props: any) => {
 			.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {
 				if (resp.success) {
 					console.log('resp.data>>>>>>>>>', resp.data);
-
-					await dispatch(loginUser(resp.data.user, resp.data.token));
-
-					getProfileDetails(resp.data.user, formikHelpers);
+					const user = resp.data.user;
+					await dispatch(loginUser(user, resp.data.token));
+					await analytics.track('Login Success', {email: payload.email});
+					getProfileDetails(user, formikHelpers);
 
 					// if (resp.data.user.is_active) {
 					// navigation.replace(NavigateTo.Main);
@@ -109,6 +116,7 @@ const LoginScreen = (props: any) => {
 			.catch((err: any) => {
 				formikHelpers.setSubmitting(false);
 				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+				analytics.track('Login Failed', {email: payload.email});
 				console.log('err>>>>>>', err.errors.email[0]);
 				ToastAlert.show(err.errors.email[0] || '');
 			});
@@ -120,23 +128,24 @@ const LoginScreen = (props: any) => {
 			}
 
 			ApiFunctions.get(ENV.apiUrl + 'hcp/user/' + response._id)
-				.then(async resp => {
-					if (resp) {
-						formikHelpers.setSubmitting(false);
-						if (resp.success) {
-							if (resp.data != null) {
-								if (resp.data.is_active) {
-									dispatch(updateHcpDetails(resp.data));
-									ToastAlert.show('Login Successful!');
-									navigation.replace(NavigateTo.Main);
-								} else {
-									navigation.replace(NavigateTo.Main);
-									console.log('error');
-								}
-							} else {
-								console.log('null here');
-								ToastAlert.show('HCP data not found, please contact vitawerks');
-							}
+				.then((resp: any) => {
+					formikHelpers.setSubmitting(false);
+					if (resp && resp.success) {
+						if (resp.data != null) {
+							dispatch(updateHcpDetails(resp.data));
+							ToastAlert.show('Login Successful!');
+							analytics.identify(resp.data._id, {
+								firstName: resp.data.first_name,
+								lastName: resp.data.last_name,
+								email: resp.data.email,
+								hcpType: resp.data.hcp_type,
+								region: resp.data.address.region,
+							});
+							console.log('hagsdjukasijlknbsahgf>>>><><:<<?<?<?<?<', resp.data);
+							navigation.replace(NavigateTo.Main);
+						} else {
+							console.log('null here');
+							ToastAlert.show('HCP data not found, please contact vitawerks');
 						}
 					} else {
 						console.log('error');

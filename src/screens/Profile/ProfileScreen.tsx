@@ -38,6 +38,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {StateParams} from '../../store/reducers';
 import {logoutUser} from '../../store/actions/auth.action';
 import {CONTACTUS_PHONE_NUMBER} from '../../helpers/CommonFunctions';
+import analytics from '@segment/analytics-react-native';
 
 const ProfileScreen = (props: any) => {
 	const dispatch = useDispatch();
@@ -188,6 +189,8 @@ const ProfileScreen = (props: any) => {
 										}}
 										title={'Logout'}
 										onPress={() => {
+											analytics.track('Logout');
+											analytics.reset();
 											dispatch(logoutUser());
 											navigation.replace(NavigateTo.Auth);
 										}}

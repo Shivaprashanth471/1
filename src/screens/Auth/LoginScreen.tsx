@@ -30,11 +30,7 @@ import analytics from '@segment/analytics-react-native';
 // Login api
 const loginSchema = yup.object().shape({
 	email: yup.string().required('Required').email('Invalid Email'),
-	password: yup
-		.string()
-		.required('Required')
-		.min(5, 'Invalid')
-		.max(30, 'Invalid'),
+	password: yup.string().required('Required').min(5, 'Invalid'),
 });
 
 export interface LoginSchemaType {
@@ -141,7 +137,6 @@ const LoginScreen = (props: any) => {
 								hcpType: resp.data.hcp_type,
 								region: resp.data.address.region,
 							});
-							console.log('hagsdjukasijlknbsahgf>>>><><:<<?<?<?<?<', resp.data);
 							navigation.replace(NavigateTo.Main);
 						} else {
 							console.log('null here');
@@ -299,7 +294,7 @@ const LoginScreen = (props: any) => {
 												labelText="Email"
 												inputProperties={{
 													keyboardType: 'default',
-													maxLength: 30,
+													// maxLength: 30,
 													placeholder: 'Email address',
 												}}
 												formikField={field}
@@ -314,7 +309,7 @@ const LoginScreen = (props: any) => {
 														labelText="Password"
 														trimSpaces={true}
 														inputProperties={{
-															maxLength: 20,
+															// maxLength: 20,
 															secureTextEntry: isPassword,
 															placeholder: 'Enter Password',
 														}}

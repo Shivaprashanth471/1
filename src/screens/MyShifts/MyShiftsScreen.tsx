@@ -140,25 +140,26 @@ const MyShiftsScreen = (props: any) => {
 
 	const getHcpStatusCount = useCallback(() => {
 		setIsLoading(true);
-
-		const payload = {
-			hcp_user_id: user._id,
-		};
-		ApiFunctions.get(ENV.apiUrl + 'shift/stats', payload)
-			.then(async resp => {
-				if (resp) {
-					setShiftCount(resp.data);
-				} else {
-					console.log('error');
-				}
-				setIsLoading(false);
-				setIsLoaded(true);
-			})
-			.catch((err: any) => {
-				setIsLoading(false);
-				setIsLoaded(true);
-				console.log(err);
-			});
+		if (user) {
+			const payload = {
+				hcp_user_id: user._id,
+			};
+			ApiFunctions.get(ENV.apiUrl + 'shift/stats', payload)
+				.then(async resp => {
+					if (resp) {
+						setShiftCount(resp.data);
+					} else {
+						console.log('error');
+					}
+					setIsLoading(false);
+					setIsLoaded(true);
+				})
+				.catch((err: any) => {
+					setIsLoading(false);
+					setIsLoaded(true);
+					console.log(err);
+				});
+		}
 	}, [user]);
 
 	useEffect(() => {

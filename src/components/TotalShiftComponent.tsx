@@ -91,6 +91,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 
 	const shiftDiffHours = hours < 0 ? hours * -1 : hours;
 	const shiftDiffMinute = minutes < 0 ? minutes * -1 : minutes;
+	const [disableBtn2, setDisableBtn2]: any = useState(false);
 
 	const onApply = useCallback(() => {
 		setDisableBtnLoading(true);
@@ -105,6 +106,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 						showModal();
 					}
 					setDisableBtn(true);
+					setDisableBtn2(true);
 				} else {
 					ToastAlert.show(resp.error || 'failed to update');
 				}
@@ -128,6 +130,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 			shiftType: item.shift_type,
 			shiftDetails: item.shift_details,
 			phoneNumber: item.facility.phone_number,
+			disable: disableBtn2,
 		});
 	};
 

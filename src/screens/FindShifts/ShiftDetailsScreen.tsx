@@ -35,7 +35,6 @@ const FacilityShiftPreviewScreen = (props: any) => {
 	const [modalVisible, setModalVisible] = useState(false);
 
 	const [disableBtnLoading, setDisableBtnLoading] = useState(false);
-	const [disableBtn, setDisableBtn]: any = useState(false);
 
 	const [shiftApplyModalVisible, setShiftApplyModalVisible] = useState(false);
 
@@ -51,7 +50,10 @@ const FacilityShiftPreviewScreen = (props: any) => {
 		shiftType,
 		shiftDetails,
 		phoneNumber,
+		disable,
 	} = props.route.params;
+
+	const [disableBtn, setDisableBtn]: any = useState(disable);
 
 	const {auth} = useSelector((state: StateParams) => state);
 	const {user} = auth;

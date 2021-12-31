@@ -35,10 +35,10 @@ const ErrorComponent = (props: ErrorComponentProps) => {
 	const descriptionTextColor = props.descriptionTextColor;
 	const descriptionTextSize = props.descriptionTextSize || 16;
 	const color = props.color || Colors.textLight;
-	const width = props.width || 62;
-	const height = props.height || 62;
+	const width = props.width || 200;
+	const height = props.height || 200;
 
-	const Icon = props.icon || ImageConfig.IconErrorOutline;
+	const Icon = props.icon || ImageConfig.EmptyIconSVG;
 
 	const onRefresh = props.onRefresh;
 	const buttonText = props.buttonText || 'reload';

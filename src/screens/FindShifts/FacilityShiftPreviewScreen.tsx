@@ -136,6 +136,15 @@ const FacilityShiftPreviewScreen = (props: any) => {
 	}, [facilityID]);
 
 	useEffect(() => {
+		const focusListener = navigation.addListener('focus', getShiftDetails);
+		const focusListener2 = navigation.addListener('focus', getFacilityDetails);
+		return () => {
+			focusListener();
+			focusListener2();
+		};
+	}, [getShiftDetails, getFacilityDetails, navigation]);
+
+	useEffect(() => {
 		console.log('loading shift list.....');
 		getShiftDetails();
 	}, [getShiftDetails]);

@@ -530,9 +530,11 @@ jobs:
 
 
 common_only: &common_only
-  filters:
-    branches:
-      only: main
+  build:
+   filters:
+      branches:
+        only:
+          - develop
 UI-reusability_only: &UI-reusability_only
   filters:
     branches:

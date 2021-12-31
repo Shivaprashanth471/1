@@ -28,6 +28,7 @@ import {
 } from '../../helpers/ApiFunctions';
 import {hcpShiftsList} from '../../constants/CommonTypes';
 import moment from 'moment';
+import analytics from '@segment/analytics-react-native';
 
 const MyShiftsScreen = (props: any) => {
 	const [isLoading, setIsLoading]: any = useState(true);
@@ -36,13 +37,13 @@ const MyShiftsScreen = (props: any) => {
 	const {auth} = useSelector((state: StateParams) => state);
 	const {user} = auth;
 	const navigation = useNavigation();
-	const [totalCount, setTotalCount]: any = useState();
-	const [appliedCount, setAppliedCount]: any = useState();
-	const [shiftCount, setShiftCount]: any = useState();
-	const [showComplete, setShowComplete]: any = useState(false);
-	const [showPending, setShowPending]: any = useState(false);
-	const [showApplied, setShowApplied]: any = useState(true);
-	const [showClosed, setShowClosed]: any = useState(false);
+	const [totalCount, setTotalCount] = useState<any>();
+	const [appliedCount, setAppliedCount] = useState<any>();
+	const [shiftCount, setShiftCount] = useState<any>();
+	const [showComplete, setShowComplete] = useState<boolean>(false);
+	const [showPending, setShowPending] = useState<boolean>(false);
+	const [showApplied, setShowApplied] = useState<boolean>(true);
+	const [showClosed, setShowClosed] = useState<boolean>(false);
 	const [pagination, setPagination] = useState<PaginationType | null>(null);
 
 	const [isShiftLoading, setIsShiftLoading]: any = useState(false);
@@ -186,6 +187,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showClosed && !showPending && !showApplied) {
 			return;
 		} else {
+			analytics.track('complete');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(true);
@@ -200,6 +202,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showClosed && !showComplete && !showApplied) {
 			return;
 		} else {
+			analytics.track('pending');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(false);
@@ -214,6 +217,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showClosed && !showPending && !showComplete) {
 			return;
 		} else {
+			analytics.track('applied');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(false);
@@ -228,6 +232,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showComplete && !showPending && !showApplied) {
 			return;
 		} else {
+			analytics.track('closed');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(false);
@@ -238,7 +243,7 @@ const MyShiftsScreen = (props: any) => {
 			getHCPShiftDetails(1, 20, 'closed');
 		}
 	};
-	const reset = useCallback(() => {
+	const resetInitialState = useCallback(() => {
 		setIsLoading(true);
 		setIsLoading(true);
 		setShowComplete(false);
@@ -249,14 +254,14 @@ const MyShiftsScreen = (props: any) => {
 		getHCPShiftDetails(1, 20, 'complete');
 		getHcpApplicationList();
 		getHcpStatusCount();
-	}, []);
+	}, [getHCPShiftDetails, getHcpApplicationList, getHcpStatusCount]);
 	useEffect(() => {
-		const focusListener2 = navigation.addListener('focus', reset);
+		const focusListener2 = navigation.addListener('focus', resetInitialState);
 
 		return () => {
 			focusListener2();
 		};
-	}, [reset, navigation]);
+	}, [resetInitialState, navigation]);
 
 	const loadNextPage = useCallback(() => {
 		console.log('next page ....', pagination);

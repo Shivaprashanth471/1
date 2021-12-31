@@ -1,31 +1,26 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
-	StyleSheet,
-	Text,
-	View,
+	ActivityIndicator,
 	Alert,
-	TouchableOpacity,
+	Linking,
 	Modal,
 	Platform,
 	StyleProp,
-	ViewStyle,
-	Linking,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
 	useWindowDimensions,
+	View,
+	ViewStyle,
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-import {Colors, FontConfig, ImageConfig, ENV} from '../constants';
+import {Colors, ENV, FontConfig, ImageConfig} from '../constants';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../helpers';
-import {
-	CustomButton,
-	DatePickerComponent,
-	LoadingComponent,
-	BaseViewComponent,
-} from './core';
+import {CustomButton, DatePickerComponent} from './core';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
 import Moment from 'moment';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import FullScreenAttachmentDisplayComponent from '../components/FullScreenAttachmentDisplayComponent';
 import WebView from 'react-native-webview';
 
 export interface AddDocumentComponentProps {
@@ -513,7 +508,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 		);
 	};
 
-	const [fileViewModalVisible, setfileViewModalVisible] = useState(false);
+	const [fileViewModalVisible, setFileViewModalVisible] = useState(false);
 	const dimensions = useWindowDimensions();
 	const modalViewImage = () => {
 		return (
@@ -522,7 +517,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 				transparent={true}
 				visible={fileViewModalVisible}
 				onRequestClose={() => {
-					setfileViewModalVisible(!fileViewModalVisible);
+					setFileViewModalVisible(!fileViewModalVisible);
 				}}>
 				<View
 					style={{
@@ -538,7 +533,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						}}>
 						<TouchableOpacity
 							onPress={() => {
-								setfileViewModalVisible(!fileViewModalVisible);
+								setFileViewModalVisible(!fileViewModalVisible);
 								console.log(showFullscreen.url, '<<<<');
 							}}>
 							<ImageConfig.CloseIconModal height={'25'} width={'25'} />
@@ -566,8 +561,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 
 	return (
 		<>
-			{isLoading && <LoadingComponent />}
-			{!isLoading && isLoaded && (
+			{
 				<>
 					<View style={[styles.documentWrapper, style]}>
 						<View>
@@ -578,6 +572,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 							style={{
 								height: '100%',
 								alignItems: 'flex-start',
+								flex: 1,
 								justifyContent: 'space-evenly',
 								marginLeft: 20,
 							}}>
@@ -589,93 +584,98 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									}}>
 									{title}
 								</Text>
-								<Text
+								{!isLoading && isLoaded && (
+									<Text
+										style={{
+											color: Colors.textLight,
+											fontFamily: FontConfig.primary.regular,
+											fontSize: 14,
+											display: documentAvailable ? 'flex' : 'none',
+										}}>
+										Expires on: {Moment(documentExpiry).format('DD-MM-YYYY')}
+									</Text>
+								)}
+							</View>
+							{isLoading && <ActivityIndicator color={Colors.primary} />}
+							{documentAvailable && !isLoading && isLoaded && (
+								<View
 									style={{
-										color: Colors.textLight,
-										fontFamily: FontConfig.primary.regular,
+										flexDirection: 'row',
+									}}>
+									<TouchableOpacity
+										onPress={() => {
+											if (type === 'application/pdf') {
+												console.log('pdf');
+												Linking.openURL(url);
+											} else {
+												console.log('other');
+												setFileViewModalVisible(true);
+											}
+										}}>
+										<Text
+											style={{
+												color: Colors.primary,
+												fontFamily: FontConfig.primary.bold,
+												fontSize: 14,
+												textDecorationLine: 'underline',
+												marginRight: 20,
+											}}>
+											View
+										</Text>
+									</TouchableOpacity>
+									<TouchableOpacity onPress={deleteData}>
+										<Text
+											style={{
+												color: Colors.warn,
+												fontFamily: FontConfig.primary.bold,
+												fontSize: 14,
+												textDecorationLine: 'underline',
+											}}>
+											Delete
+										</Text>
+									</TouchableOpacity>
+								</View>
+							)}
+							{!documentAvailable && !isLoading && isLoaded && (
+								<CustomButton
+									icon={
+										<ImageConfig.AddCircleIcon
+											color={Colors.textLight}
+											style={{
+												borderRadius: 100,
+											}}
+											height={'15'}
+											width={'15'}
+										/>
+									}
+									iconPosition="left"
+									style={{
+										borderRadius: 8,
+										height: 30,
+										width: '40%',
+										backgroundColor: Colors.backgroundShiftColor,
+										alignItems: 'center',
+										justifyContent: 'center',
+									}}
+									title={'Add'}
+									class={'primary'}
+									textStyle={{
+										fontFamily: FontConfig.primary.bold,
 										fontSize: 14,
-										display: documentAvailable ? 'flex' : 'none',
-									}}>
-									Expires on: {Moment(documentExpiry).format('DD-MM-YYYY')}
-								</Text>
-							</View>
-							<View
-								style={{
-									flexDirection: 'row',
-									display: documentAvailable ? 'flex' : 'none',
-								}}>
-								<TouchableOpacity
+										textTransform: 'none',
+									}}
 									onPress={() => {
-										if (type === 'application/pdf') {
-											console.log('pdf');
-											Linking.openURL(url);
-										} else {
-											console.log('other');
-											setfileViewModalVisible(true);
-										}
-									}}>
-									<Text
-										style={{
-											color: Colors.primary,
-											fontFamily: FontConfig.primary.bold,
-											fontSize: 14,
-											textDecorationLine: 'underline',
-											marginRight: 20,
-										}}>
-										view
-									</Text>
-								</TouchableOpacity>
-								<TouchableOpacity onPress={deleteData}>
-									<Text
-										style={{
-											color: Colors.primary,
-											fontFamily: FontConfig.primary.bold,
-											fontSize: 14,
-											textDecorationLine: 'underline',
-										}}>
-										delete
-									</Text>
-								</TouchableOpacity>
-							</View>
-							<CustomButton
-								icon={
-									<ImageConfig.AddCircleIcon
-										color={Colors.textLight}
-										style={{
-											borderRadius: 100,
-										}}
-										height={'15'}
-										width={'15'}
-									/>
-								}
-								iconPosition="left"
-								style={{
-									borderRadius: 8,
-									height: 30,
-									width: '60%',
-									backgroundColor: Colors.backgroundShiftColor,
-									alignItems: 'center',
-									justifyContent: 'center',
-									display: documentAvailable ? 'none' : 'flex',
-								}}
-								title={'Add'}
-								class={'primary'}
-								textStyle={{
-									fontFamily: FontConfig.primary.bold,
-									fontSize: 14,
-									textTransform: 'none',
-								}}
-								onPress={() => {
-									setSelectDateModalVisible(!selectDateModalVisible);
-								}}
-							/>
+										setSelectDateModalVisible(!selectDateModalVisible);
+									}}
+								/>
+							)}
 						</View>
 					</View>
 
 					{selectDateModal()}
 					{selectPickerModal()}
 				</>
-			)}
+			}
 		</>
 	);
 };

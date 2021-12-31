@@ -563,11 +563,12 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:
+      - build
       - dev:
           filters:
             branches:
               only:
-                  - master
+                  - main
       - hold-dev:
           only: *common_only
           type: approval

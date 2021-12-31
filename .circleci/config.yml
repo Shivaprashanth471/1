@@ -199,10 +199,7 @@ jobs:
           command: |
             echo 'export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)' >> $BASH_ENV
             source $BASH_ENV
-      # - slack/status:
-      #     mentions: 'UBKQ0CRUL'
-      #     failure_message: ':red_circle: iOS Staging Workflow Failed trigger by ${CIRCLE_USERNAME} ${GIT_COMMIT_DESC}'
-      #     success_message: ':tada: iOS Staging Publish Success trigger by ${CIRCLE_USERNAME} ${GIT_COMMIT_DESC}'
+
   ios-qa:
     macos:
       xcode: "13.0.0"
@@ -568,8 +565,8 @@ workflows:
   build:
     jobs:
       - hold-dev:
-          <<: *common_only
-          type: approval
+          only: *common_only
+
       - hold-qa:
           <<: *common_only
           type: approval

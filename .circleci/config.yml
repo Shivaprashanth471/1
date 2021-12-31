@@ -564,9 +564,10 @@ workflows:
     jobs:
       - hold-dev:
           only: *common_only
+          type: approval
 
       - hold-qa:
-          <<: *common_only
+          <<: *tag_only
           type: approval
             
 
@@ -575,7 +576,7 @@ workflows:
             - hold-dev
           context: DevEnvironment
       - node-qa:
-          <<: *common_only
+          <<: *tag_only
           requires:
             - hold-qa
           context: DevEnvironment
@@ -584,7 +585,7 @@ workflows:
           requires:
             - node-dev
       - ios-qa:
-          <<: *common_only
+          <<: *tag_only
           context: DevEnvironment
           requires:
             - node-qa
@@ -593,7 +594,7 @@ workflows:
           requires:
             - node-dev
       - android-qa:
-          <<: *common_only
+          <<: *tag_only
           context: DevEnvironment
           requires:
             - node-qa

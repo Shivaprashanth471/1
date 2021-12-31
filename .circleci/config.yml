@@ -573,7 +573,10 @@ workflows:
             
 
       - node-dev:
-          only: *common_only
+          filters:
+            branches:
+              only:
+                  - main
           context: DevEnvironment
       - node-qa:
           <<: *tag_only

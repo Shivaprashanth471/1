@@ -531,8 +531,6 @@ jobs:
 
 common_only: &common_only
   filters:
-    tags:
-      only: /^v.*/
     branches:
       only: main
 UI-reusability_only: &UI-reusability_only

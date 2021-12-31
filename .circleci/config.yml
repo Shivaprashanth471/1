@@ -563,12 +563,6 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:
-      - build
-      - dev:
-          filters:
-            branches:
-              only:
-                  - main
       - hold-dev:
           only: *common_only
           type: approval
@@ -579,8 +573,7 @@ workflows:
             
 
       - node-dev:
-          requires:
-            - dev
+          only: *common_only
           context: DevEnvironment
       - node-qa:
           <<: *tag_only

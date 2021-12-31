@@ -533,6 +533,7 @@ common_only: &common_only
    filters:
       branches:
         only: main
+
 UI-reusability_only: &UI-reusability_only
   filters:
     branches:
@@ -562,6 +563,11 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:
+      - dev:
+          filters:
+            branches:
+              only:
+                  - master
       - hold-dev:
           only: *common_only
           type: approval
@@ -573,7 +579,7 @@ workflows:
 
       - node-dev:
           requires:
-            - hold-dev
+            - dev
           context: DevEnvironment
       - node-qa:
           <<: *tag_only

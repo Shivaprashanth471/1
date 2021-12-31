@@ -573,7 +573,6 @@ workflows:
             
 
       - node-dev:
-          <<: *common_only
           requires:
             - hold-dev
           context: DevEnvironment
@@ -583,7 +582,6 @@ workflows:
             - hold-qa
           context: DevEnvironment
       - ios-dev:
-          <<: *common_only
           context: DevEnvironment
           requires:
             - node-dev
@@ -593,7 +591,6 @@ workflows:
           requires:
             - node-qa
       - android-dev:
-          <<: *common_only
           context: DevEnvironment
           requires:
             - node-dev

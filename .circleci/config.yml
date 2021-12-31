@@ -530,11 +530,9 @@ jobs:
 
 
 common_only: &common_only
-  build:
    filters:
       branches:
-        only:
-          - develop
+        only: main
 UI-reusability_only: &UI-reusability_only
   filters:
     branches:
@@ -564,11 +562,9 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - main
+      - hold-dev:
+          only: *common_only
+
       - hold-qa:
           <<: *common_only
           type: approval
@@ -576,7 +572,7 @@ workflows:
 
       - node-dev:
           requires:
-            - build
+            - hold-dev
           context: DevEnvironment
       - node-qa:
           <<: *common_only

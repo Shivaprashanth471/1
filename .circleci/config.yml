@@ -564,11 +564,11 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:
-      build:
-        filters:
-          branches:
-            only:
-              - main
+      - build:
+          filters:
+            branches:
+              only:
+                - main
       - hold-qa:
           <<: *common_only
           type: approval

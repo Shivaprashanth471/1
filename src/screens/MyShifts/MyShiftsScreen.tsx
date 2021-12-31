@@ -187,7 +187,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showClosed && !showPending && !showApplied) {
 			return;
 		} else {
-			analytics.track('complete');
+			analytics.track('History Filter Complete');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(true);
@@ -202,7 +202,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showClosed && !showComplete && !showApplied) {
 			return;
 		} else {
-			analytics.track('pending');
+			analytics.track('History Filter Pending');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(false);
@@ -217,7 +217,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showClosed && !showPending && !showComplete) {
 			return;
 		} else {
-			analytics.track('applied');
+			analytics.track('History Filter Applied');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(false);
@@ -232,7 +232,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showComplete && !showPending && !showApplied) {
 			return;
 		} else {
-			analytics.track('closed');
+			analytics.track('History Filter Closed');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(false);

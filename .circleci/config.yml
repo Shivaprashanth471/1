@@ -565,16 +565,33 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:  
-      - node-qa:
+      - hold-uat:
           <<: *tag_only
-          context: DevEnvironment
+          type: approval
+
+      - hold-prod:
+          <<: *tag_only
+          type: approval
+
       - node-dev:
           <<: *main_only
           context: DevEnvironment
-
-      - node-uat:
-          <<: *release_only
+          
+      - node-qa:
+          <<: *tag_only
           context: DevEnvironment
+         
+      - node-uat:
+          <<: *tag_only
+          context: DevEnvironment
+          requires:
+            - hold-uat
+
+      - node-prod:
+          <<: *tag_only
+          context: ProdEnvironment
+          requires:
+            - hold-uat
 
       - ios-dev:
           context: DevEnvironment
@@ -586,6 +603,18 @@ workflows:
           context: DevEnvironment
           requires:
             - node-qa
+
+      - ios-uat:
+          <<: *tag_only
+          context: DevEnvironment
+          requires:
+            - node-uat 
+
+      - ios-prod:
+          <<: *tag_only
+          context: ProdEnvironment
+          requires:
+            - node-prod 
 
       - android-dev:
           context: DevEnvironment
@@ -599,9 +628,14 @@ workflows:
             - node-qa
 
       - android-uat:
-          <<: *release_only
+          <<: *tag_only
           context: DevEnvironment
           requires:
             - node-uat
-        
+
+      - android-prod:
+          <<: *tag_only
+          context: ProdEnvironment
+          requires:
+            - node-prod
           

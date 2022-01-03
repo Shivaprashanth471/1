@@ -161,8 +161,8 @@ android {
         multiDexEnabled true
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 404
-        versionName "0.1.4"
+        versionCode 405
+        versionName "0.1.5"
         resValue "string", "build_config_package", defaultConfig.applicationId
     }
     splits {

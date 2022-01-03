@@ -569,49 +569,50 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:
-
       - hold-qa:
           <<: *tag_only
-          type: approval            
-
+          type: approval  
+      - node-qa:
+          <<: *tag_only
+          context: DevEnvironment
+          requires:
+            - hold-qa
       - node-dev:
           filters:
             branches:
               only:
                   - main
           context: DevEnvironment
-      - node-qa:
-          <<: *tag_only
-          requires:
-            - hold-qa
-          context: DevEnvironment
-      - node-uat:
-          filters:
-            tags:
-              only: /^release-.*/
+      # - node-uat:
+      #     filters:
+      #       tags:
+      #         only: /^release-.*/
       - ios-dev:
           context: DevEnvironment
           requires:
             - node-dev
+      
       - ios-qa:
           <<: *tag_only
           context: DevEnvironment
           requires:
             - node-qa
+
       - android-dev:
           context: DevEnvironment
           requires:
             - node-dev
+            
       - android-qa:
           <<: *tag_only
           context: DevEnvironment
           requires:
             - node-qa
 
-      - android-uat:
-          <<: *tag_only
-          context: DevEnvironment
-          requires:
-            - node-uat
+      # - android-uat:
+      #     <<: *tag_only
+      #     context: DevEnvironment
+      #     requires:
+      #       - node-uat
         
           

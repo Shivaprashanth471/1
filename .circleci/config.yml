@@ -556,9 +556,7 @@ release_only: &release_only
     branches:
       ignore: /.*/
     tags:
-      only: /^release-.*/
-
-
+      only: /^\d+\.\d+\.\d+$/
 no_build_only: &no_build_only
   filters:
     branches:

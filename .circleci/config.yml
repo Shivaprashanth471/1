@@ -529,10 +529,11 @@ jobs:
       #     success_message: ':tada: Android Prod Publish Success trigger by ${CIRCLE_USERNAME} ${GIT_COMMIT_DESC}'
 
 
-common_only: &common_only
-   filters:
-      branches:
-        only: main
+main_only: &main_only
+  filters:
+    branches:
+      only:
+          - main
 
 UI-reusability_only: &UI-reusability_only
   filters:
@@ -569,19 +570,14 @@ no_build_only: &no_build_only
 workflows:
   build:
     jobs:
-      - hold-qa:
-          <<: *tag_only
-          type: approval  
+      # - hold-qa:
+      #     <<: *tag_only
+      #     type: approval  
       - node-qa:
           <<: *tag_only
           context: DevEnvironment
-          requires:
-            - hold-qa
       - node-dev:
-          filters:
-            branches:
-              only:
-                  - main
+          <<: *main_only
           context: DevEnvironment
       # - node-uat:
       #     filters:
@@ -602,7 +598,7 @@ workflows:
           context: DevEnvironment
           requires:
             - node-dev
-            
+
       - android-qa:
           <<: *tag_only
           context: DevEnvironment

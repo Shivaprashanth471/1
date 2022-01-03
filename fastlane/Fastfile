@@ -40,10 +40,9 @@ platform :ios do
 
   desc 'Fetch certificates. Build the iOS application.'
   private_lane :build do |options|
-    # if options[:scheme] != "vitawerks-Prod"
-    #     bump_build_version unless options[:skip_bump]
-    # end
-    bump_build_version unless options[:skip_bump]
+    if options[:scheme] != "vitawerks-Prod"
+        bump_build_version unless options[:skip_bump]
+    end
     cocoapods(podfile: "./ios/Podfile")
     certificates(options)
     gym(
@@ -83,13 +82,13 @@ platform :ios do
       )
   end
 
-#   desc "distribute staging build to app center"
-#   lane :distribute_staging do
-#       setup_circle_ci
-#       api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_DEV_IOS']
-#       app_name = "vitawerks-B2B-Android-Dev-1"
-#       deploy_to_app_center({:build_type => 'development', :app_name => app_name, :api_token => api_token, :shield_name => 'Staging', :cert_type => 'development', :scheme => 'vitawerks-Staging'})
-#   end
+  desc "distribute staging build to app center"
+  lane :distribute_staging do
+      setup_circle_ci
+      api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_DEV_IOS']
+      app_name = "vitawerks-B2B-Android-Dev-1"
+      deploy_to_app_center({:build_type => 'development', :app_name => app_name, :api_token => api_token, :shield_name => 'Staging', :cert_type => 'development', :scheme => 'vitawerks-Staging'})
+  end
 
   desc "distribute test build to app center"
   lane :distribute_qa do
@@ -171,7 +170,6 @@ platform :android do
           gradle(task: 'clean bundle', build_type: options[:build_type], project_dir: 'android/',
           print_command: false,
           properties: {
-              'versionCode' => ENV['BUILD_NUMBER'], 'versionName' => ENV['VERSION_NUMBER'],
               "android.injected.signing.store.file" => "/home/circleci/app/vitawerks_B2B_react_native_app/vitawerk.keystore",
               "android.injected.signing.store.password" => ENV['ANDROID_KEY_PASSWORD'],
               "android.injected.signing.key.alias" => ENV['ANDROID_KEY_ALIAS'],

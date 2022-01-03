@@ -83,13 +83,13 @@ platform :ios do
       )
   end
 
-#   desc "distribute staging build to app center"
-#   lane :distribute_staging do
-#       setup_circle_ci
-#       api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_DEV_IOS']
-#       app_name = "vitawerks-B2B-Android-Dev-1"
-#       deploy_to_app_center({:build_type => 'development', :app_name => app_name, :api_token => api_token, :shield_name => 'Staging', :cert_type => 'development', :scheme => 'vitawerks-Staging'})
-#   end
+  desc "distribute staging build to app center"
+  lane :distribute_staging do
+      setup_circle_ci
+      api_token = ENV['APP_CENTER_API_TOKEN_FOR_VITAWERKS_DEV_IOS']
+      app_name = "vitawerks-B2B-Android-Dev-1"
+      deploy_to_app_center({:build_type => 'development', :app_name => app_name, :api_token => api_token, :shield_name => 'Staging', :cert_type => 'development', :scheme => 'vitawerks-Staging'})
+  end
 
   desc "distribute test build to app center"
   lane :distribute_qa do

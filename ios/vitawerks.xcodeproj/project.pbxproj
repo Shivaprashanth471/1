@@ -1203,7 +1203,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = vitawerks/Info.plist;
@@ -1235,7 +1235,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				INFOPLIST_FILE = vitawerks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1452,7 +1452,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = vitawerks/Info.plist;
@@ -1637,7 +1637,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = vitawerks/Info.plist;
@@ -1822,7 +1822,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = vitawerks/Info.plist;
@@ -2007,7 +2007,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = vitawerks/Info.plist;
@@ -2185,7 +2185,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				INFOPLIST_FILE = vitawerks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2358,7 +2358,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				INFOPLIST_FILE = vitawerks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2531,7 +2531,7 @@
 				CODE_SIGN_ENTITLEMENTS = vitawerks/vitawerks.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = T9568U56FN;
 				INFOPLIST_FILE = vitawerks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

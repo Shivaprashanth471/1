@@ -558,6 +558,8 @@ tag_only: &tag_only
 
 release_only: &release_only
   filters:
+    branches:
+      ignore: /.*/
     tags:
       only: /^release-.*/
 
@@ -569,20 +571,18 @@ no_build_only: &no_build_only
 
 workflows:
   build:
-    jobs:
-      # - hold-qa:
-      #     <<: *tag_only
-      #     type: approval  
+    jobs:  
       - node-qa:
           <<: *tag_only
           context: DevEnvironment
       - node-dev:
           <<: *main_only
           context: DevEnvironment
-      # - node-uat:
-      #     filters:
-      #       tags:
-      #         only: /^release-.*/
+
+      - node-uat:
+          <<: *release_only
+          context: DevEnvironment
+
       - ios-dev:
           context: DevEnvironment
           requires:
@@ -605,10 +605,10 @@ workflows:
           requires:
             - node-qa
 
-      # - android-uat:
-      #     <<: *tag_only
-      #     context: DevEnvironment
-      #     requires:
-      #       - node-uat
+      - android-uat:
+          <<: *release_only
+          context: DevEnvironment
+          requires:
+            - node-uat
         
           

@@ -10,8 +10,9 @@ import {
 import DocumentPicker from 'react-native-document-picker';
 import {Colors, FontConfig, ImageConfig, ENV} from '../constants';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../helpers';
-import {LoadingComponent} from './core';
+import {LoadingComponent, CustomButton} from './core';
 import LinearGradient from 'react-native-linear-gradient';
+import analytics from '@segment/analytics-react-native';
 
 export interface UploadCDHPComponentProps {
 	title: string;
@@ -52,6 +53,7 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 				setIsLoading(false);
 				setIsLoaded(true);
 				state(false);
+				analytics.track('Document Upload Complete');
 			})
 			.catch(error => console.log('error:', error));
 	}, []);
@@ -65,10 +67,6 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 			};
 			setIsLoaded(false);
 			setIsLoading(true);
-			console.log(
-				'shiftID>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
-				shiftID,
-			);
 
 			if (shiftID) {
 				ApiFunctions.post(
@@ -90,6 +88,9 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 	const openImageUpload = useCallback(
 		(mode: 'pdf' | 'camera' | 'image' = 'pdf') => {
 			if (mode === 'camera') {
+				analytics.track('Document Upload Type', {
+					documentUploadType: 'camera',
+				});
 				CommonFunctions.openMedia(undefined, mode)
 					.then(file => {
 						uploadHandler(file);
@@ -99,13 +100,20 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 					});
 			} else {
 				let picMode: any = [DocumentPicker.types.pdf];
+				if (mode === 'pdf') {
+					analytics.track('Document Upload Type', {
+						documentUploadType: 'pdf',
+					});
+				}
 				if (mode === 'image') {
+					analytics.track('Document Upload Type', {
+						documentUploadType: 'image',
+					});
 					picMode = [DocumentPicker.types.images];
 				}
 				CommonFunctions.openDocumentPicker(picMode)
 					.then(file => {
 						uploadHandler(file);
-						console.log('file>>>>::', file);
 					})
 					.catch(error => {
 						console.log('error:', error);
@@ -120,7 +128,6 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 		ApiFunctions.get(ENV.apiUrl + 'shift/' + shiftID + '/attachments')
 			.then(async resp => {
 				if (resp) {
-					console.log(resp);
 					var wantedData = resp.data.filter(function (i: any) {
 						return i.attachment_type === title;
 					});
@@ -151,6 +158,7 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 
 	const deleteData = useCallback(() => {
 		setIsLoading(true);
+		setSelectDeleteFileModalVisible(false);
 		ApiFunctions.get(ENV.apiUrl + 'shift/' + shiftID + '/attachments')
 			.then(resp => {
 				var wantedData = resp.data.filter(function (i: any) {
@@ -181,6 +189,91 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 				setIsLoaded(true);
 			});
 	}, [shiftID, title]);
+
+	const [selectDeleteFileModalVisible, setSelectDeleteFileModalVisible] =
+		useState<boolean>(false);
+
+	const selectDeleteFileModal = () => {
+		return (
+			<View style={styles.ModalContainer}>
+				<Modal
+					animationType="slide"
+					transparent={true}
+					visible={selectDeleteFileModalVisible}
+					onRequestClose={() => {
+						setSelectDeleteFileModalVisible(!selectDeleteFileModalVisible);
+					}}>
+					<View style={[styles.centeredView, {backgroundColor: '#000000A0'}]}>
+						<View
+							style={[
+								styles.modalView,
+								{
+									height: '30%',
+								},
+							]}>
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.bold,
+									fontSize: 22,
+									color: Colors.primary,
+								}}>
+								Delete File!
+							</Text>
+							<Text style={styles.modalTextSub}>
+								Do you want to delete {title}
+							</Text>
+							<View
+								style={{
+									flexDirection: 'row',
+									marginHorizontal: 10,
+									marginTop: 30,
+								}}>
+								<View
+									style={{
+										width: '45%',
+										marginRight: '10%',
+									}}>
+									<CustomButton
+										onPress={() =>
+											setSelectDeleteFileModalVisible(
+												!selectDeleteFileModalVisible,
+											)
+										}
+										style={{
+											flex: 0,
+											borderRadius: 8,
+											marginVertical: 0,
+											height: 45,
+											backgroundColor: Colors.backgroundShiftColor,
+										}}
+										title={'Cancel'}
+										class={'secondary'}
+										textStyle={{color: Colors.primary}}
+									/>
+								</View>
+								<View
+									style={{
+										width: '45%',
+									}}>
+									<CustomButton
+										style={{
+											flex: 0,
+											borderRadius: 8,
+											marginVertical: 0,
+											height: 45,
+										}}
+										title={'Delete'}
+										onPress={deleteData}
+										isLoading={isLoading}
+									/>
+								</View>
+							</View>
+						</View>
+					</View>
+				</Modal>
+			</View>
+		);
+	};
 
 	const selectPickerModal = () => {
 		return (
@@ -338,13 +431,19 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 											{title}
 										</Text>
 									</View>
-									<TouchableOpacity onPress={deleteData}>
+									<TouchableOpacity
+										onPress={() => {
+											setSelectDeleteFileModalVisible(
+												!selectDeleteFileModalVisible,
+											);
+										}}>
 										<ImageConfig.CloseOrangeIcon width="12" height="12" />
 									</TouchableOpacity>
 								</View>
 							)}
 						</View>
 					</View>
+					{selectDeleteFileModal()}
 					{selectPickerModal()}
 				</>
 			)}
@@ -390,6 +489,13 @@ const styles = StyleSheet.create({
 		fontFamily: FontConfig.primary.bold,
 		color: Colors.textDark,
 		marginTop: 10,
+	},
+	modalTextSub: {
+		textAlign: 'center',
+		fontFamily: FontConfig.primary.regular,
+		color: Colors.textOnTextLight,
+		marginVertical: 14,
+		fontSize: 14,
 	},
 });
 

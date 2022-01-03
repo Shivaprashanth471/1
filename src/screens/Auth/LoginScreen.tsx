@@ -94,6 +94,7 @@ const LoginScreen = (props: any) => {
 					console.log('resp.data>>>>>>>>>', resp.data);
 					const user = resp.data.user;
 					await dispatch(loginUser(user, resp.data.token));
+					// await analytics.track('First Time Login');
 					await analytics.track('Login Success', {email: payload.email});
 					getProfileDetails(user, formikHelpers);
 
@@ -137,6 +138,12 @@ const LoginScreen = (props: any) => {
 								hcpType: resp.data.hcp_type,
 								region: resp.data.address.region,
 							});
+							if (response.is_first_login) {
+								analytics.track('First Time Login');
+								analytics.track('First Time Login With Region', {
+									region: resp.data.address.region,
+								});
+							}
 							navigation.replace(NavigateTo.Main);
 						} else {
 							console.log('null here');

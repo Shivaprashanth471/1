@@ -33,6 +33,7 @@ import {
 	PaginationResponseType,
 } from '../../helpers/ApiFunctions';
 import {hcpShiftsList} from '../../constants/CommonTypes';
+import analytics from '@segment/analytics-react-native';
 
 const HomeScreen = (props: any) => {
 	const [isLoading, setIsLoading]: any = useState(true);
@@ -58,7 +59,6 @@ const HomeScreen = (props: any) => {
 					new_shifts: curDate,
 					status: ['pending'],
 				};
-				console.log('payload>>', payload);
 				ApiFunctions.post(
 					ENV.apiUrl + 'shift/hcp/' + user._id + '/shift',
 					payload,
@@ -86,9 +86,6 @@ const HomeScreen = (props: any) => {
 								}
 								setIsLoading(false);
 								setIsLoaded(true);
-								// console.log('>>>>>>>>>>>>>>', resp.data);
-
-								// setShift(resp.data.docs);
 							}
 						},
 					)
@@ -109,6 +106,13 @@ const HomeScreen = (props: any) => {
 			focusListener();
 		};
 	}, [getShiftDetails, navigation]);
+
+	useEffect(() => {
+		analytics.screen('Home Screen Opened');
+		return () => {
+			analytics.screen('Home Screen Exited');
+		};
+	}, []);
 
 	const loadNextPage = useCallback(() => {
 		console.log('next page ....', pagination);

@@ -15,6 +15,7 @@ import {ApiFunctions, ToastAlert} from '../helpers';
 import {CustomButton} from './core';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
+import analytics from '@segment/analytics-react-native';
 
 export interface ShiftDetailsComponentProps {
 	facilityName?: string | '';
@@ -41,8 +42,10 @@ export interface ShiftDetailsComponentProps {
 }
 
 const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
-	const [disableBtn, setDisableBtn] = useState(false);
-	const [disableBtnLoading, setDisableBtnLoading] = useState(false);
+	const [disableBtn, setDisableBtn] = useState<boolean>(false);
+	const [disableBtnLoading, setDisableBtnLoading] = useState<boolean>(false);
+	const [disableApplyBtnOnNextScreen, setDisableApplyBtnOnNextScreen] =
+		useState<boolean>(false);
 
 	const {auth} = useSelector((state: StateParams) => state);
 	const {user} = auth;
@@ -91,31 +94,33 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 
 	const shiftDiffHours = hours < 0 ? hours * -1 : hours;
 	const shiftDiffMinute = minutes < 0 ? minutes * -1 : minutes;
-	const [disableBtn2, setDisableBtn2]: any = useState(false);
 
 	const onApply = useCallback(() => {
 		setDisableBtnLoading(true);
-		const payload = {hcp_user_id: user._id, applied_by: user._id};
-		ApiFunctions.post(
-			ENV.apiUrl + 'shift/requirement/' + requirementID + '/application',
-			payload,
-		)
-			.then(async resp => {
-				if (resp.msg) {
-					if (showModal) {
-						showModal();
+		if (user) {
+			const payload = {hcp_user_id: user._id, applied_by: user._id};
+			ApiFunctions.post(
+				ENV.apiUrl + 'shift/requirement/' + requirementID + '/application',
+				payload,
+			)
+				.then(async resp => {
+					if (resp.msg) {
+						if (showModal) {
+							showModal();
+						}
+						setDisableBtn(true);
+						setDisableApplyBtnOnNextScreen(true);
+						analytics.track('Applied For A Shift');
+					} else {
+						ToastAlert.show(resp.error || 'failed to update');
 					}
-					setDisableBtn(true);
-					setDisableBtn2(true);
-				} else {
-					ToastAlert.show(resp.error || 'failed to update');
-				}
-				setDisableBtnLoading(false);
-			})
-			.catch((err: any) => {
-				ToastAlert.show(err.error || 'Error encountered');
-				setDisableBtnLoading(false);
-			});
+					setDisableBtnLoading(false);
+				})
+				.catch((err: any) => {
+					ToastAlert.show(err.error || 'Error encountered');
+					setDisableBtnLoading(false);
+				});
+		}
 	}, [requirementID, user._id]);
 
 	const onNext = () => {
@@ -130,7 +135,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 			shiftType: item.shift_type,
 			shiftDetails: item.shift_details,
 			phoneNumber: item.facility.phone_number,
-			disable: disableBtn2,
+			disable: disableApplyBtnOnNextScreen,
 		});
 	};
 

@@ -44,6 +44,7 @@ import Geolocation, {GeoCoordinates} from 'react-native-geolocation-service';
 import {PERMISSIONS, request, RESULTS} from 'react-native-permissions';
 import {CancelTokenSource} from 'axios';
 import Moment from 'moment';
+import analytics from '@segment/analytics-react-native';
 
 export interface FilterSchema {
 	shift_type?: string;
@@ -181,7 +182,6 @@ const FindShiftsScreen = (props: any) => {
 			console.log('mobile list payload', payload);
 
 			let coordinates = [currentLocation?.longitude, currentLocation?.latitude];
-			console.log('coordinates>>', coordinates);
 
 			ApiFunctions.post(ENV.apiUrl + 'facility/mobileList', payload)
 				.then(async resp => {
@@ -233,9 +233,20 @@ const FindShiftsScreen = (props: any) => {
 				value === null || value === '' ? undefined : value,
 			);
 
+			if (payloadFilter.shift_type) {
+				analytics.track('Map Filters Shift Type Selected', {
+					shiftType: payloadFilter.shift_type,
+				});
+			}
+			if (payloadFilter.warning_type) {
+				analytics.track('Map Filters Warning Type Selected', {
+					warningType: payloadFilter.warning_type,
+				});
+			}
+
 			formikHelpers.setSubmitting(false);
 			setCurrentSelectedMarker(null);
-			getFacilityMapList(hcp_type, search, payloadFilter);
+			// getFacilityMapList(hcp_type, search, payloadFilter);
 		},
 		[getFacilityMapList, hcp_type, search],
 	);
@@ -316,9 +327,12 @@ const FindShiftsScreen = (props: any) => {
 						}
 						iconPosition="right"
 						onPress={() => {
-							console.log('Test');
-							// navigation.navigate(NavigateTo.FindShiftsMapScreen);
 							setViewMode(prevState => (prevState === 'map' ? 'list' : 'map'));
+							if (viewMode === 'list') {
+								analytics.screen('Find Shift - List View Screen Opened');
+							} else {
+								analytics.screen('Find Shift - Map View Screen Opened');
+							}
 						}}
 						style={{
 							flex: 0,
@@ -746,6 +760,9 @@ const FindShiftsScreen = (props: any) => {
 							setSearch(text);
 							getFacilityMapList(hcp_type, text);
 							getFacilityListView(text);
+							analytics.track('Searched Facility', {
+								facilitySearchedName: text,
+							});
 						}}
 						value={search}
 						underlineColorAndroid="transparent"
@@ -783,6 +800,7 @@ const FindShiftsScreen = (props: any) => {
 					<TouchableOpacity
 						onPress={() => {
 							setFilterOutModalVisible(!filterModalVisible);
+							analytics.track('Map Filters Opened');
 						}}
 						style={[
 							styles.iconFilterContainer,
@@ -857,7 +875,6 @@ const FindShiftsScreen = (props: any) => {
 																return;
 															}
 															setCurrentSelectedMarker(facility);
-															// console.log(facility._id);
 															getFacilityImage(facility._id);
 														}}
 														style={{
@@ -1045,8 +1062,6 @@ const FindShiftsScreen = (props: any) => {
 										);
 									}}
 									renderItem={({item, index}: {item: any; index: number}) => {
-										console.log(item.distance, '<<distance>>');
-
 										return (
 											<View key={item.id + '_ ' + index}>
 												<TouchableOpacity

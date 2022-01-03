@@ -10,8 +10,6 @@ import StartupScreen from '../screens/Startup/StartupScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import {VitaTabNavigator} from './TabNavigator';
 import ForgotPassword_Email_Screen from '../screens/Auth/ForgotPassword_Email_Screen';
-import OTPVerificationScreen from '../screens/Auth/OTPVerificationScreen';
-import FindShiftsMapScreen from '../screens/FindShifts/FindShiftsMapScreen';
 const defaultNavigationOptions: StackNavigationOptions = {
 	headerStyle: {
 		backgroundColor: Colors.backdropColor, //CommonFunctions.isAndroid() ? Colors.primary : 'white',
@@ -61,13 +59,6 @@ const AuthNavigator = () => {
 				options={{headerTitle: ''}}
 				listeners={listeners}
 				component={ForgotPassword_Email_Screen}
-			/>
-			<AuthStack.Screen
-				key={NavigateTo.OTPVerificationScreen + '-Screen'}
-				name={NavigateTo.OTPVerificationScreen}
-				options={{headerTitle: ''}}
-				listeners={listeners}
-				component={OTPVerificationScreen}
 			/>
 		</AuthStack.Navigator>
 	);

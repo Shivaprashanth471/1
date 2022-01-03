@@ -55,7 +55,6 @@ const FormikInputComponent = (props: FormikInputComponentProps) => {
 	const {field, form} = formikField;
 	const [hasFocus, setHasFocus] = useState(false);
 
-	// console.log({field, form, meta});
 	const showLabel =
 		props.showLabel !== undefined
 			? props.showLabel
@@ -134,7 +133,7 @@ const FormikInputComponent = (props: FormikInputComponentProps) => {
 					placeholderTextColor={Colors.textLight}
 					// selectionColor={Colors.textLight}
 					style={[styles.input, inputStyles]}
-					value={field.value.toString()}
+					value={field.value}
 					autoCapitalize={'none'}
 					editable={isEditable}
 					autoCorrect={false}

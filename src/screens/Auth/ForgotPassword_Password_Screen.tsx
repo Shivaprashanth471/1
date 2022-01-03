@@ -179,6 +179,7 @@ const ForgotPasswordScreen = (props: any) => {
 														inputProperties={{
 															maxLength: 4,
 															placeholder: 'OTP',
+															keyboardType: 'number-pad',
 														}}
 														inputStyles={{
 															fontFamily: FontConfig.primary.semiBold,

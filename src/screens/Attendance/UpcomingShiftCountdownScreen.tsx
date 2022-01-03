@@ -17,6 +17,7 @@ import {
 import {StateParams} from '../../store/reducers';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
+import analytics from '@segment/analytics-react-native';
 import UpComingShiftCountdownComponent from '../../components/UpComingShiftCountdownComponent';
 
 const UpcomingShiftCountdownScreen = (props: any) => {
@@ -130,7 +131,6 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 						}
 					} else {
 						Alert.alert('Error', resp);
-						console.log('come here');
 					}
 				})
 				.catch((err: any) => {
@@ -147,6 +147,13 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 			focusListener();
 		};
 	}, [getNextShiftDetails, navigation]);
+
+	useEffect(() => {
+		analytics.screen('Attendance Screen Opened');
+		return () => {
+			analytics.screen('Attendance Screen Exited');
+		};
+	}, []);
 	useEffect(() => {
 		getNextShiftDetails();
 	}, [getNextShiftDetails, user]);
@@ -167,11 +174,11 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 			phoneNumber: facilityShift.facility
 				? facilityShift.facility.phone_number
 				: '',
+			disable: true,
 		});
 	};
 
 	const onAttendanceStart = () => {
-		console.log('shiftID>>>>>>>>>>.', shiftID);
 		navigation.navigate(NavigateTo.Attendance, {
 			shiftID: shiftID,
 		});

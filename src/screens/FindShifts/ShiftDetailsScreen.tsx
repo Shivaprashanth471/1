@@ -20,6 +20,7 @@ import {
 	LoadingComponent,
 	TextWIthCheckIconComponent,
 } from '../../components/core';
+import analytics from '@segment/analytics-react-native';
 
 import TotalShiftComponent from '../../components/TotalShiftComponent';
 import {useSelector} from 'react-redux';
@@ -53,7 +54,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 		disable,
 	} = props.route.params;
 
-	const [disableBtn, setDisableBtn]: any = useState(disable);
+	const [disableApplyBtn, setDisableApplyBtn]: any = useState(disable);
 
 	const {auth} = useSelector((state: StateParams) => state);
 	const {user} = auth;
@@ -68,9 +69,10 @@ const FacilityShiftPreviewScreen = (props: any) => {
 			.then(async resp => {
 				setIsLoading(false);
 				if (resp) {
-					setDisableBtn(true);
+					setDisableApplyBtn(true);
 					ToastAlert.show('Application Submitted');
 					setShiftApplyModalVisible(!shiftApplyModalVisible);
+					analytics.track('Applied For A Shift');
 				} else {
 					ToastAlert.show(resp, 'failed to update');
 				}
@@ -470,7 +472,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 									}}
 									title={'Apply Now'}
 									onPress={onApply}
-									disabled={disableBtn}
+									disabled={disableApplyBtn}
 									isLoading={disableBtnLoading}
 								/>
 							</View>

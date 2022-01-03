@@ -109,7 +109,6 @@ const MyProfileScreen = (props: any) => {
 	) => {
 		// formikHelpers.setSubmitting(true);
 		const payload = {...values};
-		console.log(payload);
 		formikHelpers.setSubmitting(false);
 		// navigation.replace(NavigateTo.Main);
 		// ApiFunctions.post(ENV.apiUrl + 'account/login', payload)
@@ -162,7 +161,8 @@ const MyProfileScreen = (props: any) => {
 										...{
 											CurrentRole: profile.hcp_type,
 											Location: profile.address.region,
-											Experience: profile.professional_details.experience,
+											Experience:
+												profile.professional_details.experience.toString(),
 											primarySpeciality:
 												profile.professional_details.speciality,
 											shiftPrefer: 'AM',

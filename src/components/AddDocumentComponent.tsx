@@ -22,6 +22,7 @@ import {StateParams} from '../store/reducers';
 import Moment from 'moment';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import WebView from 'react-native-webview';
+import analytics from '@segment/analytics-react-native';
 
 export interface AddDocumentComponentProps {
 	title: string;
@@ -47,6 +48,11 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 	const [url, setURL]: any = useState();
 	const [type, setType]: any = useState();
 	const [showFullscreen, setShowFullscreen] = useState<any | null>(null);
+	const [selectDeleteFileModalVisible, setSelectDeleteFileModalVisible] =
+		useState<boolean>(false);
+	const [fileViewModalVisible, setFileViewModalVisible] =
+		useState<boolean>(false);
+	const dimensions = useWindowDimensions();
 
 	const uploadPut = useCallback(
 		(dataURL, file) => {
@@ -69,6 +75,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 					setSelectPickerModalVisible(false);
 					setDocumentExpiry(changedDate);
 					getAttachmentData();
+					analytics.track('Document Upload Complete');
 					// setDocumentAvailable(true);
 					// setIsLoading(false);
 					// setIsLoaded(true);
@@ -96,7 +103,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 				)
 					.then(resp => {
 						uploadPut(resp.data, file);
-						console.log('data>>>>', resp.data);
 					})
 					.catch(err => {
 						console.log(err.error);
@@ -110,6 +116,9 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 	const openImageUpload = useCallback(
 		(mode: 'pdf' | 'camera' | 'image' = 'pdf') => {
 			if (mode === 'camera') {
+				analytics.track('Document Upload Type', {
+					documentUploadType: 'camera',
+				});
 				CommonFunctions.openMedia(undefined, mode)
 					.then(file => {
 						uploadHandler(file);
@@ -119,7 +128,15 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 					});
 			} else {
 				let picMode: any = [DocumentPicker.types.pdf];
+				if (mode === 'pdf') {
+					analytics.track('Document Upload Type', {
+						documentUploadType: 'pdf',
+					});
+				}
 				if (mode === 'image') {
+					analytics.track('Document Upload Type', {
+						documentUploadType: 'image',
+					});
 					picMode = [DocumentPicker.types.images];
 				}
 				CommonFunctions.openDocumentPicker(picMode)
@@ -134,14 +151,11 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 		[uploadHandler],
 	);
 
-	const [view, setView]: any = useState(false);
-
 	const getAttachmentData = useCallback(() => {
 		setIsLoading(true);
 		ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/attachments')
 			.then(async resp => {
 				if (resp) {
-					console.log(resp);
 					var wantedData = resp.data.filter(function (i: any) {
 						return i.attachment_type === title;
 					});
@@ -154,7 +168,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						let url = wantedData[0].url;
 						let type = wantedData[0].ContentType;
 						setShowFullscreen({url, type});
-						// console.log('ContentType>>>>', wantedData[0].url);
 						setURL(wantedData[0].url);
 						setType(wantedData[0].ContentType);
 					}
@@ -192,6 +205,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 					)
 						.then(resp => {
 							setDocumentAvailable(false);
+							setSelectDeleteFileModalVisible(false);
 							setIsLoading(false);
 							setIsLoaded(true);
 							ToastAlert.show('Attachment removed');
@@ -229,10 +243,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 				textColor={
 					CommonFunctions.isAndroid() ? Colors.textOnPrimary : Colors.textDark
 				}
-				// display="default"
 				onChange={(e: any, value: Moment.MomentInput) => {
-					console.log('>>>', e, value);
-					// setDatepickerShow(CommonFunctions.isIOS());
 					if (value) {
 						console.log(changedDate, 'changed dateee--->>>');
 						const curDate = Moment(value)
@@ -242,7 +253,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						setChangedDate(curDate);
 					} else {
 						console.log(changedDate, 'undefined dateee--->>>');
-						// setChangedDate(null);
 						setShow(false);
 					}
 				}}
@@ -424,54 +434,13 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 										}}
 										onChange={date => {
 											setChangedDate(date);
-											console.log('>>>date', date);
 										}}
 									/>
 								</View>
 							)}
 							<View>
 								{!!show && (
-									<>
-										{CommonFunctions.isAndroid() && getDatePicker()}
-										{/*{CommonFunctions.isIOS() && (*/}
-										{/*	<View style={{flexGrow: 1, borderWidth: 3}}>*/}
-										{/*		<Modal*/}
-										{/*			animationType="fade"*/}
-										{/*			transparent*/}
-										{/*			visible={datepickerShow}*/}
-										{/*			presentationStyle="overFullScreen">*/}
-										{/*			<View*/}
-										{/*				style={{*/}
-										{/*					flex: 1,*/}
-										{/*					backgroundColor: 'white',*/}
-										{/*					justifyContent: 'flex-end',*/}
-										{/*					flexDirection: 'column',*/}
-										{/*				}}>*/}
-										{/*				<View*/}
-										{/*					style={{*/}
-										{/*						backgroundColor: 'white',*/}
-										{/*						padding: 15,*/}
-										{/*						paddingBottom: 40,*/}
-										{/*						flex: 1,*/}
-										{/*					}}>*/}
-										{/*					{getDatePicker('spinner')}*/}
-										{/*					<View style={{alignItems: 'center'}}>*/}
-										{/*						<CustomButton*/}
-										{/*							class={'primary'}*/}
-										{/*							autoWidth={true}*/}
-										{/*							style={{paddingHorizontal: 20}}*/}
-										{/*							title={'Done'}*/}
-										{/*							onPress={() => {*/}
-										{/*								setDatepickerShow(false);*/}
-										{/*							}}*/}
-										{/*						/>*/}
-										{/*					</View>*/}
-										{/*				</View>*/}
-										{/*			</View>*/}
-										{/*		</Modal>*/}
-										{/*	</View>*/}
-										{/*)}*/}
-									</>
+									<>{CommonFunctions.isAndroid() && getDatePicker()}</>
 								)}
 							</View>
 							<CustomButton
@@ -492,11 +461,9 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 								}}
 								onPress={() => {
 									if (changedDate === null) {
-										console.log('hello');
 									} else {
 										setSelectDateModalVisible(!selectDateModalVisible);
 										setSelectPickerModalVisible(!selectPickerModalVisible);
-										console.log('modal>>>>', changedDate);
 									}
 								}}
 								disabled={changedDate === null ? true : false}
@@ -508,8 +475,88 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 		);
 	};
 
-	const [fileViewModalVisible, setFileViewModalVisible] = useState(false);
-	const dimensions = useWindowDimensions();
+	const selectDeleteFileModal = () => {
+		return (
+			<View style={styles.ModalContainer}>
+				<Modal
+					animationType="slide"
+					transparent={true}
+					visible={selectDeleteFileModalVisible}
+					onRequestClose={() => {
+						setSelectDeleteFileModalVisible(!selectDeleteFileModalVisible);
+					}}>
+					<View style={[styles.centeredView, {backgroundColor: '#000000A0'}]}>
+						<View
+							style={[
+								styles.modalView,
+								{
+									height: '30%',
+								},
+							]}>
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.bold,
+									fontSize: 22,
+									color: Colors.primary,
+								}}>
+								Delete File!
+							</Text>
+							<Text style={styles.modalTextSub}>
+								Do you want to delete {title}
+							</Text>
+							<View
+								style={{
+									flexDirection: 'row',
+									marginHorizontal: 10,
+									marginTop: 30,
+								}}>
+								<View
+									style={{
+										width: '45%',
+										marginRight: '10%',
+									}}>
+									<CustomButton
+										onPress={() =>
+											setSelectDeleteFileModalVisible(
+												!selectDeleteFileModalVisible,
+											)
+										}
+										style={{
+											flex: 0,
+											borderRadius: 8,
+											marginVertical: 0,
+											height: 45,
+											backgroundColor: Colors.backgroundShiftColor,
+										}}
+										title={'Cancel'}
+										class={'secondary'}
+										textStyle={{color: Colors.primary}}
+									/>
+								</View>
+								<View
+									style={{
+										width: '45%',
+									}}>
+									<CustomButton
+										style={{
+											flex: 0,
+											borderRadius: 8,
+											marginVertical: 0,
+											height: 45,
+										}}
+										title={'Delete'}
+										onPress={deleteData}
+										isLoading={isLoading}
+									/>
+								</View>
+							</View>
+						</View>
+					</View>
+				</Modal>
+			</View>
+		);
+	};
+
 	const modalViewImage = () => {
 		return (
 			<Modal
@@ -534,7 +581,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						<TouchableOpacity
 							onPress={() => {
 								setFileViewModalVisible(!fileViewModalVisible);
-								console.log(showFullscreen.url, '<<<<');
 							}}>
 							<ImageConfig.CloseIconModal height={'25'} width={'25'} />
 						</TouchableOpacity>
@@ -605,10 +651,8 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									<TouchableOpacity
 										onPress={() => {
 											if (type === 'application/pdf') {
-												console.log('pdf');
 												Linking.openURL(url);
 											} else {
-												console.log('other');
 												setFileViewModalVisible(true);
 											}
 										}}>
@@ -623,7 +667,13 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 											View
 										</Text>
 									</TouchableOpacity>
-									<TouchableOpacity onPress={deleteData}>
+									<TouchableOpacity
+										// onPress={deleteData}
+										onPress={() => {
+											setSelectDeleteFileModalVisible(
+												!selectDeleteFileModalVisible,
+											);
+										}}>
 										<Text
 											style={{
 												color: Colors.warn,
@@ -671,7 +721,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 							)}
 						</View>
 					</View>
-
+					{selectDeleteFileModal()}
 					{selectDateModal()}
 					{selectPickerModal()}
 				</>
@@ -740,6 +790,8 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontFamily: FontConfig.primary.regular,
 		color: Colors.textOnTextLight,
+		marginVertical: 14,
+		fontSize: 14,
 	},
 	modalTime: {
 		fontFamily: FontConfig.primary.bold,
@@ -764,7 +816,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		backgroundColor: 'red',
-		// backgroundColor: '#000000A0',
 	},
 	modalView1: {
 		marginHorizontal: 10,

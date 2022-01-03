@@ -118,25 +118,27 @@ const MyShiftsScreen = (props: any) => {
 
 	const getHcpApplicationList = useCallback(() => {
 		setIsLoading(true);
-		ApiFunctions.get(
-			ENV.apiUrl + 'shift/hcp/' + user._id + '/application?status=pending',
-		)
-			.then(async resp => {
-				if (resp) {
-					setAppliedShifts(resp.data);
-					setAppliedCount(resp.data.length);
-				} else {
-					console.log('error', resp);
-					// ToastAlert.show(resp.errors || '');
-				}
-				setIsLoading(false);
-				setIsLoaded(true);
-			})
-			.catch((err: any) => {
-				setIsLoading(false);
-				setIsLoaded(true);
-				console.log(err);
-			});
+		if (user) {
+			ApiFunctions.get(
+				ENV.apiUrl + 'shift/hcp/' + user._id + '/application?status=pending',
+			)
+				.then(async resp => {
+					if (resp) {
+						setAppliedShifts(resp.data);
+						setAppliedCount(resp.data.length);
+					} else {
+						console.log('error', resp);
+						// ToastAlert.show(resp.errors || '');
+					}
+					setIsLoading(false);
+					setIsLoaded(true);
+				})
+				.catch((err: any) => {
+					setIsLoading(false);
+					setIsLoaded(true);
+					console.log(err);
+				});
+		}
 	}, [user]);
 
 	const getHcpStatusCount = useCallback(() => {
@@ -202,7 +204,7 @@ const MyShiftsScreen = (props: any) => {
 		if (!showClosed && !showComplete && !showApplied) {
 			return;
 		} else {
-			analytics.track('History Filter Pending');
+			analytics.track('History Filter Upcoming');
 			setIsLoading(true);
 			setIsLoading(true);
 			setShowComplete(false);
@@ -255,6 +257,7 @@ const MyShiftsScreen = (props: any) => {
 		getHcpApplicationList();
 		getHcpStatusCount();
 	}, [getHCPShiftDetails, getHcpApplicationList, getHcpStatusCount]);
+
 	useEffect(() => {
 		const focusListener2 = navigation.addListener('focus', resetInitialState);
 

@@ -41,7 +41,6 @@ const AttendanceChartScreen = (props: any) => {
 		return time.join(''); // return adjusted time or original string
 	};
 
-	console.log('shiftID>>>>', shiftID);
 	const getShiftDetails = useCallback(() => {
 		setIsLoading(true);
 		ApiFunctions.get(ENV.apiUrl + 'shift/' + shiftID)
@@ -83,14 +82,11 @@ const AttendanceChartScreen = (props: any) => {
 	}, [getShiftDetails]);
 
 	const completeShift = () => {
-		console.log('complete');
-		console.log(shiftID);
 		setClosedButtonLoading(true);
 
 		ApiFunctions.patch(ENV.apiUrl + 'shift/' + shiftID + '/closed')
 			.then(async resp => {
 				if (resp) {
-					console.log('resp', resp);
 					ToastAlert.show('Shift closed');
 					setClosedButtonDisabled(true);
 					setClosedButtonLoading(false);

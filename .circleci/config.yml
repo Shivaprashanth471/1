@@ -343,11 +343,6 @@ jobs:
           at: ~/app
 
       - run:
-          name: checking present directory
-          command: |
-
-
-      - run:
           name: Installing bundler
           command: gem install bundler:2.1.4
       #      - restore_cache:
@@ -376,8 +371,8 @@ jobs:
             source $BASH_ENV
       # - slack/status:
       #     mentions: 'UBKQ0CRUL'
-      #     failure_message: ':red_circle: Android Staging Workflow Failed trigger by ${CIRCLE_USERNAME} ${GIT_COMMIT_DESC}'
-      #     success_message: ':tada: Android Staging Publish Success trigger by ${CIRCLE_USERNAME} ${GIT_COMMIT_DESC}'
+      #     failure_message: ':red_circle: Android QA Workflow Failed trigger by ${CIRCLE_USERNAME} ${GIT_COMMIT_DESC}'
+      #     success_message: ':tada: Android QA Publish Success trigger by ${CIRCLE_USERNAME} ${GIT_COMMIT_DESC}'
   android-qa:
     working_directory: ~/app
     docker:

@@ -130,6 +130,8 @@ const FindShiftsScreen = (props: any) => {
 					if (resp) {
 						let docs = resp.data || null;
 						setFacilityMapList(docs);
+						console.log('docs>>', docs);
+
 						const markersList: {latitude: any; longitude: any}[] | undefined =
 							[];
 						docs?.forEach((item: any) => {
@@ -246,7 +248,7 @@ const FindShiftsScreen = (props: any) => {
 
 			formikHelpers.setSubmitting(false);
 			setCurrentSelectedMarker(null);
-			// getFacilityMapList(hcp_type, search, payloadFilter);
+			getFacilityMapList(hcp_type, search, payloadFilter);
 		},
 		[getFacilityMapList, hcp_type, search],
 	);

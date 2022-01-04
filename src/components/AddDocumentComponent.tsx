@@ -72,7 +72,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 
 			fetch(dataURL, requestOptions)
 				.then(response => {
-					setSelectPickerModalVisible(false);
 					setDocumentExpiry(changedDate);
 					getAttachmentData();
 					analytics.track('Document Upload Complete');
@@ -115,6 +114,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 
 	const openImageUpload = useCallback(
 		(mode: 'pdf' | 'camera' | 'image' = 'pdf') => {
+			setSelectPickerModalVisible(false);
 			if (mode === 'camera') {
 				analytics.track('Document Upload Type', {
 					documentUploadType: 'camera',

@@ -56,7 +56,7 @@ const AuthPhoneScreen = (props: any) => {
 	) => {
 		formikHelpers.setSubmitting(true);
 		const payload = {...values};
-		console.log('payload out>>>', values);
+		console.log('payload out>>>', payload);
 		ApiFunctions.post(ENV.apiUrl + 'forgotPassword', payload)
 			.then(resp => {
 				formikHelpers.setSubmitting(false);

@@ -27,6 +27,8 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 	const [documentAvailable, setDocumentAvailable]: any = useState(false);
 	const [selectPickerModalVisible, setSelectPickerModalVisible] =
 		useState(false);
+	const [selectDeleteFileModalVisible, setSelectDeleteFileModalVisible] =
+		useState<boolean>(false);
 	const title = props.title;
 	const shiftID = props.shiftID;
 	const state = props.state;
@@ -34,12 +36,12 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 	const uploadPut = useCallback((dataURL, file) => {
 		setIsLoading(true);
 
-		var myHeaders = new Headers();
+		const myHeaders = new Headers();
 		myHeaders.append('Content-Type', file.type);
 
-		var fileContent = file;
+		const fileContent = file;
 
-		var requestOptions = {
+		const requestOptions = {
 			method: 'PUT',
 			headers: myHeaders,
 			body: fileContent,
@@ -116,7 +118,7 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 						uploadHandler(file);
 					})
 					.catch(error => {
-						console.log('error:', error);
+						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			}
 		},
@@ -189,9 +191,6 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 				setIsLoaded(true);
 			});
 	}, [shiftID, title]);
-
-	const [selectDeleteFileModalVisible, setSelectDeleteFileModalVisible] =
-		useState<boolean>(false);
 
 	const selectDeleteFileModal = () => {
 		return (
@@ -401,7 +400,7 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 												fontSize: 16,
 												color: '#fff',
 											}}>
-											Upload Documents
+											Upload Document
 										</Text>
 										<ImageConfig.AddCircleIcon width="20" height="20" />
 									</LinearGradient>

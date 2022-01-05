@@ -374,7 +374,7 @@ const MyShiftsScreen = (props: any) => {
 												onPress={selectClosed}>
 												<MyShiftsStatusContainerComponent
 													title={'Closed Shifts'}
-													count={shiftCount.closed || ''}
+													count={shiftCount.closed || '0'}
 													selected={showClosed}
 												/>
 											</TouchableOpacity>
@@ -382,7 +382,7 @@ const MyShiftsScreen = (props: any) => {
 											<View style={CommonStyles.flex}>
 												<MyShiftsStatusContainerComponent
 													title={'Closed Shifts'}
-													count={shiftCount.closed || ''}
+													count={shiftCount.closed || '0'}
 													selected={showClosed}
 												/>
 											</View>

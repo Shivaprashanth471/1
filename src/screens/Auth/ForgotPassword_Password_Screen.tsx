@@ -34,13 +34,11 @@ const ForgotPasswordSchema = yup.object().shape({
 	password: yup
 		.string()
 		.required('Required')
-		.min(6, 'Invalid')
-		.max(16, 'Invalid'),
+		.min(6, 'must be at least 6 characters'),
 	confirm: yup
 		.string()
 		.required('Required')
-		.min(6, 'Invalid')
-		.max(16, 'Invalid')
+		.min(6, 'must be at least 6 characters')
 		.oneOf([yup.ref('password'), null], "Confirmation Doesn't match"),
 	code: yup.string().required('Required').min(4, 'Invalid').max(4, 'Invalid'),
 });

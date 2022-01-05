@@ -30,7 +30,10 @@ import analytics from '@segment/analytics-react-native';
 // Login api
 const loginSchema = yup.object().shape({
 	email: yup.string().required('Required').email('Invalid Email'),
-	password: yup.string().required('Required').min(5, 'Invalid'),
+	password: yup
+		.string()
+		.required('Required')
+		.min(6, 'must be at least 6 characters'),
 });
 
 export interface LoginSchemaType {
@@ -86,27 +89,15 @@ const LoginScreen = (props: any) => {
 		formikHelpers: FormikHelpers<LoginSchemaType>,
 	) => {
 		const payload = {...values};
-		console.log(values);
 		formikHelpers.setSubmitting(true);
 		ApiFunctions.post(ENV.apiUrl + 'user/login', payload)
 			.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {
 				if (resp.success) {
-					console.log('resp.data>>>>>>>>>', resp.data);
 					const user = resp.data.user;
 					await dispatch(loginUser(user, resp.data.token));
-					// await analytics.track('First Time Login');
 					await analytics.track('Login Success', {email: payload.email});
 					getProfileDetails(user, formikHelpers);
-
-					// if (resp.data.user.is_active) {
-					// navigation.replace(NavigateTo.Main);
-					// } else {
-					// navigation.replace(NavigateTo.AuthPhoneScreen);
-					// navigation.replace(NavigateTo.Main);
-					// }
 				} else {
-					console.log('resp.error', resp.error);
-
 					ToastAlert.show(resp.error || '');
 				}
 			})
@@ -146,11 +137,9 @@ const LoginScreen = (props: any) => {
 							}
 							navigation.replace(NavigateTo.Main);
 						} else {
-							console.log('null here');
 							ToastAlert.show('HCP data not found, please contact vitawerks');
 						}
 					} else {
-						console.log('error');
 						ToastAlert.show('something went wrong');
 					}
 				})

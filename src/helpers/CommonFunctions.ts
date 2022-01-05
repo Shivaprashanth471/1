@@ -168,7 +168,7 @@ const openDocumentPicker = (types: any[]): Promise<FileType> => {
 				} else {
 					reject({
 						didCancel: false,
-						err: 'size of image should be less than 8MB',
+						err: 'size of file should be less than 8MB',
 					});
 				}
 			})

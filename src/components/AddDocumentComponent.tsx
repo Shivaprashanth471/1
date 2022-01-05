@@ -124,7 +124,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						uploadHandler(file);
 					})
 					.catch(error => {
-						console.log(error);
+						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			} else {
 				let picMode: any = [DocumentPicker.types.pdf];
@@ -144,7 +144,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						uploadHandler(file);
 					})
 					.catch(error => {
-						console.log('error:', error);
+						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			}
 		},
@@ -245,14 +245,14 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 				}
 				onChange={(e: any, value: Moment.MomentInput) => {
 					if (value) {
-						console.log(changedDate, 'changed dateee--->>>');
+						// console.log(changedDate, 'changed dateee--->>>');
 						const curDate = Moment(value)
 							.utcOffset(0, false)
 							.format('YYYY-MM-DD');
 						setShow(false);
 						setChangedDate(curDate);
 					} else {
-						console.log(changedDate, 'undefined dateee--->>>');
+						// console.log(changedDate, 'undefined dateee--->>>');
 						setShow(false);
 					}
 				}}

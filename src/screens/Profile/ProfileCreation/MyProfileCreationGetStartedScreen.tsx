@@ -12,7 +12,7 @@ import {ApiFunctions, CommonStyles} from '../../../helpers';
 import {Colors, ENV, FontConfig, NavigateTo} from '../../../constants';
 import {
 	BaseViewComponent,
-	EditableTextInput,
+	ProfileDetailsContainerComponent,
 	ErrorComponent,
 	LoadingComponent,
 	CustomButton,

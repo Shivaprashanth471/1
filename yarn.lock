@@ -6719,10 +6719,10 @@ react-native-image-picker@^4.3.0:
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-4.3.0.tgz#d68640061d3c5e6bef1d417c8085828318162874"
   integrity sha512-YJtpuNHK7PS4ujbsSVAL6rKW4QQEDTf80MxuPmwByYgMi01VbfkXZ/8+pf61ctOED3Z0ZZKbk7/3pJ0dQHVAbg==
 
-react-native-image-slider-box@^1.1.8:
-  version "1.1.8"
-  resolved "https://registry.npmjs.org/react-native-image-slider-box/-/react-native-image-slider-box-1.1.8.tgz"
-  integrity sha512-LqyNhAHaUFxC+z6SQGMIwgyor/6ZT47nnUQoYZLscU5i1KbsxuMhc+u2UCpd5qfJENEZFB9EVOaRC+aa+p8Zwg==
+react-native-image-slider-box@^1.1.14:
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/react-native-image-slider-box/-/react-native-image-slider-box-1.1.14.tgz#4d2043e80c67baf84a7429024eac89ebb95ac617"
+  integrity sha512-BcU3vvRnRe4tFDYwiruxKyTeh53GjY6QMK/x3UGysMACqPO8VguQThSOjcCGemOFBvqNpIRJREHcyJF5ydIryw==
   dependencies:
     react-native-snap-carousel latest
 
@@ -6749,6 +6749,14 @@ react-native-modal-selector-searchable@^2.1.4:
   integrity sha512-58hSgwiN34+Z43NNAgBKqb5plTqtLEFyJfBHxeCkNkjQ8abSfIZrpCiyx43aA3uHDlmqKy4HOLOBstPs0E23rQ==
   dependencies:
     prop-types "^15.5.10"
+
+react-native-month-year-picker@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-month-year-picker/-/react-native-month-year-picker-1.8.0.tgz#9fd5b8502e4354506b9dc4525e73f966e8582aaa"
+  integrity sha512-3jf7KXrLTaqWvi+WALgadClnJ+f/HXtCtYMOjG5RH1r5aWWo7lfpETdlfYkRAVy4ZKLsDp65KStbkh4dyytZ8g==
+  dependencies:
+    invariant "^2.2.4"
+    moment "^2.24.0"
 
 react-native-onesignal@^4.3.0:
   version "4.3.0"

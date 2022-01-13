@@ -12,29 +12,40 @@ import {ApiFunctions, CommonFunctions} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import {
 	BaseViewComponent,
-	EditableTextInput,
 	ErrorComponent,
 	LoadingComponent,
 } from '../../components/core';
+import ProfileDetailsContainerComponent from '../../components/ProfileDetailsContainerComponent';
 import {StateParams} from '../../store/reducers';
 import moment from 'moment';
+import ProfileAddEducationComponent from '../../components/ProfileAddEducationComponent';
 
 const ProfileEducationScreen = (props: any) => {
 	const [inState, setInState] = useState([<View />]);
 	const [profile, setProfile] = useState<any[] | null>();
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
+	const [showInState, setShowInState] = useState<boolean>(false);
+	const [displayAddText, setDisplayAddText] = useState<
+		'none' | 'flex' | undefined
+	>('flex');
 
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
 
 	const addEducation = () => {
+		console.log('here');
+		setShowInState(true);
+		setDisplayAddText('none');
 		setInState([
 			...inState,
-			<EditableTextInput
-				title="Title"
-				subTitle="Subtext"
-				description="description"
+			<ProfileAddEducationComponent
+				setDisplayAddText={setDisplayAddText}
+				onUpdate={() => {
+					setShowInState(false);
+					setInState(inState => []);
+					getEducationDetails();
+				}}
 			/>,
 		]);
 	};
@@ -44,11 +55,9 @@ const ProfileEducationScreen = (props: any) => {
 		ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/education')
 			.then(async resp => {
 				if (resp && resp.success) {
+					setDisplayAddText('flex');
 					setProfile(resp.data || null);
 					// Intercom.updateUser(resp.data);
-					// var date = resp.data[0].start_date;
-					// var year = moment(date).format('YYYY');
-					// console.log('>>>>>>>>>>>>>>>>>>.', year);
 				} else {
 					setProfile(null);
 					Alert.alert('Error', resp.error);
@@ -78,7 +87,30 @@ const ProfileEducationScreen = (props: any) => {
 			{!isLoading && isLoaded && profile && (
 				<>
 					{profile.length === 0 && (
-						<ErrorComponent text={'Education not added '} />
+						<>
+							<BaseViewComponent style={{marginHorizontal: 10}}>
+								<StatusBar
+									barStyle={'light-content'}
+									animated={true}
+									backgroundColor={Colors.backdropColor}
+								/>
+								<ErrorComponent text={'Education not added '} />
+								{showInState && <>{inState}</>}
+
+								<TouchableOpacity
+									onPress={addEducation}
+									style={{marginTop: 50, display: displayAddText}}>
+									<Text
+										style={{
+											color: Colors.textOnAccent,
+											fontFamily: FontConfig.primary.semiBold,
+											fontSize: 14,
+										}}>
+										+ Add education
+									</Text>
+								</TouchableOpacity>
+							</BaseViewComponent>
+						</>
 					)}
 					{sortedEducationData.length > 0 && (
 						<BaseViewComponent style={{}}>
@@ -90,8 +122,8 @@ const ProfileEducationScreen = (props: any) => {
 							<View style={styles.screen}>
 								{profile.map((item: any, index: any) => (
 									<View key={item._id + '_' + index}>
-										<EditableTextInput
-											key={item._id + '_' + index}
+										<ProfileDetailsContainerComponent
+											id={item._id}
 											title={item.institute_name}
 											location={item.location + '  |  '}
 											degree={item.degree + '  |  '}
@@ -101,20 +133,21 @@ const ProfileEducationScreen = (props: any) => {
 											// description={
 											// 	'You agree to allow VitaWerks to check your information. Terms & Conditions. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '
 											// }
+											status={'education'}
 										/>
 									</View>
 								))}
-								{inState}
+								{showInState && <>{inState}</>}
 								<TouchableOpacity
-									// onPress={addEducation}
-									style={{marginTop: 50}}>
+									onPress={addEducation}
+									style={{marginTop: 50, display: displayAddText}}>
 									<Text
 										style={{
-											color: Colors.textOnPrimary,
+											color: Colors.textOnAccent,
 											fontFamily: FontConfig.primary.semiBold,
 											fontSize: 14,
 										}}>
-										+ Add more experience
+										+ Add more education
 									</Text>
 								</TouchableOpacity>
 							</View>

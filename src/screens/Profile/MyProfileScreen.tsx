@@ -1,103 +1,86 @@
-import React, {useState, useCallback, useEffect, useRef} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
 	StatusBar,
 	StyleSheet,
-	Text,
-	TouchableOpacity,
 	View,
 	Alert,
+	Text,
 	TextInput,
 } from 'react-native';
 import {
 	BaseViewComponent,
 	CustomButton,
 	FormikRadioGroupComponent,
-	EditableTextInput,
 	ErrorComponent,
 	LoadingComponent,
 	KeyboardAvoidCommonView,
 } from '../../components/core';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../helpers';
-import {loginUser} from '../../store/actions/auth.action';
-import {
-	Colors,
-	ENV,
-	FontConfig,
-	ImageConfig,
-	NavigateTo,
-} from '../../constants';
+import {Colors, ENV, FontConfig} from '../../constants';
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import FormikInputComponent from '../../components/core/FormikInputComponent';
 import {TSAPIResponseType} from '../../helpers/ApiFunctions';
-import PickerComponent from '../../components/core/PickerComponent';
-import {Picker} from '@react-native-community/picker';
-import LabelComponent from '../../components/core/LabelComponent';
-// import Intercom from 'react-native-intercom';
 import {StateParams} from '../../store/reducers';
 import DropdownComponent from '../../components/core/DropdownComponent';
-import {
-	ExperienceList,
-	primarySpecialityList,
-	currentList,
-} from '../../constants/CommonVariables';
+import {currentList, regionsList} from '../../constants/CommonVariables';
 
 const profileSchema = yup.object().shape({
-	CurrentRole: yup.string().required('Required'),
-	Location: yup.string().required('Required'),
+	hcp_type: yup.string().required('Required'),
+	region: yup.string().required('Required'),
 	Experience: yup.string().required('Required'),
-	primarySpeciality: yup.string().required('Required'),
-	shiftPrefer: yup.string().required('Required'),
 });
 
 export interface ProfileSchemaType {
-	CurrentRole: string;
-	Location: string;
-	Experience: string;
-	primarySpeciality: string;
-	shiftPrefer: string;
+	hcp_type: string;
+	region: string;
+	Experience?: string;
+	primarySpeciality?: string;
+	shift_type_preference: string;
 }
 
 const initialValues: ProfileSchemaType = {
-	CurrentRole: '',
-	Location: '',
+	hcp_type: '',
+	region: '',
 	Experience: '',
 	primarySpeciality: '',
-	shiftPrefer: '',
+	shift_type_preference: '',
 };
 
 const MyProfileScreen = (props: any) => {
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [profile, setProfile]: any = useState();
 	const [isLoaded, setIsLoaded]: any = useState(false);
-	const [inState, setInState] = useState([<View />]);
 	const {auth} = useSelector((state: StateParams) => state);
 	const {user} = auth;
 	const navigation = props.navigation;
-	const {hcpID} = props.route.params;
+	const {hcpDetails} = useSelector((state: StateParams) => state);
+	const {HcpUser} = hcpDetails;
+
+	const [disableBtn, setDisableBtn] = useState<boolean>(true);
 
 	const getProfileDetails = useCallback(() => {
 		setIsLoading(true);
-
-		ApiFunctions.get(ENV.apiUrl + 'hcp/user/' + user._id)
-			.then(async resp => {
-				if (resp) {
-					setProfile(resp.data);
-					// Intercom.updateUser(resp.data);
-				} else {
-					Alert.alert('Error', resp);
-				}
-				setIsLoading(false);
-				setIsLoaded(true);
-			})
-			.catch((err: any) => {
-				setIsLoading(false);
-				setIsLoaded(true);
-				console.log(err);
-				// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
-			});
-	}, []);
+		if (user) {
+			ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile')
+				.then(async resp => {
+					if (resp) {
+						setProfile(resp.data);
+					} else {
+						Alert.alert('Error', resp);
+					}
+					setIsLoading(false);
+					setIsLoaded(true);
+				})
+				.catch((err: any) => {
+					setIsLoading(false);
+					setIsLoaded(true);
+					console.log(err);
+					Alert.alert('Error', err.error || 'Oops... Something went wrong!');
+				});
+		}
+	}, [user]);
 	useEffect(() => {
 		console.log('loading get profile');
 		getProfileDetails();
@@ -107,37 +90,41 @@ const MyProfileScreen = (props: any) => {
 		values: ProfileSchemaType,
 		formikHelpers: FormikHelpers<ProfileSchemaType>,
 	) => {
-		// formikHelpers.setSubmitting(true);
+		// setIsLoading(true);
+		formikHelpers.setSubmitting(true);
+		delete values.primarySpeciality;
+		delete values.Experience;
+
 		const payload = {...values};
-		formikHelpers.setSubmitting(false);
-		// navigation.replace(NavigateTo.Main);
-		// ApiFunctions.post(ENV.apiUrl + 'account/login', payload)
-		// 	.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		if (resp.success) {
-		// 			ToastAlert.show(resp.msg || 'Login Successful!');
-		// 			await dispatch(loginUser(resp.data.user, resp.data.token));
-		// 			navigation.replace(NavigateTo.Main);
-		// 		} else {
-		// 			ToastAlert.show(resp.error || '');
-		// 		}
-		// 	})
-		// 	.catch((err: any) => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-		// 	});
+		console.log('>>>', payload);
+		// formikHelpers.setSubmitting(false);
+		console.log('HcpUser._id', HcpUser._id);
+		values.primarySpeciality = profile.professional_details.speciality;
+		values.Experience = profile.professional_details.experience.toString();
+
+		if (HcpUser) {
+			ApiFunctions.put(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile', payload)
+				.then(async (resp: TSAPIResponseType<ProfileSchemaType>) => {
+					formikHelpers.setSubmitting(false);
+					if (resp.success) {
+						ToastAlert.show('Profile Successfully Updated');
+						setDisableBtn(true);
+						// getProfileDetails();
+					} else {
+						ToastAlert.show(resp.error || '');
+					}
+					// setIsLoading(false);
+					// setIsLoaded(true);
+				})
+				.catch((err: any) => {
+					// setIsLoading(false);
+					// setIsLoaded(true);
+					formikHelpers.setSubmitting(false);
+					CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+				});
+		}
 	};
 
-	const addLanguage = () => {
-		setInState([
-			...inState,
-			<EditableTextInput
-				title="Title"
-				subTitle="Subtext"
-				description="description"
-			/>,
-		]);
-	};
 	return (
 		<>
 			{isLoading && <LoadingComponent />}
@@ -159,18 +146,17 @@ const MyProfileScreen = (props: any) => {
 									initialValues={{
 										...initialValues,
 										...{
-											CurrentRole: profile.hcp_type,
-											Location: profile.address.region,
-											Experience:
-												profile.professional_details.experience.toString(),
-											primarySpeciality:
-												profile.professional_details.speciality,
-											shiftPrefer: 'AM',
+											hcp_type: profile.hcp_type,
+											region: profile.region,
+											Experience: profile.total_exp.toString(),
+											// primarySpeciality: profile.specializations,
+											shift_type_preference:
+												profile.shift_type_preference || '',
 										},
 									}}>
-									{({handleSubmit, isValid, isSubmitting}) => (
+									{({handleSubmit, isValid, isSubmitting, values}) => (
 										<>
-											<Field name={'CurrentRole'}>
+											<Field name={'hcp_type'}>
 												{(field: FieldProps) => (
 													<DropdownComponent
 														contentWrapper={{marginHorizontal: 0}}
@@ -180,39 +166,34 @@ const MyProfileScreen = (props: any) => {
 														placeholder={'select the value'}
 														formikField={field}
 														search={false}
-														disabled={true}
+														disabled={false}
+														onUpdate={e => {
+															console.log('here', e);
+															setDisableBtn(false);
+														}}
 													/>
 												)}
 											</Field>
-											<Field name={'Location'}>
+											<Field name={'region'}>
 												{(field: FieldProps) => (
-													<FormikInputComponent
-														trimCharacters={true}
-														trimSpaces={true}
-														isEditable={false}
-														trimSpecialCharacters={true}
-														labelText="Location"
-														inputProperties={{
-															keyboardType: 'default',
-															placeholder: 'Location',
-														}}
+													<DropdownComponent
+														contentWrapper={{marginHorizontal: 0}}
+														// @ts-ignore
+														data={regionsList}
+														labelText={'region'}
+														placeholder={'select the value'}
 														formikField={field}
-														// defaultValue="hello"
+														search={false}
+														disabled={false}
+														onUpdate={() => {
+															console.log('here');
+															setDisableBtn(false);
+														}}
 													/>
 												)}
 											</Field>
 											<Field name={'Experience'}>
 												{(field: FieldProps) => (
-													// <DropdownComponent
-													// 	contentWrapper={{marginHorizontal: 0}}
-													// 	// @ts-ignore
-													// 	data={ExperienceList}
-													// 	labelText={'Experience'}
-													// 	placeholder={'select the value'}
-													// 	formikField={field}
-													// 	search={false}
-													// 	// disabled={false}
-													// />
 													<FormikInputComponent
 														trimCharacters={true}
 														trimSpaces={true}
@@ -224,22 +205,15 @@ const MyProfileScreen = (props: any) => {
 															placeholder: 'Experience',
 														}}
 														formikField={field}
-														// defaultValue="hello"
+														onUpdate={() => {
+															console.log('here');
+															setDisableBtn(false);
+														}}
 													/>
 												)}
 											</Field>
-											<Field name={'primarySpeciality'}>
+											{/* <Field name={'primarySpeciality'}>
 												{(field: FieldProps) => (
-													// <DropdownComponent
-													// 	contentWrapper={{marginHorizontal: 0}}
-													// 	// @ts-ignore
-													// 	data={primarySpecialityList}
-													// 	labelText={'Primary Speciality'}
-													// 	placeholder={'select the value'}
-													// 	formikField={field}
-													// 	search={false}
-													// 	disabled={true}
-													// />
 													<FormikInputComponent
 														trimCharacters={true}
 														trimSpaces={true}
@@ -252,58 +226,79 @@ const MyProfileScreen = (props: any) => {
 															multiline: true,
 														}}
 														formikField={field}
-														// defaultValue="hello"
+														onUpdate={() => {
+															console.log('here');
+															setDisableBtn(false);
+														}}
 													/>
 												)}
-											</Field>
-											<Field name={'shiftPrefer'}>
+											</Field> */}
+
+											<View
+												style={{
+													marginVertical: 5,
+												}}>
+												<Text
+													style={{
+														color: Colors.textLight,
+														marginVertical: 5,
+													}}>
+													Speciality
+												</Text>
+												{profile.specializations && (
+													<>
+														{profile.specializations.map(
+															(item: any) => (
+																console.log('>>>>', item),
+																(
+																	<>
+																		<TextInput
+																			placeholderTextColor={Colors.textLight}
+																			style={{
+																				width: '100%',
+																				paddingHorizontal: 0,
+																				color: Colors.textDark,
+																				fontFamily: FontConfig.primary.semiBold,
+																				fontSize: 18,
+																				borderBottomColor: Colors.borderColor,
+																				borderBottomWidth: 2,
+																			}}
+																			value={item}
+																			autoCapitalize={'none'}
+																			autoCorrect={false}
+																			autoCompleteType={'off'}
+																		/>
+																	</>
+																)
+															),
+														)}
+													</>
+												)}
+											</View>
+											<Field name={'shift_type_preference'}>
 												{(field: FieldProps) => (
 													<FormikRadioGroupComponent
 														formikField={field}
 														labelText={'Shift Prefer'}
 														radioButtons={[
-															{id: 'AM', title: 'AM', disabled: true},
-															{id: 'PM', title: 'PM', disabled: true},
-															{id: 'NOC', title: 'NOC', disabled: true},
-															{
-																id: 'Either',
-																title: 'Either works for me',
-																disabled: true,
-															},
+															{id: 'AM', title: 'AM'},
+															{id: 'PM', title: 'PM'},
+															{id: 'NOC', title: 'NOC'},
 														]}
 														direction={'column'}
+														onUpdate={() => {
+															console.log('here');
+															setDisableBtn(false);
+														}}
 													/>
 												)}
 											</Field>
-											{/* <View>
-												<LabelComponent
-													style={{paddingBottom: 5}}
-													title={'Language'}
-												/>
-												<EditableTextInput
-													title="English"
-													subTitle="Native Speaker"
-												/>
-												{inState}
-												<TouchableOpacity
-													onPress={addLanguage}
-													style={{marginVertical: 10}}>
-													<Text
-														style={{
-															color: Colors.primary,
-															fontFamily: FontConfig.primary.semiBold,
-															fontSize: 14,
-														}}>
-														+ Add more
-													</Text>
-												</TouchableOpacity>
-											</View> */}
 											<View
 												style={{
 													flexDirection: 'row',
 													marginTop: 20,
 												}}>
-												{/* <View
+												<View
 													style={{
 														width: '45%',
 														marginRight: '10%',
@@ -326,9 +321,9 @@ const MyProfileScreen = (props: any) => {
 															fontSize: 16,
 														}}
 													/>
-												</View> */}
+												</View>
 
-												{/* <View
+												<View
 													style={{
 														width: '45%',
 													}}>
@@ -340,16 +335,16 @@ const MyProfileScreen = (props: any) => {
 															height: 40,
 														}}
 														title={'Save changes'}
-														// isLoading={isSubmitting}
-														// onPress={handleSubmit}
-														disabled={!isValid}
+														isLoading={isSubmitting}
+														onPress={handleSubmit}
+														disabled={disableBtn}
 														textStyle={{
 															textTransform: 'none',
 															fontFamily: FontConfig.primary.bold,
 															fontSize: 16,
 														}}
 													/>
-												</View> */}
+												</View>
 											</View>
 										</>
 									)}
@@ -365,12 +360,9 @@ const MyProfileScreen = (props: any) => {
 
 const styles = StyleSheet.create({
 	wrapper: {
-		// flexDirection: 'row',
 		flex: 0,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
-		// marginHorizontal: 20,
-		// backgroundColor: 'red',
 	},
 	formHolder: {
 		marginHorizontal: 20,
@@ -382,9 +374,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	formBlock: {
-		// alignItems: 'center',
 		marginVertical: 25,
-		// backgroundColor: 'red',
 	},
 	button: {
 		marginVertical: 40,
@@ -404,14 +394,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'flex-start',
 		flexDirection: 'column',
-		// backgroundColor: 'red',
 		width: '80%',
 	},
 	headerText: {
-		// textAlign: 'center',
 		fontSize: 24,
 		fontFamily: FontConfig.primary.bold,
-		// fontFamily: 'NunitoSans-Bold',
 		color: Colors.textDark,
 	},
 	rowElements: {

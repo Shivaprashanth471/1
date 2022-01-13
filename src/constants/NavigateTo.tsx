@@ -2,6 +2,7 @@ const Start = 'Start';
 const Main = 'Main';
 const Auth = 'Auth';
 const Signin = 'Signin';
+const Signup = 'Signup';
 const Dashboard = 'Dashboard';
 const Welcome = 'Welcome';
 const Home = 'Home';
@@ -35,12 +36,16 @@ const MyProfileCreationGetLanguage = 'MyProfileCreationGetLanguage';
 const MyProfileCreationGetDocuments = 'MyProfileCreationGetDocuments';
 const MyProfileCreationGetExperience = 'MyProfileCreationGetExperience';
 const MyProfileProfessionalDetails = 'MyProfileProfessionalDetails';
+const ImageCarouselScreen = 'ImageCarouselScreen';
+const EmailVerifyScreen = 'EmailVerifyScreen';
+const OTPVerifyScreen = 'OTPVerifyScreen';
 
 export default {
 	Start,
 	Main,
 	Auth,
 	Signin,
+	Signup,
 	Dashboard,
 	Welcome,
 	Home,
@@ -74,4 +79,7 @@ export default {
 	ProfileDocumentScreen,
 	UpcomingShiftCountdownScreen,
 	AttendanceChartScreen,
+	ImageCarouselScreen,
+	EmailVerifyScreen,
+	OTPVerifyScreen,
 };

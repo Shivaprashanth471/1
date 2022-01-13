@@ -14,7 +14,7 @@ import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import PickerComponent from '../../../components/core/PickerComponent';
 import {
 	BaseViewComponent,
-	EditableTextInput,
+	ProfileDetailsContainerComponent,
 	ErrorComponent,
 	LoadingComponent,
 	CustomButton,

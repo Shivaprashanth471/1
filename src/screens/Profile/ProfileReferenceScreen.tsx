@@ -11,30 +11,42 @@ import {CommonStyles} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import {
 	BaseViewComponent,
-	EditableTextInput,
 	ErrorComponent,
 	LoadingComponent,
 } from '../../components/core';
+import ProfileDetailsContainerComponent from '../../components/ProfileDetailsContainerComponent';
 import {ApiFunctions} from '../../helpers';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../../store/reducers';
+import ProfileAddReferenceComponent from '../../components/ProfileAddReferenceComponent';
 
 const ProfileReferenceScreen = (props: any) => {
 	const [inState, setInState] = useState([<View />]);
 	const [profile, setProfile]: any = useState();
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
+	const [showInState, setShowInState] = useState<boolean>(false);
+	const [displayAddText, setDisplayAddText] = useState<
+		'none' | 'flex' | undefined
+	>('flex');
 
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
 
-	const addVolunteer = () => {
+	const addReference = () => {
+		console.log('here');
+
+		setShowInState(true);
+		setDisplayAddText('none');
 		setInState([
 			...inState,
-			<EditableTextInput
-				title="Title"
-				subTitle="Subtext"
-				description="description"
+			<ProfileAddReferenceComponent
+				setDisplayAddText={setDisplayAddText}
+				onUpdate={() => {
+					setShowInState(false);
+					setInState(inState => []);
+					getReferenceDetails();
+				}}
 			/>,
 		]);
 	};
@@ -42,11 +54,9 @@ const ProfileReferenceScreen = (props: any) => {
 		setIsLoading(true);
 		ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/reference/')
 			.then(async resp => {
-				// console.log('resp>>>', resp);
 				if (resp) {
+					setDisplayAddText('flex');
 					setProfile(resp.data);
-					// Intercom.updateUser(resp.data);
-					// console.log('resp profile reference screen>>>>>>>>>>>', profile);
 				} else {
 					Alert.alert('Error', resp);
 				}
@@ -70,7 +80,30 @@ const ProfileReferenceScreen = (props: any) => {
 			{!isLoading && isLoaded && profile && (
 				<>
 					{profile.length === 0 && (
-						<ErrorComponent text={'Reference not added '} />
+						<>
+							<BaseViewComponent style={{marginHorizontal: 10}}>
+								<StatusBar
+									barStyle={'light-content'}
+									animated={true}
+									backgroundColor={Colors.backdropColor}
+								/>
+								<ErrorComponent text={'Reference not added '} />
+								{showInState && <>{inState}</>}
+
+								<TouchableOpacity
+									onPress={addReference}
+									style={{marginTop: 50, display: displayAddText}}>
+									<Text
+										style={{
+											color: Colors.textOnAccent,
+											fontFamily: FontConfig.primary.semiBold,
+											fontSize: 14,
+										}}>
+										+ Add reference
+									</Text>
+								</TouchableOpacity>
+							</BaseViewComponent>
+						</>
 					)}
 					{profile.length > 0 && (
 						<BaseViewComponent>
@@ -85,13 +118,11 @@ const ProfileReferenceScreen = (props: any) => {
 										console.log('item', item),
 										(
 											<>
-												<EditableTextInput
+												<ProfileDetailsContainerComponent
+													id={item._id}
+													status="reference"
 													title={item.reference_name}
-													// subTitle={item.job_title + '  |  ' + item.phone}
 													location={item.job_title + '  |  ' + item.phone}
-													// degree={item.degree}
-													// startDate={item.start_date}
-													// endDate={item.graduation_date}
 													description={item.email}
 													getDate={false}
 												/>
@@ -99,13 +130,13 @@ const ProfileReferenceScreen = (props: any) => {
 										)
 									),
 								)}
-								{inState}
+								{showInState && <>{inState}</>}
 								<TouchableOpacity
-									// onPress={addVolunteer}
-									style={{marginTop: 50}}>
+									onPress={addReference}
+									style={{marginTop: 50, display: displayAddText}}>
 									<Text
 										style={{
-											color: Colors.textOnPrimary,
+											color: Colors.textOnAccent,
 											fontFamily: FontConfig.primary.semiBold,
 											fontSize: 14,
 										}}>

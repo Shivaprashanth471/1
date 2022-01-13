@@ -10,6 +10,9 @@ import StartupScreen from '../screens/Startup/StartupScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import {VitaTabNavigator} from './TabNavigator';
 import ForgotPassword_Email_Screen from '../screens/Auth/ForgotPassword_Email_Screen';
+import ImageCarouselScreen from '../screens/Auth/signup/ImageCarouselScreen';
+import EmailVerifyScreen from '../screens/Auth/signup/EmailVerifyScreen';
+import OTPVerifyScreen from '../screens/Auth/signup/OTPVerifyScreen';
 const defaultNavigationOptions: StackNavigationOptions = {
 	headerStyle: {
 		backgroundColor: Colors.backdropColor, //CommonFunctions.isAndroid() ? Colors.primary : 'white',
@@ -61,6 +64,39 @@ const AuthNavigator = () => {
 				component={ForgotPassword_Email_Screen}
 			/>
 		</AuthStack.Navigator>
+	);
+};
+
+const SignupStack = createStackNavigator();
+const SignupNavigator = () => {
+	return (
+		<SignupStack.Navigator
+			key={'Auth-Nav'}
+			initialRouteName={NavigateTo.ImageCarouselScreen}
+			headerMode="none"
+			screenOptions={defaultNavigationOptions}>
+			<SignupStack.Screen
+				key={NavigateTo.ImageCarouselScreen + '-Screen'}
+				name={NavigateTo.ImageCarouselScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={ImageCarouselScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.EmailVerifyScreen + '-Screen'}
+				name={NavigateTo.EmailVerifyScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={EmailVerifyScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.OTPVerifyScreen + '-Screen'}
+				name={NavigateTo.OTPVerifyScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={OTPVerifyScreen}
+			/>
+		</SignupStack.Navigator>
 	);
 };
 
@@ -185,6 +221,12 @@ const MainNavigator = () => {
 				name={NavigateTo.Main}
 				listeners={listeners}
 				component={VitaTabNavigator}
+			/>
+			<MainStack.Screen
+				key={NavigateTo.Signup + '-Nav-Stack'}
+				name={NavigateTo.Signup}
+				listeners={listeners}
+				component={SignupNavigator}
 			/>
 			{/* <MainStack.Screen
 				key={NavigateTo.FindShiftsMapScreen + '-Screen'}

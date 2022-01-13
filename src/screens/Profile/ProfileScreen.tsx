@@ -51,7 +51,6 @@ const ProfileScreen = (props: any) => {
 	const [logoutModalVisible, setLogoutOutModalVisible] = useState(false);
 	// const [hcpID, setHcpID] = useState('');
 	const {user} = auth;
-	console.log(user);
 	const navigation = props.navigation;
 
 	const getProfileDetails = useCallback(() => {
@@ -360,20 +359,30 @@ const ProfileScreen = (props: any) => {
 								<Text
 									style={{
 										fontFamily: FontConfig.primary.regular,
-										fontSize: 12,
+										fontSize: 14,
 										color: Colors.textOnTextLight,
 										marginTop: 10,
 									}}>
-									{profile.contact_number + '  |  ' + profile.email}
+									{profile.contact_number}
+								</Text>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.regular,
+										fontSize: 14,
+										color: Colors.textOnTextLight,
+										marginTop: 10,
+									}}>
+									{profile.email}
 								</Text>
 							</View>
 
-							<View
+							{/* <View
 								style={{
-									width: 120,
+									width: 150,
 									marginTop: 10,
+									// backgroundColor: 'red',
 								}}>
-								{/* <CustomButton
+								<CustomButton
 									onPress={gotoProfileEditScreen}
 									style={{
 										flex: 0,
@@ -382,7 +391,7 @@ const ProfileScreen = (props: any) => {
 										height: 40,
 										backgroundColor: Colors.backgroundShiftColor,
 									}}
-									title={'Edit Profile'}
+									title={'View Profile'}
 									class={'secondary'}
 									textStyle={{
 										color: Colors.primary,
@@ -390,8 +399,8 @@ const ProfileScreen = (props: any) => {
 										fontFamily: FontConfig.primary.bold,
 										fontSize: 14,
 									}}
-								/> */}
-							</View>
+								/>
+							</View> */}
 						</View>
 						<View style={styles.subHeaderContainer}>
 							<Text style={styles.subHeaderText}>Profile details</Text>
@@ -591,7 +600,6 @@ const ProfileScreen = (props: any) => {
 						<TouchableOpacity
 							onPress={() => {
 								setLogoutOutModalVisible(true);
-								console.log(logoutModalVisible);
 							}}>
 							<View
 								style={{

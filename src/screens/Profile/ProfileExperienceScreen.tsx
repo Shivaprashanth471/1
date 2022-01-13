@@ -11,12 +11,15 @@ import {ApiFunctions, CommonFunctions} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import {
 	BaseViewComponent,
-	EditableTextInput,
 	ErrorComponent,
 	LoadingComponent,
 } from '../../components/core';
+import Moment from 'moment';
+import ProfileDetailsContainerComponent from '../../components/ProfileDetailsContainerComponent';
+import ProfileAddExperienceComponent from '../../components/ProfileAddExperienceComponent';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../../store/reducers';
+// import MonthPicker from 'react-native-month-year-picker';
 
 const ProfileExperienceScreen = (props: any) => {
 	const [profile, setProfile] = useState<any | null>(null);
@@ -25,16 +28,27 @@ const ProfileExperienceScreen = (props: any) => {
 
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
+	const [inState, setInState] = useState([<View />]);
+	const [showInState, setShowInState] = useState<boolean>(false);
+	const [displayAddText, setDisplayAddText] = useState<
+		'none' | 'flex' | undefined
+	>('flex');
 
-	// const addExperience = () => {
-	// 	setInState([
-	// 		...inState,
-	// 		<EditableTextInput
-	// 			title="Title"
-	// 			subTitle="Subtext"
-	// 			description="description"
-	// 		/>,
-	// 	]);
+	const addExperience = () => {
+		setShowInState(true);
+		setDisplayAddText('none');
+		setInState([
+			...inState,
+			<ProfileAddExperienceComponent
+				setDisplayAddText={setDisplayAddText}
+				onUpdate={() => {
+					setShowInState(false);
+					setInState(inState => []);
+					getExperienceDetails();
+				}}
+			/>,
+		]);
+	};
 
 	const getExperienceDetails = useCallback(() => {
 		setIsLoading(true);
@@ -42,9 +56,8 @@ const ProfileExperienceScreen = (props: any) => {
 			ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience?exp_type=fulltime',
 		)
 			.then(async resp => {
-				// console.log('resp>>>', resp);
 				if (resp && resp.success) {
-					console.log(resp.data, 'data---->>>>');
+					setDisplayAddText('flex');
 					setProfile(resp.data || null);
 				} else {
 					Alert.alert('Error', resp.error);
@@ -66,6 +79,22 @@ const ProfileExperienceScreen = (props: any) => {
 		getExperienceDetails();
 	}, [getExperienceDetails]);
 
+	// const [date, setDate] = useState(new Date());
+	// const [show, setShow] = useState(false);
+
+	// const showPicker = useCallback(value => setShow(value), []);
+
+	// const onValueChange = useCallback(
+	// 	(event, newDate) => {
+	// 		const selectedDate = newDate || date;
+
+	// 		showPicker(false);
+	// 		setDate(selectedDate);
+	// 		console.log(Moment(selectedDate).format('YYYY-MM'));
+	// 	},
+	// 	[date, showPicker],
+	// );
+
 	const sortedExperienceData =
 		(profile && CommonFunctions.sortDatesByLatest(profile, 'start_date')) || [];
 	return (
@@ -75,7 +104,30 @@ const ProfileExperienceScreen = (props: any) => {
 			{!isLoading && isLoaded && profile && (
 				<>
 					{profile.length === 0 && (
-						<ErrorComponent text={'Experience not added '} />
+						<>
+							<BaseViewComponent style={{marginHorizontal: 10}}>
+								<StatusBar
+									barStyle={'light-content'}
+									animated={true}
+									backgroundColor={Colors.backdropColor}
+								/>
+								<ErrorComponent text={'Experience not added '} />
+								{showInState && <>{inState}</>}
+
+								<TouchableOpacity
+									onPress={addExperience}
+									style={{marginTop: 50, display: displayAddText}}>
+									<Text
+										style={{
+											color: Colors.textOnAccent,
+											fontFamily: FontConfig.primary.semiBold,
+											fontSize: 14,
+										}}>
+										+ Add experience
+									</Text>
+								</TouchableOpacity>
+							</BaseViewComponent>
+						</>
 					)}
 					{profile.length > 0 && (
 						<BaseViewComponent style={{}}>
@@ -84,27 +136,44 @@ const ProfileExperienceScreen = (props: any) => {
 								animated={true}
 								backgroundColor={Colors.backdropColor}
 							/>
+							{/* <View>
+								<Text>Month Year Picker Example</Text>
+								<TouchableOpacity onPress={() => showPicker(true)}>
+									<Text>OPEN</Text>
+								</TouchableOpacity>
+								{show && (
+									<MonthPicker
+										onChange={onValueChange}
+										value={date}
+										minimumDate={new Date()}
+										maximumDate={new Date(2025, 5)}
+										locale="En"
+									/>
+								)}
+							</View> */}
 							<View style={styles.screen}>
 								{sortedExperienceData.map((item: any, index: any) => (
 									<View key={item.id + '-' + index}>
-										<EditableTextInput
-											key={item.id + index}
+										<ProfileDetailsContainerComponent
+											id={item._id}
 											title={item.facility_name}
 											location={item.location + '  |  '}
 											startDate={item.start_date}
 											endDate={item.end_date}
 											description={item.position_title}
 											getDate={true}
+											status={'experience'}
 										/>
 									</View>
 								))}
-								{/* {inState} */}
+								{showInState && <>{inState}</>}
+
 								<TouchableOpacity
-									// onPress={addExperience}
-									style={{marginTop: 50}}>
+									onPress={addExperience}
+									style={{marginTop: 50, display: displayAddText}}>
 									<Text
 										style={{
-											color: Colors.textOnPrimary,
+											color: Colors.textOnAccent,
 											fontFamily: FontConfig.primary.semiBold,
 											fontSize: 14,
 										}}>

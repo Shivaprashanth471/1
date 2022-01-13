@@ -808,7 +808,7 @@ const FindShiftsScreen = (props: any) => {
 							styles.iconFilterContainer,
 							{
 								position: 'absolute',
-								bottom: currentSelectedMarker ? 300 : 70,
+								top: 80,
 								right: 10,
 							},
 						]}>

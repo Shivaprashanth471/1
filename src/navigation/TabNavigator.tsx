@@ -316,21 +316,21 @@ const bottomTabDefaultStyle: any = {
 //   const bottomTabBarOptions: BottomTabBarOptions = {
 const bottomTabBarOptions: BottomTabBarOptions = {
 	style: bottomTabDefaultStyle,
-	safeAreaInsets: {bottom: 25, top: 15},
+	safeAreaInsets: {bottom: 35, top: 15},
 	activeTintColor: Colors.primary,
 	inactiveTintColor: Colors.textDark,
 	tabStyle: {
-		paddingTop: 5,
-		paddingBottom: 55,
+		paddingTop: 15,
+		paddingBottom: 95,
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: 105,
+		height: 155,
 		backgroundColor: Colors.backgroundColor,
 	},
 	labelStyle: {
 		fontSize: 13,
 		fontFamily: FontConfig.primary.regular,
-		paddingTop: 5,
+		paddingTop: 10,
 	},
 	keyboardHidesTabBar: true,
 };
@@ -407,6 +407,9 @@ const VitaTabNavigator = () => {
 									textColor={props.color}
 									text={'Find Shifts'}
 									backgroundColor={'white'}
+									style={{
+										paddingBottom: 15,
+									}}
 								/>
 							);
 						},

@@ -42,58 +42,23 @@ export const ExperienceList = [
 	{label: '40 years', value: 40},
 ];
 
-export const primarySpecialityList = [
+export const MedTechSpecialityList = [
 	{
-			label: "Acute Care(Hospital)",
-			value: "Acute Care(Hospital)"
-	},
+		label: "None",
+		value: "None"
+	}
+]
+export const CareGiverSpecialityList = [
 	{
-			label: "Skilled Nursing/Assisted Living",
-			value: "Skilled Nursing/Assisted Living"
-	},
+		label: "None",
+		value: "None"
+	}
+]
+
+export const RnSpecialityList = [
 	{
-			label: "Behavioural health",
-			value: "Behavioural health"
-	},
-	{
-			label: "Home Health",
-			value: "Home Health"
-	},
-	{
-			label: "None",
-			value: "None"
-	},
-	{
-			label: "Acute Care(Hospital)",
-			value: "Acute Care(Hospital)"
-	},
-	{
-			label: "Skilled Nursing/Assisted Living",
-			value: "Skilled Nursing/Assisted Living"
-	},
-	{
-			label: "Behavioural health",
-			value: "Behavioural health"
-	},
-	{
-			label: "Home Health",
-			value: "Home Health"
-	},
-	{
-			label: "Sub Acute",
-			value: "Sub Acute"
-	},
-	{
-			label: "Long Term Acute Care",
-			value: "Long Term Acute Care"
-	},
-	{
-			label: "None",
-			value: "None"
-	},
-	{
-			label: "Cardiovascular intensive Care RN (cvicu-rn)",
-			value: "Cardiovascular intensive Care RN (cvicu-rn)"
+		label: "Cardiovascular intensive Care RN (cvicu-rn)",
+		value: "Cardiovascular intensive Care RN (cvicu-rn)"
 	},
 	{
 			label: "Catheterization Laboratory (Cath Lab)",
@@ -234,15 +199,226 @@ export const primarySpecialityList = [
 	{
 			label: "None",
 			value: "None"
+	}
+]
+export const LvnSpecialityList = [
+	{
+		label: "Acute Care(Hospital)",
+		value: "Acute Care(Hospital)"
+	},
+	{
+			label: "Skilled Nursing/Assisted Living",
+			value: "Skilled Nursing/Assisted Living"
+	},
+	{
+			label: "Behavioural health",
+			value: "Behavioural health"
+	},
+	{
+			label: "Home Health",
+			value: "Home Health"
+	},
+	{
+			label: "Sub Acute",
+			value: "Sub Acute"
+	},
+	{
+			label: "Long Term Acute Care",
+			value: "Long Term Acute Care"
 	},
 	{
 			label: "None",
 			value: "None"
+	}
+]
+export const CnaSpecialityList = [
+	{
+		label: "Acute Care(Hospital)",
+		value: "Acute Care(Hospital)"
+	},
+	{
+			label: "Skilled Nursing/Assisted Living",
+			value: "Skilled Nursing/Assisted Living"
+	},
+	{
+			label: "Behavioural health",
+			value: "Behavioural health"
+	},
+	{
+			label: "Home Health",
+			value: "Home Health"
 	},
 	{
 			label: "None",
 			value: "None"
+	}
+]
+
+export const primarySpecialityList = [
+	{
+			label: "Acute Care(Hospital)",
+			value: "Acute Care(Hospital)"
 	},
+	{
+			label: "Skilled Nursing/Assisted Living",
+			value: "Skilled Nursing/Assisted Living"
+	},
+	{
+			label: "Behavioural health",
+			value: "Behavioural health"
+	},
+	{
+			label: "Home Health",
+			value: "Home Health"
+	},
+	{
+			label: "Sub Acute",
+			value: "Sub Acute"
+	},
+	{
+			label: "Long Term Acute Care",
+			value: "Long Term Acute Care"
+	},
+	{
+			label: "Cardiovascular intensive Care RN (cvicu-rn)",
+			value: "Cardiovascular intensive Care RN (cvicu-rn)"
+	},
+	{
+			label: "Catheterization Laboratory (Cath Lab)",
+			value: "Catheterization Laboratory (Cath Lab)"
+	},
+	{
+			label: "Emergency Department (ED/ER)",
+			value: "Emergency Department (ED/ER)"
+	},
+	{
+			label: "Intensive Care Unit (ICU)",
+			value: "Intensive Care Unit (ICU)"
+	},
+	{
+			label: "IP Behavioral Health RN",
+			value: "IP Behavioral Health RN"
+	},
+	{
+			label: "IP Conscious Sedation",
+			value: "IP Conscious Sedation"
+	},
+	{
+			label: "IP Dialysis RN",
+			value: "IP Dialysis RN"
+	},
+	{
+			label: "IP Interventional Radiology RN",
+			value: "IP Interventional Radiology RN"
+	},
+	{
+			label: "IP Operating Room Circulator",
+			value: "IP Operating Room Circulator"
+	},
+	{
+			label: "IP Post-Anesthesia Care Unit (PACU)",
+			value: "IP Post-Anesthesia Care Unit (PACU)"
+	},
+	{
+			label: "IP Pre-Operative(Pre-Op)",
+			value: "IP Pre-Operative(Pre-Op)"
+	},
+	{
+			label: "Labor and Delivery (L&D)",
+			value: "Labor and Delivery (L&D)"
+	},
+	{
+			label: "Long Term Acute Care(LTACH)",
+			value: "Long Term Acute Care(LTACH)"
+	},
+	{
+			label: "Medical Intensice Care Unit RN (micu-rn)",
+			value: "Medical Intensice Care Unit RN (micu-rn)"
+	},
+	{
+			label: "Medical-Surgical(Med-Surg)",
+			value: "Medical-Surgical(Med-Surg)"
+	},
+	{
+			label: "Neonatal Intensive Care Unit (NICU)",
+			value: "Neonatal Intensive Care Unit (NICU)"
+	},
+	{
+			label: "Neuro Intensive Care Unit RN(neuro-icu-rn)",
+			value: "Neuro Intensive Care Unit RN(neuro-icu-rn)"
+	},
+	{
+			label: "Nursery RN",
+			value: "Nursery RN"
+	},
+	{
+			label: "Occ Helath RN",
+			value: "Occ Helath RN"
+	},
+	{
+			label: "OP Conscious Sedation",
+			value: "OP Conscious Sedation"
+	},
+	{
+			label: "OP Dialysis RN",
+			value: "OP Dialysis RN"
+	},
+	{
+			label: "OP Interventional Radiology RN",
+			value: "OP Interventional Radiology RN"
+	},
+	{
+			label: "OP Operating Room Circulator",
+			value: "OP Operating Room Circulator"
+	},
+	{
+			label: "OP Post-Anesthesia Care Unit (PACU)",
+			value: "OP Post-Anesthesia Care Unit (PACU)"
+	},
+	{
+			label: "OP Pre-Operative(Pre-op)",
+			value: "OP Pre-Operative(Pre-op)"
+	},
+	{
+			label: "Pediatric Intensive Care Unit(PICU)",
+			value: "Pediatric Intensive Care Unit(PICU)"
+	},
+	{
+			label: "Pediatric(Peds)",
+			value: "Pediatric(Peds)"
+	},
+	{
+			label: "Rehabilitation",
+			value: "Rehabilitation"
+	},
+	{
+			label: "Skilled Nursing",
+			value: "Skilled Nursing"
+	},
+	{
+			label: "Stepdown Unit(SDU)",
+			value: "Stepdown Unit(SDU)"
+	},
+	{
+			label: "Surgical Intensive Care Unit RN(sicu-rn)",
+			value: "Surgical Intensive Care Unit RN(sicu-rn)"
+	},
+	{
+			label: "Telemetry (Tele)",
+			value: "Telemetry (Tele)"
+	},
+	{
+			label: "Transplant ICU RN(transplant-icu)",
+			value: "Transplant ICU RN(transplant-icu)"
+	},
+	{
+			label: "Trauma Intensive Care Unit RN(ticu-rn)",
+			value: "Trauma Intensive Care Unit RN(ticu-rn)"
+	},
+	{
+		label: "None",
+		value: "None"
+	}
 ];
 
 export const currentList = [
@@ -267,6 +443,37 @@ export const currentList = [
 			value: "MedTech"
 	}
 ];
+
+export const regionsList = [
+	{
+		label: "Sacramento",
+		value: "Sacramento"
+	},
+	{
+		label: "San Francisco",
+		value: "San Francisco"
+	},
+	{
+		label: "Santa Cruz",
+		value: "Santa Cruz"
+	},
+	{
+		label: "San Diego",
+		value: "San Diego"
+	},
+	{
+		label: "Orange County",
+		value: "Orange County"
+	},
+	{
+		label: "Palm Springs",
+		value: "Palm Springs"
+	},
+	{
+		label: "Los Angeles",
+		value: "Los Angeles"
+	}
+]
 
 export const ProfileDocumentsArray = [
 	'Physical Test',

@@ -11,10 +11,11 @@ import {CommonStyles} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import {
 	BaseViewComponent,
-	EditableTextInput,
 	ErrorComponent,
 	LoadingComponent,
 } from '../../components/core';
+import ProfileDetailsContainerComponent from '../../components/ProfileDetailsContainerComponent';
+import ProfileAddVolunteerComponent from '../../components/ProfileAddVolunteerComponent';
 import {ApiFunctions, CommonFunctions} from '../../helpers';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../../store/reducers';
@@ -24,17 +25,26 @@ const ProfileVolunteerScreen = (props: any) => {
 	const [profile, setProfile]: any = useState();
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
+	const [showInState, setShowInState] = useState<boolean>(false);
+	const [displayAddText, setDisplayAddText] = useState<
+		'none' | 'flex' | undefined
+	>('flex');
 
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
 
 	const addVolunteer = () => {
+		setShowInState(true);
+		setDisplayAddText('none');
 		setInState([
 			...inState,
-			<EditableTextInput
-				title="Title"
-				subTitle="Subtext"
-				description="description"
+			<ProfileAddVolunteerComponent
+				setDisplayAddText={setDisplayAddText}
+				onUpdate={() => {
+					setShowInState(false);
+					setInState(inState => []);
+					getVolunteerExperienceDetails();
+				}}
 			/>,
 		]);
 	};
@@ -45,6 +55,7 @@ const ProfileVolunteerScreen = (props: any) => {
 		)
 			.then(async resp => {
 				if (resp) {
+					setDisplayAddText('flex');
 					setProfile(resp.data);
 					// Intercom.updateUser(resp.data);
 				} else {
@@ -74,7 +85,30 @@ const ProfileVolunteerScreen = (props: any) => {
 			{!isLoading && isLoaded && profile && (
 				<>
 					{profile.length === 0 && (
-						<ErrorComponent text={'Volunteer not added '} />
+						<>
+							<BaseViewComponent style={{marginHorizontal: 10}}>
+								<StatusBar
+									barStyle={'light-content'}
+									animated={true}
+									backgroundColor={Colors.backdropColor}
+								/>
+								<ErrorComponent text={'Volunteer experience not added '} />
+								{showInState && <>{inState}</>}
+
+								<TouchableOpacity
+									onPress={addVolunteer}
+									style={{marginTop: 50, display: displayAddText}}>
+									<Text
+										style={{
+											color: Colors.textOnAccent,
+											fontFamily: FontConfig.primary.semiBold,
+											fontSize: 14,
+										}}>
+										+ Add volunteer experience
+									</Text>
+								</TouchableOpacity>
+							</BaseViewComponent>
+						</>
 					)}
 					{sortedVolunteerData.length > 0 && (
 						<BaseViewComponent style={{}}>
@@ -84,30 +118,27 @@ const ProfileVolunteerScreen = (props: any) => {
 								backgroundColor={Colors.backdropColor}
 							/>
 							<View style={styles.screen}>
-								{profile.map(
-									(item: any, index: any) => (
-										console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', item.end_date),
-										(
-											<View key={item.facility_id + '_' + index}>
-												<EditableTextInput
-													title={item.facility_name}
-													location={item.location + '  |  '}
-													endDate={item.end_date}
-													startDate={item.start_date}
-													description={item.position_title}
-													getDate={true}
-												/>
-											</View>
-										)
-									),
-								)}
-								{inState}
+								{profile.map((item: any, index: any) => (
+									<View key={item.facility_id + '_' + index}>
+										<ProfileDetailsContainerComponent
+											id={item._id}
+											title={item.facility_name}
+											location={item.location + '  |  '}
+											endDate={item.end_date}
+											startDate={item.start_date}
+											description={item.position_title}
+											getDate={true}
+											status="volunteer"
+										/>
+									</View>
+								))}
+								{showInState && <>{inState}</>}
 								<TouchableOpacity
-									// onPress={addVolunteer}
-									style={{marginTop: 50}}>
+									onPress={addVolunteer}
+									style={{marginTop: 50, display: displayAddText}}>
 									<Text
 										style={{
-											color: Colors.textOnPrimary,
+											color: Colors.textOnAccent,
 											fontFamily: FontConfig.primary.semiBold,
 											fontSize: 14,
 										}}>

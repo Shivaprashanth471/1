@@ -316,8 +316,8 @@ const ProfileEditScreen = (props: any) => {
 													)}
 												</Field>
 											</View> */}
-											<TouchableOpacity
-											// onPress={gotoChangePassword}
+											{/* <TouchableOpacity
+											onPress={gotoChangePassword}
 											>
 												<Text
 													style={{
@@ -328,8 +328,8 @@ const ProfileEditScreen = (props: any) => {
 													}}>
 													Change Password
 												</Text>
-											</TouchableOpacity>
-											<View
+											</TouchableOpacity> */}
+											{/* <View
 												style={{
 													flexDirection: 'row',
 													marginTop: 20,
@@ -380,7 +380,7 @@ const ProfileEditScreen = (props: any) => {
 														}}
 													/>
 												</View>
-											</View>
+											</View> */}
 										</>
 									)}
 								</Formik>

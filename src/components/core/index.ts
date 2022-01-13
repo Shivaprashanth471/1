@@ -11,7 +11,6 @@ import TextWIthCheckIconComponent from './TextWIthCheckIconComponent';
 import FormikRadioGroupComponent from './FormikRadioGroupComponent';
 import FormikInputComponent from './FormikInputComponent';
 import FormikCheckboxComponent from './FormikCheckboxComponent';
-import EditableTextInput from './EditableTextInput';
 import FormikDatepickerComponent from './FormikDatepickerComponent';
 import DatePickerComponent from './DatePickerComponent';
 import SliderComponent from './SliderComponent';
@@ -30,7 +29,6 @@ export {
   FormikRadioGroupComponent,
   FormikInputComponent,
   FormikCheckboxComponent,
-  EditableTextInput,
   FormikDatepickerComponent,
   DatePickerComponent,
   SliderComponent,

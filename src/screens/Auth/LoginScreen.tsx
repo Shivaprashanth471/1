@@ -27,7 +27,6 @@ import {TSAPIResponseType} from '../../helpers/ApiFunctions';
 import {CONTACTUS_PHONE_NUMBER} from '../../helpers/CommonFunctions';
 import analytics from '@segment/analytics-react-native';
 
-// Login api
 const loginSchema = yup.object().shape({
 	email: yup.string().required('Required').email('Invalid Email'),
 	password: yup
@@ -150,6 +149,94 @@ const LoginScreen = (props: any) => {
 		[dispatch],
 	);
 
+	const modalContact = () => {
+		return (
+			<Modal
+				animationType="slide"
+				transparent={true}
+				visible={modalVisible}
+				onRequestClose={() => {
+					setModalVisible(!modalVisible);
+				}}>
+				<View style={styles.ModalCenteredView}>
+					<View style={styles.modalView}>
+						<View
+							style={{
+								width: '100%',
+								alignItems: 'flex-end',
+								paddingHorizontal: 20,
+								paddingTop: 10,
+							}}>
+							<TouchableOpacity
+								onPress={() => {
+									setModalVisible(!modalVisible);
+								}}>
+								<ImageConfig.CloseIconModal height={'25'} width={'25'} />
+							</TouchableOpacity>
+						</View>
+						<View
+							style={{
+								padding: 10,
+							}}>
+							<Text style={styles.modalText}>Choose an option to contact</Text>
+							<View
+								style={{
+									backgroundColor: 'white',
+									paddingVertical: 20,
+								}}>
+								<View
+									style={{
+										flexDirection: 'row',
+										marginHorizontal: 10,
+									}}>
+									<View
+										style={{
+											width: '45%',
+											marginRight: '10%',
+										}}>
+										<CustomButton
+											onPress={onCall}
+											style={{
+												flex: 0,
+												borderRadius: 8,
+												marginVertical: 0,
+												height: 40,
+												backgroundColor: Colors.backgroundShiftColor,
+											}}
+											title={'Call'}
+											class={'secondary'}
+											textStyle={{color: Colors.primary}}
+											ImageConfigCall={true}
+										/>
+									</View>
+									<View
+										style={{
+											width: '45%',
+										}}>
+										<CustomButton
+											onPress={onSMS}
+											style={{
+												flex: 0,
+												borderRadius: 8,
+												marginVertical: 0,
+												height: 40,
+												backgroundColor: Colors.backgroundShiftColor,
+											}}
+											title={'SMS'}
+											class={'secondary'}
+											textStyle={{color: Colors.primary}}
+											ImageConfigSMS={true}
+										/>
+									</View>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
+			</Modal>
+		);
+	};
+
 	return (
 		<KeyboardAvoidCommonView>
 			<BaseViewComponent>
@@ -158,118 +245,13 @@ const LoginScreen = (props: any) => {
 					animated={true}
 					backgroundColor={Colors.backdropColor}
 				/>
-
-				<Modal
-					animationType="slide"
-					transparent={true}
-					visible={modalVisible}
-					onRequestClose={() => {
-						// Alert.alert('Modal has been closed.');
-						setModalVisible(!modalVisible);
-					}}>
-					<View style={styles.ModalCenteredView}>
-						<View style={styles.modalView}>
-							<View
-								style={{
-									// backgroundColor: 'red',
-									width: '100%',
-									alignItems: 'flex-end',
-									// marginHorizontal: 20,
-									paddingHorizontal: 20,
-									paddingTop: 10,
-								}}>
-								<TouchableOpacity
-									onPress={() => {
-										setModalVisible(!modalVisible);
-									}}>
-									<ImageConfig.CloseIconModal height={'25'} width={'25'} />
-								</TouchableOpacity>
-							</View>
-							<View
-								style={{
-									padding: 10,
-								}}>
-								<Text style={styles.modalText}>
-									Choose an option to contact
-								</Text>
-								<View
-									style={{
-										backgroundColor: 'white',
-										paddingVertical: 20,
-									}}>
-									<View
-										style={{
-											flexDirection: 'row',
-											marginHorizontal: 10,
-										}}>
-										<View
-											style={{
-												width: '45%',
-												marginRight: '10%',
-											}}>
-											<CustomButton
-												// onPress={() => setModalVisible(!modalVisible)}
-												onPress={onCall}
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-													backgroundColor: Colors.backgroundShiftColor,
-												}}
-												title={'Call'}
-												class={'secondary'}
-												textStyle={{color: Colors.primary}}
-												ImageConfigCall={true}
-											/>
-										</View>
-										<View
-											style={{
-												width: '45%',
-											}}>
-											<CustomButton
-												// onPress={() => setModalVisible(!modalVisible)}
-												onPress={onSMS}
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-													backgroundColor: Colors.backgroundShiftColor,
-												}}
-												title={'SMS'}
-												class={'secondary'}
-												textStyle={{color: Colors.primary}}
-												ImageConfigSMS={true}
-											/>
-										</View>
-									</View>
-								</View>
-							</View>
-						</View>
-					</View>
-				</Modal>
-
-				<View
-					style={{
-						// flexDirection: 'row',
-						flex: 0,
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						marginTop: '15%',
-						marginHorizontal: 20,
-						// backgroundColor: 'green',
-					}}>
+				{modalContact()}
+				<View style={styles.logoContainer}>
 					<ImageConfig.Logo width={120} />
 					<View style={styles.header}>
 						<View style={{}}>
 							<Text style={styles.headerText}>Login</Text>
 						</View>
-						{/*<View style={styles.subHeadingHolder}>*/}
-						{/*	<Text style={styles.subHeading}>*/}
-						{/*		Lorem Ipsum dolor sit amet, consectetur adipiscing elit,*/}
-						{/*	</Text>*/}
-						{/*</View>*/}
 					</View>
 				</View>
 				<View style={styles.formBlock}>
@@ -284,13 +266,10 @@ const LoginScreen = (props: any) => {
 									<Field name={'email'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												// trimCharacters={true}
 												trimSpaces={true}
-												// trimSpecialCharacters={true}
 												labelText="Email"
 												inputProperties={{
 													keyboardType: 'default',
-													// maxLength: 30,
 													placeholder: 'Email address',
 												}}
 												formikField={field}
@@ -305,7 +284,6 @@ const LoginScreen = (props: any) => {
 														labelText="Password"
 														trimSpaces={true}
 														inputProperties={{
-															// maxLength: 20,
 															secureTextEntry: isPassword,
 															placeholder: 'Enter Password',
 														}}
@@ -320,18 +298,6 @@ const LoginScreen = (props: any) => {
 														onPress={() => {
 															setIsPassword(prevState => !prevState);
 														}}>
-														{/* <Text
-															style={{
-																backgroundColor: Colors.primary,
-																borderRadius: 10,
-																paddingHorizontal: 10,
-																paddingVertical: 3,
-																fontFamily: FontConfig.primary.regular,
-																fontSize: 13,
-																color: Colors.textOnPrimary,
-															}}>
-															{isPassword ? 'Show' : 'Hide'}
-														</Text> */}
 														{isPassword ? (
 															<>
 																<ImageConfig.EyeIcon
@@ -378,16 +344,25 @@ const LoginScreen = (props: any) => {
 										style={styles.button}
 										disabled={!isValid}
 									/>
+									{/* <CustomButton
+										title={'Register'}
+										onPress={() => {
+											navigation.navigate(NavigateTo.Signup);
+										}}
+										style={styles.button}
+									/> */}
 								</>
 							)}
 						</Formik>
 					</View>
 				</View>
+
 				<View
 					style={{
 						flexDirection: 'row',
 						alignItems: 'center',
 						justifyContent: 'center',
+						marginTop: 80,
 					}}>
 					<Text
 						style={{
@@ -422,8 +397,14 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flex: 0,
 		justifyContent: 'space-between',
-		// alignItems: "center",
 		marginTop: 30,
+		marginHorizontal: 20,
+	},
+	logoContainer: {
+		flex: 0,
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginTop: '15%',
 		marginHorizontal: 20,
 	},
 	formHolder: {
@@ -438,10 +419,9 @@ const styles = StyleSheet.create({
 	},
 	formBlock: {
 		alignItems: 'center',
-		marginVertical: 25,
 	},
 	button: {
-		marginVertical: 40,
+		marginTop: 40,
 		fontFamily: FontConfig.primary.bold,
 		height: 50,
 	},
@@ -454,18 +434,15 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		flex: 0,
-		marginVertical: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
 		flexDirection: 'column',
-		// backgroundColor: 'red',
 		width: '70%',
 	},
 	headerText: {
 		textAlign: 'center',
 		fontSize: 28,
 		fontFamily: FontConfig.primary.bold,
-		// fontFamily: 'NunitoSans-Bold',
 		color: Colors.textDark,
 	},
 	rowElements: {
@@ -485,17 +462,12 @@ const styles = StyleSheet.create({
 	ModalCenteredView: {
 		flex: 1,
 		justifyContent: 'center',
-		// alignItems: 'center',
-		// marginTop: 22,
 		backgroundColor: '#000000A0',
 	},
 	modalView: {
-		// margin: 20,
 		marginHorizontal: 10,
 		backgroundColor: 'white',
 		borderRadius: 20,
-
-		// alignItems: 'center',
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
@@ -504,12 +476,9 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 4,
 		elevation: 5,
-		// position: 'absolute',
-		// bottom: 80,
 	},
 	modalText: {
 		marginBottom: 15,
-		// fontSize: 20,
 		textAlign: 'center',
 		fontFamily: FontConfig.primary.semiBold,
 	},

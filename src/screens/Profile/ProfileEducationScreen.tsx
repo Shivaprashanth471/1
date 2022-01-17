@@ -17,7 +17,6 @@ import {
 } from '../../components/core';
 import ProfileDetailsContainerComponent from '../../components/ProfileDetailsContainerComponent';
 import {StateParams} from '../../store/reducers';
-import moment from 'moment';
 import ProfileAddEducationComponent from '../../components/ProfileAddEducationComponent';
 
 const ProfileEducationScreen = (props: any) => {
@@ -34,7 +33,6 @@ const ProfileEducationScreen = (props: any) => {
 	const {HcpUser} = hcpDetails;
 
 	const addEducation = () => {
-		console.log('here');
 		setShowInState(true);
 		setDisplayAddText('none');
 		setInState([
@@ -130,9 +128,6 @@ const ProfileEducationScreen = (props: any) => {
 											startDate={item.start_date}
 											endDate={item.graduation_date}
 											getDate={true}
-											// description={
-											// 	'You agree to allow VitaWerks to check your information. Terms & Conditions. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '
-											// }
 											status={'education'}
 										/>
 									</View>
@@ -163,8 +158,6 @@ const styles = StyleSheet.create({
 	screen: {
 		padding: 10,
 		flex: 1,
-		// justifyContent: 'center',
-		// alignItems: 'center',
 	},
 });
 

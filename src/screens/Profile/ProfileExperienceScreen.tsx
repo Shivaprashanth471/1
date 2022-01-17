@@ -14,12 +14,10 @@ import {
 	ErrorComponent,
 	LoadingComponent,
 } from '../../components/core';
-import Moment from 'moment';
 import ProfileDetailsContainerComponent from '../../components/ProfileDetailsContainerComponent';
 import ProfileAddExperienceComponent from '../../components/ProfileAddExperienceComponent';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../../store/reducers';
-// import MonthPicker from 'react-native-month-year-picker';
 
 const ProfileExperienceScreen = (props: any) => {
 	const [profile, setProfile] = useState<any | null>(null);
@@ -79,22 +77,6 @@ const ProfileExperienceScreen = (props: any) => {
 		getExperienceDetails();
 	}, [getExperienceDetails]);
 
-	// const [date, setDate] = useState(new Date());
-	// const [show, setShow] = useState(false);
-
-	// const showPicker = useCallback(value => setShow(value), []);
-
-	// const onValueChange = useCallback(
-	// 	(event, newDate) => {
-	// 		const selectedDate = newDate || date;
-
-	// 		showPicker(false);
-	// 		setDate(selectedDate);
-	// 		console.log(Moment(selectedDate).format('YYYY-MM'));
-	// 	},
-	// 	[date, showPicker],
-	// );
-
 	const sortedExperienceData =
 		(profile && CommonFunctions.sortDatesByLatest(profile, 'start_date')) || [];
 	return (
@@ -136,21 +118,6 @@ const ProfileExperienceScreen = (props: any) => {
 								animated={true}
 								backgroundColor={Colors.backdropColor}
 							/>
-							{/* <View>
-								<Text>Month Year Picker Example</Text>
-								<TouchableOpacity onPress={() => showPicker(true)}>
-									<Text>OPEN</Text>
-								</TouchableOpacity>
-								{show && (
-									<MonthPicker
-										onChange={onValueChange}
-										value={date}
-										minimumDate={new Date()}
-										maximumDate={new Date(2025, 5)}
-										locale="En"
-									/>
-								)}
-							</View> */}
 							<View style={styles.screen}>
 								{sortedExperienceData.map((item: any, index: any) => (
 									<View key={item.id + '-' + index}>
@@ -160,7 +127,6 @@ const ProfileExperienceScreen = (props: any) => {
 											location={item.location + '  |  '}
 											startDate={item.start_date}
 											endDate={item.end_date}
-											description={item.position_title}
 											getDate={true}
 											status={'experience'}
 										/>

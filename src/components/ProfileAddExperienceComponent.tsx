@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../helpers';
 import {Colors, ENV, FontConfig} from '../constants';
-import Moment from 'moment';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
 import {
@@ -82,17 +81,11 @@ const ProfileAddExperienceComponent = (
 		formikHelpers: FormikHelpers<profileExperienceSchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
-		delete values.start_date;
-		const newDate = Moment(values.start_date).format('YYYY-MM');
-		const payload = {...values, exp_type: 'fulltime', start_date: newDate};
-		// console.log('>>>>', payload);
-
-		console.log(newDate, '<<<<');
-
-		// formikHelpers.setSubmitting(false);
-
-		Moment().format('YYYY-MM-DD');
-
+		const payload = {
+			...values,
+			exp_type: 'fulltime',
+			end_date: isWorking ? '' : values.end_date,
+		};
 		if (HcpUser) {
 			ApiFunctions.post(
 				ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience',
@@ -101,7 +94,6 @@ const ProfileAddExperienceComponent = (
 				.then(async (resp: TSAPIResponseType<profileExperienceSchemaType>) => {
 					formikHelpers.setSubmitting(false);
 					if (resp.success) {
-						console.log('>>>>', resp);
 						if (onUpdate) {
 							onUpdate();
 						}
@@ -249,6 +241,7 @@ const ProfileAddExperienceComponent = (
 														marginVertical: 0,
 													}}
 													placeholer="Start Date"
+													mode="MonthYear"
 												/>
 											)}
 										</Field>
@@ -257,11 +250,6 @@ const ProfileAddExperienceComponent = (
 												{(field: FieldProps) => (
 													<FormikDatepickerComponent
 														formikField={field}
-														minDate={
-															values.start_date && values.start_date.length > 0
-																? Moment(values.start_date).format('YYYY-MM')
-																: Moment().format('YYYY-MM')
-														}
 														style={{
 															width: '90%',
 														}}
@@ -272,6 +260,7 @@ const ProfileAddExperienceComponent = (
 															marginTop: -15,
 														}}
 														placeholer="End Date"
+														mode="MonthYear"
 													/>
 												)}
 											</Field>
@@ -298,22 +287,22 @@ const ProfileAddExperienceComponent = (
 												<TouchableOpacity
 													disabled={!isValid}
 													onPress={() => {
-														console.log(values.still_working_here, '<<<<');
-
 														if (values.still_working_here.length === 0) {
 															handleSubmit();
 														} else {
 															if (isWorking) {
-																console.log('here');
 																handleSubmit();
 															} else {
 																if (values.end_date.length === 0) {
-																	console.log('or here');
-																	console.log(values.end_date.length);
 																	ToastAlert.show('Please give an end date');
 																} else {
-																	console.log('finally');
-																	handleSubmit();
+																	if (values.start_date > values.end_date) {
+																		ToastAlert.show(
+																			'Start date cannot be greater than end date',
+																		);
+																	} else {
+																		handleSubmit();
+																	}
 																}
 															}
 														}
@@ -348,70 +337,6 @@ const ProfileAddExperienceComponent = (
 												Cancel
 											</Text>
 										</TouchableOpacity>
-
-										{/* <View
-											style={{
-												width: '45%',
-												marginRight: '10%',
-											}}>
-											<CustomButton
-												onPress={() => {
-													setDisplay('none');
-												}}
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-													backgroundColor: Colors.backgroundShiftColor,
-												}}
-												title={'Cancel'}
-												class={'secondary'}
-												textStyle={{
-													color: Colors.primary,
-													textTransform: 'none',
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 16,
-												}}
-											/>
-										</View>
-
-										<View
-											style={{
-												width: '45%',
-											}}>
-											<CustomButton
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-												}}
-												title={'Save changes'}
-												isLoading={isSubmitting}
-												onPress={() => {
-													if (isWorking) {
-														console.log('here');
-														handleSubmit();
-													} else {
-														if (values.end_date.length === 0) {
-															console.log('or here');
-															console.log(values.end_date.length);
-															ToastAlert.show('Please give an end date');
-														} else {
-															console.log('finally');
-															handleSubmit();
-														}
-													}
-												}}
-												disabled={!isValid}
-												textStyle={{
-													textTransform: 'none',
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 16,
-												}}
-											/>
-										</View> */}
 									</View>
 								</>
 							)}

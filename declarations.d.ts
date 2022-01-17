@@ -6,3 +6,4 @@ declare module "*.svg" {
 }
 
 declare module "react-native-image-slider-box"
+declare module "react-native-month-year-picker"

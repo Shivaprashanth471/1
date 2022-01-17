@@ -7,7 +7,6 @@ import {
 	StatusBar,
 	Alert,
 } from 'react-native';
-import {CommonStyles} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import {
 	BaseViewComponent,
@@ -126,9 +125,9 @@ const ProfileVolunteerScreen = (props: any) => {
 											location={item.location + '  |  '}
 											endDate={item.end_date}
 											startDate={item.start_date}
-											description={item.position_title}
 											getDate={true}
 											status="volunteer"
+											email={item.email ? item.email : ''}
 										/>
 									</View>
 								))}

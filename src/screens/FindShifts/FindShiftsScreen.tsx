@@ -738,48 +738,58 @@ const FindShiftsScreen = (props: any) => {
 			<KeyboardAvoidCommonView
 				style={{backgroundColor: Colors.backgroundShiftColor, flex: 0}}>
 				<View
-					style={[
-						styles.searchBarContainer,
-						{justifyContent: 'space-between'},
-					]}>
-					<ImageConfig.IconSearch width={20} height={20} />
-					<TextInput
-						style={[
-							// styles.textInputStyle,
-							{
-								color: Colors.textLight,
-								height: 40,
-								paddingLeft: 20,
-								backgroundColor: '#ffffff',
-								width: '80%',
-								borderRadius: 5,
-								fontFamily: FontConfig.primary.bold,
-								fontSize: 18,
-								padding: 5,
-							},
-						]}
-						onChangeText={text => {
-							setSearch(text);
-							getFacilityMapList(hcp_type, text);
-							getFacilityListView(text);
-							analytics.track('Searched Facility', {
-								facilitySearchedName: text,
-							});
-						}}
-						value={search}
-						underlineColorAndroid="transparent"
-						placeholder="Search Here"
-						selectionColor="#4FE6AF"
-						placeholderTextColor={Colors.textLight}
-					/>
-					<TouchableOpacity
-						onPress={() => {
-							setSearch('');
-							getFacilityMapList(hcp_type, '');
-							getFacilityListView('');
-						}}>
-						<ImageConfig.CloseIconModal width={18} height={18} />
-					</TouchableOpacity>
+					style={{
+						flexDirection: 'row',
+						justifyContent: 'space-evenly',
+						alignItems: 'center',
+						// backgroundColor: 'red',
+					}}>
+					<View style={styles.searchBarContainer}>
+						<ImageConfig.IconSearch width={20} height={20} />
+						<TextInput
+							style={styles.searchBarInput}
+							onChangeText={text => {
+								setSearch(text);
+								getFacilityMapList(hcp_type, text);
+								getFacilityListView(text);
+								analytics.track('Searched Facility', {
+									facilitySearchedName: text,
+								});
+							}}
+							value={search}
+							underlineColorAndroid="transparent"
+							placeholder="Search Here"
+							selectionColor="#4FE6AF"
+							placeholderTextColor={Colors.textLight}
+						/>
+
+						<TouchableOpacity
+							onPress={() => {
+								setSearch('');
+								getFacilityMapList(hcp_type, '');
+								getFacilityListView('');
+							}}>
+							<ImageConfig.CloseIconModal width={18} height={18} />
+						</TouchableOpacity>
+					</View>
+					{viewMode === 'map' ? (
+						<TouchableOpacity
+							onPress={() => {
+								setFilterOutModalVisible(!filterModalVisible);
+								analytics.track('Map Filters Opened');
+							}}
+							style={[styles.iconFilterContainer]}>
+							<ImageConfig.IconFilter height={'15'} width={'15'} />
+						</TouchableOpacity>
+					) : (
+						<View
+							style={{
+								width: 37,
+								height: 28,
+								marginRight: 10,
+							}}
+						/>
+					)}
 				</View>
 			</KeyboardAvoidCommonView>
 			{isLoading && (
@@ -799,21 +809,6 @@ const FindShiftsScreen = (props: any) => {
 
 			{viewMode === 'map' && (
 				<>
-					<TouchableOpacity
-						onPress={() => {
-							setFilterOutModalVisible(!filterModalVisible);
-							analytics.track('Map Filters Opened');
-						}}
-						style={[
-							styles.iconFilterContainer,
-							{
-								position: 'absolute',
-								top: 80,
-								right: 10,
-							},
-						]}>
-						<ImageConfig.IconFilter height={'15'} width={'15'} />
-					</TouchableOpacity>
 					{modalFilter()}
 					<View
 						style={[
@@ -1158,6 +1153,17 @@ const styles = StyleSheet.create({
 		fontFamily: FontConfig.primary.bold,
 		fontSize: 18,
 	},
+	searchBarInput: {
+		color: Colors.textLight,
+		height: 40,
+		paddingLeft: 20,
+		backgroundColor: '#ffffff',
+		width: '80%',
+		borderRadius: 5,
+		fontFamily: FontConfig.primary.bold,
+		fontSize: 18,
+		padding: 5,
+	},
 	itemStyle: {
 		fontFamily: FontConfig.primary.bold,
 		fontSize: 15,
@@ -1165,7 +1171,7 @@ const styles = StyleSheet.create({
 		textTransform: 'capitalize',
 	},
 	searchBarContainer: {
-		marginHorizontal: 20,
+		marginHorizontal: 10,
 		marginBottom: 5,
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -1174,6 +1180,7 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		paddingHorizontal: 5,
 		backgroundColor: '#ffffff',
+		justifyContent: 'space-around',
 	},
 	locationIcon: {
 		height: 30,
@@ -1245,16 +1252,16 @@ const styles = StyleSheet.create({
 	iconFilterContainer: {
 		zIndex: 2,
 		backgroundColor: Colors.backgroundShiftColor,
-		width: 37,
-		height: 28,
+		width: 30,
+		height: 40,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginRight: 10,
 		borderColor: Colors.primary,
 		borderWidth: 1,
 		borderRadius: 8,
+		marginBottom: 5,
 	},
-	//
 	cardFacilityTitleText: {
 		fontFamily: FontConfig.primary.bold,
 		color: Colors.textDark,

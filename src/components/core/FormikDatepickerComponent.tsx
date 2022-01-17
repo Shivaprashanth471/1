@@ -12,7 +12,7 @@ import Colors from '../../constants/Colors';
 import {FieldProps} from 'formik';
 import DatePickerComponent from './DatePickerComponent';
 import LabelComponent from './LabelComponent';
-
+import MonthYearPickerComponent from './MonthYearPickerComponent';
 export interface FormikDatepickerComponentProps {
 	showLabel?: boolean;
 	labelText?: string;
@@ -27,6 +27,7 @@ export interface FormikDatepickerComponentProps {
 	minDate?: string;
 	maxDate?: string;
 	placeholer?: string;
+	mode?: string;
 }
 
 const FormikDatepickerComponent = (props: FormikDatepickerComponentProps) => {
@@ -45,6 +46,7 @@ const FormikDatepickerComponent = (props: FormikDatepickerComponentProps) => {
 		props.showLabel !== undefined
 			? props.showLabel
 			: !!(labelText && labelText.length > 0);
+	const mode = props.mode || 'DateMonthYear';
 	const baseStyle = props.baseStyle || {};
 	const errorContainerStyle = props.errorContainerStyle || {};
 	const [selected, setSelected] = useState<string>(field.value);
@@ -90,20 +92,37 @@ const FormikDatepickerComponent = (props: FormikDatepickerComponentProps) => {
 					style={{
 						flex: 1,
 					}}>
-					<DatePickerComponent
-						placeHolder={placeholer}
-						date={selected}
-						minDate={minDate}
-						maxDate={maxDate}
-						onChange={value => {
-							setSelected(value);
-							form.setFieldTouched(field.name, true);
-							form.setFieldValue(field.name, value);
-							if (onUpdate) {
-								onUpdate(value);
-							}
-						}}
-					/>
+					{mode === 'MonthYear' ? (
+						<MonthYearPickerComponent
+							placeHolder={placeholer}
+							date={selected}
+							minDate={minDate}
+							maxDate={maxDate}
+							onChange={value => {
+								setSelected(value);
+								form.setFieldTouched(field.name, true);
+								form.setFieldValue(field.name, value);
+								if (onUpdate) {
+									onUpdate(value);
+								}
+							}}
+						/>
+					) : (
+						<DatePickerComponent
+							placeHolder={placeholer}
+							date={selected}
+							minDate={minDate}
+							maxDate={maxDate}
+							onChange={value => {
+								setSelected(value);
+								form.setFieldTouched(field.name, true);
+								form.setFieldValue(field.name, value);
+								if (onUpdate) {
+									onUpdate(value);
+								}
+							}}
+						/>
+					)}
 				</View>
 			</View>
 		</View>

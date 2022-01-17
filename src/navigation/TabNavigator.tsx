@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/stack';
 import {Colors, FontConfig, ImageConfig, NavigateTo} from '../constants';
 import React from 'react';
+import {Platform} from 'react-native';
 import {CommonFunctions} from '../helpers';
 import {
 	BottomTabBarOptions,
@@ -316,21 +317,21 @@ const bottomTabDefaultStyle: any = {
 //   const bottomTabBarOptions: BottomTabBarOptions = {
 const bottomTabBarOptions: BottomTabBarOptions = {
 	style: bottomTabDefaultStyle,
-	safeAreaInsets: {bottom: 35, top: 15},
+	safeAreaInsets: {bottom: Platform.OS === 'android' ? 25 : 35, top: 15},
 	activeTintColor: Colors.primary,
 	inactiveTintColor: Colors.textDark,
 	tabStyle: {
-		paddingTop: 15,
-		paddingBottom: 95,
+		paddingTop: Platform.OS === 'android' ? 5 : 15,
+		paddingBottom: Platform.OS === 'android' ? 55 : 95,
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: 155,
+		height: Platform.OS === 'android' ? 105 : 155,
 		backgroundColor: Colors.backgroundColor,
 	},
 	labelStyle: {
 		fontSize: 13,
 		fontFamily: FontConfig.primary.regular,
-		paddingTop: 10,
+		paddingTop: Platform.OS === 'android' ? 5 : 10,
 	},
 	keyboardHidesTabBar: true,
 };
@@ -408,7 +409,7 @@ const VitaTabNavigator = () => {
 									text={'Find Shifts'}
 									backgroundColor={'white'}
 									style={{
-										paddingBottom: 15,
+										paddingBottom: Platform.OS === 'android' ? 0 : 15,
 									}}
 								/>
 							);

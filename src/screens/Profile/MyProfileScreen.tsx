@@ -19,32 +19,29 @@ import {useSelector} from 'react-redux';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import * as yup from 'yup';
+import {useDispatch} from 'react-redux';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
-import FormikInputComponent from '../../components/core/FormikInputComponent';
 import {TSAPIResponseType} from '../../helpers/ApiFunctions';
 import {StateParams} from '../../store/reducers';
 import DropdownComponent from '../../components/core/DropdownComponent';
 import {currentList, regionsList} from '../../constants/CommonVariables';
+import {updateHcpDetails} from '../../store/actions/hcpDetails.action';
+import analytics from '@segment/analytics-react-native';
 
 const profileSchema = yup.object().shape({
 	hcp_type: yup.string().required('Required'),
 	region: yup.string().required('Required'),
-	Experience: yup.string().required('Required'),
 });
 
 export interface ProfileSchemaType {
 	hcp_type: string;
 	region: string;
-	Experience?: string;
-	primarySpeciality?: string;
 	shift_type_preference: string;
 }
 
 const initialValues: ProfileSchemaType = {
 	hcp_type: '',
 	region: '',
-	Experience: '',
-	primarySpeciality: '',
 	shift_type_preference: '',
 };
 
@@ -62,7 +59,7 @@ const MyProfileScreen = (props: any) => {
 
 	const getProfileDetails = useCallback(() => {
 		setIsLoading(true);
-		if (user) {
+		if (HcpUser) {
 			ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile')
 				.then(async resp => {
 					if (resp) {
@@ -80,7 +77,7 @@ const MyProfileScreen = (props: any) => {
 					Alert.alert('Error', err.error || 'Oops... Something went wrong!');
 				});
 		}
-	}, [user]);
+	}, [HcpUser]);
 	useEffect(() => {
 		console.log('loading get profile');
 		getProfileDetails();
@@ -90,17 +87,9 @@ const MyProfileScreen = (props: any) => {
 		values: ProfileSchemaType,
 		formikHelpers: FormikHelpers<ProfileSchemaType>,
 	) => {
-		// setIsLoading(true);
 		formikHelpers.setSubmitting(true);
-		delete values.primarySpeciality;
-		delete values.Experience;
 
 		const payload = {...values};
-		console.log('>>>', payload);
-		// formikHelpers.setSubmitting(false);
-		console.log('HcpUser._id', HcpUser._id);
-		values.primarySpeciality = profile.professional_details.speciality;
-		values.Experience = profile.professional_details.experience.toString();
 
 		if (HcpUser) {
 			ApiFunctions.put(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile', payload)
@@ -109,21 +98,44 @@ const MyProfileScreen = (props: any) => {
 					if (resp.success) {
 						ToastAlert.show('Profile Successfully Updated');
 						setDisableBtn(true);
-						// getProfileDetails();
+						dispatchProfileDetails();
 					} else {
 						ToastAlert.show(resp.error || '');
 					}
-					// setIsLoading(false);
-					// setIsLoaded(true);
 				})
 				.catch((err: any) => {
-					// setIsLoading(false);
-					// setIsLoaded(true);
 					formikHelpers.setSubmitting(false);
 					CommonFunctions.handleErrors(err, formikHelpers.setErrors);
 				});
 		}
 	};
+
+	const dispatch = useDispatch();
+
+	const dispatchProfileDetails = useCallback(() => {
+		ApiFunctions.get(ENV.apiUrl + 'hcp/user/' + user._id)
+			.then((resp: any) => {
+				if (resp && resp.success) {
+					if (resp.data != null) {
+						dispatch(updateHcpDetails(resp.data));
+						analytics.identify(resp.data._id, {
+							firstName: resp.data.first_name,
+							lastName: resp.data.last_name,
+							email: resp.data.email,
+							hcpType: resp.data.hcp_type,
+							region: resp.data.address.region,
+						});
+					} else {
+						ToastAlert.show('HCP data not found, please contact vitawerks');
+					}
+				} else {
+					ToastAlert.show('something went wrong');
+				}
+			})
+			.catch((err: any) => {
+				ToastAlert.show(err.error || 'Something went wrong');
+			});
+	}, [dispatch, user._id]);
 
 	return (
 		<>
@@ -148,8 +160,6 @@ const MyProfileScreen = (props: any) => {
 										...{
 											hcp_type: profile.hcp_type,
 											region: profile.region,
-											Experience: profile.total_exp.toString(),
-											// primarySpeciality: profile.specializations,
 											shift_type_preference:
 												profile.shift_type_preference || '',
 										},
@@ -168,7 +178,6 @@ const MyProfileScreen = (props: any) => {
 														search={false}
 														disabled={false}
 														onUpdate={e => {
-															console.log('here', e);
 															setDisableBtn(false);
 														}}
 													/>
@@ -186,54 +195,11 @@ const MyProfileScreen = (props: any) => {
 														search={false}
 														disabled={false}
 														onUpdate={() => {
-															console.log('here');
 															setDisableBtn(false);
 														}}
 													/>
 												)}
 											</Field>
-											<Field name={'Experience'}>
-												{(field: FieldProps) => (
-													<FormikInputComponent
-														trimCharacters={true}
-														trimSpaces={true}
-														isEditable={false}
-														trimSpecialCharacters={true}
-														labelText="Experience"
-														inputProperties={{
-															keyboardType: 'default',
-															placeholder: 'Experience',
-														}}
-														formikField={field}
-														onUpdate={() => {
-															console.log('here');
-															setDisableBtn(false);
-														}}
-													/>
-												)}
-											</Field>
-											{/* <Field name={'primarySpeciality'}>
-												{(field: FieldProps) => (
-													<FormikInputComponent
-														trimCharacters={true}
-														trimSpaces={true}
-														isEditable={false}
-														trimSpecialCharacters={true}
-														labelText="Specialities"
-														inputProperties={{
-															keyboardType: 'default',
-															placeholder: 'Primary Speciality',
-															multiline: true,
-														}}
-														formikField={field}
-														onUpdate={() => {
-															console.log('here');
-															setDisableBtn(false);
-														}}
-													/>
-												)}
-											</Field> */}
-
 											<View
 												style={{
 													marginVertical: 5,
@@ -243,38 +209,62 @@ const MyProfileScreen = (props: any) => {
 														color: Colors.textLight,
 														marginVertical: 5,
 													}}>
-													Speciality
+													Experience
 												</Text>
-												{profile.specializations && (
-													<>
-														{profile.specializations.map(
-															(item: any) => (
-																console.log('>>>>', item),
-																(
-																	<>
-																		<TextInput
-																			placeholderTextColor={Colors.textLight}
-																			style={{
-																				width: '100%',
-																				paddingHorizontal: 0,
-																				color: Colors.textDark,
-																				fontFamily: FontConfig.primary.semiBold,
-																				fontSize: 18,
-																				borderBottomColor: Colors.borderColor,
-																				borderBottomWidth: 2,
-																			}}
-																			value={item}
-																			autoCapitalize={'none'}
-																			autoCorrect={false}
-																			autoCompleteType={'off'}
-																		/>
-																	</>
-																)
-															),
-														)}
-													</>
-												)}
+												<TextInput
+													placeholderTextColor={Colors.textLight}
+													style={{
+														width: '100%',
+														paddingHorizontal: 0,
+														color: Colors.textDark,
+														fontFamily: FontConfig.primary.semiBold,
+														fontSize: 18,
+														borderBottomColor: Colors.borderColor,
+														borderBottomWidth: 2,
+													}}
+													value={profile.total_exp.toString()}
+													autoCapitalize={'none'}
+													autoCorrect={false}
+													autoCompleteType={'off'}
+												/>
 											</View>
+
+											{profile.specializations.length != 0 && (
+												<View
+													style={{
+														marginVertical: 5,
+													}}>
+													<Text
+														style={{
+															color: Colors.textLight,
+															marginVertical: 5,
+														}}>
+														Speciality
+													</Text>
+													<>
+														{profile.specializations.map((item: any) => (
+															<>
+																<TextInput
+																	placeholderTextColor={Colors.textLight}
+																	style={{
+																		width: '100%',
+																		paddingHorizontal: 0,
+																		color: Colors.textDark,
+																		fontFamily: FontConfig.primary.semiBold,
+																		fontSize: 18,
+																		borderBottomColor: Colors.borderColor,
+																		borderBottomWidth: 2,
+																	}}
+																	value={item}
+																	autoCapitalize={'none'}
+																	autoCorrect={false}
+																	autoCompleteType={'off'}
+																/>
+															</>
+														))}
+													</>
+												</View>
+											)}
 											<Field name={'shift_type_preference'}>
 												{(field: FieldProps) => (
 													<FormikRadioGroupComponent
@@ -287,7 +277,6 @@ const MyProfileScreen = (props: any) => {
 														]}
 														direction={'column'}
 														onUpdate={() => {
-															console.log('here');
 															setDisableBtn(false);
 														}}
 													/>

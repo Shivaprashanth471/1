@@ -17,9 +17,9 @@ import {StateParams} from '../store/reducers';
 export interface ProfileDetailsContainerComponentProps {
 	style?: StyleProp<ViewStyle>;
 	title?: string;
-	description?: string;
 	location?: string;
 	degree?: string;
+	email?: string;
 	startDate?: string;
 	endDate?: any;
 	getDate?: boolean;
@@ -32,7 +32,6 @@ const ProfileDetailsContainerComponent = (
 ) => {
 	let end_date;
 	const title = props.title;
-	const description = props.description;
 	const location = props.location;
 	const degree = props.degree;
 	const startDate = props.startDate;
@@ -40,13 +39,13 @@ const ProfileDetailsContainerComponent = (
 	const id = props.id;
 	const status = props.status;
 	const getDate = props.getDate;
+	const email = props.email;
 	// getDate should be true if you want to display start date & end date
 
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
 	const [display, setDisplay] = useState<'none' | 'flex' | undefined>('flex');
 	const [titleName, setTitleName]: any = useState(title);
-	const [descText, setDescText]: any = useState(description);
 	const [isLoading, setIsloading] = useState<Boolean>(false);
 
 	if (endDate != '') {
@@ -119,6 +118,7 @@ const ProfileDetailsContainerComponent = (
 						<Text style={styles.titleText}>{titleName}</Text>
 						<View style={{flexDirection: 'row'}}>
 							<Text style={styles.subText}>{location}</Text>
+
 							{degree && <Text style={styles.subText}>{degree}</Text>}
 							{getDate && (
 								<Text style={styles.subText}>
@@ -126,7 +126,11 @@ const ProfileDetailsContainerComponent = (
 								</Text>
 							)}
 						</View>
-						{/* <Text style={styles.subText}>{descText}</Text> */}
+						{email != '' && (
+							<Text style={[styles.subText]} numberOfLines={1}>
+								{email}
+							</Text>
+						)}
 					</View>
 
 					<View style={styles.editButtons}>
@@ -141,8 +145,6 @@ const ProfileDetailsContainerComponent = (
 										removeEducation();
 									} else if (status === 'reference') {
 										removeReference();
-									}
-									{
 									}
 								}}>
 								<ImageConfig.CloseIcon

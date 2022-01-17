@@ -8,22 +8,18 @@ import {
 } from 'react-native';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../helpers';
 import {Colors, ENV, FontConfig} from '../constants';
-import Moment from 'moment';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
-import {currentList, primarySpecialityList} from '../constants/CommonVariables';
 
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import {
 	FormikInputComponent,
-	CustomButton,
 	FormikRadioGroupComponent,
 	KeyboardAvoidCommonView,
 	FormikDatepickerComponent,
 } from './core';
 import {TSAPIResponseType} from '../helpers/ApiFunctions';
-import DropdownComponent from './core/DropdownComponent';
 
 const profileVolunteerSchema = yup.object().shape({
 	facility_name: yup.string().required('Required'),
@@ -74,9 +70,11 @@ const ProfileAddVolunteerComponent = (
 		formikHelpers: FormikHelpers<profileVolunteerSchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
-		const payload = {...values, exp_type: 'volunteer'};
-		console.log('>>>>', payload);
-
+		const payload = {
+			...values,
+			exp_type: 'volunteer',
+			end_date: isWorking ? '' : values.end_date,
+		};
 		if (HcpUser) {
 			ApiFunctions.post(
 				ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience',
@@ -85,12 +83,11 @@ const ProfileAddVolunteerComponent = (
 				.then(async (resp: TSAPIResponseType<profileVolunteerSchemaType>) => {
 					formikHelpers.setSubmitting(false);
 					if (resp.success) {
-						console.log('>>>>', resp);
 						if (onUpdate) {
 							onUpdate();
 						}
 						setDisplay('none');
-						ToastAlert.show('Experience added');
+						ToastAlert.show('Volunteer experience added');
 					} else {
 						ToastAlert.show(resp.error || '');
 					}
@@ -216,6 +213,7 @@ const ProfileAddVolunteerComponent = (
 														marginVertical: 0,
 													}}
 													placeholer="Start Date"
+													mode="MonthYear"
 												/>
 											)}
 										</Field>
@@ -224,11 +222,6 @@ const ProfileAddVolunteerComponent = (
 												{(field: FieldProps) => (
 													<FormikDatepickerComponent
 														formikField={field}
-														minDate={
-															values.start_date && values.start_date.length > 0
-																? Moment(values.start_date).format('YYYY-MM-DD')
-																: Moment().format('YYYY-MM-DD')
-														}
 														style={{
 															width: '90%',
 														}}
@@ -239,6 +232,7 @@ const ProfileAddVolunteerComponent = (
 															marginTop: -15,
 														}}
 														placeholer="End Date"
+														mode="MonthYear"
 													/>
 												)}
 											</Field>
@@ -265,22 +259,22 @@ const ProfileAddVolunteerComponent = (
 												<TouchableOpacity
 													disabled={!isValid}
 													onPress={() => {
-														console.log(values.still_working_here, '<<<<');
-
 														if (values.still_working_here.length === 0) {
 															handleSubmit();
 														} else {
 															if (isWorking) {
-																console.log('here');
 																handleSubmit();
 															} else {
 																if (values.end_date.length === 0) {
-																	console.log('or here');
-																	console.log(values.end_date.length);
 																	ToastAlert.show('Please give an end date');
 																} else {
-																	console.log('finally');
-																	handleSubmit();
+																	if (values.start_date > values.end_date) {
+																		ToastAlert.show(
+																			'Start date cannot be greater than end date',
+																		);
+																	} else {
+																		handleSubmit();
+																	}
 																}
 															}
 														}
@@ -315,70 +309,6 @@ const ProfileAddVolunteerComponent = (
 												Cancel
 											</Text>
 										</TouchableOpacity>
-
-										{/* <View
-											style={{
-												width: '45%',
-												marginRight: '10%',
-											}}>
-											<CustomButton
-												onPress={() => {
-													setDisplay('none');
-												}}
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-													backgroundColor: Colors.backgroundShiftColor,
-												}}
-												title={'Cancel'}
-												class={'secondary'}
-												textStyle={{
-													color: Colors.primary,
-													textTransform: 'none',
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 16,
-												}}
-											/>
-										</View>
-
-										<View
-											style={{
-												width: '45%',
-											}}>
-											<CustomButton
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-												}}
-												title={'Save changes'}
-												isLoading={isSubmitting}
-												onPress={() => {
-													if (isWorking) {
-														console.log('here');
-														handleSubmit();
-													} else {
-														if (values.end_date.length === 0) {
-															console.log('or here');
-															console.log(values.end_date.length);
-															ToastAlert.show('Please give an end date');
-														} else {
-															console.log('finally');
-															handleSubmit();
-														}
-													}
-												}}
-												disabled={!isValid}
-												textStyle={{
-													textTransform: 'none',
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 16,
-												}}
-											/>
-										</View> */}
 									</View>
 								</>
 							)}

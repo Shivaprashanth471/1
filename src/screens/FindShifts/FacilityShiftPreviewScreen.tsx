@@ -87,7 +87,6 @@ const FacilityShiftPreviewScreen = (props: any) => {
 						async (resp: TSAPIResponseType<PaginationResponseType<any>>) => {
 							setIsShiftLoading(false);
 							setIsShiftLoaded(true);
-							console.log(resp);
 							if (resp && resp.success) {
 								const docs = resp.data.docs || [];
 								const paginationObj = resp.data;
@@ -375,7 +374,6 @@ const FacilityShiftPreviewScreen = (props: any) => {
 													navigation={navigation}
 													showModal={() => {
 														setShiftApplyModalVisible(true);
-														console.log('Modal Shift Apply Opened');
 													}}
 												/>
 											</View>

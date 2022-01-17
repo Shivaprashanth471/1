@@ -75,7 +75,6 @@ const ProfileAddReferenceComponent = (
 	) => {
 		formikHelpers.setSubmitting(true);
 		const payload = {...values, contact_method: 'phone'};
-		console.log('>>>>', payload);
 
 		if (HcpUser) {
 			ApiFunctions.post(
@@ -85,7 +84,6 @@ const ProfileAddReferenceComponent = (
 				.then(async (resp: TSAPIResponseType<profileReferenceSchemaType>) => {
 					formikHelpers.setSubmitting(false);
 					if (resp.success) {
-						console.log('>>>>', resp);
 						if (onUpdate) {
 							onUpdate();
 						}
@@ -236,70 +234,6 @@ const ProfileAddReferenceComponent = (
 												Cancel
 											</Text>
 										</TouchableOpacity>
-
-										{/* <View
-											style={{
-												width: '45%',
-												marginRight: '10%',
-											}}>
-											<CustomButton
-												onPress={() => {
-													setDisplay('none');
-												}}
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-													backgroundColor: Colors.backgroundShiftColor,
-												}}
-												title={'Cancel'}
-												class={'secondary'}
-												textStyle={{
-													color: Colors.primary,
-													textTransform: 'none',
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 16,
-												}}
-											/>
-										</View>
-
-										<View
-											style={{
-												width: '45%',
-											}}>
-											<CustomButton
-												style={{
-													flex: 0,
-													borderRadius: 8,
-													marginVertical: 0,
-													height: 40,
-												}}
-												title={'Save changes'}
-												isLoading={isSubmitting}
-												onPress={() => {
-													if (isWorking) {
-														console.log('here');
-														handleSubmit();
-													} else {
-														if (values.graduation_date.length === 0) {
-															console.log('or here');
-															console.log(values.graduation_date.length);
-															ToastAlert.show('Please give an end date');
-														} else {
-															console.log('finally');
-															handleSubmit();
-														}
-													}
-												}}
-												disabled={!isValid}
-												textStyle={{
-													textTransform: 'none',
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 16,
-												}}
-											/>
-										</View> */}
 									</View>
 								</>
 							)}

@@ -7,7 +7,6 @@ import {
 	StatusBar,
 	Alert,
 } from 'react-native';
-import {CommonStyles} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import {
 	BaseViewComponent,
@@ -34,8 +33,6 @@ const ProfileReferenceScreen = (props: any) => {
 	const {HcpUser} = hcpDetails;
 
 	const addReference = () => {
-		console.log('here');
-
 		setShowInState(true);
 		setDisplayAddText('none');
 		setInState([
@@ -113,23 +110,18 @@ const ProfileReferenceScreen = (props: any) => {
 								backgroundColor={Colors.backdropColor}
 							/>
 							<View style={styles.screen}>
-								{profile.map(
-									(item: any) => (
-										console.log('item', item),
-										(
-											<>
-												<ProfileDetailsContainerComponent
-													id={item._id}
-													status="reference"
-													title={item.reference_name}
-													location={item.job_title + '  |  ' + item.phone}
-													description={item.email}
-													getDate={false}
-												/>
-											</>
-										)
-									),
-								)}
+								{profile.map((item: any) => (
+									<>
+										<ProfileDetailsContainerComponent
+											id={item._id}
+											status="reference"
+											title={item.reference_name}
+											location={item.job_title + '  |  ' + item.phone}
+											email={item.email}
+											getDate={false}
+										/>
+									</>
+								))}
 								{showInState && <>{inState}</>}
 								<TouchableOpacity
 									onPress={addReference}

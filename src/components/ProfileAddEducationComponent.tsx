@@ -119,7 +119,6 @@ const ProfileAddEducationComponent = (
 									<Field name={'institute_name'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												trimSpecialCharacters={true}
 												trimNumbers={true}
 												inputProperties={{
@@ -134,7 +133,6 @@ const ProfileAddEducationComponent = (
 									<Field name={'location'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Location',
@@ -147,7 +145,6 @@ const ProfileAddEducationComponent = (
 									<Field name={'degree'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Degree',

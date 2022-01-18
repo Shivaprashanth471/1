@@ -140,7 +140,6 @@ const ProfileAddExperienceComponent = (
 									<Field name={'facility_name'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												trimSpecialCharacters={true}
 												trimNumbers={true}
 												inputProperties={{
@@ -155,7 +154,6 @@ const ProfileAddExperienceComponent = (
 									<Field name={'location'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Location',

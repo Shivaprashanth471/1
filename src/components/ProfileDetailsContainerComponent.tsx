@@ -49,6 +49,8 @@ const ProfileDetailsContainerComponent = (
 	const [display, setDisplay] = useState<'none' | 'flex' | undefined>('flex');
 	const [titleName, setTitleName]: any = useState(title);
 	const [isLoading, setIsloading] = useState<Boolean>(false);
+	const [selectDeleteModalVisible, setDeleteModalVisible] =
+		useState<boolean>(false);
 
 	if (endDate != '') {
 		end_date = moment(endDate).format('MMM, YYYY');
@@ -112,9 +114,6 @@ const ProfileDetailsContainerComponent = (
 				ToastAlert.show('Error', err.error || 'Oops... Something went wrong!');
 			});
 	}, [HcpUser._id, id]);
-
-	const [selectDeleteModalVisible, setDeleteModalVisible] =
-		useState<boolean>(false);
 
 	const selectDeleteModal = () => {
 		return (

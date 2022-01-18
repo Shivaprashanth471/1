@@ -129,7 +129,6 @@ const ProfileAddReferenceComponent = (
 									<Field name={'job_title'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Job Title',
@@ -142,7 +141,6 @@ const ProfileAddReferenceComponent = (
 									<Field name={'phone'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'phone-pad',
 													placeholder: 'Phone Number',

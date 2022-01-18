@@ -56,7 +56,6 @@ const MyProfileScreen = (props: any) => {
 	const {HcpUser} = hcpDetails;
 
 	const [disableBtn, setDisableBtn] = useState<boolean>(true);
-	console.log('>>>>', HcpUser._id);
 
 	const getProfileDetails = useCallback(() => {
 		setIsLoading(true);

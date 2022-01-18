@@ -127,7 +127,6 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'facility_name'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												trimSpecialCharacters={true}
 												trimNumbers={true}
 												inputProperties={{
@@ -141,7 +140,6 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'location'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Location',
@@ -153,7 +151,6 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'position_title'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Position Title',
@@ -165,7 +162,6 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'specialisation'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Speciality',

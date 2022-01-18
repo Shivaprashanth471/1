@@ -79,7 +79,7 @@ const ProfileAddEducationComponent = (
 							onUpdate();
 						}
 						setDisplay('none');
-						ToastAlert.show('Experience added');
+						ToastAlert.show('Education added');
 					} else {
 						ToastAlert.show(resp.error || '');
 					}
@@ -120,9 +120,12 @@ const ProfileAddEducationComponent = (
 										{(field: FieldProps) => (
 											<FormikInputComponent
 												trimSpaces={true}
+												trimSpecialCharacters={true}
+												trimNumbers={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Institute Name',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -135,6 +138,7 @@ const ProfileAddEducationComponent = (
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Location',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -147,6 +151,7 @@ const ProfileAddEducationComponent = (
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Degree',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -218,6 +223,12 @@ const ProfileAddEducationComponent = (
 														if (values.start_date > values.graduation_date) {
 															ToastAlert.show(
 																'Start date cannot be greater than end date',
+															);
+														} else if (
+															values.start_date === values.graduation_date
+														) {
+															ToastAlert.show(
+																'Start and end date should not be same',
 															);
 														} else {
 															handleSubmit();

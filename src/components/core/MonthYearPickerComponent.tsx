@@ -37,9 +37,10 @@ const MonthYearPickerComponent = (props: DatePickerComponentProps) => {
 
 			showPicker(false);
 			setChangedDate(selectedDate);
-			const curDate = Moment(selectedDate).format('YYYY-MM');
+			const curDate = Moment(selectedDate).format('MM-YYYY');
+			const curDateSendApi = Moment(selectedDate).format('YYYY-MM');
 			if (onChange) {
-				onChange(curDate);
+				onChange(curDateSendApi);
 				setText(curDate);
 				console.log(curDate);
 				setPlaceHolderStyle(false);

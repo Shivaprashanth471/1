@@ -86,6 +86,8 @@ const ProfileAddExperienceComponent = (
 			exp_type: 'fulltime',
 			end_date: isWorking ? '' : values.end_date,
 		};
+		console.log('<><><>', payload);
+
 		if (HcpUser) {
 			ApiFunctions.post(
 				ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience',
@@ -139,9 +141,12 @@ const ProfileAddExperienceComponent = (
 										{(field: FieldProps) => (
 											<FormikInputComponent
 												trimSpaces={true}
+												trimSpecialCharacters={true}
+												trimNumbers={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Facility Name',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -154,6 +159,7 @@ const ProfileAddExperienceComponent = (
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Location',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -242,6 +248,9 @@ const ProfileAddExperienceComponent = (
 													}}
 													placeholer="Start Date"
 													mode="MonthYear"
+													onUpdate={(e: any) => {
+														console.log('<><><><>', e, '<><><>>');
+													}}
 												/>
 											)}
 										</Field>
@@ -296,9 +305,15 @@ const ProfileAddExperienceComponent = (
 																if (values.end_date.length === 0) {
 																	ToastAlert.show('Please give an end date');
 																} else {
-																	if (values.start_date > values.end_date) {
+																	if (values.start_date === values.end_date) {
 																		ToastAlert.show(
-																			'Start date cannot be greater than end date',
+																			'Start and end date should not be same',
+																		);
+																	} else if (
+																		values.start_date > values.end_date
+																	) {
+																		ToastAlert.show(
+																			'Start date should not be greater than end date',
 																		);
 																	} else {
 																		handleSubmit();

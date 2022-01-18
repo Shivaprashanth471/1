@@ -7,12 +7,14 @@ import {
 	StyleProp,
 	ViewStyle,
 	ActivityIndicator,
+	Modal,
 } from 'react-native';
 import {Colors, ENV, FontConfig, ImageConfig} from '../constants';
 import moment from 'moment';
 import {ApiFunctions, ToastAlert} from '../helpers';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
+import {CustomButton} from './core';
 
 export interface ProfileDetailsContainerComponentProps {
 	style?: StyleProp<ViewStyle>;
@@ -99,7 +101,7 @@ const ProfileDetailsContainerComponent = (
 				if (resp && resp.success) {
 					setDisplay('none');
 					setIsloading(false);
-					ToastAlert.show('Education removed');
+					ToastAlert.show('Reference removed');
 				} else {
 					console.log('error');
 				}
@@ -110,10 +112,106 @@ const ProfileDetailsContainerComponent = (
 				ToastAlert.show('Error', err.error || 'Oops... Something went wrong!');
 			});
 	}, [HcpUser._id, id]);
+
+	const [selectDeleteModalVisible, setDeleteModalVisible] =
+		useState<boolean>(false);
+
+	const selectDeleteModal = () => {
+		return (
+			<View style={styles.ModalContainer}>
+				<Modal
+					animationType="slide"
+					transparent={true}
+					visible={selectDeleteModalVisible}
+					onRequestClose={() => {
+						setDeleteModalVisible(!selectDeleteModalVisible);
+					}}>
+					<View style={[styles.centeredView, {backgroundColor: '#000000A0'}]}>
+						<View
+							style={[
+								styles.modalView,
+								{
+									height: '30%',
+								},
+							]}>
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.bold,
+									fontSize: 22,
+									color: Colors.primary,
+								}}>
+								Delete!
+							</Text>
+							<Text style={styles.modalTextSub}>
+								Do you want to delete {status} information
+							</Text>
+							<View
+								style={{
+									flexDirection: 'row',
+									marginHorizontal: 10,
+									marginTop: 30,
+								}}>
+								<View
+									style={{
+										width: '45%',
+										marginRight: '10%',
+									}}>
+									<CustomButton
+										onPress={() =>
+											setDeleteModalVisible(!selectDeleteModalVisible)
+										}
+										style={{
+											flex: 0,
+											borderRadius: 8,
+											marginVertical: 0,
+											height: 45,
+											backgroundColor: Colors.backgroundShiftColor,
+										}}
+										title={'Cancel'}
+										class={'secondary'}
+										textStyle={{color: Colors.primary}}
+									/>
+								</View>
+								<View
+									style={{
+										width: '45%',
+									}}>
+									<CustomButton
+										style={{
+											flex: 0,
+											borderRadius: 8,
+											marginVertical: 0,
+											height: 45,
+										}}
+										title={'Delete'}
+										onPress={() => {
+											if (status === 'experience' || status === 'volunteer') {
+												removeExperience();
+											} else if (status === 'education') {
+												removeEducation();
+											} else if (status === 'reference') {
+												removeReference();
+											}
+											setDeleteModalVisible(!selectDeleteModalVisible);
+										}}
+									/>
+								</View>
+							</View>
+						</View>
+					</View>
+				</Modal>
+			</View>
+		);
+	};
 	return (
 		<>
 			<View style={[styles.screen]}>
-				<View style={{display: display, flexDirection: 'row'}}>
+				<View
+					style={{
+						display: display,
+						flexDirection: 'row',
+						alignItems: 'center',
+					}}>
 					<View style={{width: '70%'}}>
 						<Text style={styles.titleText}>{titleName}</Text>
 						<View style={{flexDirection: 'row'}}>
@@ -132,20 +230,14 @@ const ProfileDetailsContainerComponent = (
 							</Text>
 						)}
 					</View>
-
+					{selectDeleteModal()}
 					<View style={styles.editButtons}>
 						{isLoading ? (
 							<ActivityIndicator size={'small'} color={Colors.primary} />
 						) : (
 							<TouchableOpacity
 								onPress={() => {
-									if (status === 'experience' || status === 'volunteer') {
-										removeExperience();
-									} else if (status === 'education') {
-										removeEducation();
-									} else if (status === 'reference') {
-										removeReference();
-									}
+									setDeleteModalVisible(!selectDeleteModalVisible);
 								}}>
 								<ImageConfig.CloseIcon
 									style={{
@@ -194,6 +286,42 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 		color: Colors.textOnTextLight,
 		marginVertical: 3,
+	},
+
+	// modal
+	ModalContainer: {
+		flex: 1,
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+		width: '100%',
+	},
+	centeredView: {
+		flex: 1,
+		justifyContent: 'flex-end',
+	},
+	modalView: {
+		backgroundColor: 'white',
+		borderTopLeftRadius: 40,
+		borderTopRightRadius: 40,
+		padding: 20,
+		alignItems: 'center',
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 4,
+		elevation: 10,
+		width: '100%',
+		height: '40%',
+	},
+	modalTextSub: {
+		textAlign: 'center',
+		fontFamily: FontConfig.primary.regular,
+		color: Colors.textOnTextLight,
+		marginVertical: 14,
+		fontSize: 14,
 	},
 });
 

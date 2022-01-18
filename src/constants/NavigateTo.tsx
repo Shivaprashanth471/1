@@ -28,7 +28,6 @@ const ForgotPassword_Password_Screen = 'ForgotPassword_Password_Screen';
 const ProfileDocumentScreen = 'ProfileDocumentScreen';
 const UpcomingShiftCountdownScreen = 'UpcomingShiftCountdownScreen';
 const AttendanceChartScreen = 'AttendanceChartScreen';
-const MyProfileCreationGetStartedScreen = 'MyProfileCreationGetStartedScreen';
 const MyProfileCreationCurrentRole = 'MyProfileCreationCurrentRole';
 const MyProfileGetLocationScreen = 'MyProfileGetLocationScreen';
 const MyProfileShiftPreferencesScreen = 'MyProfileShiftPreferencesScreen';
@@ -39,6 +38,11 @@ const MyProfileProfessionalDetails = 'MyProfileProfessionalDetails';
 const ImageCarouselScreen = 'ImageCarouselScreen';
 const EmailVerifyScreen = 'EmailVerifyScreen';
 const OTPVerifyScreen = 'OTPVerifyScreen';
+const GetBasicDetailsScreen = 'GetBasicDetailsScreen';
+const GetStartedScreen = 'GetStartedScreen';
+const GetRegionScreen = 'GetRegionScreen';
+const GetCertifiedToPractiseScreen = 'GetCertifiedToPractiseScreen';
+const GetVaccineForCovidScreen = 'GetVaccineForCovidScreen';
 
 export default {
 	Start,
@@ -67,7 +71,6 @@ export default {
 	ProfileEducationScreen,
 	ProfileVolunteerScreen,
 	ProfileReferenceScreen,
-	MyProfileCreationGetStartedScreen,
 	MyProfileCreationCurrentRole,
 	MyProfileGetLocationScreen,
 	MyProfileShiftPreferencesScreen,
@@ -82,4 +85,9 @@ export default {
 	ImageCarouselScreen,
 	EmailVerifyScreen,
 	OTPVerifyScreen,
+	GetBasicDetailsScreen,
+	GetStartedScreen,
+	GetRegionScreen,
+	GetCertifiedToPractiseScreen,
+	GetVaccineForCovidScreen,
 };

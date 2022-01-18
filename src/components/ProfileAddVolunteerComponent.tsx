@@ -128,6 +128,8 @@ const ProfileAddVolunteerComponent = (
 										{(field: FieldProps) => (
 											<FormikInputComponent
 												trimSpaces={true}
+												trimSpecialCharacters={true}
+												trimNumbers={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Organisation',
@@ -268,9 +270,15 @@ const ProfileAddVolunteerComponent = (
 																if (values.end_date.length === 0) {
 																	ToastAlert.show('Please give an end date');
 																} else {
-																	if (values.start_date > values.end_date) {
+																	if (values.start_date === values.end_date) {
 																		ToastAlert.show(
-																			'Start date cannot be greater than end date',
+																			'Start and end date should not be same',
+																		);
+																	} else if (
+																		values.start_date > values.end_date
+																	) {
+																		ToastAlert.show(
+																			'Start date should not be greater than end date',
 																		);
 																	} else {
 																		handleSubmit();

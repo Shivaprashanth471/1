@@ -47,6 +47,7 @@ const OTPVerifyScreen = (props: any) => {
 				if (resp.success) {
 					ToastAlert.show(resp.msg || 'Email Verification successful');
 					// navigation.replace(NavigateTo.Auth, {screen: NavigateTo.Signin});
+					console.log('>>>', resp);
 				} else {
 					ToastAlert.show(resp.error || 'Wrong OTP entered');
 				}

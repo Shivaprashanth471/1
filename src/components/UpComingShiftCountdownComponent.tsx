@@ -1,17 +1,7 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {
-	FlexStyle,
-	Image,
-	StyleSheet,
-	Text,
-	View,
-	StyleProp,
-	ViewStyle,
-	Alert,
-	StatusBar,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View, StyleProp, ViewStyle} from 'react-native';
 import {CommonStyles} from '../helpers';
-import {Colors, FontConfig, ImageConfig, ENV} from '../constants';
+import {Colors, FontConfig, ImageConfig} from '../constants';
 import moment from 'moment';
 import {CustomButton} from './core';
 
@@ -48,13 +38,13 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 		seconds: 0,
 	});
 
-	var date = moment(dateOfShift).utcOffset(0, false).format('ddd, MMM DD');
+	const date = moment(dateOfShift).utcOffset(0, false).format('ddd, MMM DD');
 
-	var shiftStartTimeExtract = moment(StartTime, ['h:mm:ss A'])
+	const shiftStartTimeExtract = moment(StartTime, ['h:mm:ss A'])
 		.utcOffset(0, false)
 		.format('hh:mm A');
 
-	var shiftEndTimeExtract = moment(EndTime, ['h:mm:ss A'])
+	const shiftEndTimeExtract = moment(EndTime, ['h:mm:ss A'])
 		.utcOffset(0, false)
 		.format('hh:mm A');
 
@@ -69,16 +59,16 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 				.utcOffset(0, false)
 				.format('DD-MM-YYYY hh:mm:ss A');
 
-			var CountDownSeconds = moment(startShiftTime, 'DD-MM-YYYY hh:mm:ss A')
+			const CountDownSeconds = moment(startShiftTime, 'DD-MM-YYYY hh:mm:ss A')
 				.utcOffset(0, false)
 				.diff(
 					moment(curTime, 'DD-MM-YYYY hh:mm:ss A').utcOffset(0, false),
 					'seconds',
 				);
 
-			var hours = Math.floor(CountDownSeconds / 3600);
-			var minutes = Math.floor((CountDownSeconds / 60) % 60);
-			var seconds = CountDownSeconds % 60;
+			const hours = Math.floor(CountDownSeconds / 3600);
+			const minutes = Math.floor((CountDownSeconds / 60) % 60);
+			const seconds = CountDownSeconds % 60;
 			if (hours >= 0 && minutes >= 0 && seconds >= 0) {
 				setDateTime({hours: hours, minutes: minutes, seconds: seconds});
 			} else {
@@ -92,9 +82,9 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 	let startShiftTime = moment(StartTime, ['YYYY-MM-DD h:mm:ss A']);
 	let endShiftTime = moment(EndTime, ['YYYY-MM-DD h:mm:ss A']);
 
-	var TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds');
-	var hours = Math.floor(TotalSeconds / 3600);
-	var minutes = Math.floor((TotalSeconds / 60) % 60);
+	const TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds');
+	const hours = Math.floor(TotalSeconds / 3600);
+	const minutes = Math.floor((TotalSeconds / 60) % 60);
 
 	const shiftDiffHours = hours < 0 ? hours * -1 : hours;
 	const shiftDiffMinute = minutes < 0 ? minutes * -1 : minutes;
@@ -134,12 +124,7 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 								}}>
 								{date}
 							</Text>
-							<View
-								style={[
-									styles.shiftTimeContainer,
-									// CommonStyles.paddingBottom,
-									// {marginVertical: 5},
-								]}>
+							<View style={[styles.shiftTimeContainer]}>
 								<Text style={[styles.shiftTimeText]}>
 									{shiftStartTimeExtract}
 								</Text>
@@ -305,36 +290,22 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 						</View>
 					</View>
 				</View>
-				{/*{dateTime.hours === 0 && dateTime.minutes <= 10 && (*/}
 				<View
 					style={{
 						alignItems: 'center',
 						marginTop: -15,
 					}}>
-					<View
-						style={{
-							width: '50%',
-						}}>
-						<CustomButton
-							autoWidth={true}
-							style={{
-								flex: 0,
-								borderRadius: 8,
-								marginVertical: 0,
-								height: 40,
-								backgroundColor: Colors.backgroundShiftColor,
-							}}
-							title={statusInProgress ? 'Resume' : 'Begin Now'}
-							class={'primary'}
-							textStyle={{
-								color: Colors.textOnPrimary,
-								textTransform: 'none',
-								fontFamily: FontConfig.primary.bold,
-								fontSize: 14,
-							}}
-							onPress={onAttendanceStart}
-						/>
-					</View>
+					<CustomButton
+						title={statusInProgress ? 'Resume' : 'Begin Now'}
+						onPress={onAttendanceStart}
+						style={styles.button}
+						textStyle={{
+							color: Colors.textOnPrimary,
+							textTransform: 'none',
+							fontFamily: FontConfig.primary.bold,
+							fontSize: 14,
+						}}
+					/>
 				</View>
 			</View>
 			{/* )} */}
@@ -359,7 +330,6 @@ const styles = StyleSheet.create({
 		fontFamily: FontConfig.primary.bold,
 		fontSize: 14,
 		width: 200,
-		// backgroundColor: 'red',
 	},
 	shiftDateText: {
 		fontFamily: FontConfig.primary.regular,
@@ -374,8 +344,6 @@ const styles = StyleSheet.create({
 		fontFamily: FontConfig.primary.bold,
 		fontSize: 48,
 		color: Colors.textOnPrimary,
-		// color: Colors.textOnPrimary,
-		// color: Colors.textOnPrimary,
 	},
 	shiftTimeDifferenceText: {
 		fontFamily: FontConfig.primary.bold,
@@ -387,6 +355,13 @@ const styles = StyleSheet.create({
 		width: 10,
 		height: 1,
 		backgroundColor: Colors.textLight,
+	},
+	button: {
+		borderRadius: 8,
+		height: 40,
+		width: '50%',
+		backgroundColor: Colors.backgroundShiftColor,
+		justifyContent: 'center',
 	},
 });
 

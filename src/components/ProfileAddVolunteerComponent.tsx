@@ -127,7 +127,8 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'facility_name'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
+												trimSpecialCharacters={true}
+												trimNumbers={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Organisation',
@@ -139,7 +140,6 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'location'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Location',
@@ -151,7 +151,6 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'position_title'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Position Title',
@@ -163,7 +162,6 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'specialisation'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Speciality',
@@ -268,9 +266,15 @@ const ProfileAddVolunteerComponent = (
 																if (values.end_date.length === 0) {
 																	ToastAlert.show('Please give an end date');
 																} else {
-																	if (values.start_date > values.end_date) {
+																	if (values.start_date === values.end_date) {
 																		ToastAlert.show(
-																			'Start date cannot be greater than end date',
+																			'Start and end date should not be same',
+																		);
+																	} else if (
+																		values.start_date > values.end_date
+																	) {
+																		ToastAlert.show(
+																			'Start date should not be greater than end date',
 																		);
 																	} else {
 																		handleSubmit();

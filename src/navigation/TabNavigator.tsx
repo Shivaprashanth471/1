@@ -28,9 +28,7 @@ import ProfileReferenceScreen from '../screens/Profile/ProfileReferenceScreen';
 import ProfileDocumentScreen from '../screens/Profile/ProfileDocumentScreen';
 import UpcomingShiftCountdownScreen from '../screens/Attendance/UpcomingShiftCountdownScreen';
 import AttendanceChartScreen from '../screens/Attendance/AttendanceChartScreen';
-import MyProfileCreationGetStartedScreen from '../screens/Profile/ProfileCreation/MyProfileCreationGetStartedScreen';
 import MyProfileCreationCurrentRole from '../screens/Profile/ProfileCreation/MyProfileCreationCurrentRole';
-import MyProfileGetLocationScreen from '../screens/Profile/ProfileCreation/MyProfileGetLocationScreen';
 import MyProfileShiftPreferencesScreen from '../screens/Profile/ProfileCreation/MyProfileShiftPreferencesScreen';
 import MyProfileCreationGetLanguage from '../screens/Profile/ProfileCreation/MyProfileCreationGetLanguage';
 import MyProfileCreationGetDocuments from '../screens/Profile/ProfileCreation/MyProfileCreationGetDocuments';
@@ -251,13 +249,6 @@ const ProfileStackNavigator = () => {
 				component={ProfileDocumentScreen}
 			/>
 			<ProfileStack.Screen
-				key={NavigateTo.MyProfileCreationGetStartedScreen + '-Screen'}
-				name={NavigateTo.MyProfileCreationGetStartedScreen}
-				options={{headerTitle: '', headerShown: false}}
-				listeners={listeners}
-				component={MyProfileCreationGetStartedScreen}
-			/>
-			<ProfileStack.Screen
 				key={NavigateTo.MyProfileProfessionalDetails + '-Screen'}
 				name={NavigateTo.MyProfileProfessionalDetails}
 				options={{headerTitle: 'Profile'}}
@@ -270,13 +261,6 @@ const ProfileStackNavigator = () => {
 				options={{headerTitle: 'Profile'}}
 				listeners={listeners}
 				component={MyProfileCreationCurrentRole}
-			/>
-			<ProfileStack.Screen
-				key={NavigateTo.MyProfileGetLocationScreen + '-Screen'}
-				name={NavigateTo.MyProfileGetLocationScreen}
-				options={{headerTitle: 'Profile'}}
-				listeners={listeners}
-				component={MyProfileGetLocationScreen}
 			/>
 			<ProfileStack.Screen
 				key={NavigateTo.MyProfileShiftPreferencesScreen + '-Screen'}

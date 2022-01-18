@@ -44,25 +44,21 @@ import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import * as yup from 'yup';
 import {TSAPIResponseType} from '../../../helpers/ApiFunctions';
 import FormikInputComponent from '../../../components/core/FormikInputComponent';
-
+import DropdownComponent from '../../../components/core/DropdownComponent';
+import {currentList, regionsList} from '../../../constants/CommonVariables';
 const loginSchema = yup.object().shape({
-	location: yup.string().required('Required'),
+	region: yup.string().required('Required'),
 });
 
 export interface LocationSchemaType {
-	location: string;
+	region: string;
 }
 
 const initialValues: LocationSchemaType = {
-	location: '',
+	region: '',
 };
 
-// export interface LoginAPIResponse {
-// 	user: {name: string; role: string};
-// 	token: string;
-// }
-
-const MyProfileGetLocationScreen = (props: any) => {
+const GetRegionScreen = (props: any) => {
 	const dispatch = useDispatch();
 	const navigation = props.navigation;
 	const {auth} = useSelector((state: StateParams) => state);
@@ -77,7 +73,8 @@ const MyProfileGetLocationScreen = (props: any) => {
 		formikHelpers.setSubmitting(true);
 		const payload = {...values};
 		console.log(values);
-		navigation.navigate(NavigateTo.MyProfileShiftPreferencesScreen);
+		formikHelpers.setSubmitting(false);
+		navigation.navigate(NavigateTo.GetCertifiedToPractiseScreen);
 		// ApiFunctions.post(ENV.apiUrl + 'account/login', payload)
 		// 	.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {
 		// 		formikHelpers.setSubmitting(false);
@@ -115,9 +112,7 @@ const MyProfileGetLocationScreen = (props: any) => {
 								<Text style={styles.headerText}>Where are you located</Text>
 							</View>
 							<View style={styles.subHeadingHolder}>
-								<Text style={styles.subHeading}>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-								</Text>
+								<Text style={styles.subHeading}>Please select your region</Text>
 							</View>
 						</View>
 						<View style={styles.formBlock}>
@@ -133,18 +128,20 @@ const MyProfileGetLocationScreen = (props: any) => {
 												flex: 1,
 												justifyContent: 'space-between',
 											}}>
-											<Field name={'location'}>
+											<Field name={'region'}>
 												{(field: FieldProps) => (
-													<FormikInputComponent
-														trimCharacters={true}
-														trimSpaces={true}
-														trimSpecialCharacters={true}
-														// labelText="Last Name"
-														inputProperties={{
-															keyboardType: 'default',
-															placeholder: 'Location',
-														}}
+													<DropdownComponent
+														contentWrapper={{marginHorizontal: 0}}
+														// @ts-ignore
+														data={regionsList}
+														labelText={'Region'}
+														placeholder={'select your region'}
 														formikField={field}
+														search={false}
+														disabled={false}
+														onUpdate={() => {
+															// setDisableBtn(false);
+														}}
 													/>
 												)}
 											</Field>
@@ -153,10 +150,6 @@ const MyProfileGetLocationScreen = (props: any) => {
 												isLoading={isSubmitting}
 												title={'Continue'}
 												onPress={handleSubmit}
-												// style={[
-												// 	styles.button,
-												// 	{backgroundColor: Colors.primary, marginTop: 250},
-												// ]}
 												disabled={!isValid}
 											/>
 										</View>
@@ -199,13 +192,12 @@ const styles = StyleSheet.create({
 		color: Colors.textLight,
 	},
 	formBlock: {
-		alignItems: 'center',
+		// alignItems: 'center',
 		marginVertical: 25,
 		flex: 3,
 	},
 	formHolder: {
 		flex: 1,
-		// justifyContent: 'space-around',
 	},
 	logo: {},
 
@@ -217,4 +209,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default MyProfileGetLocationScreen;
+export default GetRegionScreen;

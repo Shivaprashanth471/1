@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {BaseViewComponent, CustomButton} from '../../../components/core';
 import {
@@ -10,39 +10,41 @@ import {Colors, ENV, FontConfig, NavigateTo} from '../../../constants';
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 
-const verifyEmailSchema = yup.object().shape({
+const GetBasicDetailsSchema = yup.object().shape({
+	first_name: yup.string().required('Required'),
+	last_name: yup.string().required('Required'),
 	email: yup.string().required('Required').email('Invalid Email'),
 });
 
-export interface VerifyEmailSchemaType {
+export interface GetBasicDetailsSchemaType {
+	first_name: string;
+	last_name: string;
 	email: string;
-	// agree: any;
 }
 
-const initialValues: VerifyEmailSchemaType = {
+const initialValues: GetBasicDetailsSchemaType = {
+	first_name: '',
+	last_name: '',
 	email: '',
-	// agree: null,
 };
 
-const EmailVerifyScreen = (props: any) => {
-	const emailVerifyHandler = (
-		values: VerifyEmailSchemaType,
-		formikHelpers: FormikHelpers<VerifyEmailSchemaType>,
+const GetBasicDetailsScreen = (props: any) => {
+	const GetBasicDetailsHandler = (
+		values: GetBasicDetailsSchemaType,
+		formikHelpers: FormikHelpers<GetBasicDetailsSchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
 		const payload = {...values};
 		console.log('payload out>>>', payload);
-		navigation.navigate(NavigateTo.GetBasicDetailsScreen, {
-			emailVerifyPayload: payload,
-		});
 		formikHelpers.setSubmitting(false);
+		navigation.navigate(NavigateTo.GetStartedScreen);
 		// ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
 		// 	.then(resp => {
 		// 		formikHelpers.setSubmitting(false);
 		// 		if (resp.success) {
 		// 			ToastAlert.show(resp.msg || 'email verified');
 		// 			navigation.navigate(NavigateTo.OTPVerifyScreen, {
-		// 				emailVerifyPayload: payload,
+		// 				GetBasicDetailsPayload: payload,
 		// 			});
 		// 		} else {
 		// 			ToastAlert.show(resp.error || '');
@@ -55,6 +57,8 @@ const EmailVerifyScreen = (props: any) => {
 		// 		ToastAlert.show(err.errors.email[0] || 'Please enter correct email');
 		// 	});
 	};
+
+	useEffect(() => {}, []);
 	const navigation = props.navigation;
 	return (
 		<KeyboardAvoidCommonView>
@@ -75,11 +79,11 @@ const EmailVerifyScreen = (props: any) => {
 					}}>
 					<View style={styles.header}>
 						<View style={{}}>
-							<Text style={styles.headerText}>Give us your email address</Text>
+							<Text style={styles.headerText}>Tell us your details</Text>
 						</View>
 						<View style={styles.subHeadingHolder}>
 							<Text style={styles.subHeading}>
-								Please type your Email address for verification.
+								Please provide your basic details
 							</Text>
 						</View>
 					</View>
@@ -87,46 +91,71 @@ const EmailVerifyScreen = (props: any) => {
 				<View style={styles.formBlock}>
 					<View style={styles.formHolder}>
 						<Formik
-							onSubmit={emailVerifyHandler}
-							validationSchema={verifyEmailSchema}
+							onSubmit={GetBasicDetailsHandler}
+							validationSchema={GetBasicDetailsSchema}
 							validateOnBlur={true}
 							initialValues={initialValues}>
 							{({handleSubmit, isValid, isSubmitting}) => (
 								<>
-									<Field name={'email'}>
+									<Field name={'first_name'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
 												trimSpaces={true}
-												labelText="Email"
+												// labelText="first Name"
 												inputProperties={{
-													keyboardType: 'email-address',
-													placeholder: 'email address',
+													keyboardType: 'default',
+													placeholder: 'Your first name',
 												}}
 												formikField={field}
 											/>
 										)}
 									</Field>
-									<View style={styles.footerContainer}>
-										<View
-											style={{
-												marginHorizontal: 40,
-												marginTop: 20,
-											}}>
-											{/* <Field name={'terms&conditions'}>
-												{(field: FieldProps) => (
-													<FormikCheckboxComponent formikField={field} />
-												)}
-											</Field> */}
-											<Text style={styles.footerText}>
-												You agree to allow VitaWerks to check your information.
-												Terms {'&'} Conditions.
-											</Text>
+									<Field name={'last_name'}>
+										{(field: FieldProps) => (
+											<FormikInputComponent
+												trimSpaces={true}
+												// labelText="Last Name"
+												inputProperties={{
+													keyboardType: 'default',
+													placeholder: 'Your Last name',
+												}}
+												formikField={field}
+											/>
+										)}
+									</Field>
+									<Field name={'email'}>
+										{(field: FieldProps) => (
+											<FormikInputComponent
+												trimSpaces={true}
+												// labelText="Email"
+												inputProperties={{
+													keyboardType: 'email-address',
+													placeholder: 'Your email',
+												}}
+												formikField={field}
+											/>
+										)}
+									</Field>
+									<View
+										style={{
+											marginTop: 250,
+										}}>
+										<View>
 											<CustomButton
+												style={{
+													flex: 0,
+													backgroundColor: Colors.primary,
+													borderRadius: 8,
+													marginVertical: 0,
+												}}
+												title={'Continue'}
 												isLoading={isSubmitting}
-												title={'Agree and Continue'}
 												onPress={handleSubmit}
-												style={styles.button}
 												disabled={!isValid}
+												textStyle={{
+													fontSize: 14,
+													fontFamily: FontConfig.primary.bold,
+												}}
 											/>
 										</View>
 									</View>
@@ -149,7 +178,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 20,
 	},
 	formHolder: {
-		width: '85%',
+		marginHorizontal: 20,
 	},
 	logo: {
 		flex: 1,
@@ -203,4 +232,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default EmailVerifyScreen;
+export default GetBasicDetailsScreen;

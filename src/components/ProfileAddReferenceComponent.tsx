@@ -8,32 +8,23 @@ import {
 } from 'react-native';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../helpers';
 import {Colors, ENV, FontConfig} from '../constants';
-import Moment from 'moment';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
-import {currentList, primarySpecialityList} from '../constants/CommonVariables';
-
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
-import {
-	FormikInputComponent,
-	CustomButton,
-	FormikRadioGroupComponent,
-	KeyboardAvoidCommonView,
-	FormikDatepickerComponent,
-} from './core';
+import {FormikInputComponent, KeyboardAvoidCommonView} from './core';
 import {TSAPIResponseType} from '../helpers/ApiFunctions';
-import DropdownComponent from './core/DropdownComponent';
 
 const profileReferenceSchema = yup.object().shape({
 	reference_name: yup.string().required('Required'),
 	job_title: yup.string().required('Required'),
 	phone: yup
 		.string()
+		.min(4)
 		.max(10, 'max 10 digits')
 		.required('required')
 		.matches(
-			/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+			/^(?=.*[1-9])((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
 			'Invalid',
 		),
 	email: yup.string().email('Invalid Email'),
@@ -65,9 +56,7 @@ const ProfileAddReferenceComponent = (
 	const setDisplayAddText = props.setDisplayAddText;
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
-
 	const [display, setDisplay] = useState<'none' | 'flex' | undefined>('flex');
-	const [isWorking, setIsWorking] = useState<boolean>(false);
 
 	const updateProfileReferenceDetails = (
 		values: profileReferenceSchemaType,
@@ -88,7 +77,7 @@ const ProfileAddReferenceComponent = (
 							onUpdate();
 						}
 						setDisplay('none');
-						ToastAlert.show('Experience added');
+						ToastAlert.show('Reference added');
 					} else {
 						ToastAlert.show(resp.error || '');
 					}
@@ -128,9 +117,8 @@ const ProfileAddReferenceComponent = (
 									<Field name={'reference_name'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
-													maxLength: 10,
+													maxLength: 150,
 													keyboardType: 'default',
 													placeholder: 'Name',
 												}}
@@ -141,10 +129,10 @@ const ProfileAddReferenceComponent = (
 									<Field name={'job_title'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Job Title',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -153,7 +141,6 @@ const ProfileAddReferenceComponent = (
 									<Field name={'phone'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
-												trimSpaces={true}
 												inputProperties={{
 													keyboardType: 'phone-pad',
 													placeholder: 'Phone Number',
@@ -175,6 +162,7 @@ const ProfileAddReferenceComponent = (
 													inputProperties={{
 														keyboardType: 'default',
 														placeholder: 'Email (optional)',
+														maxLength: 150,
 													}}
 													formikField={field}
 												/>

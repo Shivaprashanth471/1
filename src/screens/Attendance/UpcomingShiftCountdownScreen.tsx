@@ -139,7 +139,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 					console.log(err);
 				});
 		}
-	}, [getFacilityShiftDetails, navigation, user]);
+	}, [getFacilityShiftDetails, user]);
 
 	useEffect(() => {
 		const focusListener = navigation.addListener('focus', getNextShiftDetails);

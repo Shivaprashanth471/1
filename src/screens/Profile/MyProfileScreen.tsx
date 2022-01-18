@@ -189,7 +189,7 @@ const MyProfileScreen = (props: any) => {
 														contentWrapper={{marginHorizontal: 0}}
 														// @ts-ignore
 														data={regionsList}
-														labelText={'region'}
+														labelText={'Region'}
 														placeholder={'select the value'}
 														formikField={field}
 														search={false}
@@ -226,6 +226,7 @@ const MyProfileScreen = (props: any) => {
 													autoCapitalize={'none'}
 													autoCorrect={false}
 													autoCompleteType={'off'}
+													editable={false}
 												/>
 											</View>
 
@@ -239,7 +240,7 @@ const MyProfileScreen = (props: any) => {
 															color: Colors.textLight,
 															marginVertical: 5,
 														}}>
-														Speciality
+														Specialities
 													</Text>
 													<>
 														{profile.specializations.map((item: any) => (
@@ -259,6 +260,7 @@ const MyProfileScreen = (props: any) => {
 																	autoCapitalize={'none'}
 																	autoCorrect={false}
 																	autoCompleteType={'off'}
+																	editable={false}
 																/>
 															</>
 														))}

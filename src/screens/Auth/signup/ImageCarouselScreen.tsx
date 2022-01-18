@@ -77,7 +77,7 @@ const ImageCarouselScreen = (props: any) => {
 					<CustomButton
 						title={'Get Started'}
 						onPress={() => {
-							navigation.navigate(NavigateTo.EmailVerifyScreen);
+							navigation.navigate(NavigateTo.GetVaccineForCovidScreen);
 						}}
 						style={{
 							marginHorizontal: 20,

@@ -13,6 +13,11 @@ import ForgotPassword_Email_Screen from '../screens/Auth/ForgotPassword_Email_Sc
 import ImageCarouselScreen from '../screens/Auth/signup/ImageCarouselScreen';
 import EmailVerifyScreen from '../screens/Auth/signup/EmailVerifyScreen';
 import OTPVerifyScreen from '../screens/Auth/signup/OTPVerifyScreen';
+import GetBasicDetailsScreen from '../screens/Auth/signup/GetBasicDetailsScreen';
+import GetStartedScreen from '../screens/Auth/signup/GetStartedScreen';
+import GetRegionScreen from '../screens/Auth/signup/GetRegionScreen';
+import GetCertifiedToPractiseScreen from '../screens/Auth/signup/GetCertifiedToPractiseScreen';
+import GetVaccineForCovidScreen from '../screens/Auth/signup/GetVaccineForCovidScreen';
 const defaultNavigationOptions: StackNavigationOptions = {
 	headerStyle: {
 		backgroundColor: Colors.backdropColor, //CommonFunctions.isAndroid() ? Colors.primary : 'white',
@@ -95,6 +100,41 @@ const SignupNavigator = () => {
 				options={{headerTitle: ''}}
 				listeners={listeners}
 				component={OTPVerifyScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.GetBasicDetailsScreen + '-Screen'}
+				name={NavigateTo.GetBasicDetailsScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetBasicDetailsScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.GetStartedScreen + '-Screen'}
+				name={NavigateTo.GetStartedScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetStartedScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.GetRegionScreen + '-Screen'}
+				name={NavigateTo.GetRegionScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetRegionScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.GetCertifiedToPractiseScreen + '-Screen'}
+				name={NavigateTo.GetCertifiedToPractiseScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetCertifiedToPractiseScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.GetVaccineForCovidScreen + '-Screen'}
+				name={NavigateTo.GetVaccineForCovidScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetVaccineForCovidScreen}
 			/>
 		</SignupStack.Navigator>
 	);

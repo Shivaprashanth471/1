@@ -214,6 +214,7 @@ const ProfileAddExperienceComponent = (
 														{id: 0, title: 'No'},
 													]}
 													direction={'row'}
+													textStyle={{color: Colors.textDark}}
 													labelText="Still Working Here?"
 													onUpdate={(e: any) => {
 														if (e) {
@@ -226,53 +227,53 @@ const ProfileAddExperienceComponent = (
 											)}
 										</Field>
 									</View>
-									<View
-										style={{
-											flexDirection: 'row',
-											justifyContent: 'space-between',
-										}}>
-										<Field name={'start_date'}>
+									{/*<View*/}
+									{/*	style={{*/}
+									{/*		flexDirection: 'row',*/}
+									{/*		justifyContent: 'space-between',*/}
+									{/*	}}>*/}
+									<Field name={'start_date'}>
+										{(field: FieldProps) => (
+											<FormikDatepickerComponent
+												formikField={field}
+												style={{
+													width: '100%',
+												}}
+												baseStyle={{
+													marginTop: -15,
+												}}
+												errorContainerStyle={{
+													marginVertical: 0,
+												}}
+												placeholer="Start Date"
+												mode="MonthYear"
+												onUpdate={(e: any) => {
+													console.log('<><><><>', e, '<><><>>');
+												}}
+											/>
+										)}
+									</Field>
+									{!isWorking && (
+										<Field name={'end_date'}>
 											{(field: FieldProps) => (
 												<FormikDatepickerComponent
 													formikField={field}
 													style={{
-														width: '90%',
-													}}
-													baseStyle={{
-														marginTop: -15,
+														width: '100%',
 													}}
 													errorContainerStyle={{
 														marginVertical: 0,
 													}}
-													placeholer="Start Date"
-													mode="MonthYear"
-													onUpdate={(e: any) => {
-														console.log('<><><><>', e, '<><><>>');
+													baseStyle={{
+														marginTop: -15,
 													}}
+													placeholer="End Date"
+													mode="MonthYear"
 												/>
 											)}
 										</Field>
-										{!isWorking && (
-											<Field name={'end_date'}>
-												{(field: FieldProps) => (
-													<FormikDatepickerComponent
-														formikField={field}
-														style={{
-															width: '90%',
-														}}
-														errorContainerStyle={{
-															marginVertical: 0,
-														}}
-														baseStyle={{
-															marginTop: -15,
-														}}
-														placeholer="End Date"
-														mode="MonthYear"
-													/>
-												)}
-											</Field>
-										)}
-									</View>
+									)}
+									{/*</View>*/}
 									<View
 										style={{
 											flexDirection: 'row',

@@ -233,8 +233,8 @@ const MyProfileScreen = (props: any) => {
 													style={{
 														width: '100%',
 														paddingHorizontal: 0,
-														color: Colors.textDark,
-														fontFamily: FontConfig.primary.semiBold,
+														color: Colors.textLight,
+														fontFamily: FontConfig.primary.regular,
 														fontSize: 18,
 														borderBottomColor: Colors.borderColor,
 														borderBottomWidth: 2,
@@ -268,14 +268,15 @@ const MyProfileScreen = (props: any) => {
 																	style={{
 																		width: '100%',
 																		paddingHorizontal: 0,
-																		color: Colors.textDark,
-																		fontFamily: FontConfig.primary.semiBold,
+																		color: Colors.textLight,
+																		fontFamily: FontConfig.primary.regular,
 																		fontSize: 18,
 																		borderBottomColor: Colors.borderColor,
 																		borderBottomWidth: 2,
+																		textTransform:"capitalize",
 																	}}
 																	value={item}
-																	autoCapitalize={'none'}
+
 																	autoCorrect={false}
 																	autoCompleteType={'off'}
 																	editable={false}

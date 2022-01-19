@@ -388,7 +388,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 										<Text
 											style={{
 												color: Colors.textDark,
-												fontSize: 14,
+												fontSize: 16,
 												fontFamily: FontConfig.primary.bold,
 												marginBottom: 5,
 												textTransform: 'capitalize',
@@ -400,7 +400,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 											style={{
 												textTransform: 'capitalize',
 												fontFamily: FontConfig.primary.regular,
-												fontSize: 12,
+												fontSize: 14,
 												color: Colors.textDark,
 											}}>
 											{facility?.address.street +

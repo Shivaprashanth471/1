@@ -200,19 +200,19 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 											marginRight: 30,
 										}}>
 										{shiftType === 'PM' && (
-											<ImageConfig.MoonLight width="20" height="20" />
+											<ImageConfig.MoonLight width="22" height="22" />
 										)}
 										{shiftType === 'PM-12' && (
-											<ImageConfig.MoonLight width="20" height="20" />
+											<ImageConfig.MoonLight width="22" height="22" />
 										)}
 										{shiftType === 'AM' && (
-											<ImageConfig.SunIconLight width="20" height="20" />
+											<ImageConfig.SunIconLight width="22" height="22" />
 										)}
 										{shiftType === 'AM-12' && (
-											<ImageConfig.SunIconLight width="20" height="20" />
+											<ImageConfig.SunIconLight width="22" height="22" />
 										)}
 										{shiftType === 'NOC' && (
-											<ImageConfig.MoonLight width="20" height="20" />
+											<ImageConfig.MoonLight width="22" height="22" />
 										)}
 
 										<View
@@ -225,7 +225,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 											<Text
 												style={{
 													fontFamily: FontConfig.primary.regular,
-													fontSize: 9,
+													fontSize: 11,
 													color: Colors.textOnTextLight,
 												}}>
 												{shiftType} {'Shifts'}
@@ -240,7 +240,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 											justifyContent: 'center',
 											alignItems: 'center',
 										}}>
-										<ImageConfig.warningType width="20" height="20" />
+										<ImageConfig.warningType width="22" height="22" />
 										<View
 											style={{
 												marginLeft: 5,
@@ -251,7 +251,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 												style={{
 													textTransform: 'capitalize',
 													fontFamily: FontConfig.primary.regular,
-													fontSize: 9,
+													fontSize: 11,
 													color: Colors.textOnTextLight,
 												}}>
 												{warningType} {'zone'}
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
 	},
 	shiftDateText: {
 		fontFamily: FontConfig.primary.regular,
-		fontSize: 12,
+		fontSize: 16,
 		color: Colors.textOnAccent,
 	},
 	shiftTimeContainer: {
@@ -356,9 +356,9 @@ const styles = StyleSheet.create({
 	},
 	shiftTimeDifferenceText: {
 		fontFamily: FontConfig.primary.bold,
-		fontSize: 10,
+		fontSize: 12,
 		color: Colors.textLight,
-		marginHorizontal: 5,
+		marginHorizontal: 7,
 	},
 	horizontalRule: {
 		width: 10,

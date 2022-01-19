@@ -1000,7 +1000,7 @@ const FindShiftsScreen = (props: any) => {
 																marginRight: 4,
 															},
 														]}>
-														Available Shifts
+														Available Shifts :
 													</Text>
 													<Text
 														style={[
@@ -1111,7 +1111,7 @@ const FindShiftsScreen = (props: any) => {
 																ellipsizeMode={'tail'}
 																style={{
 																	fontFamily: FontConfig.primary.regular,
-																	fontSize: 12,
+																	fontSize: 14,
 																	color: Colors.textOnTextLight,
 																	maxWidth: '90%',
 																	marginLeft: 5,
@@ -1166,7 +1166,7 @@ const styles = StyleSheet.create({
 	},
 	itemStyle: {
 		fontFamily: FontConfig.primary.bold,
-		fontSize: 15,
+		fontSize: 16,
 		color: Colors.textDark,
 		textTransform: 'capitalize',
 	},
@@ -1267,10 +1267,11 @@ const styles = StyleSheet.create({
 		color: Colors.textDark,
 		fontSize: 16,
 		marginVertical: 10,
+		marginLeft: 5,
 	},
 	cardFacilityAddressText: {
 		fontFamily: FontConfig.primary.regular,
-		fontSize: 10,
+		fontSize: 14,
 		color: Colors.textOnTextLight,
 		marginLeft: 10,
 	},

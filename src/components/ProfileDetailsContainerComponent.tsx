@@ -241,6 +241,7 @@ const ProfileDetailsContainerComponent = (
 								<ImageConfig.CloseIcon
 									style={{
 										borderRadius: 100,
+										marginRight:20,
 									}}
 									height={'20'}
 									width={'20'}
@@ -277,14 +278,16 @@ const styles = StyleSheet.create({
 	titleText: {
 		fontFamily: FontConfig.primary.bold,
 		fontSize: 18,
+		textTransform:"capitalize",
 		color: Colors.textDark,
 		marginBottom: 5,
 	},
 	subText: {
 		fontFamily: FontConfig.primary.regular,
-		fontSize: 12,
+		fontSize: 14,
+		textTransform:"capitalize",
 		color: Colors.textOnTextLight,
-		marginVertical: 3,
+		marginVertical: 0,
 	},
 
 	// modal

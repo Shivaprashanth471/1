@@ -277,7 +277,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 												<Text
 													style={{
 														fontFamily: FontConfig.primary.regular,
-														fontSize: 12,
+														fontSize: 14,
 														color: Colors.textOnTextLight,
 														maxWidth: '90%',
 														marginLeft: 2,
@@ -310,7 +310,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 												style={{
 													lineHeight: 21,
 													fontFamily: FontConfig.primary.regular,
-													fontSize: 12,
+													fontSize: 14,
 													color: Colors.textOnTextLight,
 													marginTop: 5,
 												}}>

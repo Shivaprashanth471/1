@@ -253,14 +253,14 @@ const styles = StyleSheet.create({
 	},
 	facilityNameTitle: {
 		fontFamily: FontConfig.primary.bold,
-		fontSize: 14,
+		fontSize: 16,
 		width: 200,
 		// backgroundColor: 'red',
 		textTransform: 'capitalize',
 	},
 	shiftDateText: {
 		fontFamily: FontConfig.primary.regular,
-		fontSize: 11,
+		fontSize: 16,
 		color: Colors.textOnAccent,
 	},
 	shiftTimeContainer: {
@@ -273,9 +273,9 @@ const styles = StyleSheet.create({
 	},
 	shiftTimeDifferenceText: {
 		fontFamily: FontConfig.primary.bold,
-		fontSize: 10,
+		fontSize: 12,
 		color: Colors.textLight,
-		marginHorizontal: 5,
+		marginHorizontal: 7,
 	},
 	horizontalRule: {
 		width: 10,

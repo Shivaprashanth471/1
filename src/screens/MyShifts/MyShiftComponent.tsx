@@ -265,19 +265,19 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 											marginRight: 10,
 										}}>
 										{shiftType === 'PM' && (
-											<ImageConfig.MoonLight width="20" height="20" />
+											<ImageConfig.MoonLight width="22" height="22" />
 										)}
 										{shiftType === 'PM-12' && (
-											<ImageConfig.MoonLight width="20" height="20" />
+											<ImageConfig.MoonLight width="22" height="22" />
 										)}
 										{shiftType === 'AM' && (
-											<ImageConfig.SunIconLight width="20" height="20" />
+											<ImageConfig.SunIconLight width="22" height="22" />
 										)}
 										{shiftType === 'AM-12' && (
-											<ImageConfig.SunIconLight width="20" height="20" />
+											<ImageConfig.SunIconLight width="22" height="22" />
 										)}
 										{shiftType === 'NOC' && (
-											<ImageConfig.MoonLight width="20" height="20" />
+											<ImageConfig.MoonLight width="22" height="22" />
 										)}
 										<View
 											style={{
@@ -288,7 +288,7 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 											<Text
 												style={{
 													fontFamily: FontConfig.primary.regular,
-													fontSize: 9,
+													fontSize: 11,
 													color: Colors.textOnTextLight,
 													// shiftType === 'AM'
 													// 	? '#FC8600'
@@ -313,7 +313,7 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 											alignItems: 'center',
 											marginRight: 10,
 										}}>
-										<ImageConfig.warningType width="20" height="20" />
+										<ImageConfig.warningType width="22" height="22" />
 										{/* {warningType === 'red' && (
 											<ImageConfig.warningZoneRed width="20" height="20" />
 										)}
@@ -333,7 +333,7 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 												style={{
 													textTransform: 'capitalize',
 													fontFamily: FontConfig.primary.regular,
-													fontSize: 9,
+													fontSize: 11,
 													color: Colors.textOnTextLight,
 													// warningType === 'red'
 													// 	? '#FF1329'
@@ -353,7 +353,7 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 										alignItems: 'flex-start',
 										marginRight: 10,
 									}}>
-									<ImageConfig.LocationIconLightGray width="24" height="24" />
+									<ImageConfig.LocationIconLightGray width="28" height="28" />
 									<View
 										style={{
 											marginLeft: 5,
@@ -365,7 +365,7 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 											style={{
 												textTransform: 'capitalize',
 												fontFamily: FontConfig.primary.regular,
-												fontSize: 9,
+												fontSize: 11,
 												color: Colors.textOnTextLight,
 											}}>
 											{facility?.address.street +
@@ -476,7 +476,7 @@ const styles = StyleSheet.create({
 	},
 	shiftDateText: {
 		fontFamily: FontConfig.primary.regular,
-		fontSize: 10,
+		fontSize: 16,
 		color: Colors.textOnAccent,
 	},
 	shiftTimeContainer: {
@@ -489,7 +489,7 @@ const styles = StyleSheet.create({
 	},
 	shiftTimeDifferenceText: {
 		fontFamily: FontConfig.primary.bold,
-		fontSize: 10,
+		fontSize: 12,
 		color: Colors.textLight,
 		marginHorizontal: 5,
 	},

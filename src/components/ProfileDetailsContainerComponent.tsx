@@ -210,9 +210,11 @@ const ProfileDetailsContainerComponent = (
 						display: display,
 						flexDirection: 'row',
 						alignItems: 'center',
+						// backgroundColor: 'red',
+						justifyContent: 'center',
 					}}>
 					<View style={{width: '70%'}}>
-						<Text style={styles.titleText}>{titleName}</Text>
+						<Text style={[styles.titleText]}>{titleName}</Text>
 						<View style={{flexDirection: 'row'}}>
 							<Text style={styles.subText}>{location}</Text>
 
@@ -241,7 +243,7 @@ const ProfileDetailsContainerComponent = (
 								<ImageConfig.CloseIcon
 									style={{
 										borderRadius: 100,
-										marginRight:20,
+										marginRight: 20,
 									}}
 									height={'20'}
 									width={'20'}
@@ -256,6 +258,7 @@ const ProfileDetailsContainerComponent = (
 					display: display,
 					borderBottomWidth: 1.5,
 					borderBottomColor: Colors.backgroundShiftBoxColor,
+					marginTop: -10,
 				}}
 			/>
 		</>
@@ -278,14 +281,14 @@ const styles = StyleSheet.create({
 	titleText: {
 		fontFamily: FontConfig.primary.bold,
 		fontSize: 18,
-		textTransform:"capitalize",
+		textTransform: 'capitalize',
 		color: Colors.textDark,
 		marginBottom: 5,
 	},
 	subText: {
 		fontFamily: FontConfig.primary.regular,
 		fontSize: 14,
-		textTransform:"capitalize",
+		textTransform: 'capitalize',
 		color: Colors.textOnTextLight,
 		marginVertical: 0,
 	},

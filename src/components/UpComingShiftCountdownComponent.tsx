@@ -251,11 +251,11 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 								{facilityName}
 							</Text>
 							<View style={{flexDirection: 'row', alignItems: 'center'}}>
-								<ImageConfig.LocationIconBlue width={'15'} height={'15'} />
+								<ImageConfig.LocationIconBlue width={'18'} height={'18'} />
 								<Text
 									style={{
 										fontFamily: FontConfig.primary.regular,
-										fontSize: 10,
+										fontSize: 11,
 										color: Colors.textOnTextLight,
 										marginVertical: 3,
 										width: '70%',

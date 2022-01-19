@@ -1,6 +1,6 @@
 {
   "name": "vitawerks",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

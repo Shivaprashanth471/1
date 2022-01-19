@@ -5,17 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: last_git_commit" time="0.03831">
+      <testcase classname="fastlane.lanes" name="0: last_git_commit" time="0.134174">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: match" time="27.019828">
+      <testcase classname="fastlane.lanes" name="1: match" time="90.019693">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="46.826887">
+      <testcase classname="fastlane.lanes" name="2: match" time="23.294025">
         
       </testcase>
     

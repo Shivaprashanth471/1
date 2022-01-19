@@ -392,9 +392,9 @@ const VitaTabNavigator = () => {
 									textColor={props.color}
 									text={'Find Shifts'}
 									backgroundColor={'white'}
-									style={{
-										paddingBottom: Platform.OS === 'android' ? 0 : 15,
-									}}
+									// style={{
+									// 	paddingBottom: Platform.OS === 'android' ? 0 : 15,
+									// }}
 								/>
 							);
 						},

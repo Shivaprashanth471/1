@@ -1,5 +1,12 @@
 import React, {PropsWithChildren, useEffect, useState} from 'react';
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {
+	StyleProp,
+	StyleSheet,
+	Text,
+	View,
+	ViewStyle,
+	TextStyle,
+} from 'react-native';
 import LabelComponent from './LabelComponent';
 import ModalSelector from 'react-native-modal-selector-searchable';
 import {FieldProps} from 'formik';
@@ -20,13 +27,21 @@ export interface DropdownComponentProps {
 	search?: boolean;
 	placeholder?: string;
 	disabled?: boolean;
+	textStyle?: StyleProp<TextStyle>;
 }
 
 const DropdownComponent = (
 	props: PropsWithChildren<DropdownComponentProps>,
 ) => {
-	const {data, labelText, formikField, onUpdate, contentWrapper, search} =
-		props;
+	const {
+		data,
+		labelText,
+		formikField,
+		onUpdate,
+		contentWrapper,
+		search,
+		textStyle,
+	} = props;
 	const placeholder = props.placeholder || 'select value';
 	const disabled = props.disabled || false;
 	const {field, form} = formikField;
@@ -75,7 +90,7 @@ const DropdownComponent = (
 		<View style={[{marginVertical: 10, marginHorizontal: 20}, contentWrapper]}>
 			{showLabel && (
 				<View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-					<LabelComponent title={labelText || ''} />
+					<LabelComponent title={labelText || ''} textStyle={textStyle} />
 					{/*{isRequired && (*/}
 					{/*	<Text style={{color: Colors.primary, top: -4}}>*</Text>*/}
 					{/*)}*/}

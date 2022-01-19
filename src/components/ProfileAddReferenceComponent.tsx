@@ -117,6 +117,8 @@ const ProfileAddReferenceComponent = (
 									<Field name={'reference_name'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
+												trimSpecialCharacters={true}
+												trimNumbers={true}
 												inputProperties={{
 													maxLength: 150,
 													keyboardType: 'default',
@@ -129,6 +131,8 @@ const ProfileAddReferenceComponent = (
 									<Field name={'job_title'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
+												trimSpecialCharacters={true}
+												trimNumbers={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Job Title',
@@ -141,6 +145,9 @@ const ProfileAddReferenceComponent = (
 									<Field name={'phone'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
+												trimSpaces={true}
+												trimCharacters={true}
+												trimSpecialCharacters={true}
 												inputProperties={{
 													keyboardType: 'phone-pad',
 													placeholder: 'Phone Number',
@@ -188,7 +195,6 @@ const ProfileAddReferenceComponent = (
 										) : (
 											<>
 												<TouchableOpacity
-													disabled={!isValid}
 													onPress={() => {
 														handleSubmit();
 													}}

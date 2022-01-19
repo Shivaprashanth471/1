@@ -62,32 +62,45 @@ const ProfileAddEducationComponent = (
 		values: profileEducationSchemaType,
 		formikHelpers: FormikHelpers<profileEducationSchemaType>,
 	) => {
-		formikHelpers.setSubmitting(true);
-		const payload = {
-			...values,
-		};
+		if (values.start_date === '' || values.graduation_date === '') {
+			formikHelpers.setSubmitting(false);
+			return;
+		} else if (values.start_date > values.graduation_date) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Start date cannot be greater than end date');
+			return;
+		} else if (values.start_date === values.graduation_date) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Start and end date should not be same');
+			return;
+		} else {
+			formikHelpers.setSubmitting(true);
+			const payload = {
+				...values,
+			};
 
-		if (HcpUser) {
-			ApiFunctions.post(
-				ENV.apiUrl + 'hcp/' + HcpUser._id + '/education',
-				payload,
-			)
-				.then(async (resp: TSAPIResponseType<profileEducationSchemaType>) => {
-					formikHelpers.setSubmitting(false);
-					if (resp.success) {
-						if (onUpdate) {
-							onUpdate();
+			if (HcpUser) {
+				ApiFunctions.post(
+					ENV.apiUrl + 'hcp/' + HcpUser._id + '/education',
+					payload,
+				)
+					.then(async (resp: TSAPIResponseType<profileEducationSchemaType>) => {
+						formikHelpers.setSubmitting(false);
+						if (resp.success) {
+							if (onUpdate) {
+								onUpdate();
+							}
+							setDisplay('none');
+							ToastAlert.show('Education added');
+						} else {
+							ToastAlert.show(resp.error || '');
 						}
-						setDisplay('none');
-						ToastAlert.show('Education added');
-					} else {
-						ToastAlert.show(resp.error || '');
-					}
-				})
-				.catch((err: any) => {
-					formikHelpers.setSubmitting(false);
-					CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-				});
+					})
+					.catch((err: any) => {
+						formikHelpers.setSubmitting(false);
+						CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+					});
+			}
 		}
 	};
 	return (
@@ -145,6 +158,7 @@ const ProfileAddEducationComponent = (
 									<Field name={'degree'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
+												trimNumbers={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Degree',
@@ -154,48 +168,38 @@ const ProfileAddEducationComponent = (
 											/>
 										)}
 									</Field>
-									<View
-										style={{
-											flexDirection: 'row',
-											justifyContent: 'space-between',
-										}}>
-										<Field name={'start_date'}>
-											{(field: FieldProps) => (
-												<FormikDatepickerComponent
-													formikField={field}
-													style={{
-														width: '90%',
-													}}
-													baseStyle={{
-														marginTop: -15,
-													}}
-													errorContainerStyle={{
-														marginVertical: 0,
-													}}
-													placeholer="Start Date"
-													mode="MonthYear"
-												/>
-											)}
-										</Field>
-										<Field name={'graduation_date'}>
-											{(field: FieldProps) => (
-												<FormikDatepickerComponent
-													formikField={field}
-													style={{
-														width: '90%',
-													}}
-													errorContainerStyle={{
-														marginVertical: 0,
-													}}
-													baseStyle={{
-														marginTop: -15,
-													}}
-													placeholer="End Date"
-													mode="MonthYear"
-												/>
-											)}
-										</Field>
-									</View>
+									<Field name={'start_date'}>
+										{(field: FieldProps) => (
+											<FormikDatepickerComponent
+												formikField={field}
+												style={{
+													width: '100%',
+												}}
+												labelDarkText="Start Date"
+												errorContainerStyle={{
+													marginTop: -5,
+												}}
+												placeholer="Start Date"
+												mode="MonthYear"
+											/>
+										)}
+									</Field>
+									<Field name={'graduation_date'}>
+										{(field: FieldProps) => (
+											<FormikDatepickerComponent
+												formikField={field}
+												style={{
+													width: '100%',
+												}}
+												labelDarkText="End Date"
+												errorContainerStyle={{
+													marginTop: -5,
+												}}
+												placeholer="End Date"
+												mode="MonthYear"
+											/>
+										)}
+									</Field>
 									<View
 										style={{
 											flexDirection: 'row',
@@ -215,21 +219,8 @@ const ProfileAddEducationComponent = (
 										) : (
 											<>
 												<TouchableOpacity
-													disabled={!isValid}
 													onPress={() => {
-														if (values.start_date > values.graduation_date) {
-															ToastAlert.show(
-																'Start date cannot be greater than end date',
-															);
-														} else if (
-															values.start_date === values.graduation_date
-														) {
-															ToastAlert.show(
-																'Start and end date should not be same',
-															);
-														} else {
-															handleSubmit();
-														}
+														handleSubmit();
 													}}
 													style={{
 														marginRight: 20,

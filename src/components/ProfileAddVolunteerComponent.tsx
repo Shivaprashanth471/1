@@ -75,27 +75,41 @@ const ProfileAddVolunteerComponent = (
 			exp_type: 'volunteer',
 			end_date: isWorking ? '' : values.end_date,
 		};
-		if (HcpUser) {
-			ApiFunctions.post(
-				ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience',
-				payload,
-			)
-				.then(async (resp: TSAPIResponseType<profileVolunteerSchemaType>) => {
-					formikHelpers.setSubmitting(false);
-					if (resp.success) {
-						if (onUpdate) {
-							onUpdate();
+		if (values.end_date.length === 0) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Please give an end date');
+			return;
+		} else if (values.start_date === values.end_date && !isWorking) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Start and end date should not be same');
+			return;
+		} else if (values.start_date > values.end_date && !isWorking) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Start date should not be greater than end date');
+			return;
+		} else {
+			if (HcpUser) {
+				ApiFunctions.post(
+					ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience',
+					payload,
+				)
+					.then(async (resp: TSAPIResponseType<profileVolunteerSchemaType>) => {
+						formikHelpers.setSubmitting(false);
+						if (resp.success) {
+							if (onUpdate) {
+								onUpdate();
+							}
+							setDisplay('none');
+							ToastAlert.show('Volunteer experience added');
+						} else {
+							ToastAlert.show(resp.error || '');
 						}
-						setDisplay('none');
-						ToastAlert.show('Volunteer experience added');
-					} else {
-						ToastAlert.show(resp.error || '');
-					}
-				})
-				.catch((err: any) => {
-					formikHelpers.setSubmitting(false);
-					CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-				});
+					})
+					.catch((err: any) => {
+						formikHelpers.setSubmitting(false);
+						CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+					});
+			}
 		}
 	};
 	return (
@@ -132,6 +146,7 @@ const ProfileAddVolunteerComponent = (
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Organisation',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -143,6 +158,7 @@ const ProfileAddVolunteerComponent = (
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Location',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -151,9 +167,12 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'position_title'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
+												trimNumbers={true}
+												trimSpecialCharacters={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Position Title',
+													maxLength: 50,
 												}}
 												formikField={field}
 											/>
@@ -162,9 +181,12 @@ const ProfileAddVolunteerComponent = (
 									<Field name={'specialisation'}>
 										{(field: FieldProps) => (
 											<FormikInputComponent
+												trimNumbers={true}
+												trimSpecialCharacters={true}
 												inputProperties={{
 													keyboardType: 'default',
 													placeholder: 'Speciality',
+													maxLength: 150,
 												}}
 												formikField={field}
 											/>
@@ -192,50 +214,50 @@ const ProfileAddVolunteerComponent = (
 											)}
 										</Field>
 									</View>
-									<View
-										style={{
-											flexDirection: 'row',
-											justifyContent: 'space-between',
-										}}>
-										<Field name={'start_date'}>
+									<Field name={'start_date'}>
+										{(field: FieldProps) => (
+											<FormikDatepickerComponent
+												formikField={field}
+												style={{
+													width: '100%',
+													marginVertical: 20,
+												}}
+												labelDarkText="Start Date"
+												baseStyle={{
+													marginTop: -5,
+												}}
+												errorContainerStyle={{
+													marginTop: -5,
+												}}
+												placeholer="Start Date"
+												mode="MonthYear"
+												onUpdate={(e: any) => {
+													console.log('<><><><>', e, '<><><>>');
+												}}
+											/>
+										)}
+									</Field>
+									{!isWorking && (
+										<Field name={'end_date'}>
 											{(field: FieldProps) => (
 												<FormikDatepickerComponent
 													formikField={field}
 													style={{
-														width: '90%',
+														width: '100%',
+													}}
+													labelDarkText="End Date"
+													errorContainerStyle={{
+														marginTop: -5,
 													}}
 													baseStyle={{
-														marginTop: -15,
+														marginTop: -5,
 													}}
-													errorContainerStyle={{
-														marginVertical: 0,
-													}}
-													placeholer="Start Date"
+													placeholer="End Date"
 													mode="MonthYear"
 												/>
 											)}
 										</Field>
-										{!isWorking && (
-											<Field name={'end_date'}>
-												{(field: FieldProps) => (
-													<FormikDatepickerComponent
-														formikField={field}
-														style={{
-															width: '90%',
-														}}
-														errorContainerStyle={{
-															marginVertical: 0,
-														}}
-														baseStyle={{
-															marginTop: -15,
-														}}
-														placeholer="End Date"
-														mode="MonthYear"
-													/>
-												)}
-											</Field>
-										)}
-									</View>
+									)}
 									<View
 										style={{
 											flexDirection: 'row',
@@ -255,33 +277,8 @@ const ProfileAddVolunteerComponent = (
 										) : (
 											<>
 												<TouchableOpacity
-													disabled={!isValid}
 													onPress={() => {
-														if (values.still_working_here.length === 0) {
-															handleSubmit();
-														} else {
-															if (isWorking) {
-																handleSubmit();
-															} else {
-																if (values.end_date.length === 0) {
-																	ToastAlert.show('Please give an end date');
-																} else {
-																	if (values.start_date === values.end_date) {
-																		ToastAlert.show(
-																			'Start and end date should not be same',
-																		);
-																	} else if (
-																		values.start_date > values.end_date
-																	) {
-																		ToastAlert.show(
-																			'Start date should not be greater than end date',
-																		);
-																	} else {
-																		handleSubmit();
-																	}
-																}
-															}
-														}
+														handleSubmit();
 													}}
 													style={{
 														marginRight: 20,

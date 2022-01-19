@@ -86,29 +86,43 @@ const ProfileAddExperienceComponent = (
 			exp_type: 'fulltime',
 			end_date: isWorking ? '' : values.end_date,
 		};
-		console.log('<><><>', payload);
-
-		if (HcpUser) {
-			ApiFunctions.post(
-				ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience',
-				payload,
-			)
-				.then(async (resp: TSAPIResponseType<profileExperienceSchemaType>) => {
-					formikHelpers.setSubmitting(false);
-					if (resp.success) {
-						if (onUpdate) {
-							onUpdate();
-						}
-						setDisplay('none');
-						ToastAlert.show('Experience added');
-					} else {
-						ToastAlert.show(resp.error || '');
-					}
-				})
-				.catch((err: any) => {
-					formikHelpers.setSubmitting(false);
-					CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-				});
+		if (values.end_date.length === 0) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Please give an end date');
+			return;
+		} else if (values.start_date === values.end_date && !isWorking) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Start and end date should not be same');
+			return;
+		} else if (values.start_date > values.end_date && !isWorking) {
+			formikHelpers.setSubmitting(false);
+			ToastAlert.show('Start date should not be greater than end date');
+			return;
+		} else {
+			if (HcpUser) {
+				ApiFunctions.post(
+					ENV.apiUrl + 'hcp/' + HcpUser._id + '/experience',
+					payload,
+				)
+					.then(
+						async (resp: TSAPIResponseType<profileExperienceSchemaType>) => {
+							formikHelpers.setSubmitting(false);
+							if (resp.success) {
+								if (onUpdate) {
+									onUpdate();
+								}
+								setDisplay('none');
+								ToastAlert.show('Experience added');
+							} else {
+								ToastAlert.show(resp.error || '');
+							}
+						},
+					)
+					.catch((err: any) => {
+						formikHelpers.setSubmitting(false);
+						CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+					});
+			}
 		}
 	};
 	return (
@@ -215,35 +229,34 @@ const ProfileAddExperienceComponent = (
 													]}
 													direction={'row'}
 													textStyle={{color: Colors.textDark}}
-													labelText="Still Working Here?"
+													labelDarkText="Still Working Here?"
 													onUpdate={(e: any) => {
 														if (e) {
 															setIsWorking(true);
+															console.log(e);
 														} else {
 															setIsWorking(false);
+															console.log(e);
 														}
 													}}
 												/>
 											)}
 										</Field>
 									</View>
-									{/*<View*/}
-									{/*	style={{*/}
-									{/*		flexDirection: 'row',*/}
-									{/*		justifyContent: 'space-between',*/}
-									{/*	}}>*/}
 									<Field name={'start_date'}>
 										{(field: FieldProps) => (
 											<FormikDatepickerComponent
 												formikField={field}
 												style={{
 													width: '100%',
+													marginVertical: 20,
 												}}
+												labelDarkText="Start Date"
 												baseStyle={{
-													marginTop: -15,
+													marginTop: -5,
 												}}
 												errorContainerStyle={{
-													marginVertical: 0,
+													marginTop: -5,
 												}}
 												placeholer="Start Date"
 												mode="MonthYear"
@@ -261,11 +274,12 @@ const ProfileAddExperienceComponent = (
 													style={{
 														width: '100%',
 													}}
+													labelDarkText="End Date"
 													errorContainerStyle={{
-														marginVertical: 0,
+														marginTop: -5,
 													}}
 													baseStyle={{
-														marginTop: -15,
+														marginTop: -5,
 													}}
 													placeholer="End Date"
 													mode="MonthYear"
@@ -273,7 +287,6 @@ const ProfileAddExperienceComponent = (
 											)}
 										</Field>
 									)}
-									{/*</View>*/}
 									<View
 										style={{
 											flexDirection: 'row',
@@ -293,33 +306,8 @@ const ProfileAddExperienceComponent = (
 										) : (
 											<>
 												<TouchableOpacity
-													disabled={!isValid}
 													onPress={() => {
-														if (values.still_working_here.length === 0) {
-															handleSubmit();
-														} else {
-															if (isWorking) {
-																handleSubmit();
-															} else {
-																if (values.end_date.length === 0) {
-																	ToastAlert.show('Please give an end date');
-																} else {
-																	if (values.start_date === values.end_date) {
-																		ToastAlert.show(
-																			'Start and end date should not be same',
-																		);
-																	} else if (
-																		values.start_date > values.end_date
-																	) {
-																		ToastAlert.show(
-																			'Start date should not be greater than end date',
-																		);
-																	} else {
-																		handleSubmit();
-																	}
-																}
-															}
-														}
+														handleSubmit();
 													}}
 													style={{
 														marginRight: 20,

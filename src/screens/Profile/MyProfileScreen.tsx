@@ -172,6 +172,11 @@ const MyProfileScreen = (props: any) => {
 														contentWrapper={{marginHorizontal: 0}}
 														// @ts-ignore
 														data={currentList}
+														textStyle={{
+															color: Colors.textLight,
+															fontSize: 14,
+															fontFamily: FontConfig.primary.bold,
+														}}
 														labelText={'Current Role'}
 														placeholder={'select the value'}
 														formikField={field}
@@ -179,6 +184,9 @@ const MyProfileScreen = (props: any) => {
 														disabled={false}
 														onUpdate={e => {
 															setDisableBtn(false);
+														}}
+														style={{
+															marginBottom: 10,
 														}}
 													/>
 												)}
@@ -189,6 +197,11 @@ const MyProfileScreen = (props: any) => {
 														contentWrapper={{marginHorizontal: 0}}
 														// @ts-ignore
 														data={regionsList}
+														textStyle={{
+															color: Colors.textLight,
+															fontSize: 14,
+															fontFamily: FontConfig.primary.bold,
+														}}
 														labelText={'Region'}
 														placeholder={'select the value'}
 														formikField={field}
@@ -197,17 +210,21 @@ const MyProfileScreen = (props: any) => {
 														onUpdate={() => {
 															setDisableBtn(false);
 														}}
+														style={{
+															marginBottom: 10,
+														}}
 													/>
 												)}
 											</Field>
 											<View
 												style={{
-													marginVertical: 5,
+													marginBottom: 20,
 												}}>
 												<Text
 													style={{
 														color: Colors.textLight,
-														marginVertical: 5,
+														fontSize: 14,
+														fontFamily: FontConfig.primary.bold,
 													}}>
 													Experience
 												</Text>
@@ -233,12 +250,13 @@ const MyProfileScreen = (props: any) => {
 											{profile.specializations.length != 0 && (
 												<View
 													style={{
-														marginVertical: 5,
+														marginBottom: 20,
 													}}>
 													<Text
 														style={{
 															color: Colors.textLight,
-															marginVertical: 5,
+															fontSize: 14,
+															fontFamily: FontConfig.primary.bold,
 														}}>
 														Specialities
 													</Text>
@@ -271,7 +289,7 @@ const MyProfileScreen = (props: any) => {
 												{(field: FieldProps) => (
 													<FormikRadioGroupComponent
 														formikField={field}
-														labelText={'Shift Prefer'}
+														labelDarkText="Shift Prefer"
 														radioButtons={[
 															{id: 'AM', title: 'AM'},
 															{id: 'PM', title: 'PM'},

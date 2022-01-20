@@ -95,6 +95,7 @@ const ProfileReferenceScreen = (props: any) => {
 											color: Colors.textOnAccent,
 											fontFamily: FontConfig.primary.semiBold,
 											fontSize: 14,
+											paddingVertical: 5,
 										}}>
 										+ Add reference
 									</Text>

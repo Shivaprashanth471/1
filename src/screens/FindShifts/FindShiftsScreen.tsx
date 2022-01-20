@@ -714,6 +714,15 @@ const FindShiftsScreen = (props: any) => {
 																ToastAlert.show(
 																	'Both Start Date and End Date needs to be selected',
 																);
+															} else if (
+																formValues.shift_end_date &&
+																formValues.shift_end_date &&
+																formValues.shift_start_date >
+																	formValues.shift_end_date
+															) {
+																ToastAlert.show(
+																	'Start Date should be less than End Date',
+																);
 															} else {
 																handleSubmit();
 															}

@@ -102,6 +102,7 @@ const ProfileVolunteerScreen = (props: any) => {
 											color: Colors.textOnAccent,
 											fontFamily: FontConfig.primary.semiBold,
 											fontSize: 14,
+											paddingVertical: 5,
 										}}>
 										+ Add volunteer experience
 									</Text>
@@ -122,7 +123,7 @@ const ProfileVolunteerScreen = (props: any) => {
 										<ProfileDetailsContainerComponent
 											id={item._id}
 											title={item.facility_name}
-											location={item.location + '  |  '}
+											location={item.location}
 											endDate={item.end_date}
 											startDate={item.start_date}
 											getDate={true}

@@ -16,8 +16,14 @@ import {FormikInputComponent, KeyboardAvoidCommonView} from './core';
 import {TSAPIResponseType} from '../helpers/ApiFunctions';
 
 const profileReferenceSchema = yup.object().shape({
-	reference_name: yup.string().required('Required'),
-	job_title: yup.string().required('Required'),
+	reference_name: yup
+		.string()
+		.matches(/\S/, 'cannot contain only blankspaces')
+		.required('Required'),
+	job_title: yup
+		.string()
+		.matches(/\S/, 'cannot contain only blankspaces')
+		.required('Required'),
 	phone: yup
 		.string()
 		.min(4)

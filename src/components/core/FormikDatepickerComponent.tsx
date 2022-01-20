@@ -68,7 +68,7 @@ const FormikDatepickerComponent = (props: FormikDatepickerComponentProps) => {
 					<Text
 						style={{
 							fontFamily: FontConfig.primary.bold,
-							fontSize: 12,
+							fontSize: 14,
 							color: Colors.textLight,
 						}}>
 						{labelDarkText}

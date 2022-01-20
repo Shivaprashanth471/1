@@ -21,9 +21,18 @@ import {
 import {TSAPIResponseType} from '../helpers/ApiFunctions';
 
 const profileEducationSchema = yup.object().shape({
-	institute_name: yup.string().required('Required'),
-	location: yup.string().required('Required'),
-	degree: yup.string().required('Required'),
+	institute_name: yup
+		.string()
+		.matches(/\S/, 'cannot contain only blankspaces')
+		.required('Required'),
+	location: yup
+		.string()
+		.matches(/\S/, 'cannot contain only blankspaces')
+		.required('Required'),
+	degree: yup
+		.string()
+		.matches(/\S/, 'cannot contain only blankspaces')
+		.required('Required'),
 	start_date: yup.string().required('Required'),
 	graduation_date: yup.string().required('Required'),
 });

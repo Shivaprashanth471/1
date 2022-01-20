@@ -32,8 +32,14 @@ import {TSAPIResponseType} from '../helpers/ApiFunctions';
 import DropdownComponent from './core/DropdownComponent';
 
 const profileExperienceSchema = yup.object().shape({
-	facility_name: yup.string().required('Required'),
-	location: yup.string().required('Required'),
+	facility_name: yup
+		.string()
+		.matches(/\S/, 'cannot contain only blankspaces')
+		.required('Required'),
+	location: yup
+		.string()
+		.matches(/\S/, 'cannot contain only blankspaces')
+		.required('Required'),
 	position_title: yup.string().required('Required'),
 	still_working_here: yup.string().required('Required'),
 	specialisation: yup.string().required('Required'),

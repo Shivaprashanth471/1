@@ -258,7 +258,6 @@ const ProfileDetailsContainerComponent = (
 					display: display,
 					borderBottomWidth: 1.5,
 					borderBottomColor: Colors.backgroundShiftBoxColor,
-					marginTop: -10,
 				}}
 			/>
 		</>
@@ -290,7 +289,6 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		textTransform: 'capitalize',
 		color: Colors.textOnTextLight,
-		marginVertical: 0,
 	},
 
 	// modal

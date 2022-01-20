@@ -53,7 +53,7 @@ const MonthYearPickerComponent = (props: DatePickerComponentProps) => {
 		<>
 			<View style={{width: '100%'}}>
 				{!!labelText && <LabelComponent title={labelText} />}
-				<TouchableOpacity onPress={() => showPicker(true)}>
+				<TouchableOpacity activeOpacity={1} onPress={() => showPicker(true)}>
 					<View style={[styles.date, style]}>
 						<View style={{flex: 1}}>
 							{!!changedDate && (

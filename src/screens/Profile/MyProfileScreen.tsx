@@ -7,6 +7,7 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
+	Platform,
 } from 'react-native';
 import {
 	BaseViewComponent,
@@ -235,23 +236,43 @@ const MyProfileScreen = (props: any) => {
 															'Please add experience under work experience tab for the changes to reflect',
 														);
 													}}>
-													<TextInput
-														placeholderTextColor={Colors.textLight}
+													<View
 														style={{
-															width: '100%',
-															paddingHorizontal: 0,
-															color: Colors.textLight,
-															fontFamily: FontConfig.primary.regular,
-															fontSize: 18,
 															borderBottomColor: Colors.borderColor,
 															borderBottomWidth: 2,
-														}}
-														value={profile.total_exp.toString()}
-														autoCapitalize={'none'}
-														autoCorrect={false}
-														autoCompleteType={'off'}
-														editable={false}
-													/>
+														}}>
+														<Text
+															style={{
+																width: '100%',
+																paddingHorizontal: 0,
+																color: Colors.textLight,
+																fontFamily: FontConfig.primary.regular,
+																fontSize: 18,
+																borderBottomColor: Colors.borderColor,
+																borderBottomWidth: 2,
+															}}>
+															{profile.total_exp
+																? profile.total_exp.toString()
+																: '0'}
+														</Text>
+													</View>
+													{/*<TextInput*/}
+													{/*	placeholderTextColor={Colors.textLight}*/}
+													{/*	style={{*/}
+													{/*		width: '100%',*/}
+													{/*		paddingHorizontal: 0,*/}
+													{/*		color: Colors.textLight,*/}
+													{/*		fontFamily: FontConfig.primary.regular,*/}
+													{/*		fontSize: 18,*/}
+													{/*		borderBottomColor: Colors.borderColor,*/}
+													{/*		borderBottomWidth: 2,*/}
+													{/*	}}*/}
+													{/*	value={profile.total_exp.toString()}*/}
+													{/*	autoCapitalize={'none'}*/}
+													{/*	autoCorrect={false}*/}
+													{/*	autoCompleteType={'off'}*/}
+													{/*	editable={false}*/}
+													{/*/>*/}
 												</TouchableOpacity>
 											</View>
 
@@ -277,23 +298,43 @@ const MyProfileScreen = (props: any) => {
 																			'Please add experience under work experience tab for the changes to reflect',
 																		);
 																	}}>
-																	<TextInput
-																		placeholderTextColor={Colors.textLight}
+																	<View
 																		style={{
-																			width: '100%',
-																			paddingHorizontal: 0,
-																			color: Colors.textLight,
-																			fontFamily: FontConfig.primary.regular,
-																			fontSize: 18,
 																			borderBottomColor: Colors.borderColor,
 																			borderBottomWidth: 2,
-																			textTransform: 'capitalize',
-																		}}
-																		value={item}
-																		autoCorrect={false}
-																		autoCompleteType={'off'}
-																		editable={false}
-																	/>
+																		}}>
+																		<Text
+																			style={{
+																				width: '100%',
+																				paddingHorizontal: 0,
+																				paddingVertical:
+																					Platform.OS === 'ios' ? 2 : 0,
+																				color: Colors.textLight,
+																				fontFamily: FontConfig.primary.regular,
+																				fontSize: 18,
+																				borderBottomColor: Colors.borderColor,
+																				borderBottomWidth: 2,
+																			}}>
+																			{item}
+																		</Text>
+																	</View>
+																	{/*<TextInput*/}
+																	{/*	placeholderTextColor={Colors.textLight}*/}
+																	{/*	style={{*/}
+																	{/*		width: '100%',*/}
+																	{/*		paddingHorizontal: 0,*/}
+																	{/*		color: Colors.textLight,*/}
+																	{/*		fontFamily: FontConfig.primary.regular,*/}
+																	{/*		fontSize: 18,*/}
+																	{/*		borderBottomColor: Colors.borderColor,*/}
+																	{/*		borderBottomWidth: 2,*/}
+																	{/*		textTransform: 'capitalize',*/}
+																	{/*	}}*/}
+																	{/*	value={item}*/}
+																	{/*	autoCorrect={false}*/}
+																	{/*	autoCompleteType={'off'}*/}
+																	{/*	editable={false}*/}
+																	{/*/>*/}
 																</TouchableOpacity>
 															</>
 														))}

@@ -6,6 +6,7 @@ import {
 	Alert,
 	Text,
 	TextInput,
+	TouchableOpacity,
 } from 'react-native';
 import {
 	BaseViewComponent,
@@ -228,23 +229,30 @@ const MyProfileScreen = (props: any) => {
 													}}>
 													Experience
 												</Text>
-												<TextInput
-													placeholderTextColor={Colors.textLight}
-													style={{
-														width: '100%',
-														paddingHorizontal: 0,
-														color: Colors.textLight,
-														fontFamily: FontConfig.primary.regular,
-														fontSize: 18,
-														borderBottomColor: Colors.borderColor,
-														borderBottomWidth: 2,
-													}}
-													value={profile.total_exp.toString()}
-													autoCapitalize={'none'}
-													autoCorrect={false}
-													autoCompleteType={'off'}
-													editable={false}
-												/>
+												<TouchableOpacity
+													onPress={() => {
+														ToastAlert.show(
+															'Please add experience under work experience tab for the changes to reflect',
+														);
+													}}>
+													<TextInput
+														placeholderTextColor={Colors.textLight}
+														style={{
+															width: '100%',
+															paddingHorizontal: 0,
+															color: Colors.textLight,
+															fontFamily: FontConfig.primary.regular,
+															fontSize: 18,
+															borderBottomColor: Colors.borderColor,
+															borderBottomWidth: 2,
+														}}
+														value={profile.total_exp.toString()}
+														autoCapitalize={'none'}
+														autoCorrect={false}
+														autoCompleteType={'off'}
+														editable={false}
+													/>
+												</TouchableOpacity>
 											</View>
 
 											{profile.specializations.length != 0 && (
@@ -263,24 +271,30 @@ const MyProfileScreen = (props: any) => {
 													<>
 														{profile.specializations.map((item: any) => (
 															<>
-																<TextInput
-																	placeholderTextColor={Colors.textLight}
-																	style={{
-																		width: '100%',
-																		paddingHorizontal: 0,
-																		color: Colors.textLight,
-																		fontFamily: FontConfig.primary.regular,
-																		fontSize: 18,
-																		borderBottomColor: Colors.borderColor,
-																		borderBottomWidth: 2,
-																		textTransform:"capitalize",
-																	}}
-																	value={item}
-
-																	autoCorrect={false}
-																	autoCompleteType={'off'}
-																	editable={false}
-																/>
+																<TouchableOpacity
+																	onPress={() => {
+																		ToastAlert.show(
+																			'Please add experience under work experience tab for the changes to reflect',
+																		);
+																	}}>
+																	<TextInput
+																		placeholderTextColor={Colors.textLight}
+																		style={{
+																			width: '100%',
+																			paddingHorizontal: 0,
+																			color: Colors.textLight,
+																			fontFamily: FontConfig.primary.regular,
+																			fontSize: 18,
+																			borderBottomColor: Colors.borderColor,
+																			borderBottomWidth: 2,
+																			textTransform: 'capitalize',
+																		}}
+																		value={item}
+																		autoCorrect={false}
+																		autoCompleteType={'off'}
+																		editable={false}
+																	/>
+																</TouchableOpacity>
 															</>
 														))}
 													</>

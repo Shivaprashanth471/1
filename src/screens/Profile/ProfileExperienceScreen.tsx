@@ -124,7 +124,7 @@ const ProfileExperienceScreen = (props: any) => {
 										<ProfileDetailsContainerComponent
 											id={item._id}
 											title={item.facility_name}
-											location={item.location + '  |  '}
+											location={item.location}
 											startDate={item.start_date}
 											endDate={item.end_date}
 											getDate={true}

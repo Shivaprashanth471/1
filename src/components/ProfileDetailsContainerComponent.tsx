@@ -215,10 +215,25 @@ const ProfileDetailsContainerComponent = (
 					}}>
 					<View style={{width: '70%'}}>
 						<Text style={[styles.titleText]}>{titleName}</Text>
-						<View style={{flexDirection: 'row'}}>
-							<Text style={styles.subText}>{location}</Text>
-
-							{degree && <Text style={styles.subText}>{degree}</Text>}
+						<View
+							style={{
+								flexDirection: 'row',
+								alignContent: 'center',
+								alignItems: 'center',
+							}}>
+							<Text
+								style={[styles.subText, {maxWidth: '60%'}]}
+								numberOfLines={5}>
+								{location}
+							</Text>
+							<Text style={styles.subText}>{'  |  '}</Text>
+							{degree && (
+								<Text
+									style={[styles.subText, {maxWidth: '30%'}]}
+									numberOfLines={2}>
+									{degree}
+								</Text>
+							)}
 							{getDate && (
 								<Text style={styles.subText}>
 									{start_date} - {end_date ? end_date : 'Current'}

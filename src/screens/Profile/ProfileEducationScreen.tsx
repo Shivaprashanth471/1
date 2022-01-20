@@ -123,7 +123,7 @@ const ProfileEducationScreen = (props: any) => {
 										<ProfileDetailsContainerComponent
 											id={item._id}
 											title={item.institute_name}
-											location={item.location + '  |  '}
+											location={item.location}
 											degree={item.degree + '  |  '}
 											startDate={item.start_date}
 											endDate={item.graduation_date}

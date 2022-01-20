@@ -79,7 +79,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 					facility_id: facilityID,
 					hcp_type: hcp_type,
 					new_shifts: curDate,
-					status: 'published',
+					status: 'open',
 					hcp_user_id: user._id,
 				};
 				ApiFunctions.post(ENV.apiUrl + 'shift/requirement/list', payload)

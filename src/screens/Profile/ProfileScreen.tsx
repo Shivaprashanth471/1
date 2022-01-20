@@ -447,7 +447,7 @@ const ProfileScreen = (props: any) => {
 											height={'17'}
 											width={'17'}
 										/>
-										<Text style={styles.contentBoxText}>Experience</Text>
+										<Text style={styles.contentBoxText}>Work Experience</Text>
 									</View>
 									<ImageConfig.ArrowBackIcon
 										color={Colors.textLight}

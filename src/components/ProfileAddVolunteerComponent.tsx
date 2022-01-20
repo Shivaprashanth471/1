@@ -87,7 +87,7 @@ const ProfileAddVolunteerComponent = (
 			exp_type: 'volunteer',
 			end_date: isWorking ? '' : values.end_date,
 		};
-		if (values.end_date.length === 0) {
+		if (values.end_date.length === 0 && !isWorking) {
 			formikHelpers.setSubmitting(false);
 			ToastAlert.show('Please give an end date');
 			return;

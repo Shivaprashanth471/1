@@ -542,9 +542,9 @@ const FindShiftsScreen = (props: any) => {
 																<FormikDatepickerComponent
 																	formikField={field}
 																	minDate={Moment().format('YYYY-MM-DD')}
-																	maxDate={Moment()
-																		.add(2, 'month')
-																		.format('YYYY-MM-DD')}
+																	// maxDate={Moment()
+																	// 	.add(2, 'month')
+																	// 	.format('YYYY-MM-DD')}
 																	labelDarkText={'Start Date'}
 																	style={{
 																		width: '90%',
@@ -556,9 +556,9 @@ const FindShiftsScreen = (props: any) => {
 															{(field: FieldProps) => (
 																<FormikDatepickerComponent
 																	formikField={field}
-																	maxDate={Moment()
-																		.add(2, 'month')
-																		.format('YYYY-MM-DD')}
+																	// maxDate={Moment()
+																	// 	.add(2, 'month')
+																	// 	.format('YYYY-MM-DD')}
 																	minDate={
 																		values.shift_start_date &&
 																		values.shift_start_date.length > 0

@@ -1,11 +1,11 @@
 import React, {PropsWithChildren, useEffect, useState} from 'react';
 import {
+	Image,
 	StyleProp,
 	StyleSheet,
 	Text,
 	View,
 	ViewStyle,
-	TextStyle,
 } from 'react-native';
 import LabelComponent from './LabelComponent';
 import ModalSelector from 'react-native-modal-selector-searchable';
@@ -26,8 +26,6 @@ export interface DropdownComponentProps {
 	isRequired?: boolean;
 	search?: boolean;
 	placeholder?: string;
-	disabled?: boolean;
-	textStyle?: StyleProp<TextStyle>;
 }
 
 const DropdownComponent = (
@@ -40,10 +38,8 @@ const DropdownComponent = (
 		onUpdate,
 		contentWrapper,
 		search,
-		textStyle,
+		placeholder,
 	} = props;
-	const placeholder = props.placeholder || 'select value';
-	const disabled = props.disabled || false;
 	const {field, form} = formikField;
 	const showLabel =
 		props.showLabel !== undefined
@@ -90,10 +86,10 @@ const DropdownComponent = (
 		<View style={[{marginVertical: 10, marginHorizontal: 20}, contentWrapper]}>
 			{showLabel && (
 				<View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-					<LabelComponent title={labelText || ''} textStyle={textStyle} />
-					{/*{isRequired && (*/}
-					{/*	<Text style={{color: Colors.primary, top: -4}}>*</Text>*/}
-					{/*)}*/}
+					<LabelComponent title={labelText || ''} />
+					{isRequired && (
+						<Text style={{color: Colors.primary, top: -4}}>*</Text>
+					)}
 				</View>
 			)}
 			<View
@@ -110,24 +106,32 @@ const DropdownComponent = (
 				]}>
 				<ModalSelector
 					data={dropdownList}
-					style={{flex: 1, justifyContent: 'center'}}
 					overlayStyle={{paddingTop: 80}}
 					selectStyle={styles.picker}
 					selectTextStyle={styles.pickerTxt}
 					initValueTextStyle={styles.placeholderTxt}
-					initValue={placeholder ? placeholder : 'select'}
+					initValue={placeholder ? placeholder : ''}
 					selectedKey={field.value}
 					search={search}
 					onChange={option => {
+						console.log(option, 'From Modal Selector');
 						form.setFieldTouched(field.name);
-						form.setFieldValue(field.name, option.key);
 						form.handleChange(field.name);
+						let value = option;
+						if (typeof option === 'object') {
+							value = option.key;
+						}
+						form.setFieldValue(field.name, value);
 						if (onUpdate) {
-							onUpdate(option.key);
+							onUpdate(value);
 						}
 					}}
 					componentExtractor={option => <ListItem data={option} />}
-					disabled={disabled}
+				/>
+				<Image
+					style={styles.dropdownIcon}
+					source={require('../../assets/images/dropdown.png')}
+					resizeMode={'contain'}
 				/>
 				{hasError && (
 					<View
@@ -150,8 +154,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1.5,
 		borderRadius: 5,
 		borderColor: Colors.borderColor,
-		// padding: 0,
-		backgroundColor: Colors.backgroundShiftColor,
+		backgroundColor: Colors.backgroundColor,
 		marginTop: 10,
 		// paddingHorizontal: 10,
 		// marginBottom: 10,
@@ -160,17 +163,16 @@ const styles = StyleSheet.create({
 	picker: {
 		borderColor: 'transparent',
 		height: 46,
+		paddingRight: 24,
 	},
 	pickerTxt: {
 		flex: 1,
 		textAlign: 'left',
-		fontFamily: FontConfig.primary.bold,
-		fontSize: 18,
-		marginTop: 2,
+		marginTop: 5,
 	},
 	placeholderTxt: {
 		alignSelf: 'flex-start',
-		marginTop: 2,
+		marginTop: 5,
 	},
 	baseErrorContainerStyle: {
 		top: -20,
@@ -185,6 +187,14 @@ const styles = StyleSheet.create({
 		color: Colors.warn,
 		fontSize: 13,
 		textTransform: 'capitalize',
+	},
+	dropdownIcon: {
+		position: 'absolute',
+		marginTop: 10,
+		right: 0,
+		// alignSelf: 'center',
+		width: 30,
+		height: 20,
 	},
 });
 

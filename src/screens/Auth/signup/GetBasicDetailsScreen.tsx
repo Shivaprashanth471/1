@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {BaseViewComponent, CustomButton} from '../../../components/core';
 import {
@@ -14,158 +14,247 @@ const GetBasicDetailsSchema = yup.object().shape({
 	first_name: yup.string().required('Required'),
 	last_name: yup.string().required('Required'),
 	email: yup.string().required('Required').email('Invalid Email'),
+	zip_code: yup.string().required('Required'),
 });
 
 export interface GetBasicDetailsSchemaType {
 	first_name: string;
 	last_name: string;
 	email: string;
+	address: string;
+	zip_code: string;
 }
 
 const initialValues: GetBasicDetailsSchemaType = {
 	first_name: '',
 	last_name: '',
 	email: '',
+	address: '',
+	zip_code: '',
 };
 
 const GetBasicDetailsScreen = (props: any) => {
-	const GetBasicDetailsHandler = (
+	const {hcpDetails}: any = props.route.params || '';
+	const {signupInitiated}: any = props.route.params;
+	const {contact_number}: any = props.route.params;
+	const navigation = props.navigation;
+	console.log(hcpDetails);
+
+	const GetHcpSignUpHandler = (
 		values: GetBasicDetailsSchemaType,
 		formikHelpers: FormikHelpers<GetBasicDetailsSchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
-		const payload = {...values};
-		console.log('payload out>>>', payload);
-		formikHelpers.setSubmitting(false);
-		navigation.navigate(NavigateTo.GetStartedScreen);
-		// ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
-		// 	.then(resp => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		if (resp.success) {
-		// 			ToastAlert.show(resp.msg || 'email verified');
-		// 			navigation.navigate(NavigateTo.OTPVerifyScreen, {
-		// 				GetBasicDetailsPayload: payload,
-		// 			});
-		// 		} else {
-		// 			ToastAlert.show(resp.error || '');
-		// 			console.log('resp.error');
-		// 		}
-		// 	})
-		// 	.catch((err: any) => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-		// 		ToastAlert.show(err.errors.email[0] || 'Please enter correct email');
-		// 	});
+		const payload = {
+			first_name: values.first_name,
+			last_name: values.last_name,
+			email: values.email,
+			contact_number: contact_number,
+			address: {
+				street: values.address,
+				zip_code: values.zip_code,
+			},
+		};
+		console.log('GetHcpSignUpHandler>>>', payload);
+		ApiFunctions.post(ENV.apiUrl + 'hcp/signup', payload)
+			.then(resp => {
+				formikHelpers.setSubmitting(false);
+				if (resp.success) {
+					ToastAlert.show(resp.msg || 'email verified');
+					navigation.navigate(NavigateTo.GetHcpPositionScreen, {
+						GetHcpBasicDetailsPayload: resp.data,
+						signupInitiated: signupInitiated,
+					});
+				} else {
+					ToastAlert.show(resp.error || '');
+					console.log('resp.error');
+				}
+			})
+			.catch((err: any) => {
+				formikHelpers.setSubmitting(false);
+				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+				ToastAlert.show(err.errors.email[0] || 'Please enter correct email');
+				console.log('error', err);
+			});
+	};
+	const GetHcpEditHandler = (
+		values: GetBasicDetailsSchemaType,
+		formikHelpers: FormikHelpers<GetBasicDetailsSchemaType>,
+	) => {
+		formikHelpers.setSubmitting(true);
+		const payload = {
+			first_name: values.first_name,
+			last_name: values.last_name,
+			email: values.email,
+			contact_number: contact_number,
+			address: {
+				street: values.address,
+				zip_code: values.zip_code,
+			},
+		};
+		ApiFunctions.put(ENV.apiUrl + 'hcp/' + hcpDetails._id, payload)
+			.then(resp => {
+				formikHelpers.setSubmitting(false);
+				if (resp.success) {
+					navigation.navigate(NavigateTo.GetHcpPositionScreen, {
+						GetHcpBasicDetailsPayload: resp.data,
+					});
+				} else {
+					ToastAlert.show(resp.error || '');
+					console.log('resp.error');
+				}
+			})
+			.catch((err: any) => {
+				formikHelpers.setSubmitting(false);
+				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+				ToastAlert.show(err.errors.email[0] || 'Please enter correct email');
+				console.log('error', err);
+			});
 	};
 
-	useEffect(() => {}, []);
-	const navigation = props.navigation;
 	return (
-		<KeyboardAvoidCommonView>
-			<BaseViewComponent noScroll={true}>
-				<StatusBar
-					barStyle={'light-content'}
-					animated={true}
-					backgroundColor={Colors.backdropColor}
-				/>
-				<View
-					style={{
-						flexDirection: 'row',
-						flex: 0,
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						marginTop: 10,
-						marginHorizontal: 20,
-					}}>
-					<View style={styles.header}>
-						<View style={{}}>
-							<Text style={styles.headerText}>Tell us your details</Text>
-						</View>
-						<View style={styles.subHeadingHolder}>
-							<Text style={styles.subHeading}>
-								Please provide your basic details
-							</Text>
+		<>
+			<KeyboardAvoidCommonView>
+				<BaseViewComponent noScroll={false}>
+					<StatusBar
+						barStyle={'light-content'}
+						animated={true}
+						backgroundColor={Colors.backdropColor}
+					/>
+					<View
+						style={{
+							flexDirection: 'row',
+							flex: 0,
+							justifyContent: 'space-between',
+							alignItems: 'center',
+							marginTop: 10,
+							marginHorizontal: 20,
+						}}>
+						<View style={styles.header}>
+							<View style={{}}>
+								<Text style={styles.headerText}>Tell us your details</Text>
+							</View>
+							<View style={styles.subHeadingHolder}>
+								<Text style={styles.subHeading}>
+									Please provide your basic details
+								</Text>
+							</View>
 						</View>
 					</View>
-				</View>
-				<View style={styles.formBlock}>
-					<View style={styles.formHolder}>
-						<Formik
-							onSubmit={GetBasicDetailsHandler}
-							validationSchema={GetBasicDetailsSchema}
-							validateOnBlur={true}
-							initialValues={initialValues}>
-							{({handleSubmit, isValid, isSubmitting}) => (
-								<>
-									<Field name={'first_name'}>
-										{(field: FieldProps) => (
-											<FormikInputComponent
-												trimSpaces={true}
-												// labelText="first Name"
-												inputProperties={{
-													keyboardType: 'default',
-													placeholder: 'Your first name',
-												}}
-												formikField={field}
-											/>
-										)}
-									</Field>
-									<Field name={'last_name'}>
-										{(field: FieldProps) => (
-											<FormikInputComponent
-												trimSpaces={true}
-												// labelText="Last Name"
-												inputProperties={{
-													keyboardType: 'default',
-													placeholder: 'Your Last name',
-												}}
-												formikField={field}
-											/>
-										)}
-									</Field>
-									<Field name={'email'}>
-										{(field: FieldProps) => (
-											<FormikInputComponent
-												trimSpaces={true}
-												// labelText="Email"
-												inputProperties={{
-													keyboardType: 'email-address',
-													placeholder: 'Your email',
-												}}
-												formikField={field}
-											/>
-										)}
-									</Field>
-									<View
-										style={{
-											marginTop: 250,
-										}}>
-										<View>
-											<CustomButton
-												style={{
-													flex: 0,
-													backgroundColor: Colors.primary,
-													borderRadius: 8,
-													marginVertical: 0,
-												}}
-												title={'Continue'}
-												isLoading={isSubmitting}
-												onPress={handleSubmit}
-												disabled={!isValid}
-												textStyle={{
-													fontSize: 14,
-													fontFamily: FontConfig.primary.bold,
-												}}
-											/>
+					<View style={styles.formBlock}>
+						<View style={styles.formHolder}>
+							<Formik
+								onSubmit={
+									signupInitiated ? GetHcpEditHandler : GetHcpSignUpHandler
+								}
+								validationSchema={GetBasicDetailsSchema}
+								validateOnBlur={true}
+								initialValues={{
+									...initialValues,
+									...{
+										first_name: signupInitiated ? hcpDetails.first_name : '',
+										last_name: signupInitiated ? hcpDetails.last_name : '',
+										email: signupInitiated ? hcpDetails.email : '',
+										zip_code: signupInitiated
+											? hcpDetails.address.zip_code
+											: '',
+										address: signupInitiated ? hcpDetails.address.street : '',
+									},
+								}}>
+								{({handleSubmit, isValid, isSubmitting}) => (
+									<>
+										<Field name={'first_name'}>
+											{(field: FieldProps) => (
+												<FormikInputComponent
+													trimSpaces={true}
+													inputProperties={{
+														keyboardType: 'default',
+														placeholder: 'First Name*',
+													}}
+													formikField={field}
+												/>
+											)}
+										</Field>
+										<Field name={'last_name'}>
+											{(field: FieldProps) => (
+												<FormikInputComponent
+													trimSpaces={true}
+													inputProperties={{
+														keyboardType: 'default',
+														placeholder: 'Last Name*',
+													}}
+													formikField={field}
+												/>
+											)}
+										</Field>
+										<Field name={'email'}>
+											{(field: FieldProps) => (
+												<FormikInputComponent
+													trimSpaces={true}
+													inputProperties={{
+														keyboardType: 'default',
+														placeholder: 'Email*',
+													}}
+													formikField={field}
+												/>
+											)}
+										</Field>
+										<Field name={'zip_code'}>
+											{(field: FieldProps) => (
+												<FormikInputComponent
+													trimSpaces={true}
+													inputProperties={{
+														keyboardType: 'default',
+														placeholder: 'Zip Code*',
+													}}
+													formikField={field}
+												/>
+											)}
+										</Field>
+										<Field name={'address'}>
+											{(field: FieldProps) => (
+												<FormikInputComponent
+													trimSpaces={true}
+													inputProperties={{
+														keyboardType: 'default',
+														placeholder: 'Address',
+													}}
+													formikField={field}
+												/>
+											)}
+										</Field>
+
+										<View
+											style={{
+												marginTop: 70,
+											}}>
+											<View>
+												<CustomButton
+													style={{
+														flex: 0,
+														backgroundColor: Colors.primary,
+														borderRadius: 8,
+														marginVertical: 0,
+													}}
+													title={'Continue'}
+													isLoading={isSubmitting}
+													disabled={!isValid}
+													onPress={handleSubmit}
+													textStyle={{
+														fontSize: 14,
+														fontFamily: FontConfig.primary.bold,
+													}}
+												/>
+											</View>
 										</View>
-									</View>
-								</>
-							)}
-						</Formik>
+									</>
+								)}
+							</Formik>
+						</View>
 					</View>
-				</View>
-			</BaseViewComponent>
-		</KeyboardAvoidCommonView>
+				</BaseViewComponent>
+			</KeyboardAvoidCommonView>
+		</>
 	);
 };
 

@@ -28,12 +28,6 @@ import ProfileReferenceScreen from '../screens/Profile/ProfileReferenceScreen';
 import ProfileDocumentScreen from '../screens/Profile/ProfileDocumentScreen';
 import UpcomingShiftCountdownScreen from '../screens/Attendance/UpcomingShiftCountdownScreen';
 import AttendanceChartScreen from '../screens/Attendance/AttendanceChartScreen';
-import MyProfileCreationCurrentRole from '../screens/Profile/ProfileCreation/MyProfileCreationCurrentRole';
-import MyProfileShiftPreferencesScreen from '../screens/Profile/ProfileCreation/MyProfileShiftPreferencesScreen';
-import MyProfileCreationGetLanguage from '../screens/Profile/ProfileCreation/MyProfileCreationGetLanguage';
-import MyProfileCreationGetDocuments from '../screens/Profile/ProfileCreation/MyProfileCreationGetDocuments';
-import MyProfileCreationGetExperience from '../screens/Profile/ProfileCreation/MyProfileCreationGetExperience';
-import MyProfileProfessionalDetails from '../screens/Profile/ProfileCreation/MyProfileProfessionalDetails';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const defaultNavigationOptions: StackNavigationOptions = {
@@ -247,48 +241,6 @@ const ProfileStackNavigator = () => {
 				options={{headerTitle: 'My Documents'}}
 				listeners={listeners}
 				component={ProfileDocumentScreen}
-			/>
-			<ProfileStack.Screen
-				key={NavigateTo.MyProfileProfessionalDetails + '-Screen'}
-				name={NavigateTo.MyProfileProfessionalDetails}
-				options={{headerTitle: 'Profile'}}
-				listeners={listeners}
-				component={MyProfileProfessionalDetails}
-			/>
-			<ProfileStack.Screen
-				key={NavigateTo.MyProfileCreationCurrentRole + '-Screen'}
-				name={NavigateTo.MyProfileCreationCurrentRole}
-				options={{headerTitle: 'Profile'}}
-				listeners={listeners}
-				component={MyProfileCreationCurrentRole}
-			/>
-			<ProfileStack.Screen
-				key={NavigateTo.MyProfileShiftPreferencesScreen + '-Screen'}
-				name={NavigateTo.MyProfileShiftPreferencesScreen}
-				options={{headerTitle: 'Profile'}}
-				listeners={listeners}
-				component={MyProfileShiftPreferencesScreen}
-			/>
-			<ProfileStack.Screen
-				key={NavigateTo.MyProfileCreationGetLanguage + '-Screen'}
-				name={NavigateTo.MyProfileCreationGetLanguage}
-				options={{headerTitle: 'Profile'}}
-				listeners={listeners}
-				component={MyProfileCreationGetLanguage}
-			/>
-			<ProfileStack.Screen
-				key={NavigateTo.MyProfileCreationGetDocuments + '-Screen'}
-				name={NavigateTo.MyProfileCreationGetDocuments}
-				options={{headerTitle: 'Profile'}}
-				listeners={listeners}
-				component={MyProfileCreationGetDocuments}
-			/>
-			<ProfileStack.Screen
-				key={NavigateTo.MyProfileCreationGetExperience + '-Screen'}
-				name={NavigateTo.MyProfileCreationGetExperience}
-				options={{headerTitle: 'Profile'}}
-				listeners={listeners}
-				component={MyProfileCreationGetExperience}
 			/>
 		</ProfileStack.Navigator>
 	);

@@ -1,59 +1,79 @@
 import React from 'react';
-import {StatusBar, StyleSheet, Text, View} from 'react-native';
-import {BaseViewComponent, CustomButton} from '../../../components/core';
+import {
+	StatusBar,
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+} from 'react-native';
 import {
 	KeyboardAvoidCommonView,
-	FormikInputComponent,
+	FormikCheckboxComponent,
+	BaseViewComponent,
+	CustomButton,
+	FormikPhoneInputComponent,
 } from '../../../components/core';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../../helpers';
-import {Colors, ENV, FontConfig, NavigateTo} from '../../../constants';
+import {
+	Colors,
+	ENV,
+	FontConfig,
+	NavigateTo,
+	ImageConfig,
+} from '../../../constants';
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 
-const verifyEmailSchema = yup.object().shape({
-	email: yup.string().required('Required').email('Invalid Email'),
+const phoneVerifySchema = yup.object().shape({
+	contact_number: yup
+		.string()
+		.min(4, 'Phone number must be at least 4 digits')
+		.matches(
+			/^\+(?=.*[1-9])((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+			'Invalid',
+		)
+		.required('Required'),
+	agree: yup
+		.boolean()
+		.oneOf([true], 'Must Accept Terms of Services')
+		.required('Required'),
 });
 
-export interface VerifyEmailSchemaType {
-	email: string;
-	// agree: any;
+export interface PhoneVerifySchemaType {
+	contact_number: string;
+	agree: boolean;
 }
 
-const initialValues: VerifyEmailSchemaType = {
-	email: '',
-	// agree: null,
+const initialValues: PhoneVerifySchemaType = {
+	contact_number: '',
+	agree: false,
 };
 
-const EmailVerifyScreen = (props: any) => {
-	const emailVerifyHandler = (
-		values: VerifyEmailSchemaType,
-		formikHelpers: FormikHelpers<VerifyEmailSchemaType>,
+const PhoneVerifyScreen = (props: any) => {
+	const phoneVerifyHandler = (
+		values: PhoneVerifySchemaType,
+		formikHelpers: FormikHelpers<PhoneVerifySchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
 		const payload = {...values};
-		console.log('payload out>>>', payload);
-		navigation.navigate(NavigateTo.GetBasicDetailsScreen, {
-			emailVerifyPayload: payload,
-		});
-		formikHelpers.setSubmitting(false);
-		// ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
-		// 	.then(resp => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		if (resp.success) {
-		// 			ToastAlert.show(resp.msg || 'email verified');
-		// 			navigation.navigate(NavigateTo.OTPVerifyScreen, {
-		// 				emailVerifyPayload: payload,
-		// 			});
-		// 		} else {
-		// 			ToastAlert.show(resp.error || '');
-		// 			console.log('resp.error');
-		// 		}
-		// 	})
-		// 	.catch((err: any) => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-		// 		ToastAlert.show(err.errors.email[0] || 'Please enter correct email');
-		// 	});
+		ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
+			.then(resp => {
+				formikHelpers.setSubmitting(false);
+				if (resp.success) {
+					ToastAlert.show(resp.msg || 'phone verified');
+					navigation.navigate(NavigateTo.OTPVerifyScreen, {
+						contact_number: payload,
+					});
+				} else {
+					ToastAlert.show(resp.error || '');
+					console.log('resp.error');
+				}
+			})
+			.catch((err: any) => {
+				formikHelpers.setSubmitting(false);
+				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+				console.log('>>>>>', err);
+			});
 	};
 	const navigation = props.navigation;
 	return (
@@ -74,12 +94,24 @@ const EmailVerifyScreen = (props: any) => {
 						marginHorizontal: 20,
 					}}>
 					<View style={styles.header}>
+						<TouchableOpacity
+							onPress={() => {
+								navigation.goBack();
+							}}>
+							<ImageConfig.backArrow
+								width="20"
+								height="20"
+								style={{marginBottom: 10}}
+							/>
+						</TouchableOpacity>
 						<View style={{}}>
-							<Text style={styles.headerText}>Give us your email address</Text>
+							<Text style={styles.headerText}>
+								Give us your mobile number for verification
+							</Text>
 						</View>
 						<View style={styles.subHeadingHolder}>
 							<Text style={styles.subHeading}>
-								Please type your Email address for verification.
+								Please type your Mobile Number
 							</Text>
 						</View>
 					</View>
@@ -87,23 +119,15 @@ const EmailVerifyScreen = (props: any) => {
 				<View style={styles.formBlock}>
 					<View style={styles.formHolder}>
 						<Formik
-							onSubmit={emailVerifyHandler}
-							validationSchema={verifyEmailSchema}
+							onSubmit={phoneVerifyHandler}
+							validationSchema={phoneVerifySchema}
 							validateOnBlur={true}
 							initialValues={initialValues}>
 							{({handleSubmit, isValid, isSubmitting}) => (
 								<>
-									<Field name={'email'}>
+									<Field name={'contact_number'}>
 										{(field: FieldProps) => (
-											<FormikInputComponent
-												trimSpaces={true}
-												labelText="Email"
-												inputProperties={{
-													keyboardType: 'email-address',
-													placeholder: 'email address',
-												}}
-												formikField={field}
-											/>
+											<FormikPhoneInputComponent formikField={field} />
 										)}
 									</Field>
 									<View style={styles.footerContainer}>
@@ -112,21 +136,25 @@ const EmailVerifyScreen = (props: any) => {
 												marginHorizontal: 40,
 												marginTop: 20,
 											}}>
-											{/* <Field name={'terms&conditions'}>
+											<Field name={'agree'}>
 												{(field: FieldProps) => (
-													<FormikCheckboxComponent formikField={field} />
+													<FormikCheckboxComponent
+														formikField={field}
+														errorContainerStyle={{marginTop: 20}}
+													/>
 												)}
-											</Field> */}
+											</Field>
 											<Text style={styles.footerText}>
 												You agree to allow VitaWerks to check your information.
 												Terms {'&'} Conditions.
 											</Text>
 											<CustomButton
 												isLoading={isSubmitting}
-												title={'Agree and Continue'}
+												title={'Agree & Continue'}
 												onPress={handleSubmit}
 												style={styles.button}
 												disabled={!isValid}
+												textStyle={{textTransform: 'none'}}
 											/>
 										</View>
 									</View>
@@ -179,7 +207,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'flex-start',
 		flexDirection: 'column',
-		width: '70%',
 	},
 	headerText: {
 		textAlign: 'left',
@@ -203,4 +230,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default EmailVerifyScreen;
+export default PhoneVerifyScreen;

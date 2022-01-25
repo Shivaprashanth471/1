@@ -342,15 +342,30 @@ const LoginScreen = (props: any) => {
 										title={'Login'}
 										onPress={handleSubmit}
 										style={styles.button}
+										textStyle={{
+											textTransform: 'none',
+										}}
 										disabled={!isValid}
 									/>
-									{/* <CustomButton
-										title={'Register'}
+									<CustomButton
+										title={'Register Now'}
 										onPress={() => {
 											navigation.navigate(NavigateTo.Signup);
 										}}
-										style={styles.button}
-									/> */}
+										class={'secondary'}
+										style={{
+											marginTop: 40,
+											height: 50,
+											backgroundColor: Colors.backgroundShiftColor,
+											borderColor: Colors.borderColor,
+											borderWidth: 2,
+										}}
+										textStyle={{
+											fontFamily: FontConfig.primary.bold,
+											textTransform: 'none',
+											color: Colors.textOnAccent,
+										}}
+									/>
 								</>
 							)}
 						</Formik>
@@ -362,7 +377,7 @@ const LoginScreen = (props: any) => {
 						flexDirection: 'row',
 						alignItems: 'center',
 						justifyContent: 'center',
-						marginTop: 80,
+						marginTop: 20,
 					}}>
 					<Text
 						style={{

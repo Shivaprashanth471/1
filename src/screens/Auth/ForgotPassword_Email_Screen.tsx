@@ -10,12 +10,9 @@ import {BaseViewComponent, CustomButton} from '../../components/core';
 import {
 	KeyboardAvoidCommonView,
 	FormikInputComponent,
-	FormikRadioGroupComponent,
-	FormikCheckboxComponent,
 } from '../../components/core';
 import {useDispatch} from 'react-redux';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../helpers';
-import {loginUser} from '../../store/actions/auth.action';
 import {
 	Colors,
 	ENV,
@@ -25,7 +22,6 @@ import {
 } from '../../constants';
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
-import {TSAPIResponseType} from '../../helpers/ApiFunctions';
 
 // Login api
 const loginSchema = yup.object().shape({
@@ -147,33 +143,6 @@ const AuthPhoneScreen = (props: any) => {
 										style={styles.button}
 										disabled={!isValid}
 									/>
-									{/* <View style={styles.footerContainer}>
-										<View
-											style={{
-												marginHorizontal: 40,
-												marginTop: 20,
-											}}>
-											<Field name={'terms&conditions'}>
-												{(field: FieldProps) => (
-													<FormikCheckboxComponent formikField={field} />
-												)}
-											</Field>
-											<Text style={styles.footerText}>
-												You agree to allow VitaWerks to check your information.
-												Terms & Conditions. Lorem ipsum dolor sit amet,
-												consectetur adipiscing elit, sed do eiusmod tempor
-												incididunt ut labore et dolore magna aliqua. Ut enim ad
-												minim veniam,{' '}
-											</Text>
-											<CustomButton
-												isLoading={isSubmitting}
-												title={'Agree and Continue'}
-												onPress={handleSubmit}
-												style={styles.button}
-												disabled={!isValid}
-											/>
-										</View>
-									</View> */}
 								</>
 							)}
 						</Formik>

@@ -1,15 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {BaseViewComponent, CustomButton} from '../../../components/core';
 import KeyboardAvoidCommonView from '../../../components/core/KeyboardAvoidCommonView';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../../helpers';
-import {
-	Colors,
-	ENV,
-	FontConfig,
-	ImageConfig,
-	NavigateTo,
-} from '../../../constants';
+import {Colors, ENV, FontConfig, NavigateTo} from '../../../constants';
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import FormikInputComponent from '../../../components/core/FormikInputComponent';
@@ -19,17 +13,17 @@ const OTPVerifySchema = yup.object().shape({
 });
 
 export interface OTPVerifySchema {
-	email: string;
+	contact_number: string;
 	code: string;
 }
 
 const initialValues: OTPVerifySchema = {
-	email: '',
+	contact_number: '',
 	code: '',
 };
 
 const OTPVerifyScreen = (props: any) => {
-	const {emailVerifyPayload}: any = props.route.params;
+	const {contact_number}: any = props.route.params;
 	const navigation = props.navigation;
 
 	const OTPVerifyHandler = (
@@ -37,17 +31,21 @@ const OTPVerifyScreen = (props: any) => {
 		formikHelpers: FormikHelpers<OTPVerifySchema>,
 	) => {
 		formikHelpers.setSubmitting(true);
-		values.email = emailVerifyPayload.email;
+		values.contact_number = contact_number.contact_number;
 		const payload = {...values};
-		console.log('>>', payload);
-
 		ApiFunctions.post(ENV.apiUrl + 'otpVerification', payload)
 			.then(async resp => {
-				formikHelpers.setSubmitting(false);
 				if (resp.success) {
-					ToastAlert.show(resp.msg || 'Email Verification successful');
-					// navigation.replace(NavigateTo.Auth, {screen: NavigateTo.Signin});
-					console.log('>>>', resp);
+					ToastAlert.show(resp.msg || 'Phone Verification successful');
+					if (!resp.data.is_signup_initiated) {
+						formikHelpers.setSubmitting(false);
+						navigation.navigate(NavigateTo.GetBasicDetailsScreen, {
+							signupInitiated: resp.data.is_signup_initiated,
+							contact_number: contact_number.contact_number,
+						});
+					} else {
+						getHcpDetails(resp.data.hcp_id, formikHelpers);
+					}
 				} else {
 					ToastAlert.show(resp.error || 'Wrong OTP entered');
 				}
@@ -55,21 +53,44 @@ const OTPVerifyScreen = (props: any) => {
 			.catch((err: any) => {
 				formikHelpers.setSubmitting(false);
 				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+				console.log('>>>', err);
 			});
 	};
+
+	const getHcpDetails = useCallback(
+		(hcp_id, formikHelpers) => {
+			ApiFunctions.get(ENV.apiUrl + 'hcp/' + hcp_id)
+				.then(resp => {
+					if (resp && resp.success) {
+						formikHelpers.setSubmitting(false);
+						navigation.navigate(NavigateTo.GetBasicDetailsScreen, {
+							hcpDetails: resp.data,
+							signupInitiated: true,
+							contact_number: contact_number.contact_number,
+						});
+					} else {
+						console.log('error', resp.error);
+					}
+				})
+				.catch((err: any) => {
+					formikHelpers.setSubmitting(false);
+					console.log('error :', err);
+				});
+		},
+		[contact_number.contact_number, navigation],
+	);
 
 	const [resendOtpLoader, setResendOtpLoader] = useState(false);
 	const resendOTP = () => {
 		setResendOtpLoader(true);
-		const payload = emailVerifyPayload;
-		console.log(payload);
+		const payload = contact_number;
 
 		ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
 			.then(resp => {
 				if (resp.success) {
 					ToastAlert.show(
 						resp.msg ||
-							'Email varification code has been sent to your registered mobile and email',
+							'Phone varification code has been sent to your registered mobile and phone',
 					);
 				} else {
 					ToastAlert.show(resp.error || '');
@@ -77,8 +98,9 @@ const OTPVerifyScreen = (props: any) => {
 				setResendOtpLoader(false);
 			})
 			.catch((err: any) => {
-				ToastAlert.show('Please enter correct email');
+				ToastAlert.show('Please enter correct phone');
 				setResendOtpLoader(false);
+				console.log('error: ', err);
 			});
 	};
 
@@ -99,7 +121,7 @@ const OTPVerifyScreen = (props: any) => {
 				</View>
 				<View style={styles.subHeadingHolder}>
 					<Text style={styles.subHeading}>
-						Enter the 4 digit OTP to proceed - {emailVerifyPayload.email}
+						Enter the 4 digit OTP to proceed -
 					</Text>
 				</View>
 				<View style={styles.formBlock}>
@@ -185,10 +207,10 @@ const OTPVerifyScreen = (props: any) => {
 													borderRadius: 8,
 													marginVertical: 0,
 												}}
-												title={'Proceed'}
+												title={'Continue'}
 												isLoading={isSubmitting}
-												onPress={handleSubmit}
 												disabled={!isValid}
+												onPress={handleSubmit}
 												textStyle={{
 													fontSize: 14,
 													fontFamily: FontConfig.primary.bold,

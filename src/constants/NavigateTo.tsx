@@ -30,20 +30,24 @@ const UpcomingShiftCountdownScreen = 'UpcomingShiftCountdownScreen';
 const AttendanceChartScreen = 'AttendanceChartScreen';
 const MyProfileCreationCurrentRole = 'MyProfileCreationCurrentRole';
 const MyProfileGetLocationScreen = 'MyProfileGetLocationScreen';
-const MyProfileShiftPreferencesScreen = 'MyProfileShiftPreferencesScreen';
 const MyProfileCreationGetLanguage = 'MyProfileCreationGetLanguage';
 const MyProfileCreationGetDocuments = 'MyProfileCreationGetDocuments';
 const MyProfileCreationGetExperience = 'MyProfileCreationGetExperience';
 const MyProfileProfessionalDetails = 'MyProfileProfessionalDetails';
 const ImageCarouselScreen = 'ImageCarouselScreen';
-const EmailVerifyScreen = 'EmailVerifyScreen';
+const PhoneVerifyScreen = 'PhoneVerifyScreen';
 const OTPVerifyScreen = 'OTPVerifyScreen';
 const GetBasicDetailsScreen = 'GetBasicDetailsScreen';
-const GetStartedScreen = 'GetStartedScreen';
+const GetThankYouScreen = 'GetThankYouScreen';
 const GetRegionScreen = 'GetRegionScreen';
 const GetCertifiedToPractiseScreen = 'GetCertifiedToPractiseScreen';
 const GetVaccineForCovidScreen = 'GetVaccineForCovidScreen';
-
+const GetHcpPositionScreen = 'GetHcpPositionScreen';
+const GetShiftPreferenceScreen = 'GetShiftPreferenceScreen';
+const GetWorkExperienceScreen = 'GetWorkExperienceScreen';
+const GetDocumentsScreen = 'GetDocumentsScreen';
+const GetLegallyAuthorisedToWorkScreen = 'GetLegallyAuthorisedToWorkScreen';
+const GetRequireSponsorshipScreen = 'GetRequireSponsorshipScreen';
 export default {
 	Start,
 	Main,
@@ -73,7 +77,6 @@ export default {
 	ProfileReferenceScreen,
 	MyProfileCreationCurrentRole,
 	MyProfileGetLocationScreen,
-	MyProfileShiftPreferencesScreen,
 	MyProfileCreationGetLanguage,
 	MyProfileCreationGetDocuments,
 	MyProfileCreationGetExperience,
@@ -83,11 +86,17 @@ export default {
 	UpcomingShiftCountdownScreen,
 	AttendanceChartScreen,
 	ImageCarouselScreen,
-	EmailVerifyScreen,
+	PhoneVerifyScreen,
 	OTPVerifyScreen,
 	GetBasicDetailsScreen,
-	GetStartedScreen,
+	GetThankYouScreen,
 	GetRegionScreen,
 	GetCertifiedToPractiseScreen,
 	GetVaccineForCovidScreen,
+	GetHcpPositionScreen,
+	GetShiftPreferenceScreen,
+	GetWorkExperienceScreen,
+	GetDocumentsScreen,
+	GetLegallyAuthorisedToWorkScreen,
+	GetRequireSponsorshipScreen,
 };

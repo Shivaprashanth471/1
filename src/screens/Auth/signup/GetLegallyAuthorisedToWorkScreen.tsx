@@ -5,7 +5,6 @@ import {
 	Text,
 	TouchableOpacity,
 	View,
-	Modal,
 } from 'react-native';
 import {ApiFunctions, ToastAlert, CommonFunctions} from '../../../helpers';
 import {
@@ -22,76 +21,57 @@ import {
 	LoadingComponent,
 	CustomButton,
 	FormikRadioGroupComponent,
-	FormikDatepickerComponent,
 } from '../../../components/core';
 import * as yup from 'yup';
 import {TSAPIResponseType} from '../../../helpers/ApiFunctions';
 
 const GetVaccineForCovid = yup.object().shape({
-	is_vaccinated: yup.string().required('Required'),
+	is_authorized_to_work: yup.string().required('Required'),
 });
 
-export interface GetVaccineForCovidType {
-	is_vaccinated: string;
-	first_shot: any;
-	latest_shot: any;
+export interface GetAuthorisationForWorkType {
+	is_authorized_to_work: string;
 }
 
-const initialValues: GetVaccineForCovidType = {
-	is_vaccinated: '',
-	first_shot: '',
-	latest_shot: '',
+const initialValues: GetAuthorisationForWorkType = {
+	is_authorized_to_work: '',
 };
 
-const GetVaccineForCovidScreen = (props: any) => {
+const GetLegallyAuthorisedToWorkScreen = (props: any) => {
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const {GetHcpBasicDetailsPayload}: any = props.route.params;
 	const [hcpDetails, setHcpDetails]: any = useState<null | {}>({});
-	const [selectPickerModalVisible, setSelectPickerModalVisible] =
-		useState<boolean>(false);
 
-	const [loadingPercent, setLoadingPercent]: any = useState(71.42);
+	const [loadingPercent, setLoadingPercent]: any = useState(85.71);
 	const navigation = props.navigation;
 
-	const updateShiftPreferenceDetails = (
-		values: GetVaccineForCovidType,
-		formikHelpers: FormikHelpers<GetVaccineForCovidType>,
+	const updateAuthorisationForWorkDetails = (
+		values: GetAuthorisationForWorkType,
+		formikHelpers: FormikHelpers<GetAuthorisationForWorkType>,
 	) => {
 		formikHelpers.setSubmitting(true);
 		const payload = {
 			nc_details: {
 				is_certified_to_practice:
 					hcpDetails.nc_details.is_certified_to_practice,
-				is_vaccinated: values.is_vaccinated,
+				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
 				vaccination_dates: {
-					first_shot: values.is_vaccinated === 'true' ? values.first_shot : '',
-					latest_shot:
-						values.is_vaccinated === 'true' ? values.latest_shot : '',
+					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.latest_shot,
 				},
+				is_authorized_to_work: values.is_authorized_to_work,
 			},
 		};
 		console.log(payload);
+		// formikHelpers.setSubmitting(false);
 		ApiFunctions.put(ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload, payload)
-			.then(async (resp: TSAPIResponseType<GetVaccineForCovidType>) => {
+			.then(async (resp: TSAPIResponseType<GetAuthorisationForWorkType>) => {
 				formikHelpers.setSubmitting(false);
 				if (resp.success) {
-					if (values.is_vaccinated === 'true' && !selectPickerModalVisible) {
-						setSelectPickerModalVisible(true);
-					} else if (
-						values.is_vaccinated === 'true' &&
-						selectPickerModalVisible
-					) {
-						setSelectPickerModalVisible(false);
-						navigation.navigate(NavigateTo.GetLegallyAuthorisedToWorkScreen, {
-							GetHcpBasicDetailsPayload: GetHcpBasicDetailsPayload,
-						});
-					} else {
-						setSelectPickerModalVisible(false);
-						navigation.navigate(NavigateTo.GetLegallyAuthorisedToWorkScreen, {
-							GetHcpBasicDetailsPayload: GetHcpBasicDetailsPayload,
-						});
-					}
+					navigation.navigate(NavigateTo.GetRequireSponsorshipScreen, {
+						GetHcpBasicDetailsPayload: GetHcpBasicDetailsPayload,
+					});
 				} else {
 					ToastAlert.show(resp.error || '');
 				}
@@ -175,7 +155,7 @@ const GetVaccineForCovidScreen = (props: any) => {
 							/>
 							<View style={{}}>
 								<Text style={styles.headerText}>
-									Are you vacciinated for COVID
+									Are you legally authorized to work in United States?
 								</Text>
 							</View>
 							<View style={styles.subHeadingHolder}>
@@ -187,14 +167,15 @@ const GetVaccineForCovidScreen = (props: any) => {
 						<View style={styles.formBlock}>
 							<View style={styles.formHolder}>
 								<Formik
-									onSubmit={updateShiftPreferenceDetails}
+									onSubmit={updateAuthorisationForWorkDetails}
 									validationSchema={GetVaccineForCovid}
 									validateOnBlur={true}
 									initialValues={{
 										...initialValues,
 										...{
-											is_vaccinated: hcpDetails.nc_details.is_vaccinated
-												? hcpDetails.nc_details.is_vaccinated || ''
+											is_authorized_to_work: hcpDetails.nc_details
+												.is_authorized_to_work
+												? hcpDetails.nc_details.is_authorized_to_work || ''
 												: '',
 										},
 									}}>
@@ -203,11 +184,10 @@ const GetVaccineForCovidScreen = (props: any) => {
 											style={{
 												justifyContent: 'space-between',
 											}}>
-											<Field name={'is_vaccinated'}>
+											<Field name={'is_authorized_to_work'}>
 												{(field: FieldProps) => (
 													<FormikRadioGroupComponent
 														formikField={field}
-														// labelText={'Shift Prefer'}
 														radioButtons={[
 															{id: 'true', title: 'Yes'},
 															{id: 'false', title: 'No'},
@@ -216,102 +196,7 @@ const GetVaccineForCovidScreen = (props: any) => {
 													/>
 												)}
 											</Field>
-											<View style={styles.ModalContainer}>
-												<Modal
-													animationType="slide"
-													transparent={true}
-													visible={selectPickerModalVisible}
-													onRequestClose={() => {
-														setSelectPickerModalVisible(
-															!selectPickerModalVisible,
-														);
-													}}>
-													<View
-														style={[
-															styles.centeredView,
-															{backgroundColor: '#000000A0'},
-														]}>
-														<View style={styles.modalView}>
-															<View
-																style={{
-																	width: '100%',
-																	alignItems: 'flex-end',
-																	paddingHorizontal: 20,
-																	paddingTop: 10,
-																}}>
-																<TouchableOpacity
-																	onPress={() => {
-																		navigation.navigate(
-																			NavigateTo.GetLegallyAuthorisedToWorkScreen,
-																			{
-																				GetHcpBasicDetailsPayload:
-																					GetHcpBasicDetailsPayload,
-																			},
-																		);
-																		setSelectPickerModalVisible(
-																			!selectPickerModalVisible,
-																		);
-																	}}>
-																	<Text
-																		style={{
-																			color: Colors.textOnAccent,
-																			fontFamily: FontConfig.primary.bold,
-																			fontSize: 14,
-																		}}>
-																		Skip{' >'}
-																	</Text>
-																</TouchableOpacity>
-															</View>
-															<Text
-																style={[styles.modalTextTitle, {fontSize: 24}]}>
-																Add Vaccination dates
-															</Text>
-															<View
-																style={{
-																	width: '100%',
-																}}>
-																<Field name={'first_shot'}>
-																	{(field: FieldProps) => (
-																		<FormikDatepickerComponent
-																			formikField={field}
-																			labelDarkText={'First Shot'}
-																			style={{
-																				width: '100%',
-																			}}
-																		/>
-																	)}
-																</Field>
-																<View
-																	style={{
-																		marginVertical: 20,
-																	}}
-																/>
-																<Field name={'latest_shot'}>
-																	{(field: FieldProps) => (
-																		<FormikDatepickerComponent
-																			formikField={field}
-																			labelDarkText={'Latest Shot'}
-																			style={{
-																				width: '100%',
-																			}}
-																		/>
-																	)}
-																</Field>
-																<CustomButton
-																	isLoading={isSubmitting}
-																	title={'Save'}
-																	onPress={handleSubmit}
-																	style={{
-																		backgroundColor: Colors.primary,
-																		marginTop: 50,
-																	}}
-																	disabled={!isValid}
-																/>
-															</View>
-														</View>
-													</View>
-												</Modal>
-											</View>
+
 											<CustomButton
 												isLoading={isSubmitting}
 												title={'Continue'}
@@ -440,4 +325,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default GetVaccineForCovidScreen;
+export default GetLegallyAuthorisedToWorkScreen;

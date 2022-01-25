@@ -76,7 +76,7 @@ const MyProfileScreen = (props: any) => {
 					setIsLoading(false);
 					setIsLoaded(true);
 					console.log(err);
-					Alert.alert('Error', err.error || 'Oops... Something went wrong!');
+					// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
 				});
 		}
 	}, [HcpUser]);

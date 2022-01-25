@@ -489,5 +489,14 @@ export const ProfileDocumentsArray = [
 	'Livescan',
 	'Vaccine Exemption Letter',
 ];
+export const SignupDocumentsArray = [
+	'Resume',
+	'Physical Test',
+	'TB Test',
+	'CPR/BLS Card',
+	"Driver's Licence",
+	'SSN Card',
+	'License',
+];
 
 export const ShiftDocumentsArray = ['CDPH 530 A Form'];

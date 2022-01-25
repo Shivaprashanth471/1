@@ -14,6 +14,7 @@ import FormikCheckboxComponent from './FormikCheckboxComponent';
 import FormikDatepickerComponent from './FormikDatepickerComponent';
 import DatePickerComponent from './DatePickerComponent';
 import SliderComponent from './SliderComponent';
+import FormikPhoneInputComponent from './FormikPhoneInputComponent';
 
 export {
   CheckboxComponent,
@@ -32,4 +33,5 @@ export {
   FormikDatepickerComponent,
   DatePickerComponent,
   SliderComponent,
+  FormikPhoneInputComponent
 };

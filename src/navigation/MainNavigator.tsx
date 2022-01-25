@@ -11,13 +11,19 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import {VitaTabNavigator} from './TabNavigator';
 import ForgotPassword_Email_Screen from '../screens/Auth/ForgotPassword_Email_Screen';
 import ImageCarouselScreen from '../screens/Auth/signup/ImageCarouselScreen';
-import EmailVerifyScreen from '../screens/Auth/signup/EmailVerifyScreen';
+import GetRegionScreen from '../screens/Auth/signup/GetRegionScreen';
+import GetShiftPreferenceScreen from '../screens/Auth/signup/GetShiftPreferenceScreen';
+import GetWorkExperienceScreen from '../screens/Auth/signup/GetWorkExperienceScreen';
+import PhoneVerifyScreen from '../screens/Auth/signup/PhoneVerifyScreen';
 import OTPVerifyScreen from '../screens/Auth/signup/OTPVerifyScreen';
 import GetBasicDetailsScreen from '../screens/Auth/signup/GetBasicDetailsScreen';
-import GetStartedScreen from '../screens/Auth/signup/GetStartedScreen';
-import GetRegionScreen from '../screens/Auth/signup/GetRegionScreen';
+import GetThankYouScreen from '../screens/Auth/signup/GetThankYouScreen';
 import GetCertifiedToPractiseScreen from '../screens/Auth/signup/GetCertifiedToPractiseScreen';
 import GetVaccineForCovidScreen from '../screens/Auth/signup/GetVaccineForCovidScreen';
+import GetHcpPositionScreen from '../screens/Auth/signup/GetHcpPositionScreen';
+import GetDocumentsScreen from '../screens/Auth/signup/GetDocumentsScreen';
+import GetLegallyAuthorisedToWorkScreen from '../screens/Auth/signup/GetLegallyAuthorisedToWorkScreen';
+import GetRequireSponsorshipScreen from '../screens/Auth/signup/GetRequireSponsorshipScreen';
 const defaultNavigationOptions: StackNavigationOptions = {
 	headerStyle: {
 		backgroundColor: Colors.backdropColor, //CommonFunctions.isAndroid() ? Colors.primary : 'white',
@@ -77,22 +83,22 @@ const SignupNavigator = () => {
 	return (
 		<SignupStack.Navigator
 			key={'Auth-Nav'}
-			initialRouteName={NavigateTo.ImageCarouselScreen}
+			initialRouteName={NavigateTo.PhoneVerifyScreen}
 			headerMode="none"
 			screenOptions={defaultNavigationOptions}>
-			<SignupStack.Screen
+			{/* <SignupStack.Screen
 				key={NavigateTo.ImageCarouselScreen + '-Screen'}
 				name={NavigateTo.ImageCarouselScreen}
 				options={{headerTitle: ''}}
 				listeners={listeners}
 				component={ImageCarouselScreen}
-			/>
+			/> */}
 			<SignupStack.Screen
-				key={NavigateTo.EmailVerifyScreen + '-Screen'}
-				name={NavigateTo.EmailVerifyScreen}
+				key={NavigateTo.PhoneVerifyScreen + '-Screen'}
+				name={NavigateTo.PhoneVerifyScreen}
 				options={{headerTitle: ''}}
 				listeners={listeners}
-				component={EmailVerifyScreen}
+				component={PhoneVerifyScreen}
 			/>
 			<SignupStack.Screen
 				key={NavigateTo.OTPVerifyScreen + '-Screen'}
@@ -109,18 +115,25 @@ const SignupNavigator = () => {
 				component={GetBasicDetailsScreen}
 			/>
 			<SignupStack.Screen
-				key={NavigateTo.GetStartedScreen + '-Screen'}
-				name={NavigateTo.GetStartedScreen}
+				key={NavigateTo.GetThankYouScreen + '-Screen'}
+				name={NavigateTo.GetThankYouScreen}
 				options={{headerTitle: ''}}
 				listeners={listeners}
-				component={GetStartedScreen}
+				component={GetThankYouScreen}
 			/>
-			<SignupStack.Screen
+			{/* <SignupStack.Screen
 				key={NavigateTo.GetRegionScreen + '-Screen'}
 				name={NavigateTo.GetRegionScreen}
 				options={{headerTitle: ''}}
 				listeners={listeners}
 				component={GetRegionScreen}
+			/> */}
+			<SignupStack.Screen
+				key={NavigateTo.GetHcpPositionScreen + '-Screen'}
+				name={NavigateTo.GetHcpPositionScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetHcpPositionScreen}
 			/>
 			<SignupStack.Screen
 				key={NavigateTo.GetCertifiedToPractiseScreen + '-Screen'}
@@ -130,11 +143,48 @@ const SignupNavigator = () => {
 				component={GetCertifiedToPractiseScreen}
 			/>
 			<SignupStack.Screen
+				key={NavigateTo.GetDocumentsScreen + '-Screen'}
+				name={NavigateTo.GetDocumentsScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetDocumentsScreen}
+			/>
+			<SignupStack.Screen
 				key={NavigateTo.GetVaccineForCovidScreen + '-Screen'}
 				name={NavigateTo.GetVaccineForCovidScreen}
 				options={{headerTitle: ''}}
 				listeners={listeners}
 				component={GetVaccineForCovidScreen}
+			/>
+
+			{/* <SignupStack.Screen
+				key={NavigateTo.GetShiftPreferenceScreen + '-Screen'}
+				name={NavigateTo.GetShiftPreferenceScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetShiftPreferenceScreen}
+			/> */}
+			{/* <SignupStack.Screen
+				key={NavigateTo.GetWorkExperienceScreen + '-Screen'}
+				name={NavigateTo.GetWorkExperienceScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetWorkExperienceScreen}
+			/> */}
+
+			<SignupStack.Screen
+				key={NavigateTo.GetLegallyAuthorisedToWorkScreen + '-Screen'}
+				name={NavigateTo.GetLegallyAuthorisedToWorkScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetLegallyAuthorisedToWorkScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.GetRequireSponsorshipScreen + '-Screen'}
+				name={NavigateTo.GetRequireSponsorshipScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetRequireSponsorshipScreen}
 			/>
 		</SignupStack.Navigator>
 	);

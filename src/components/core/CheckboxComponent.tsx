@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		padding: 2,
 		// overflow: 'hidden',
-		borderRadius: 4,
+		borderRadius: 50,
 		marginBottom: 5,
 	},
 
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: Colors.primary,
 		width: 26,
-		borderRadius: 4,
+		borderRadius: 50,
 		height: 26,
 		paddingBottom: 3,
 	},

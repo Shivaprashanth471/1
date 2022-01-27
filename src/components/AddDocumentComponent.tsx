@@ -54,6 +54,49 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 		useState<boolean>(false);
 	const dimensions = useWindowDimensions();
 
+	const getAttachmentData = useCallback(() => {
+		setIsLoading(true);
+		ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/attachments')
+			.then(async resp => {
+				if (resp) {
+					var wantedData = resp.data.filter(function (i: any) {
+						return i.attachment_type === title;
+					});
+
+					if (wantedData.length === 0) {
+						setDocumentAvailable(false);
+					} else {
+						setDocumentAvailable(true);
+						setDocumentExpiry(wantedData[0].expiry_date);
+						let url = wantedData[0].url;
+						let type = wantedData[0].ContentType;
+						setShowFullscreen({url, type});
+						setURL(wantedData[0].url);
+						setType(wantedData[0].ContentType);
+					}
+				} else {
+					Alert.alert('Error');
+				}
+				setIsLoading(false);
+				setIsLoaded(true);
+			})
+			.catch((err: any) => {
+				console.log(err);
+				setIsLoading(false);
+				setIsLoaded(true);
+				setDocumentExpiry(null);
+			});
+	}, [HcpUser._id, title]);
+
+	const handleError = (err: unknown) => {
+		if (DocumentPicker.isCancel(err)) {
+			console.warn(err, 'cancelled');
+			// User cancelled the picker, exit any dialogs or menus and move on
+		} else {
+			throw err;
+		}
+	};
+
 	const uploadPut = useCallback(
 		(dataURL, file) => {
 			setIsLoading(true);
@@ -81,7 +124,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 				})
 				.catch(error => console.log('error:', error));
 		},
-		[changedDate],
+		[changedDate, getAttachmentData],
 	);
 
 	const uploadHandler = useCallback(
@@ -151,39 +194,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 		[uploadHandler],
 	);
 
-	const getAttachmentData = useCallback(() => {
-		setIsLoading(true);
-		ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/attachments')
-			.then(async resp => {
-				if (resp) {
-					var wantedData = resp.data.filter(function (i: any) {
-						return i.attachment_type === title;
-					});
-
-					if (wantedData.length === 0) {
-						setDocumentAvailable(false);
-					} else {
-						setDocumentAvailable(true);
-						setDocumentExpiry(wantedData[0].expiry_date);
-						let url = wantedData[0].url;
-						let type = wantedData[0].ContentType;
-						setShowFullscreen({url, type});
-						setURL(wantedData[0].url);
-						setType(wantedData[0].ContentType);
-					}
-				} else {
-					Alert.alert('Error');
-				}
-				setIsLoading(false);
-				setIsLoaded(true);
-			})
-			.catch((err: any) => {
-				console.log(err);
-				setIsLoading(false);
-				setIsLoaded(true);
-				setDocumentExpiry(null);
-			});
-	}, [HcpUser._id, title]);
 	useEffect(() => {
 		console.log('loading get documents');
 		getAttachmentData();
@@ -299,7 +309,36 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									justifyContent: 'space-evenly',
 								}}>
 								<TouchableOpacity
-									onPress={openImageUpload.bind(null, 'pdf')}
+									onPress={
+										Platform.OS === 'android'
+											? openImageUpload.bind(null, 'pdf')
+											: async () => {
+													try {
+														const pickerResult =
+															await DocumentPicker.pickSingle({
+																type: [DocumentPicker.types.pdf],
+																allowMultiSelection: false,
+																// presentationStyle: 'fullScreen',
+																// copyTo: 'cachesDirectory',
+															});
+														const file = {
+															uri: (pickerResult.uri || '').replace(
+																'file://',
+																'',
+															),
+															type: pickerResult.type || '',
+															name: pickerResult.name || 'image.jpg',
+															fileSize: pickerResult.size || 0,
+														};
+														console.log(file, 'file------------');
+														uploadHandler(file);
+														setSelectPickerModalVisible(false);
+													} catch (e) {
+														handleError(e);
+														setSelectPickerModalVisible(false);
+													}
+											  }
+									}
 									style={{
 										justifyContent: 'center',
 										alignItems: 'center',
@@ -332,7 +371,41 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									<Text style={styles.uploadText}>CAMERA</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
-									onPress={openImageUpload.bind(null, 'image')}
+									onPress={
+										Platform.OS === 'android'
+											? openImageUpload.bind(null, 'image')
+											: async () => {
+													try {
+														console.log(
+															[DocumentPicker.types.images],
+															'csdcas',
+														);
+														const pickerResult =
+															await DocumentPicker.pickSingle({
+																type: [DocumentPicker.types.images],
+																presentationStyle: 'fullScreen',
+																copyTo: 'cachesDirectory',
+															});
+														const file = {
+															uri: (pickerResult.uri || '').replace(
+																'file://',
+																'',
+															),
+															type: pickerResult.type || '',
+															name: pickerResult.name || 'image.jpg',
+															fileSize: pickerResult.size || 0,
+														};
+														uploadHandler(file);
+														setSelectPickerModalVisible(false);
+														// console.log(
+														// 	pickerResult.uri.replace('file://', ''),
+														// );
+													} catch (e) {
+														handleError(e);
+														setSelectPickerModalVisible(false);
+													}
+											  }
+									}
 									style={{
 										justifyContent: 'center',
 										alignItems: 'center',
@@ -388,60 +461,26 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 							<Text style={[styles.modalTextTitle, {fontSize: 20}]}>
 								Please give expiry date of {title}{' '}
 							</Text>
-							{CommonFunctions.isAndroid() && (
-								<TouchableOpacity
+							<View
+								style={{
+									width: '100%',
+
+									marginTop: 10,
+								}}>
+								<DatePickerComponent
 									style={{
-										width: '100%',
-										flexDirection: 'row',
-										justifyContent: 'space-between',
 										height: 50,
-										alignItems: 'center',
+
 										borderWidth: 2,
+
 										borderColor: Colors.borderColor,
-										paddingHorizontal: 20,
-										marginTop: 10,
+
+										width: '100%',
 									}}
-									onPress={() => {
-										setShow(true);
-									}}>
-									<View style={{flex: 1}}>
-										{!!changedDate && (
-											<Text style={[styles.dateText]}>
-												{Moment(changedDate).format('DD-MM-YYYY')}
-												{/* {changedDate} */}
-											</Text>
-										)}
-										{!changedDate && (
-											<Text
-												style={[styles.dateText, {color: Colors.textLight}]}>
-												{/* {placeHolder || 'Select Date'} */}
-												{'Please select the date'}
-											</Text>
-										)}
-									</View>
-									<ImageConfig.calendarIcon height={'25'} width={'25'} />
-								</TouchableOpacity>
-							)}
-							{Platform.OS === 'ios' && (
-								<View>
-									<DatePickerComponent
-										style={{
-											height: 40,
-											borderWidth: 2,
-											borderColor: Colors.borderColor,
-											paddingHorizontal: 10,
-											marginTop: 10,
-										}}
-										onChange={date => {
-											setChangedDate(date);
-										}}
-									/>
-								</View>
-							)}
-							<View>
-								{!!show && (
-									<>{CommonFunctions.isAndroid() && getDatePicker()}</>
-								)}
+									onChange={date => {
+										setChangedDate(date);
+									}}
+								/>
 							</View>
 							<CustomButton
 								style={{

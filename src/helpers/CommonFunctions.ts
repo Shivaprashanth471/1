@@ -148,11 +148,13 @@ const getColorScheme = () => {
 
 const openDocumentPicker = (types: any[]): Promise<FileType> => {
 	return new Promise((resolve, reject) => {
+		console.log('came here --------------');
 		DocumentPicker.pickSingle({
 			type: types,
 			allowMultiSelection: false,
 		})
 			.then(fileAsset => {
+				console.log('came here =================');
 				const file = {
 					uri: isAndroid()
 						? fileAsset.uri || ''
@@ -173,6 +175,7 @@ const openDocumentPicker = (types: any[]): Promise<FileType> => {
 				}
 			})
 			.catch(err => {
+				console.log(err, 'error');
 				if (DocumentPicker.isCancel(err)) {
 					reject({didCancel: true, err: 'User cancelled image picker'});
 				} else if (err.errorCode) {
@@ -181,7 +184,37 @@ const openDocumentPicker = (types: any[]): Promise<FileType> => {
 				}
 			});
 	});
+
+	// const handleError = (err: unknown) => {
+	// 	if (DocumentPicker.isCancel(err)) {
+	// 		console.log(err, 'cancelled');
+	// 		// User cancelled the picker, exit any dialogs or menus and move on
+	// 	} else {
+	// 		console.log(err, 'errrrooorrrr');
+	// 		throw err;
+	// 	}
+	// };
+	//
+	// const openDocumentPicker = async (types: any[]) => {
+	// 	try {
+	// 		const pickerResult = await DocumentPicker.pickSingle({
+	// 			type: types,
+	// 			presentationStyle: 'fullScreen',
+	// 			copyTo: 'cachesDirectory',
+	// 		});
+	// 		const file = {
+	// 			uri: (pickerResult.uri || '').replace('file://', ''),
+	// 			type: pickerResult.type || '',
+	// 			name: pickerResult.name || 'image.jpg',
+	// 			fileSize: pickerResult.size || 0,
+	// 		};
+	// 		console.log(file, 'file');
+	// 		return file;
+	// 	} catch (e) {
+	// 		handleError(e);
+	// 	}
 };
+
 const openMedia = (
 	options: ImageLibraryOptions | CameraOptions = {mediaType: 'photo'},
 	mode: 'camera' | 'picker' = 'picker',
@@ -339,11 +372,11 @@ const openCall = (phoneNumber: string) => {
 
 const sortDatesByLatest = (arr: any[], fieldName: string) => {
 	const newarr = arr.sort((a, b) => {
-			return moment(b[fieldName]).diff(a[fieldName]);
+		return moment(b[fieldName]).diff(a[fieldName]);
 	});
 
-	return newarr
-}
+	return newarr;
+};
 export default {
 	getColorScheme,
 	isIOS,

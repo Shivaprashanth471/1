@@ -163,13 +163,14 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 
 	const openImageUpload = useCallback(
 		(mode: 'pdf' | 'camera' | 'image' = 'pdf') => {
-			setSelectPickerModalVisible(false);
 			if (mode === 'camera') {
 				CommonFunctions.openMedia(undefined, mode)
 					.then(file => {
+						setSelectPickerModalVisible(false);
 						uploadHandler(file);
 					})
 					.catch(error => {
+						setSelectPickerModalVisible(false);
 						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			} else {
@@ -181,9 +182,11 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				}
 				CommonFunctions.openDocumentPicker(picMode)
 					.then(file => {
+						setSelectPickerModalVisible(false);
 						uploadHandler(file);
 					})
 					.catch(error => {
+						setSelectPickerModalVisible(false);
 						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			}

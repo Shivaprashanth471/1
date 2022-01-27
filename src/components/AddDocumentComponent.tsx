@@ -88,15 +88,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 			});
 	}, [HcpUser._id, title]);
 
-	const handleError = (err: unknown) => {
-		if (DocumentPicker.isCancel(err)) {
-			console.warn(err, 'cancelled');
-			// User cancelled the picker, exit any dialogs or menus and move on
-		} else {
-			throw err;
-		}
-	};
-
 	const uploadPut = useCallback(
 		(dataURL, file) => {
 			setIsLoading(true);
@@ -157,16 +148,17 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 
 	const openImageUpload = useCallback(
 		(mode: 'pdf' | 'camera' | 'image' = 'pdf') => {
-			setSelectPickerModalVisible(false);
 			if (mode === 'camera') {
 				analytics.track('Document Upload Type', {
 					documentUploadType: 'camera',
 				});
 				CommonFunctions.openMedia(undefined, mode)
 					.then(file => {
+						setSelectPickerModalVisible(false);
 						uploadHandler(file);
 					})
 					.catch(error => {
+						setSelectPickerModalVisible(false);
 						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			} else {
@@ -184,9 +176,11 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 				}
 				CommonFunctions.openDocumentPicker(picMode)
 					.then(file => {
+						setSelectPickerModalVisible(false);
 						uploadHandler(file);
 					})
 					.catch(error => {
+						setSelectPickerModalVisible(false);
 						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			}
@@ -233,43 +227,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 			});
 	}, [HcpUser._id, title]);
 
-	const getDatePicker = (
-		display:
-			| 'default'
-			| 'compact'
-			| 'inline'
-			| 'spinner'
-			| 'clock'
-			| 'calendar' = 'default',
-	) => {
-		return (
-			<RNDateTimePicker
-				testID="dateTimePicker"
-				value={changedDate ? new Date(changedDate) : currentDate.toDate()}
-				mode="date"
-				themeVariant="light"
-				display={display}
-				is24Hour={true}
-				textColor={
-					CommonFunctions.isAndroid() ? Colors.textOnPrimary : Colors.textDark
-				}
-				onChange={(e: any, value: Moment.MomentInput) => {
-					if (value) {
-						// console.log(changedDate, 'changed dateee--->>>');
-						const curDate = Moment(value)
-							.utcOffset(0, false)
-							.format('YYYY-MM-DD');
-						setShow(false);
-						setChangedDate(curDate);
-					} else {
-						// console.log(changedDate, 'undefined dateee--->>>');
-						setShow(false);
-					}
-				}}
-			/>
-		);
-	};
-
 	const selectPickerModal = () => {
 		return (
 			<View style={styles.ModalContainer}>
@@ -309,36 +266,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									justifyContent: 'space-evenly',
 								}}>
 								<TouchableOpacity
-									onPress={
-										Platform.OS === 'android'
-											? openImageUpload.bind(null, 'pdf')
-											: async () => {
-													try {
-														const pickerResult =
-															await DocumentPicker.pickSingle({
-																type: [DocumentPicker.types.pdf],
-																allowMultiSelection: false,
-																// presentationStyle: 'fullScreen',
-																// copyTo: 'cachesDirectory',
-															});
-														const file = {
-															uri: (pickerResult.uri || '').replace(
-																'file://',
-																'',
-															),
-															type: pickerResult.type || '',
-															name: pickerResult.name || 'image.jpg',
-															fileSize: pickerResult.size || 0,
-														};
-														console.log(file, 'file------------');
-														uploadHandler(file);
-														setSelectPickerModalVisible(false);
-													} catch (e) {
-														handleError(e);
-														setSelectPickerModalVisible(false);
-													}
-											  }
-									}
+									onPress={openImageUpload.bind(null, 'pdf')}
 									style={{
 										justifyContent: 'center',
 										alignItems: 'center',
@@ -353,7 +281,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									</View>
 									<Text style={styles.uploadText}>PDF</Text>
 								</TouchableOpacity>
-								{/* {Platform.OS === 'android' && ( */}
 								<TouchableOpacity
 									onPress={openImageUpload.bind(null, 'camera')}
 									style={{
@@ -371,41 +298,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									<Text style={styles.uploadText}>CAMERA</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
-									onPress={
-										Platform.OS === 'android'
-											? openImageUpload.bind(null, 'image')
-											: async () => {
-													try {
-														console.log(
-															[DocumentPicker.types.images],
-															'csdcas',
-														);
-														const pickerResult =
-															await DocumentPicker.pickSingle({
-																type: [DocumentPicker.types.images],
-																presentationStyle: 'fullScreen',
-																copyTo: 'cachesDirectory',
-															});
-														const file = {
-															uri: (pickerResult.uri || '').replace(
-																'file://',
-																'',
-															),
-															type: pickerResult.type || '',
-															name: pickerResult.name || 'image.jpg',
-															fileSize: pickerResult.size || 0,
-														};
-														uploadHandler(file);
-														setSelectPickerModalVisible(false);
-														// console.log(
-														// 	pickerResult.uri.replace('file://', ''),
-														// );
-													} catch (e) {
-														handleError(e);
-														setSelectPickerModalVisible(false);
-													}
-											  }
-									}
+									onPress={openImageUpload.bind(null, 'image')}
 									style={{
 										justifyContent: 'center',
 										alignItems: 'center',
@@ -420,7 +313,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									</View>
 									<Text style={styles.uploadText}>IMAGE</Text>
 								</TouchableOpacity>
-								{/* )} */}
 							</View>
 						</View>
 					</View>

@@ -164,7 +164,7 @@ const openDocumentPicker = (types: any[]): Promise<FileType> => {
 					size: fileAsset.size || 0,
 				};
 				console.log(fileAsset, 'size of the photo');
-				// FileViewer.open(resp.uri);
+				// FileViewer.open(resp.uri)
 				if (fileAsset.size && fileAsset.size <= 8000000) {
 					resolve(file);
 				} else {
@@ -184,35 +184,6 @@ const openDocumentPicker = (types: any[]): Promise<FileType> => {
 				}
 			});
 	});
-
-	// const handleError = (err: unknown) => {
-	// 	if (DocumentPicker.isCancel(err)) {
-	// 		console.log(err, 'cancelled');
-	// 		// User cancelled the picker, exit any dialogs or menus and move on
-	// 	} else {
-	// 		console.log(err, 'errrrooorrrr');
-	// 		throw err;
-	// 	}
-	// };
-	//
-	// const openDocumentPicker = async (types: any[]) => {
-	// 	try {
-	// 		const pickerResult = await DocumentPicker.pickSingle({
-	// 			type: types,
-	// 			presentationStyle: 'fullScreen',
-	// 			copyTo: 'cachesDirectory',
-	// 		});
-	// 		const file = {
-	// 			uri: (pickerResult.uri || '').replace('file://', ''),
-	// 			type: pickerResult.type || '',
-	// 			name: pickerResult.name || 'image.jpg',
-	// 			fileSize: pickerResult.size || 0,
-	// 		};
-	// 		console.log(file, 'file');
-	// 		return file;
-	// 	} catch (e) {
-	// 		handleError(e);
-	// 	}
 };
 
 const openMedia = (

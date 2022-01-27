@@ -113,16 +113,17 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 
 	const openImageUpload = useCallback(
 		(mode: 'pdf' | 'camera' | 'image' = 'pdf') => {
-			setSelectPickerModalVisible(false);
 			if (mode === 'camera') {
 				analytics.track('Document Upload Type', {
 					documentUploadType: 'camera',
 				});
 				CommonFunctions.openMedia(undefined, mode)
 					.then(file => {
+						setSelectPickerModalVisible(false);
 						uploadHandler(file);
 					})
 					.catch(error => {
+						setSelectPickerModalVisible(false);
 						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			} else {
@@ -140,14 +141,16 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 				}
 				CommonFunctions.openDocumentPicker(picMode)
 					.then(file => {
+						setSelectPickerModalVisible(false);
 						uploadHandler(file);
 					})
 					.catch(error => {
+						setSelectPickerModalVisible(false);
 						ToastAlert.show(error.err || 'Something went wrong');
 					});
 			}
 		},
-		[],
+		[uploadHandler],
 		// [uploadHandler],
 	);
 
@@ -189,41 +192,41 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 		getAttachmentData();
 	}, [getAttachmentData]);
 
-	const getDatePicker = (
-		display:
-			| 'default'
-			| 'compact'
-			| 'inline'
-			| 'spinner'
-			| 'clock'
-			| 'calendar' = 'default',
-	) => {
-		return (
-			<RNDateTimePicker
-				testID="dateTimePicker"
-				value={changedDate ? new Date(changedDate) : currentDate.toDate()}
-				mode="date"
-				themeVariant="light"
-				display={display}
-				is24Hour={true}
-				textColor={
-					CommonFunctions.isAndroid() ? Colors.textOnPrimary : Colors.textDark
-				}
-				onChange={(e: any, value: Moment.MomentInput) => {
-					if (value) {
-						// console.log(changedDate, 'changed dateee--->>>');
-						const curDate = Moment(value)
-							.utcOffset(0, false)
-							.format('YYYY-MM-DD');
-						setShow(false);
-						setChangedDate(curDate);
-					} else {
-						setShow(false);
-					}
-				}}
-			/>
-		);
-	};
+	// const getDatePicker = (
+	// 	display:
+	// 		| 'default'
+	// 		| 'compact'
+	// 		| 'inline'
+	// 		| 'spinner'
+	// 		| 'clock'
+	// 		| 'calendar' = 'default',
+	// ) => {
+	// 	return (
+	// 		<RNDateTimePicker
+	// 			testID="dateTimePicker"
+	// 			value={changedDate ? new Date(changedDate) : currentDate.toDate()}
+	// 			mode="date"
+	// 			themeVariant="light"
+	// 			display={display}
+	// 			is24Hour={true}
+	// 			textColor={
+	// 				CommonFunctions.isAndroid() ? Colors.textOnPrimary : Colors.textDark
+	// 			}
+	// 			onChange={(e: any, value: Moment.MomentInput) => {
+	// 				if (value) {
+	// 					// console.log(changedDate, 'changed dateee--->>>');
+	// 					const curDate = Moment(value)
+	// 						.utcOffset(0, false)
+	// 						.format('YYYY-MM-DD');
+	// 					setShow(false);
+	// 					setChangedDate(curDate);
+	// 				} else {
+	// 					setShow(false);
+	// 				}
+	// 			}}
+	// 		/>
+	// 	);
+	// };
 
 	const selectPickerModal = () => {
 		return (
@@ -353,60 +356,81 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 							<Text style={[styles.modalTextTitle, {fontSize: 20}]}>
 								Please give expiry date of {title}{' '}
 							</Text>
-							{CommonFunctions.isAndroid() && (
-								<TouchableOpacity
+							{/*{CommonFunctions.isAndroid() && (*/}
+							{/*	<TouchableOpacity*/}
+							{/*		style={{*/}
+							{/*			width: '100%',*/}
+							{/*			flexDirection: 'row',*/}
+							{/*			justifyContent: 'space-between',*/}
+							{/*			height: 50,*/}
+							{/*			alignItems: 'center',*/}
+							{/*			borderWidth: 2,*/}
+							{/*			borderColor: Colors.borderColor,*/}
+							{/*			paddingHorizontal: 20,*/}
+							{/*			marginTop: 10,*/}
+							{/*		}}*/}
+							{/*		onPress={() => {*/}
+							{/*			setShow(true);*/}
+							{/*		}}>*/}
+							{/*		<View style={{flex: 1}}>*/}
+							{/*			{!!changedDate && (*/}
+							{/*				<Text style={[styles.dateText]}>*/}
+							{/*					{Moment(changedDate).format('DD-MM-YYYY')}*/}
+							{/*					/!* {changedDate} *!/*/}
+							{/*				</Text>*/}
+							{/*			)}*/}
+							{/*			{!changedDate && (*/}
+							{/*				<Text*/}
+							{/*					style={[styles.dateText, {color: Colors.textLight}]}>*/}
+							{/*					/!* {placeHolder || 'Select Date'} *!/*/}
+							{/*					{'Please select the date'}*/}
+							{/*				</Text>*/}
+							{/*			)}*/}
+							{/*		</View>*/}
+							{/*		<ImageConfig.calendarIcon height={'25'} width={'25'} />*/}
+							{/*	</TouchableOpacity>*/}
+							{/*)}*/}
+							{/*{Platform.OS === 'ios' && (*/}
+							{/*	<View>*/}
+							{/*		<DatePickerComponent*/}
+							{/*			style={{*/}
+							{/*				height: 40,*/}
+							{/*				borderWidth: 2,*/}
+							{/*				borderColor: Colors.borderColor,*/}
+							{/*				paddingHorizontal: 10,*/}
+							{/*				marginTop: 10,*/}
+							{/*			}}*/}
+							{/*			onChange={date => {*/}
+							{/*				setChangedDate(date);*/}
+							{/*			}}*/}
+							{/*		/>*/}
+							{/*	</View>*/}
+							{/*)}*/}
+							{/*<View>*/}
+							{/*	{!!show && (*/}
+							{/*		<>{CommonFunctions.isAndroid() && getDatePicker()}</>*/}
+							{/*	)}*/}
+							{/*</View>*/}
+							<View
+								style={{
+									width: '100%',
+
+									marginTop: 10,
+								}}>
+								<DatePickerComponent
 									style={{
-										width: '100%',
-										flexDirection: 'row',
-										justifyContent: 'space-between',
 										height: 50,
-										alignItems: 'center',
+
 										borderWidth: 2,
+
 										borderColor: Colors.borderColor,
-										paddingHorizontal: 20,
-										marginTop: 10,
+
+										width: '100%',
 									}}
-									onPress={() => {
-										setShow(true);
-									}}>
-									<View style={{flex: 1}}>
-										{!!changedDate && (
-											<Text style={[styles.dateText]}>
-												{Moment(changedDate).format('DD-MM-YYYY')}
-												{/* {changedDate} */}
-											</Text>
-										)}
-										{!changedDate && (
-											<Text
-												style={[styles.dateText, {color: Colors.textLight}]}>
-												{/* {placeHolder || 'Select Date'} */}
-												{'Please select the date'}
-											</Text>
-										)}
-									</View>
-									<ImageConfig.calendarIcon height={'25'} width={'25'} />
-								</TouchableOpacity>
-							)}
-							{Platform.OS === 'ios' && (
-								<View>
-									<DatePickerComponent
-										style={{
-											height: 40,
-											borderWidth: 2,
-											borderColor: Colors.borderColor,
-											paddingHorizontal: 10,
-											marginTop: 10,
-										}}
-										onChange={date => {
-											setChangedDate(date);
-										}}
-									/>
-								</View>
-							)}
-							<View>
-								{!!show && (
-									<>{CommonFunctions.isAndroid() && getDatePicker()}</>
-								)}
+									onChange={date => {
+										setChangedDate(date);
+									}}
+								/>
 							</View>
 							<CustomButton
 								style={{

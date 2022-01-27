@@ -42,6 +42,7 @@ const GetThankYouScreen = 'GetThankYouScreen';
 const GetRegionScreen = 'GetRegionScreen';
 const GetCertifiedToPractiseScreen = 'GetCertifiedToPractiseScreen';
 const GetVaccineForCovidScreen = 'GetVaccineForCovidScreen';
+const GetDistanceToTravelScreen = 'GetDistanceToTravelScreen';
 const GetHcpPositionScreen = 'GetHcpPositionScreen';
 const GetShiftPreferenceScreen = 'GetShiftPreferenceScreen';
 const GetWorkExperienceScreen = 'GetWorkExperienceScreen';
@@ -93,6 +94,7 @@ export default {
 	GetRegionScreen,
 	GetCertifiedToPractiseScreen,
 	GetVaccineForCovidScreen,
+	GetDistanceToTravelScreen,
 	GetHcpPositionScreen,
 	GetShiftPreferenceScreen,
 	GetWorkExperienceScreen,

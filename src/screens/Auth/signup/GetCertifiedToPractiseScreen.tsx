@@ -72,7 +72,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 						if (values.is_certified_to_practice === 'true') {
 							setSelectPickerModalVisible(true);
 						} else {
-							navigation.navigate(NavigateTo.GetDocumentsScreen, {
+							navigation.navigate(NavigateTo.GetDistanceToTravelScreen, {
 								GetHcpBasicDetailsPayload: hcpDetails._id,
 							});
 						}
@@ -81,14 +81,14 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 							ToastAlert.show(
 								'You have already uploaded the license, Contact team vitawerks team to update it',
 							);
-							navigation.navigate(NavigateTo.GetDocumentsScreen, {
+							navigation.navigate(NavigateTo.GetDistanceToTravelScreen, {
 								GetHcpBasicDetailsPayload: hcpDetails._id,
 							});
 						} else {
 							ToastAlert.show(
 								'You have already uploaded the license, Contact team vitawerks team to update it',
 							);
-							navigation.navigate(NavigateTo.GetDocumentsScreen, {
+							navigation.navigate(NavigateTo.GetDistanceToTravelScreen, {
 								GetHcpBasicDetailsPayload: hcpDetails._id,
 							});
 						}
@@ -125,7 +125,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 					setDocumentAvailable(true);
 					setIsLoading(false);
 					setIsLoaded(true);
-					navigation.navigate(NavigateTo.GetDocumentsScreen, {
+					navigation.navigate(NavigateTo.GetDistanceToTravelScreen, {
 						GetHcpBasicDetailsPayload: hcpDetails._id,
 					});
 				})
@@ -221,6 +221,11 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 			.then(resp => {
 				if (resp && resp.success) {
 					setHcpDetails(resp.data);
+					// if (resp.data.nc_details.travel_preferences.length === 0) {
+					// 	console.log('>>>>>><<<<<<<<<', false);
+					// } else {
+					// 	console.log(resp.data.nc_details.travel_preferences);
+					// }
 				} else {
 					console.log('Error', resp.error);
 				}

@@ -7,6 +7,7 @@ import IconDatePicker from '../assets/images/datepicker.svg';
 import IconLock from '../assets/images/lock.svg';
 import IconCheck from '../assets/images/check.svg';
 import IconCheckCircle from '../assets/images/IconCheckCircle.svg';
+import IconCheckGradient from '../assets/images/CheckGradientIcon.svg';
 import IconCheckIn from '../assets/images/IconCheckIn.svg';
 import IconBreakin from '../assets/images/IconBreakin.svg';
 import IconBreakout from '../assets/images/IconBreakout.svg';
@@ -101,6 +102,7 @@ export default {
 	IconAccountCircle,
 	IconCheck,
 	IconCheckCircle,
+	IconCheckGradient,
 	IconLock,
 	IconErrorOutline,
 	IconPassword,

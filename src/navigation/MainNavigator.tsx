@@ -20,6 +20,7 @@ import GetBasicDetailsScreen from '../screens/Auth/signup/GetBasicDetailsScreen'
 import GetThankYouScreen from '../screens/Auth/signup/GetThankYouScreen';
 import GetCertifiedToPractiseScreen from '../screens/Auth/signup/GetCertifiedToPractiseScreen';
 import GetVaccineForCovidScreen from '../screens/Auth/signup/GetVaccineForCovidScreen';
+import GetDistanceToTravelScreen from '../screens/Auth/signup/GetDistanceToTravelScreen';
 import GetHcpPositionScreen from '../screens/Auth/signup/GetHcpPositionScreen';
 import GetDocumentsScreen from '../screens/Auth/signup/GetDocumentsScreen';
 import GetLegallyAuthorisedToWorkScreen from '../screens/Auth/signup/GetLegallyAuthorisedToWorkScreen';
@@ -155,6 +156,13 @@ const SignupNavigator = () => {
 				options={{headerTitle: ''}}
 				listeners={listeners}
 				component={GetVaccineForCovidScreen}
+			/>
+			<SignupStack.Screen
+				key={NavigateTo.GetDistanceToTravelScreen + '-Screen'}
+				name={NavigateTo.GetDistanceToTravelScreen}
+				options={{headerTitle: ''}}
+				listeners={listeners}
+				component={GetDistanceToTravelScreen}
 			/>
 
 			{/* <SignupStack.Screen

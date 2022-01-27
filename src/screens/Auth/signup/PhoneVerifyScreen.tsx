@@ -78,7 +78,7 @@ const PhoneVerifyScreen = (props: any) => {
 	const navigation = props.navigation;
 	return (
 		<KeyboardAvoidCommonView>
-			<BaseViewComponent noScroll={true}>
+			<BaseViewComponent noScroll={false}>
 				<StatusBar
 					barStyle={'light-content'}
 					animated={true}
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.backgroundShiftColor,
 		marginHorizontal: -40,
 		bottom: 0,
-		height: 400,
+		height: 300,
 		marginTop: 200,
 		borderRadius: 60,
 	},

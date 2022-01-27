@@ -121,7 +121,7 @@ const OTPVerifyScreen = (props: any) => {
 				</View>
 				<View style={styles.subHeadingHolder}>
 					<Text style={styles.subHeading}>
-						Enter the 4 digit OTP to proceed -
+						Enter the 4 digit OTP to proceed
 					</Text>
 				</View>
 				<View style={styles.formBlock}>

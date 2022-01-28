@@ -33,11 +33,11 @@ const GetCertifiedToPractise = yup.object().shape({
 });
 
 export interface GetCertifiedToPractiseType {
-	is_certified_to_practice: string;
+	is_certified_to_practice: boolean;
 }
 
 const initialValues: GetCertifiedToPractiseType = {
-	is_certified_to_practice: '',
+	is_certified_to_practice: false,
 };
 
 const GetCertifiedToPractiseScreen = (props: any) => {
@@ -59,6 +59,32 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 		const payload = {
 			nc_details: {
 				is_certified_to_practice: values.is_certified_to_practice,
+				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
+				vaccination_dates: {
+					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+				},
+				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
+				is_require_employment_sponsorship:
+					hcpDetails.nc_details.is_require_employment_sponsorship,
+				travel_preferences: hcpDetails.nc_details.travel_preferences,
+				dnr: '',
+				shift_type_preference: '',
+				location_preference: '',
+				more_important_preference: '',
+				family_consideration: '',
+				zone_assignment: '',
+				vaccine: '',
+				covid_facility_preference: '',
+				is_fulltime_job: '',
+				is_supplement_to_income: '',
+				is_studying: '',
+				is_gusto_invited: '',
+				is_gusto_onboarded: '',
+				gusto_type: '',
+				last_call_date: '',
+				contact_type: '',
+				other_information: '',
 			},
 		};
 		ApiFunctions.put(
@@ -69,7 +95,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				formikHelpers.setSubmitting(false);
 				if (resp.success) {
 					if (!documentAvailable) {
-						if (values.is_certified_to_practice === 'true') {
+						if (values.is_certified_to_practice === true) {
 							setSelectPickerModalVisible(true);
 						} else {
 							navigation.navigate(NavigateTo.GetDistanceToTravelScreen, {
@@ -77,7 +103,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 							});
 						}
 					} else {
-						if (values.is_certified_to_practice === 'true') {
+						if (values.is_certified_to_practice === true) {
 							ToastAlert.show(
 								'You have already uploaded the license, Contact team vitawerks team to update it',
 							);
@@ -224,11 +250,6 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 			.then(resp => {
 				if (resp && resp.success) {
 					setHcpDetails(resp.data);
-					// if (resp.data.nc_details.travel_preferences.length === 0) {
-					// 	console.log('>>>>>><<<<<<<<<', false);
-					// } else {
-					// 	console.log(resp.data.nc_details.travel_preferences);
-					// }
 				} else {
 					console.log('Error', resp.error);
 				}
@@ -314,9 +335,8 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 									initialValues={{
 										...initialValues,
 										...{
-											is_certified_to_practice: hcpDetails.nc_details
-												? hcpDetails.nc_details.is_certified_to_practice || ''
-												: '',
+											is_certified_to_practice:
+												hcpDetails.nc_details.is_certified_to_practice || '',
 										},
 									}}>
 									{({handleSubmit, isValid, isSubmitting, values}) => (
@@ -329,8 +349,8 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 													<FormikRadioGroupComponent
 														formikField={field}
 														radioButtons={[
-															{id: 'true', title: 'Yes'},
-															{id: 'false', title: 'No'},
+															{id: true, title: 'Yes'},
+															{id: false, title: 'No'},
 														]}
 														direction={'column'}
 													/>

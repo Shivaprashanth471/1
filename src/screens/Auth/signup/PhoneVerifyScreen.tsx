@@ -55,12 +55,14 @@ const initialValues: PhoneVerifySchemaType = {
 
 const PhoneVerifyScreen = (props: any) => {
 	const [phnNumber, setPhnNum] = useState('');
+	const [BtnLoading, setBtnLoading] = useState<boolean>(false);
 
 	const phoneVerifyHandler = () =>
 		// values: PhoneVerifySchemaType,
 		// formikHelpers: FormikHelpers<PhoneVerifySchemaType>,
 		{
 			// formikHelpers.setSubmitting(true);
+			setBtnLoading(true);
 			const payload = {contact_number: phnNumber};
 			ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
 				.then(resp => {
@@ -74,12 +76,14 @@ const PhoneVerifyScreen = (props: any) => {
 						ToastAlert.show(resp.error || '');
 						console.log('resp.error');
 					}
+					setBtnLoading(false);
 				})
 				.catch((err: any) => {
 					// formikHelpers.setSubmitting(false);
 					// CommonFunctions.handleErrors(err, formikHelpers.setErrors);
 					ToastAlert.show(err.msg || 'Oops... Something went wrong!');
 					console.log('>>>>>', err.msg);
+					setBtnLoading(false);
 				});
 		};
 	const navigation = props.navigation;
@@ -137,7 +141,7 @@ const PhoneVerifyScreen = (props: any) => {
 											<FormikPhoneInputComponent
 												formikField={field}
 												onUpdate={phnNum => {
-													console.log(phnNum, 'njnkbjhbh');
+													// console.log(phnNum, 'njnkbjhbh');
 													setPhnNum(phnNum);
 												}}
 											/>
@@ -162,7 +166,7 @@ const PhoneVerifyScreen = (props: any) => {
 												Terms {'&'} Conditions.
 											</Text>
 											<CustomButton
-												isLoading={isSubmitting}
+												isLoading={BtnLoading}
 												title={'Agree & Continue'}
 												onPress={phoneVerifyHandler}
 												style={styles.button}

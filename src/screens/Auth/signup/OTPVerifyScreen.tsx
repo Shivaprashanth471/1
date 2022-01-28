@@ -1,9 +1,21 @@
 import React, {useState, useCallback} from 'react';
-import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+	StatusBar,
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+} from 'react-native';
 import {BaseViewComponent, CustomButton} from '../../../components/core';
 import KeyboardAvoidCommonView from '../../../components/core/KeyboardAvoidCommonView';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../../helpers';
-import {Colors, ENV, FontConfig, NavigateTo} from '../../../constants';
+import {
+	Colors,
+	ENV,
+	FontConfig,
+	NavigateTo,
+	ImageConfig,
+} from '../../../constants';
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import FormikInputComponent from '../../../components/core/FormikInputComponent';
@@ -114,6 +126,16 @@ const OTPVerifyScreen = (props: any) => {
 				/>
 				<View style={styles.wrapper}>
 					<View style={styles.header}>
+						<TouchableOpacity
+							onPress={() => {
+								navigation.goBack();
+							}}>
+							<ImageConfig.backArrow
+								width="20"
+								height="20"
+								style={{marginBottom: 10}}
+							/>
+						</TouchableOpacity>
 						<View style={{}}>
 							<Text style={styles.headerText}>We have sent you an OTP</Text>
 						</View>
@@ -263,7 +285,7 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		flex: 0,
-		marginTop: 40,
+		marginTop: 20,
 		justifyContent: 'center',
 		alignItems: 'flex-start',
 		flexDirection: 'column',

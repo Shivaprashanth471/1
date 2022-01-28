@@ -33,13 +33,13 @@ const GetVaccineForCovid = yup.object().shape({
 });
 
 export interface GetVaccineForCovidType {
-	is_vaccinated: string;
+	is_vaccinated: boolean;
 	first_shot: any;
 	latest_shot: any;
 }
 
 const initialValues: GetVaccineForCovidType = {
-	is_vaccinated: '',
+	is_vaccinated: false,
 	first_shot: '',
 	latest_shot: '',
 };
@@ -66,21 +66,43 @@ const GetVaccineForCovidScreen = (props: any) => {
 					hcpDetails.nc_details.is_certified_to_practice,
 				is_vaccinated: values.is_vaccinated,
 				vaccination_dates: {
-					first_shot: values.is_vaccinated === 'true' ? values.first_shot : '',
-					latest_shot:
-						values.is_vaccinated === 'true' ? values.latest_shot : '',
+					first_shot:
+						values.is_vaccinated === true
+							? values.first_shot
+							: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: values.is_vaccinated === true ? values.latest_shot : '',
 				},
+				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
+				is_require_employment_sponsorship:
+					hcpDetails.nc_details.is_require_employment_sponsorship,
+				travel_preferences: hcpDetails.nc_details.travel_preferences,
+				dnr: '',
+				shift_type_preference: '',
+				location_preference: '',
+				more_important_preference: '',
+				family_consideration: '',
+				zone_assignment: '',
+				vaccine: '',
+				covid_facility_preference: '',
+				is_fulltime_job: '',
+				is_supplement_to_income: '',
+				is_studying: '',
+				is_gusto_invited: '',
+				is_gusto_onboarded: '',
+				gusto_type: '',
+				last_call_date: '',
+				contact_type: '',
+				other_information: '',
 			},
 		};
-		console.log(payload);
 		ApiFunctions.put(ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload, payload)
 			.then(async (resp: TSAPIResponseType<GetVaccineForCovidType>) => {
 				formikHelpers.setSubmitting(false);
 				if (resp.success) {
-					if (values.is_vaccinated === 'true' && !selectPickerModalVisible) {
+					if (values.is_vaccinated === true && !selectPickerModalVisible) {
 						setSelectPickerModalVisible(true);
 					} else if (
-						values.is_vaccinated === 'true' &&
+						values.is_vaccinated === true &&
 						selectPickerModalVisible
 					) {
 						setSelectPickerModalVisible(false);
@@ -194,9 +216,13 @@ const GetVaccineForCovidScreen = (props: any) => {
 									initialValues={{
 										...initialValues,
 										...{
-											is_vaccinated: hcpDetails.nc_details.is_vaccinated
-												? hcpDetails.nc_details.is_vaccinated || ''
-												: '',
+											is_vaccinated: hcpDetails.nc_details.is_vaccinated || '',
+											first_shot:
+												hcpDetails.nc_details.vaccination_dates.first_shot ||
+												'',
+											latest_shot:
+												hcpDetails.nc_details.vaccination_dates.latest_shot ||
+												'',
 										},
 									}}>
 									{({handleSubmit, isValid, isSubmitting, values}) => (
@@ -210,8 +236,8 @@ const GetVaccineForCovidScreen = (props: any) => {
 														formikField={field}
 														// labelText={'Shift Prefer'}
 														radioButtons={[
-															{id: 'true', title: 'Yes'},
-															{id: 'false', title: 'No'},
+															{id: true, title: 'Yes'},
+															{id: false, title: 'No'},
 														]}
 														direction={'column'}
 													/>
@@ -304,13 +330,6 @@ const GetVaccineForCovidScreen = (props: any) => {
 																	isLoading={isSubmitting}
 																	title={'Save'}
 																	onPress={() => {
-																		// var start = Moment(values.first_shot);
-																		// var end = Moment(values.latest_shot);
-																		// var duration = Moment.duration(
-																		// 	end.diff(start),
-																		// );
-																		// var days = duration.asDays();
-																		// console.log(days);
 																		handleSubmit();
 																	}}
 																	style={{

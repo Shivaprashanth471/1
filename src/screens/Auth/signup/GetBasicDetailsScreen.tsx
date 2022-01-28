@@ -167,6 +167,8 @@ const GetBasicDetailsScreen = (props: any) => {
 											{(field: FieldProps) => (
 												<FormikInputComponent
 													trimSpaces={true}
+													trimNumbers={true}
+													trimSpecialCharacters={true}
 													inputProperties={{
 														keyboardType: 'default',
 														placeholder: 'First Name*',
@@ -179,6 +181,8 @@ const GetBasicDetailsScreen = (props: any) => {
 											{(field: FieldProps) => (
 												<FormikInputComponent
 													trimSpaces={true}
+													trimNumbers={true}
+													trimSpecialCharacters={true}
 													inputProperties={{
 														keyboardType: 'default',
 														placeholder: 'Last Name*',

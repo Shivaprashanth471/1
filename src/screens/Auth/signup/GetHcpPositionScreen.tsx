@@ -26,15 +26,15 @@ import * as yup from 'yup';
 import {TSAPIResponseType} from '../../../helpers/ApiFunctions';
 import DropdownComponent from '../../../components/core/DropdownComponent';
 import {currentList} from '../../../constants/CommonVariables';
-const loginSchema = yup.object().shape({
+const hcpPositionSchema = yup.object().shape({
 	hcp_type: yup.string().required('Required'),
 });
 
-export interface LocationSchemaType {
+export interface HcpPositionSchemaType {
 	hcp_type: string;
 }
 
-const initialValues: LocationSchemaType = {
+const initialValues: HcpPositionSchemaType = {
 	hcp_type: '',
 };
 
@@ -43,18 +43,53 @@ const GetHcpPositionScreen = (props: any) => {
 	const {signupInitiated}: any = props.route.params;
 	const navigation = props.navigation;
 	const [loadingPercent, setLoadingPercent]: any = useState(14.28);
-	const lastNameHandler = (
-		values: LocationSchemaType,
-		formikHelpers: FormikHelpers<LocationSchemaType>,
+	const [isLoading, setIsLoading]: any = useState(true);
+	const [isLoaded, setIsLoaded]: any = useState(false);
+	const [hcpDetails, setHcpDetails]: any = useState<null | {}>({});
+
+	const hcpPositionHandler = (
+		values: HcpPositionSchemaType,
+		formikHelpers: FormikHelpers<HcpPositionSchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
-		const payload = {...values};
-		console.log(payload);
+		const payload = {
+			hcp_type: values.hcp_type,
+			nc_details: {
+				is_certified_to_practice:
+					hcpDetails.nc_details.is_certified_to_practice,
+				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
+				vaccination_dates: {
+					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.latest_shot,
+				},
+				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
+				is_require_employment_sponsorship:
+					hcpDetails.nc_details.is_require_employment_sponsorship,
+				travel_preferences: hcpDetails.nc_details.travel_preferences,
+				dnr: '',
+				shift_type_preference: '',
+				location_preference: '',
+				more_important_preference: '',
+				family_consideration: '',
+				zone_assignment: '',
+				vaccine: '',
+				covid_facility_preference: '',
+				is_fulltime_job: '',
+				is_supplement_to_income: '',
+				is_studying: '',
+				is_gusto_invited: '',
+				is_gusto_onboarded: '',
+				gusto_type: '',
+				last_call_date: '',
+				contact_type: '',
+				other_information: '',
+			},
+		};
 		ApiFunctions.put(
 			ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload._id,
 			payload,
 		)
-			.then(async (resp: TSAPIResponseType<LocationSchemaType>) => {
+			.then(async (resp: TSAPIResponseType<HcpPositionSchemaType>) => {
 				formikHelpers.setSubmitting(false);
 				if (resp.success) {
 					navigation.navigate(NavigateTo.GetCertifiedToPractiseScreen, {
@@ -72,10 +107,6 @@ const GetHcpPositionScreen = (props: any) => {
 				console.log('error: ', err);
 			});
 	};
-
-	const [isLoading, setIsLoading]: any = useState(true);
-	const [isLoaded, setIsLoaded]: any = useState(false);
-	const [hcpDetails, setHcpDetails]: any = useState<null | {}>({});
 
 	const getHcpDetails = useCallback(() => {
 		setIsLoading(true);
@@ -163,8 +194,8 @@ const GetHcpPositionScreen = (props: any) => {
 							<View style={styles.formBlock}>
 								<View style={styles.formHolder}>
 									<Formik
-										onSubmit={lastNameHandler}
-										validationSchema={loginSchema}
+										onSubmit={hcpPositionHandler}
+										validationSchema={hcpPositionSchema}
 										validateOnBlur={true}
 										initialValues={{
 											...initialValues,

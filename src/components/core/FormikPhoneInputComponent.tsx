@@ -42,7 +42,7 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 
 	const {field, form} = formikField;
 	const [hasFocus, setHasFocus] = useState(false);
-	const [countryCode, setCountryCode] = useState('');
+	const [countryCode, setCountryCode] = useState('1');
 
 	const hasError =
 		form.touched[field.name] && form.errors && form.errors[field.name];
@@ -65,17 +65,18 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 			form.setFieldTouched(field.name);
 			form.setFieldValue(field.name, text);
 			// const checkValid = phoneInput.current?.isValidNumber(text);
-			console.log('called this function');
+			// console.log('called this function');
 
 			if (onUpdate) {
 				const phnNumWithCountryCode = '+' + countryCode + text;
 				onUpdate(phnNumWithCountryCode);
+				// console.log(phnNumWithCountryCode);
 			}
 		},
 		[countryCode, field.name, form, onUpdate],
 	);
 
-	console.log(countryCode, 'country code........');
+	// console.log(countryCode, 'country code........');
 
 	return (
 		<>

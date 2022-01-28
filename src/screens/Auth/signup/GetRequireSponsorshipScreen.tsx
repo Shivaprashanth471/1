@@ -30,11 +30,11 @@ const GetVaccineForCovid = yup.object().shape({
 });
 
 export interface GetRequireSponsorshipType {
-	is_require_employment_sponsorship: string;
+	is_require_employment_sponsorship: boolean;
 }
 
 const initialValues: GetRequireSponsorshipType = {
-	is_require_employment_sponsorship: '',
+	is_require_employment_sponsorship: false,
 };
 
 const GetRequireSponsorshipScreen = (props: any) => {
@@ -58,14 +58,31 @@ const GetRequireSponsorshipScreen = (props: any) => {
 				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
 				vaccination_dates: {
 					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
-					latest_shot: hcpDetails.nc_details.vaccination_dates.latest_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
 				},
 				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
 				is_require_employment_sponsorship:
 					values.is_require_employment_sponsorship,
+				travel_preferences: hcpDetails.nc_details.travel_preferences,
+				dnr: '',
+				shift_type_preference: '',
+				location_preference: '',
+				more_important_preference: '',
+				family_consideration: '',
+				zone_assignment: '',
+				vaccine: '',
+				covid_facility_preference: '',
+				is_fulltime_job: '',
+				is_supplement_to_income: '',
+				is_studying: '',
+				is_gusto_invited: '',
+				is_gusto_onboarded: '',
+				gusto_type: '',
+				last_call_date: '',
+				contact_type: '',
+				other_information: '',
 			},
 		};
-		console.log(payload);
 		ApiFunctions.put(ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload, payload)
 			.then(async (resp: TSAPIResponseType<GetRequireSponsorshipType>) => {
 				formikHelpers.setSubmitting(false);
@@ -175,11 +192,9 @@ const GetRequireSponsorshipScreen = (props: any) => {
 									initialValues={{
 										...initialValues,
 										...{
-											is_require_employment_sponsorship: hcpDetails.nc_details
-												.is_require_employment_sponsorship
-												? hcpDetails.nc_details
-														.is_require_employment_sponsorship || ''
-												: '',
+											is_require_employment_sponsorship:
+												hcpDetails.nc_details
+													.is_require_employment_sponsorship || '',
 										},
 									}}>
 									{({handleSubmit, isValid, isSubmitting, values}) => (
@@ -192,8 +207,8 @@ const GetRequireSponsorshipScreen = (props: any) => {
 													<FormikRadioGroupComponent
 														formikField={field}
 														radioButtons={[
-															{id: 'true', title: 'Yes'},
-															{id: 'false', title: 'No'},
+															{id: true, title: 'Yes'},
+															{id: false, title: 'No'},
 														]}
 														direction={'column'}
 													/>

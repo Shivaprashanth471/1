@@ -33,7 +33,7 @@ const GetDistanceToTravelSchema = yup.object().shape({
 });
 
 export interface GetDistanceToTravelType {
-	travel_preferences: string;
+	travel_preferences: any;
 }
 
 const initialValues: GetDistanceToTravelType = {
@@ -65,16 +65,38 @@ const GetDistanceToTravelScreen = (props: any) => {
 			nc_details: {
 				is_certified_to_practice:
 					hcpDetails.nc_details.is_certified_to_practice,
+				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
+				vaccination_dates: {
+					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+				},
+				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
+				is_require_employment_sponsorship:
+					hcpDetails.nc_details.is_require_employment_sponsorship,
 				travel_preferences: selectedValue,
+				dnr: '',
+				shift_type_preference: '',
+				location_preference: '',
+				more_important_preference: '',
+				family_consideration: '',
+				zone_assignment: '',
+				vaccine: '',
+				covid_facility_preference: '',
+				is_fulltime_job: '',
+				is_supplement_to_income: '',
+				is_studying: '',
+				is_gusto_invited: '',
+				is_gusto_onboarded: '',
+				gusto_type: '',
+				last_call_date: '',
+				contact_type: '',
+				other_information: '',
 			},
 		};
-		console.log(payload);
-		// setIsSubmitting(false);
 		ApiFunctions.put(ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload, payload)
 			.then(async (resp: TSAPIResponseType<GetDistanceToTravelType>) => {
 				setIsSubmitting(false);
 				if (resp.success) {
-					// console.log('resp', resp.data);
 					navigation.navigate(NavigateTo.GetDocumentsScreen, {
 						GetHcpBasicDetailsPayload: hcpDetails._id,
 					});

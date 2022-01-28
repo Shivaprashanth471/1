@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
 	StatusBar,
 	StyleSheet,
@@ -28,8 +28,12 @@ const phoneVerifySchema = yup.object().shape({
 	contact_number: yup
 		.string()
 		.min(10, 'Phone number must be of 10 digits')
+		// .matches(
+		// 	/^\+(?=.*[1-9])((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+		// 	'Invalid',
+		// )
 		.matches(
-			/^\+(?=.*[1-9])((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+			/^(?=.*[1-9])((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
 			'Invalid',
 		)
 		.required('Required'),
@@ -50,32 +54,34 @@ const initialValues: PhoneVerifySchemaType = {
 };
 
 const PhoneVerifyScreen = (props: any) => {
-	const phoneVerifyHandler = (
-		values: PhoneVerifySchemaType,
-		formikHelpers: FormikHelpers<PhoneVerifySchemaType>,
-	) => {
-		formikHelpers.setSubmitting(true);
-		const payload = {...values};
-		ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
-			.then(resp => {
-				formikHelpers.setSubmitting(false);
-				if (resp.success) {
-					ToastAlert.show(resp.msg || 'phone verified');
-					navigation.navigate(NavigateTo.OTPVerifyScreen, {
-						contact_number: payload,
-					});
-				} else {
-					ToastAlert.show(resp.error || '');
-					console.log('resp.error');
-				}
-			})
-			.catch((err: any) => {
-				formikHelpers.setSubmitting(false);
-				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-				ToastAlert.show(err.msg || 'Oops... Something went wrong!');
-				console.log('>>>>>', err.msg);
-			});
-	};
+	const [phnNumber, setPhnNum] = useState('');
+
+	const phoneVerifyHandler = () =>
+		// values: PhoneVerifySchemaType,
+		// formikHelpers: FormikHelpers<PhoneVerifySchemaType>,
+		{
+			// formikHelpers.setSubmitting(true);
+			const payload = {contact_number: phnNumber};
+			ApiFunctions.post(ENV.apiUrl + 'sendOTP', payload)
+				.then(resp => {
+					// formikHelpers.setSubmitting(false);
+					if (resp.success) {
+						ToastAlert.show(resp.msg || 'phone verified');
+						navigation.navigate(NavigateTo.OTPVerifyScreen, {
+							contact_number: payload,
+						});
+					} else {
+						ToastAlert.show(resp.error || '');
+						console.log('resp.error');
+					}
+				})
+				.catch((err: any) => {
+					// formikHelpers.setSubmitting(false);
+					// CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+					ToastAlert.show(err.msg || 'Oops... Something went wrong!');
+					console.log('>>>>>', err.msg);
+				});
+		};
 	const navigation = props.navigation;
 	return (
 		<KeyboardAvoidCommonView>
@@ -128,7 +134,13 @@ const PhoneVerifyScreen = (props: any) => {
 								<>
 									<Field name={'contact_number'}>
 										{(field: FieldProps) => (
-											<FormikPhoneInputComponent formikField={field} />
+											<FormikPhoneInputComponent
+												formikField={field}
+												onUpdate={phnNum => {
+													console.log(phnNum, 'njnkbjhbh');
+													setPhnNum(phnNum);
+												}}
+											/>
 										)}
 									</Field>
 									<View style={styles.footerContainer}>
@@ -152,7 +164,7 @@ const PhoneVerifyScreen = (props: any) => {
 											<CustomButton
 												isLoading={isSubmitting}
 												title={'Agree & Continue'}
-												onPress={handleSubmit}
+												onPress={phoneVerifyHandler}
 												style={styles.button}
 												disabled={!isValid}
 												textStyle={{textTransform: 'none'}}

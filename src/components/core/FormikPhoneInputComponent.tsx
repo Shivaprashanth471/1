@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {
 	StyleProp,
 	StyleSheet,
@@ -42,6 +42,7 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 
 	const {field, form} = formikField;
 	const [hasFocus, setHasFocus] = useState(false);
+	const [countryCode, setCountryCode] = useState('');
 
 	const hasError =
 		form.touched[field.name] && form.errors && form.errors[field.name];
@@ -59,15 +60,22 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 		borderColor: styles.inputWrapper.borderColor,
 	};
 
-	const textChangeHandler = (text: any) => {
-		form.setFieldTouched(field.name);
-		form.setFieldValue(field.name, text);
-		// const checkValid = phoneInput.current?.isValidNumber(text);
+	const textChangeHandler = useCallback(
+		(text: any) => {
+			form.setFieldTouched(field.name);
+			form.setFieldValue(field.name, text);
+			// const checkValid = phoneInput.current?.isValidNumber(text);
+			console.log('called this function');
 
-		if (onUpdate) {
-			onUpdate(text);
-		}
-	};
+			if (onUpdate) {
+				const phnNumWithCountryCode = '+' + countryCode + text;
+				onUpdate(phnNumWithCountryCode);
+			}
+		},
+		[countryCode, field.name, form, onUpdate],
+	);
+
+	console.log(countryCode, 'country code........');
 
 	return (
 		<>
@@ -108,14 +116,18 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 					height: 55,
 				}}
 				// onChangeCountry={value => {
-				// 	textChangeHandler(value);
+				// 	console.log(value, 'value /////');
+				// 	setCountryCode(value.callingCode[0]);
+				// 	// textChangeHandler(value);
 				// }}
-				onChangeText={e => {
-					// console.log('number length:', e.length);
+				onChangeCountry={value => {
+					phoneInput.current?.setState({
+						number: '',
+					});
+					setCountryCode(value.callingCode[0]);
+					textChangeHandler('');
 				}}
-				onChangeFormattedText={text => {
-					textChangeHandler(text);
-				}}
+				onChangeText={textChangeHandler}
 				autoFocus
 			/>
 			{(errorMessage || hasError) && (

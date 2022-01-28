@@ -35,7 +35,9 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 
 	const getFacilityShiftDetails = useCallback(shift_id => {
 		setIsLoading(true);
+		console.log('shiftId>>>>>>>>>>>>>>>>>>>>>', shift_id);
 		ApiFunctions.get(ENV.apiUrl + 'shift/' + shift_id)
+
 			.then(async resp => {
 				if (resp) {
 					setFacilityShift(resp.data);
@@ -48,7 +50,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 			.catch((err: any) => {
 				setIsLoading(false);
 				setIsLoaded(true);
-				console.log(err);
+				console.log('getFacilityShiftDetails', err);
 			});
 		setIsLoading(true);
 	}, []);
@@ -76,6 +78,8 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 							setViewMode('shiftAvailable');
 							setStatusInProgress(true);
 						} else {
+							console.log('here');
+
 							getPendingShiftDetails();
 						}
 					} else {
@@ -85,7 +89,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 				.catch((err: any) => {
 					setIsLoading(false);
 					setIsLoaded(true);
-					console.log(err);
+					console.log('getNextShiftDetails', err);
 				});
 		}
 	}, [getFacilityShiftDetails, navigation, user]);
@@ -96,6 +100,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 			let date = new Date();
 			const curDate = moment(date).format('YYYY-MM-DD');
 			const payload = {new_shifts: curDate, shift_status: 'pending'};
+			console.log('>>>>>>>>>>>>>>>>>>>>>', user._id);
 			ApiFunctions.post(
 				ENV.apiUrl + 'shift/hcp/' + user._id + '/shift',
 				payload,
@@ -108,6 +113,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 							let dateDiff = getToday.diff(element, 'days') * -1;
 							return i.shift_status === 'pending' && dateDiff >= 0;
 						});
+						console.log('><><><', resp.data);
 
 						setStatusInProgress(false);
 
@@ -136,7 +142,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 				.catch((err: any) => {
 					setIsLoading(false);
 					setIsLoaded(true);
-					console.log(err);
+					console.log('getPendingShiftDetails', err);
 				});
 		}
 	}, [getFacilityShiftDetails, user]);

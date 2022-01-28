@@ -165,7 +165,7 @@ const DatePickerComponent = (props: DatePickerComponentProps) => {
 								</Text>
 							)}
 						</View>
-						<ImageConfig.IconDatePicker
+						<ImageConfig.calendarIcon
 							style={{marginRight: 15}}
 							width={24}
 							color={Colors.textLight}

@@ -26,6 +26,7 @@ import {
 } from '../../../components/core';
 import * as yup from 'yup';
 import {TSAPIResponseType} from '../../../helpers/ApiFunctions';
+import Moment from 'moment';
 
 const GetVaccineForCovid = yup.object().shape({
 	is_vaccinated: yup.string().required('Required'),
@@ -175,7 +176,7 @@ const GetVaccineForCovidScreen = (props: any) => {
 							/>
 							<View style={{}}>
 								<Text style={styles.headerText}>
-									Are you vacciinated for COVID
+									Are you vaccinated for COVID
 								</Text>
 							</View>
 							<View style={styles.subHeadingHolder}>
@@ -274,6 +275,7 @@ const GetVaccineForCovidScreen = (props: any) => {
 																	{(field: FieldProps) => (
 																		<FormikDatepickerComponent
 																			formikField={field}
+																			maxDate={Moment().format('YYYY-MM-DD')}
 																			labelDarkText={'First Shot'}
 																			style={{
 																				width: '100%',
@@ -290,6 +292,7 @@ const GetVaccineForCovidScreen = (props: any) => {
 																	{(field: FieldProps) => (
 																		<FormikDatepickerComponent
 																			formikField={field}
+																			maxDate={Moment().format('YYYY-MM-DD')}
 																			labelDarkText={'Latest Shot'}
 																			style={{
 																				width: '100%',
@@ -300,12 +303,26 @@ const GetVaccineForCovidScreen = (props: any) => {
 																<CustomButton
 																	isLoading={isSubmitting}
 																	title={'Save'}
-																	onPress={handleSubmit}
+																	onPress={() => {
+																		// var start = Moment(values.first_shot);
+																		// var end = Moment(values.latest_shot);
+																		// var duration = Moment.duration(
+																		// 	end.diff(start),
+																		// );
+																		// var days = duration.asDays();
+																		// console.log(days);
+																		handleSubmit();
+																	}}
 																	style={{
 																		backgroundColor: Colors.primary,
 																		marginTop: 50,
 																	}}
-																	disabled={!isValid}
+																	disabled={
+																		values.first_shot === '' ||
+																		values.latest_shot === ''
+																			? true
+																			: false
+																	}
 																/>
 															</View>
 														</View>

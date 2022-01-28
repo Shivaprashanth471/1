@@ -296,7 +296,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 							/>
 							<View style={{}}>
 								<Text style={styles.headerText}>
-									Do you carry a valid certification and/or license to practise
+									Do you carry a valid certification and/or license to practice
 								</Text>
 							</View>
 							<View style={styles.subHeadingHolder}>

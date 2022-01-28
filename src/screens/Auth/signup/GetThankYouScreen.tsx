@@ -38,7 +38,7 @@ const GetThankYouScreen = (props: any) => {
 							fontFamily: FontConfig.primary.semiBold,
 						}}>
 						we have received your application, our team will get back to you
-						shirtly
+						shortly
 					</Text>
 				</View>
 				<View

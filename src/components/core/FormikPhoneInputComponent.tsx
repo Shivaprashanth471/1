@@ -62,6 +62,7 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 	const textChangeHandler = (text: any) => {
 		form.setFieldTouched(field.name);
 		form.setFieldValue(field.name, text);
+		// const checkValid = phoneInput.current?.isValidNumber(text);
 
 		if (onUpdate) {
 			onUpdate(text);
@@ -109,7 +110,9 @@ const FormikPhoneInputComponent = (props: FormikPhoneInputComponentProps) => {
 				// onChangeCountry={value => {
 				// 	textChangeHandler(value);
 				// }}
-				// onChangeText={textChangeHandler}
+				onChangeText={e => {
+					// console.log('number length:', e.length);
+				}}
 				onChangeFormattedText={text => {
 					textChangeHandler(text);
 				}}

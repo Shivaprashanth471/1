@@ -38,7 +38,6 @@ import {
 } from '../../components/core';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../../store/reducers';
-import moment from 'moment';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation, {GeoCoordinates} from 'react-native-geolocation-service';
 import {PERMISSIONS, request, RESULTS} from 'react-native-permissions';
@@ -92,7 +91,7 @@ const FindShiftsScreen = (props: any) => {
 	const cancelTokenRef = useRef<CancelTokenSource | null>(null);
 
 	let date = new Date();
-	const curDate = moment(date).format('YYYY-MM-DD');
+	const curDate = Moment(date).format('YYYY-MM-DD');
 
 	const [currentLocation, setCurrentLocation] = useState<GeoCoordinates | null>(
 		null,

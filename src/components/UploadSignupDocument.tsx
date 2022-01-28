@@ -73,7 +73,7 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 				.then(response => {
 					setDocumentExpiry(changedDate);
 					getAttachmentData();
-					analytics.track('Document Upload Complete');
+					// analytics.track('Document Upload Complete');
 					// setDocumentAvailable(true);
 					// setIsLoading(false);
 					// setIsLoaded(true);
@@ -129,14 +129,14 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 			} else {
 				let picMode: any = [DocumentPicker.types.pdf];
 				if (mode === 'pdf') {
-					analytics.track('Document Upload Type', {
-						documentUploadType: 'pdf',
-					});
+					// analytics.track('Document Upload Type', {
+					// 	documentUploadType: 'pdf',
+					// });
 				}
 				if (mode === 'image') {
-					analytics.track('Document Upload Type', {
-						documentUploadType: 'image',
-					});
+					// analytics.track('Document Upload Type', {
+					// 	documentUploadType: 'image',
+					// });
 					picMode = [DocumentPicker.types.images];
 				}
 				CommonFunctions.openDocumentPicker(picMode)
@@ -151,7 +151,6 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 			}
 		},
 		[uploadHandler],
-		// [uploadHandler],
 	);
 
 	const getAttachmentData = useCallback(() => {
@@ -192,41 +191,75 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 		getAttachmentData();
 	}, [getAttachmentData]);
 
-	// const getDatePicker = (
-	// 	display:
-	// 		| 'default'
-	// 		| 'compact'
-	// 		| 'inline'
-	// 		| 'spinner'
-	// 		| 'clock'
-	// 		| 'calendar' = 'default',
-	// ) => {
-	// 	return (
-	// 		<RNDateTimePicker
-	// 			testID="dateTimePicker"
-	// 			value={changedDate ? new Date(changedDate) : currentDate.toDate()}
-	// 			mode="date"
-	// 			themeVariant="light"
-	// 			display={display}
-	// 			is24Hour={true}
-	// 			textColor={
-	// 				CommonFunctions.isAndroid() ? Colors.textOnPrimary : Colors.textDark
-	// 			}
-	// 			onChange={(e: any, value: Moment.MomentInput) => {
-	// 				if (value) {
-	// 					// console.log(changedDate, 'changed dateee--->>>');
-	// 					const curDate = Moment(value)
-	// 						.utcOffset(0, false)
-	// 						.format('YYYY-MM-DD');
-	// 					setShow(false);
-	// 					setChangedDate(curDate);
-	// 				} else {
-	// 					setShow(false);
-	// 				}
-	// 			}}
-	// 		/>
-	// 	);
-	// };
+	const deleteData = useCallback(() => {
+		setIsLoading(true);
+		ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser + '/attachments')
+			.then(resp => {
+				var wantedData = resp.data.filter(function (i: any) {
+					return i.attachment_type === title;
+				});
+				if (wantedData) {
+					const payload = {file_key: wantedData[0].file_key};
+
+					ApiFunctions.delete(
+						ENV.apiUrl + 'hcp/' + HcpUser + '/attachment',
+						payload,
+					)
+						.then(resp => {
+							setDocumentAvailable(false);
+							setSelectDeleteFileModalVisible(false);
+							setIsLoading(false);
+							setIsLoaded(true);
+							ToastAlert.show('Attachment removed');
+						})
+						.catch(err => {
+							console.log(err);
+						});
+				}
+			})
+			.catch((err: any) => {
+				console.log(err);
+				setIsLoading(false);
+				setIsLoaded(true);
+				setDocumentExpiry(null);
+			});
+	}, [HcpUser, title]);
+
+	const getDatePicker = (
+		display:
+			| 'default'
+			| 'compact'
+			| 'inline'
+			| 'spinner'
+			| 'clock'
+			| 'calendar' = 'default',
+	) => {
+		return (
+			<RNDateTimePicker
+				testID="dateTimePicker"
+				value={changedDate ? new Date(changedDate) : currentDate.toDate()}
+				mode="date"
+				themeVariant="light"
+				display={display}
+				is24Hour={true}
+				textColor={
+					CommonFunctions.isAndroid() ? Colors.textOnPrimary : Colors.textDark
+				}
+				onChange={(e: any, value: Moment.MomentInput) => {
+					if (value) {
+						// console.log(changedDate, 'changed dateee--->>>');
+						const curDate = Moment(value)
+							.utcOffset(0, false)
+							.format('YYYY-MM-DD');
+						setShow(false);
+						setChangedDate(curDate);
+					} else {
+						setShow(false);
+					}
+				}}
+			/>
+		);
+	};
 
 	const selectPickerModal = () => {
 		return (
@@ -534,7 +567,7 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 											height: 45,
 										}}
 										title={'Delete'}
-										// onPress={deleteData}
+										onPress={deleteData}
 										isLoading={isLoading}
 									/>
 								</View>

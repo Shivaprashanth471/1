@@ -27,7 +27,7 @@ import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 const phoneVerifySchema = yup.object().shape({
 	contact_number: yup
 		.string()
-		.min(4, 'Phone number must be at least 4 digits')
+		.min(10, 'Phone number must be of 10 digits')
 		.matches(
 			/^\+(?=.*[1-9])((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
 			'Invalid',
@@ -72,7 +72,8 @@ const PhoneVerifyScreen = (props: any) => {
 			.catch((err: any) => {
 				formikHelpers.setSubmitting(false);
 				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-				console.log('>>>>>', err);
+				ToastAlert.show(err.msg || 'Oops... Something went wrong!');
+				console.log('>>>>>', err.msg);
 			});
 	};
 	const navigation = props.navigation;

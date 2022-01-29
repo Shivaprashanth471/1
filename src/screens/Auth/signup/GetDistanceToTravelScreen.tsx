@@ -46,12 +46,7 @@ const GetDistanceToTravelScreen = (props: any) => {
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const {GetHcpBasicDetailsPayload}: any = props.route.params;
 	const [hcpDetails, setHcpDetails]: any = useState<null | {}>({});
-	const distanceVariables = [
-		'<20 miles',
-		'20-40 miles',
-		'40-60 miles',
-		'>60 miles',
-	];
+	const distanceVariables = ['<20', '20-40', '40-60', '>60'];
 
 	const [selectedValue, setSelectedValue] = useState<any>([]);
 	const [showError, setShowError] = useState<boolean>(false);
@@ -68,7 +63,7 @@ const GetDistanceToTravelScreen = (props: any) => {
 				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
 				vaccination_dates: {
 					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
-					latest_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.latest_shot,
 				},
 				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
 				is_require_employment_sponsorship:

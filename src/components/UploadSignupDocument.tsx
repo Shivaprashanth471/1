@@ -599,8 +599,13 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 							justifyContent: 'center',
 							paddingHorizontal: 20,
 							paddingVertical: 10,
+							marginTop: 15,
 						}}>
 						<TouchableOpacity
+							style={{
+								padding: 10,
+								backgroundColor: 'red',
+							}}
 							onPress={() => {
 								setFileViewModalVisible(!fileViewModalVisible);
 							}}>

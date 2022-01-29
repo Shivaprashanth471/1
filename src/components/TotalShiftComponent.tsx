@@ -97,7 +97,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 
 	const onApply = useCallback(() => {
 		setDisableBtnLoading(true);
-		if (user) {
+		if (user._id) {
 			const payload = {hcp_user_id: user._id, applied_by: user._id};
 			ApiFunctions.post(
 				ENV.apiUrl + 'shift/requirement/' + requirementID + '/application',

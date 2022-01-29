@@ -62,7 +62,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
 				vaccination_dates: {
 					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
-					latest_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.latest_shot,
 				},
 				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
 				is_require_employment_sponsorship:
@@ -87,6 +87,9 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				other_information: '',
 			},
 		};
+		// formikHelpers.setSubmitting(false);
+		// console.log(payload.nc_details.is_certified_to_practice);
+
 		ApiFunctions.put(
 			ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload._id,
 			payload,
@@ -250,6 +253,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 			.then(resp => {
 				if (resp && resp.success) {
 					setHcpDetails(resp.data);
+					// console.log('>>', resp.data.nc_details);
 				} else {
 					console.log('Error', resp.error);
 				}
@@ -336,7 +340,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 										...initialValues,
 										...{
 											is_certified_to_practice:
-												hcpDetails.nc_details.is_certified_to_practice || '',
+												hcpDetails.nc_details.is_certified_to_practice,
 										},
 									}}>
 									{({handleSubmit, isValid, isSubmitting, values}) => (

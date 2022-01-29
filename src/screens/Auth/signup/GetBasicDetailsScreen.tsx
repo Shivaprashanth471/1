@@ -38,7 +38,6 @@ const GetBasicDetailsScreen = (props: any) => {
 	const {signupInitiated}: any = props.route.params;
 	const {contact_number}: any = props.route.params;
 	const navigation = props.navigation;
-	console.log(hcpDetails);
 
 	const GetHcpSignUpHandler = (
 		values: GetBasicDetailsSchemaType,
@@ -55,7 +54,6 @@ const GetBasicDetailsScreen = (props: any) => {
 				zip_code: values.zip_code,
 			},
 		};
-		console.log('GetHcpSignUpHandler>>>', payload);
 		ApiFunctions.post(ENV.apiUrl + 'hcp/signup', payload)
 			.then(resp => {
 				formikHelpers.setSubmitting(false);

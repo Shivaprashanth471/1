@@ -58,7 +58,7 @@ const GetLegallyAuthorisedToWorkScreen = (props: any) => {
 				is_vaccinated: hcpDetails.nc_details.is_vaccinated,
 				vaccination_dates: {
 					first_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
-					latest_shot: hcpDetails.nc_details.vaccination_dates.first_shot,
+					latest_shot: hcpDetails.nc_details.vaccination_dates.latest_shot,
 				},
 				is_authorized_to_work: values.is_authorized_to_work,
 				is_require_employment_sponsorship:
@@ -192,7 +192,7 @@ const GetLegallyAuthorisedToWorkScreen = (props: any) => {
 										...initialValues,
 										...{
 											is_authorized_to_work:
-												hcpDetails.nc_details.is_authorized_to_work || '',
+												hcpDetails.nc_details.is_authorized_to_work,
 										},
 									}}>
 									{({handleSubmit, isValid, isSubmitting, values}) => (

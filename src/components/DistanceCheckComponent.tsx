@@ -59,7 +59,7 @@ const DistanceCheckComponent = (props: DistanceCheckComponent) => {
 						color: Colors.textDark,
 						textTransform: 'capitalize',
 					}}>
-					{distanceText}
+					{distanceText} miles
 				</Text>
 				{selected && (
 					<ImageConfig.IconCheckGradient

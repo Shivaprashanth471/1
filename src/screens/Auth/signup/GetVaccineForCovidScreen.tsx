@@ -68,9 +68,12 @@ const GetVaccineForCovidScreen = (props: any) => {
 				vaccination_dates: {
 					first_shot:
 						values.is_vaccinated === true
-							? values.first_shot
+							? Moment(values.first_shot).format('MM-DD-YYYY')
 							: hcpDetails.nc_details.vaccination_dates.first_shot,
-					latest_shot: values.is_vaccinated === true ? values.latest_shot : '',
+					latest_shot:
+						values.is_vaccinated === true
+							? Moment(values.latest_shot).format('MM-DD-YYYY')
+							: hcpDetails.nc_details.vaccination_dates.latest_shot,
 				},
 				is_authorized_to_work: hcpDetails.nc_details.is_authorized_to_work,
 				is_require_employment_sponsorship:
@@ -99,22 +102,10 @@ const GetVaccineForCovidScreen = (props: any) => {
 			.then(async (resp: TSAPIResponseType<GetVaccineForCovidType>) => {
 				formikHelpers.setSubmitting(false);
 				if (resp.success) {
-					if (values.is_vaccinated === true && !selectPickerModalVisible) {
-						setSelectPickerModalVisible(true);
-					} else if (
-						values.is_vaccinated === true &&
-						selectPickerModalVisible
-					) {
-						setSelectPickerModalVisible(false);
-						navigation.navigate(NavigateTo.GetLegallyAuthorisedToWorkScreen, {
-							GetHcpBasicDetailsPayload: GetHcpBasicDetailsPayload,
-						});
-					} else {
-						setSelectPickerModalVisible(false);
-						navigation.navigate(NavigateTo.GetLegallyAuthorisedToWorkScreen, {
-							GetHcpBasicDetailsPayload: GetHcpBasicDetailsPayload,
-						});
-					}
+					setSelectPickerModalVisible(false);
+					navigation.navigate(NavigateTo.GetLegallyAuthorisedToWorkScreen, {
+						GetHcpBasicDetailsPayload: GetHcpBasicDetailsPayload,
+					});
 				} else {
 					ToastAlert.show(resp.error || '');
 				}
@@ -122,6 +113,7 @@ const GetVaccineForCovidScreen = (props: any) => {
 			.catch((err: any) => {
 				formikHelpers.setSubmitting(false);
 				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+				console.log('>>', err);
 			});
 	};
 
@@ -216,16 +208,27 @@ const GetVaccineForCovidScreen = (props: any) => {
 									initialValues={{
 										...initialValues,
 										...{
-											is_vaccinated: hcpDetails.nc_details.is_vaccinated || '',
+											is_vaccinated: hcpDetails.nc_details.is_vaccinated,
 											first_shot:
-												hcpDetails.nc_details.vaccination_dates.first_shot ||
-												'',
+												hcpDetails.nc_details.vaccination_dates.first_shot != ''
+													? Moment(
+															hcpDetails.nc_details.vaccination_dates
+																.first_shot,
+															'MM-DD-YYYY',
+													  ).format('YYYY-MM-DD')
+													: '',
 											latest_shot:
-												hcpDetails.nc_details.vaccination_dates.latest_shot ||
-												'',
+												hcpDetails.nc_details.vaccination_dates.first_shot != ''
+													? Moment(
+															hcpDetails.nc_details.vaccination_dates
+																.latest_shot,
+															'MM-DD-YYYY',
+													  ).format('YYYY-MM-DD')
+													: '',
 										},
 									}}>
 									{({handleSubmit, isValid, isSubmitting, values}) => (
+										// console.log(values.first_shot, '<><><><>'),
 										<View
 											style={{
 												justifyContent: 'space-between',
@@ -351,7 +354,13 @@ const GetVaccineForCovidScreen = (props: any) => {
 											<CustomButton
 												isLoading={isSubmitting}
 												title={'Continue'}
-												onPress={handleSubmit}
+												onPress={() => {
+													if (values.is_vaccinated) {
+														setSelectPickerModalVisible(true);
+													} else {
+														handleSubmit();
+													}
+												}}
 												style={{
 													backgroundColor: Colors.primary,
 													marginTop: 250,

@@ -96,7 +96,6 @@ const GetHcpPositionScreen = (props: any) => {
 						GetHcpBasicDetailsPayload: resp.data,
 						signupInitiated: signupInitiated,
 					});
-					console.log(resp.data);
 				} else {
 					ToastAlert.show(resp.error || '');
 				}

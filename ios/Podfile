@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '11.0'
+platform :ios, '13.0'
 
 target 'vitawerks' do
 
@@ -24,7 +24,7 @@ target 'vitawerks' do
   permissions_path = '../node_modules/react-native-permissions/ios'
 
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
-  pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
+#  pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
 
 
   target 'vitawerksTests' do

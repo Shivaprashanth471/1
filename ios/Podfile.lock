@@ -55,7 +55,7 @@ PODS:
   - lottie-react-native (5.0.1):
     - lottie-ios (~> 3.2.3)
     - React-Core
-  - OneSignalXCFramework (3.10.0)
+  - OneSignalXCFramework (3.8.1)
   - Permission-LocationWhenInUse (3.2.0):
     - RNPermissions
   - RCT-Folly (2021.06.28.00-v2):
@@ -293,8 +293,8 @@ PODS:
     - React
   - react-native-netinfo (5.9.10):
     - React-Core
-  - react-native-onesignal (4.3.5):
-    - OneSignalXCFramework (= 3.10.0)
+  - react-native-onesignal (4.3.2):
+    - OneSignalXCFramework (= 3.8.1)
     - React (< 1.0.0, >= 0.13.0)
   - react-native-safe-area-context (3.3.0):
     - React-Core
@@ -632,7 +632,7 @@ SPEC CHECKSUMS:
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   lottie-react-native: a029a86e1689c86a07169c520ae770e84348cd20
-  OneSignalXCFramework: 10648e60ff3d335fbffa62d9b44b700b56d49b51
+  OneSignalXCFramework: cd6290d43d4f7dd0443d34e7be8b95996417644e
   Permission-LocationWhenInUse: 13de9a01e006cb53a6ac3c9f8d1ab6cc98318d9c
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: e4a18a90004e0ed97bba9081099104fd0f658dc9
@@ -655,7 +655,7 @@ SPEC CHECKSUMS:
   react-native-maps: a421fe6aeb74279597c4ea9598f25796108e2d89
   react-native-month-year-picker: 2f00a9c261a86a39e14cafd02f4c319ac0fe7fe6
   react-native-netinfo: 30fb89fa913c342be82a887b56e96be6d71201dd
-  react-native-onesignal: 6ce91b6cb91e6e2b9caf051da82a27573bf9950c
+  react-native-onesignal: 9722e22583424e35ec9d56487f2601e677328744
   react-native-safe-area-context: 61c8c484a3a9e7d1fda19f7b1794b35bbfd2262a
   react-native-simple-toast: bf002828cf816775a6809f7a9ec3907509bce11f
   react-native-slider: 6e9b86e76cce4b9e35b3403193a6432ed07e0c81

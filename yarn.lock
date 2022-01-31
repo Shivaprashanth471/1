@@ -6813,10 +6813,10 @@ react-native-month-year-picker@^1.8.0:
     invariant "^2.2.4"
     moment "^2.24.0"
 
-react-native-onesignal@^4.3.5:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-4.3.5.tgz#f17e4e67dcd9cff12986d3a558beafc552399830"
-  integrity sha512-X4SqbrRDX09yM92dAxlS5/19Bb6FGO5xw6Omvg+XyCDxx3eQh0yv3DoTxPEOJGW9bKBVKl1h5VBtkkFrqKWlYg==
+react-native-onesignal@4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-4.3.2.tgz#191db65a8a80ebf27c8f2c4382a253174c74a39d"
+  integrity sha512-FL/xloE3gnqzAuZoVngRzUZ3ZiDy7fo1er/m6RKNfh/q2YUbtq4Q9K+Qf6+0XQWtZOorEg9uL5BqFTM6cXnVKA==
   dependencies:
     invariant "^2.2.2"
 

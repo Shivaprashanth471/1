@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 
 target 'vitawerks' do
-    
+
     rn_maps_path = '../node_modules/react-native-maps'
     pod 'react-native-google-maps', :path => rn_maps_path
     pod 'GoogleMaps'
@@ -25,8 +25,8 @@ target 'vitawerks' do
 
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
   pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
-  
-  
+
+
   target 'vitawerksTests' do
     inherit! :complete
     # Pods for testing
@@ -45,7 +45,7 @@ end
 
 target 'OneSignalNotificationServiceExtension' do
 #    pod 'OneSignal', '>= 2.9.3', '< 5.0'
-   pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
+# #    pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
 end
 
 target 'vitawerks-tvOS' do

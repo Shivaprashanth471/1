@@ -24,7 +24,7 @@ target 'vitawerks' do
   permissions_path = '../node_modules/react-native-permissions/ios'
 
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
-#  pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
+  pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
 
 
   target 'vitawerksTests' do
@@ -45,7 +45,7 @@ end
 
 target 'OneSignalNotificationServiceExtension' do
 #    pod 'OneSignal', '>= 2.9.3', '< 5.0'
-# #    pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
+    pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
 end
 
 target 'vitawerks-tvOS' do

@@ -415,6 +415,7 @@ DEPENDENCIES:
   - libevent (~> 2.1.12)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - OneSignalXCFramework (< 4.0, >= 3.0)
   - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -687,6 +688,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   Yoga: c11abbf5809216c91fcd62f5571078b83d9b6720
 
-PODFILE CHECKSUM: f8022ef6b6a2954ec29bfcabfbf77187838d423e
+PODFILE CHECKSUM: c2270bd5674cc3ff91e8b457d6d6231fa244d584
 
 COCOAPODS: 1.11.2

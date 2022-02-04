@@ -76,6 +76,8 @@ import IconNearMe from '../assets/images/near_me.svg';
 import AddCircleIcon from '../assets/images/AddCircleIcon.svg';
 import CloseOrangeIcon from '../assets/images/CloseOrangeIcon.svg';
 import EmptyIconSVG from '../assets/images/EmptyIconSVG.svg';
+import Building from '../assets/images/Building.svg';
+import ThumpsUp from '../assets/images/ThumpsUp.svg';
 
 import Logo from '../assets/images/logo.svg';
 
@@ -186,6 +188,7 @@ export default {
 	AddCircleIcon,
 	CloseOrangeIcon,
 	EmptyIconSVG,
-
+	Building,
 	SplashScreen,
+	ThumpsUp,
 };

@@ -179,7 +179,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 	};
 
 	const onAttendanceStart = () => {
-		navigation.navigate(NavigateTo.Attendance, {
+		navigation.navigate(NavigateTo.AttendanceScreen, {
 			shiftID: shiftID,
 		});
 	};

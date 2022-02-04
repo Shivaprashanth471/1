@@ -32,7 +32,6 @@ export interface ProfileDetailsContainerComponentProps {
 const ProfileDetailsContainerComponent = (
 	props: ProfileDetailsContainerComponentProps,
 ) => {
-	let end_date;
 	const title = props.title;
 	const location = props.location;
 	const degree = props.degree;
@@ -52,11 +51,11 @@ const ProfileDetailsContainerComponent = (
 	const [selectDeleteModalVisible, setDeleteModalVisible] =
 		useState<boolean>(false);
 
-	if (endDate != '') {
-		end_date = moment(endDate).format('MMM, YYYY');
-	} else {
-		end_date = 'Current';
-	}
+	let end_date =
+		endDate === '' || endDate === null
+			? 'Current'
+			: moment(endDate).format('MMM, YYYY');
+
 	const start_date = moment(startDate).format('MMM, YYYY');
 
 	const removeExperience = useCallback(() => {

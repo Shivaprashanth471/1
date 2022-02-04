@@ -16,6 +16,7 @@ import {
 	View,
 	ImageBackground,
 	Modal,
+	Platform,
 	ScrollView,
 } from 'react-native';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../helpers';
@@ -1246,7 +1247,7 @@ const styles = StyleSheet.create({
 	// card
 	cardContainer: {
 		position: 'absolute',
-		bottom: 20,
+		bottom: Platform.OS === 'android' ? 20 : 35,
 		...CommonFunctions.getElevationStyle(4),
 		zIndex: 2,
 		backgroundColor: '#fff',

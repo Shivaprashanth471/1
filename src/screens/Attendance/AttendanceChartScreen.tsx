@@ -81,7 +81,7 @@ const AttendanceChartScreen = (props: any) => {
 		getShiftDetails();
 	}, [getShiftDetails]);
 
-	const completeShift = () => {
+	const closeShift = () => {
 		setClosedButtonLoading(true);
 
 		ApiFunctions.patch(ENV.apiUrl + 'shift/' + shiftID + '/closed')
@@ -181,6 +181,7 @@ const AttendanceChartScreen = (props: any) => {
 									title={item}
 									shiftID={shiftID}
 									state={setStateBtn}
+									showOnlyDocument={false}
 								/>
 							</>
 						))}
@@ -199,7 +200,10 @@ const AttendanceChartScreen = (props: any) => {
 								}}
 								title={'Complete Shift'}
 								onPress={() => {
-									completeShift();
+									closeShift();
+									// navigation.navigate(NavigateTo.FeedbackScreen, {
+									// 	shiftID: shiftID,
+									// });
 								}}
 								disabled={stateBtn}
 								isLoading={closedButtonLoading}

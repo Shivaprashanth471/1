@@ -134,6 +134,13 @@ const ProfileScreen = (props: any) => {
 	// 	navigation.replace(NavigateTo.Auth);
 	// }, [dispatch, navigation]);
 
+	useEffect(() => {
+		const focusListener = navigation.addListener('focus', getProfileDetails);
+		return () => {
+			focusListener();
+		};
+	}, [getProfileDetails, navigation]);
+
 	const modalLogout = () => {
 		return (
 			<View style={styles.ModalContainer}>

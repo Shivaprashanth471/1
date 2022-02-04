@@ -347,7 +347,7 @@ const LoginScreen = (props: any) => {
 										}}
 										disabled={!isValid}
 									/>
-									{/* <CustomButton
+									<CustomButton
 										title={'Register Now'}
 										onPress={() => {
 											navigation.navigate(NavigateTo.Signup);
@@ -365,7 +365,7 @@ const LoginScreen = (props: any) => {
 											textTransform: 'none',
 											color: Colors.textOnAccent,
 										}}
-									/> */}
+									/>
 								</>
 							)}
 						</Formik>
@@ -377,7 +377,7 @@ const LoginScreen = (props: any) => {
 						flexDirection: 'row',
 						alignItems: 'center',
 						justifyContent: 'center',
-						marginTop: 80,
+						marginTop: 20,
 					}}>
 					<Text
 						style={{

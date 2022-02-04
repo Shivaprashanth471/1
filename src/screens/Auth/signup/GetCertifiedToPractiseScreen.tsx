@@ -23,6 +23,7 @@ import {
 	LoadingComponent,
 	CustomButton,
 	FormikRadioGroupComponent,
+	DatePickerComponent,
 } from '../../../components/core';
 import * as yup from 'yup';
 import {TSAPIResponseType} from '../../../helpers/ApiFunctions';
@@ -50,6 +51,9 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 	const [loadingPercent, setLoadingPercent]: any = useState(28.57);
 	const [documentAvailable, setDocumentAvailable]: any = useState(false);
 	const navigation = props.navigation;
+	const [selectDateModalVisible, setSelectDateModalVisible] = useState(false);
+	const [changedDate, setChangedDate]: any = useState<string | null>(null);
+	const [documentExpiry, setDocumentExpiry]: any = useState('');
 
 	const updateCertifiedToPractiseDetails = (
 		values: GetCertifiedToPractiseType,
@@ -99,7 +103,8 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				if (resp.success) {
 					if (!documentAvailable) {
 						if (values.is_certified_to_practice === true) {
-							setSelectPickerModalVisible(true);
+							// setSelectPickerModalVisible(true);
+							setSelectDateModalVisible(true);
 						} else {
 							navigation.navigate(NavigateTo.GetDistanceToTravelScreen, {
 								GetHcpBasicDetailsPayload: hcpDetails._id,
@@ -160,7 +165,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				})
 				.catch(error => console.log('error:', error));
 		},
-		[hcpDetails._id, navigation],
+		[hcpDetails._id, navigation, changedDate],
 	);
 
 	const uploadHandler = useCallback(
@@ -169,6 +174,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				file_name: file.name,
 				file_type: file.type,
 				attachment_type: 'License',
+				expiry_date: changedDate,
 			};
 			setIsLoaded(false);
 			setIsLoading(true);
@@ -187,7 +193,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 					});
 			}
 		},
-		[GetHcpBasicDetailsPayload._id, uploadPut],
+		[GetHcpBasicDetailsPayload._id, uploadPut, changedDate],
 	);
 
 	const openImageUpload = useCallback(
@@ -272,6 +278,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 		getHcpDetails();
 		getAttachmentData();
 	}, [getHcpDetails, getAttachmentData]);
+
 	return (
 		<>
 			{isLoading && <LoadingComponent />}
@@ -372,6 +379,96 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 												}}
 												disabled={!isValid}
 											/>
+											<View style={styles.ModalContainer}>
+												<Modal
+													animationType="slide"
+													transparent={true}
+													visible={selectDateModalVisible}
+													onRequestClose={() => {
+														setSelectDateModalVisible(!selectDateModalVisible);
+													}}>
+													<View style={styles.centeredView}>
+														<View style={styles.modalView}>
+															<View
+																style={{
+																	width: '100%',
+																	alignItems: 'flex-end',
+																	paddingHorizontal: 20,
+																	paddingTop: 10,
+																	marginBottom: 10,
+																}}>
+																<TouchableOpacity
+																	onPress={() => {
+																		setSelectDateModalVisible(
+																			!selectDateModalVisible,
+																		);
+																		setChangedDate(null);
+																	}}>
+																	<ImageConfig.CloseIconModal
+																		height={'25'}
+																		width={'25'}
+																	/>
+																</TouchableOpacity>
+															</View>
+
+															<Text
+																style={[styles.modalTextTitle, {fontSize: 20}]}>
+																Please give expiry date of License{' '}
+															</Text>
+															<View
+																style={{
+																	width: '100%',
+
+																	marginTop: 10,
+																}}>
+																<DatePickerComponent
+																	style={{
+																		height: 50,
+
+																		borderWidth: 2,
+
+																		borderColor: Colors.borderColor,
+
+																		width: '100%',
+																	}}
+																	onChange={date => {
+																		setChangedDate(date);
+																	}}
+																/>
+															</View>
+															<CustomButton
+																style={{
+																	flex: 0,
+																	borderRadius: 8,
+																	marginVertical: 0,
+																	height: 50,
+																	width: '100%',
+																	marginTop: 20,
+																}}
+																title={'Upload License'}
+																class={'primary'}
+																textStyle={{
+																	fontFamily: FontConfig.primary.bold,
+																	fontSize: 14,
+																	textTransform: 'none',
+																}}
+																onPress={() => {
+																	if (changedDate === null) {
+																	} else {
+																		setSelectDateModalVisible(
+																			!selectDateModalVisible,
+																		);
+																		setSelectPickerModalVisible(
+																			!selectPickerModalVisible,
+																		);
+																	}
+																}}
+																disabled={changedDate === null ? true : false}
+															/>
+														</View>
+													</View>
+												</Modal>
+											</View>
 											<View style={styles.ModalContainer}>
 												<Modal
 													animationType="slide"

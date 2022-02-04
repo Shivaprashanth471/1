@@ -11,8 +11,8 @@ import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 
 const GetBasicDetailsSchema = yup.object().shape({
-	first_name: yup.string().required('Required'),
-	last_name: yup.string().required('Required'),
+	first_name: yup.string().min(3, 'Minimum 3 letters').required('Required'),
+	last_name: yup.string().min(3, 'Minimum 3 letters').required('Required'),
 	email: yup.string().required('Required').email('Invalid Email'),
 	zip_code: yup.string().required('Required'),
 });
@@ -216,7 +216,6 @@ const GetBasicDetailsScreen = (props: any) => {
 										<Field name={'address'}>
 											{(field: FieldProps) => (
 												<FormikInputComponent
-													trimSpaces={true}
 													inputProperties={{
 														keyboardType: 'default',
 														placeholder: 'Address',

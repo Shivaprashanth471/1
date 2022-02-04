@@ -31,7 +31,7 @@ export interface AddDocumentComponentProps {
 
 const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 	const [isLoading, setIsLoading]: any = useState(true);
-	const [documentExpiry, setDocumentExpiry]: any = useState();
+	const [documentExpiry, setDocumentExpiry]: any = useState('');
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const [documentAvailable, setDocumentAvailable]: any = useState(false);
 	const currentDate = Moment().utcOffset(0, false);
@@ -225,42 +225,6 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 			});
 	}, [HcpUser, title]);
 
-	const getDatePicker = (
-		display:
-			| 'default'
-			| 'compact'
-			| 'inline'
-			| 'spinner'
-			| 'clock'
-			| 'calendar' = 'default',
-	) => {
-		return (
-			<RNDateTimePicker
-				testID="dateTimePicker"
-				value={changedDate ? new Date(changedDate) : currentDate.toDate()}
-				mode="date"
-				themeVariant="light"
-				display={display}
-				is24Hour={true}
-				textColor={
-					CommonFunctions.isAndroid() ? Colors.textOnPrimary : Colors.textDark
-				}
-				onChange={(e: any, value: Moment.MomentInput) => {
-					if (value) {
-						// console.log(changedDate, 'changed dateee--->>>');
-						const curDate = Moment(value)
-							.utcOffset(0, false)
-							.format('YYYY-MM-DD');
-						setShow(false);
-						setChangedDate(curDate);
-					} else {
-						setShow(false);
-					}
-				}}
-			/>
-		);
-	};
-
 	const selectPickerModal = () => {
 		return (
 			<View style={styles.ModalContainer}>
@@ -315,7 +279,6 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 									</View>
 									<Text style={styles.uploadText}>PDF</Text>
 								</TouchableOpacity>
-								{/* {Platform.OS === 'android' && ( */}
 								<TouchableOpacity
 									onPress={openImageUpload.bind(null, 'camera')}
 									style={{
@@ -348,7 +311,6 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 									</View>
 									<Text style={styles.uploadText}>IMAGE</Text>
 								</TouchableOpacity>
-								{/* )} */}
 							</View>
 						</View>
 					</View>
@@ -389,61 +351,6 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 							<Text style={[styles.modalTextTitle, {fontSize: 20}]}>
 								Please give expiry date of {title}{' '}
 							</Text>
-							{/*{CommonFunctions.isAndroid() && (*/}
-							{/*	<TouchableOpacity*/}
-							{/*		style={{*/}
-							{/*			width: '100%',*/}
-							{/*			flexDirection: 'row',*/}
-							{/*			justifyContent: 'space-between',*/}
-							{/*			height: 50,*/}
-							{/*			alignItems: 'center',*/}
-							{/*			borderWidth: 2,*/}
-							{/*			borderColor: Colors.borderColor,*/}
-							{/*			paddingHorizontal: 20,*/}
-							{/*			marginTop: 10,*/}
-							{/*		}}*/}
-							{/*		onPress={() => {*/}
-							{/*			setShow(true);*/}
-							{/*		}}>*/}
-							{/*		<View style={{flex: 1}}>*/}
-							{/*			{!!changedDate && (*/}
-							{/*				<Text style={[styles.dateText]}>*/}
-							{/*					{Moment(changedDate).format('DD-MM-YYYY')}*/}
-							{/*					/!* {changedDate} *!/*/}
-							{/*				</Text>*/}
-							{/*			)}*/}
-							{/*			{!changedDate && (*/}
-							{/*				<Text*/}
-							{/*					style={[styles.dateText, {color: Colors.textLight}]}>*/}
-							{/*					/!* {placeHolder || 'Select Date'} *!/*/}
-							{/*					{'Please select the date'}*/}
-							{/*				</Text>*/}
-							{/*			)}*/}
-							{/*		</View>*/}
-							{/*		<ImageConfig.calendarIcon height={'25'} width={'25'} />*/}
-							{/*	</TouchableOpacity>*/}
-							{/*)}*/}
-							{/*{Platform.OS === 'ios' && (*/}
-							{/*	<View>*/}
-							{/*		<DatePickerComponent*/}
-							{/*			style={{*/}
-							{/*				height: 40,*/}
-							{/*				borderWidth: 2,*/}
-							{/*				borderColor: Colors.borderColor,*/}
-							{/*				paddingHorizontal: 10,*/}
-							{/*				marginTop: 10,*/}
-							{/*			}}*/}
-							{/*			onChange={date => {*/}
-							{/*				setChangedDate(date);*/}
-							{/*			}}*/}
-							{/*		/>*/}
-							{/*	</View>*/}
-							{/*)}*/}
-							{/*<View>*/}
-							{/*	{!!show && (*/}
-							{/*		<>{CommonFunctions.isAndroid() && getDatePicker()}</>*/}
-							{/*	)}*/}
-							{/*</View>*/}
 							<View
 								style={{
 									width: '100%',
@@ -604,7 +511,6 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 						<TouchableOpacity
 							style={{
 								padding: 10,
-								backgroundColor: 'red',
 							}}
 							onPress={() => {
 								setFileViewModalVisible(!fileViewModalVisible);
@@ -640,7 +546,6 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 						<View>
 							<ImageConfig.DocumentPlaceholder height="50" />
 						</View>
-						{modalViewImage()}
 						<View
 							style={{
 								height: '100%',
@@ -657,17 +562,20 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 									}}>
 									{title}
 								</Text>
-								{!isLoading && isLoaded && (
-									<Text
-										style={{
-											color: Colors.textLight,
-											fontFamily: FontConfig.primary.regular,
-											fontSize: 14,
-											display: documentAvailable ? 'flex' : 'none',
-										}}>
-										Expires on: {Moment(documentExpiry).format('DD-MM-YYYY')}
-									</Text>
-								)}
+								{!isLoading &&
+									isLoaded &&
+									title != 'Resume' &&
+									title != 'SSN Card' && (
+										<Text
+											style={{
+												color: Colors.textLight,
+												fontFamily: FontConfig.primary.regular,
+												fontSize: 14,
+												display: documentAvailable ? 'flex' : 'none',
+											}}>
+											Expires on: {Moment(documentExpiry).format('DD-MM-YYYY')}
+										</Text>
+									)}
 							</View>
 							{isLoading && <ActivityIndicator color={Colors.primary} />}
 							{documentAvailable && !isLoading && isLoaded && (
@@ -742,7 +650,12 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 										textTransform: 'none',
 									}}
 									onPress={() => {
-										setSelectDateModalVisible(!selectDateModalVisible);
+										console.log(title);
+										if (title === 'Resume' || title === 'SSN Card') {
+											setSelectPickerModalVisible(!selectPickerModalVisible);
+										} else {
+											setSelectDateModalVisible(!selectDateModalVisible);
+										}
 									}}
 								/>
 							)}
@@ -751,6 +664,7 @@ const UploadSignupDocument = (props: AddDocumentComponentProps) => {
 					{selectDeleteFileModal()}
 					{selectDateModal()}
 					{selectPickerModal()}
+					{modalViewImage()}
 				</>
 			}
 		</>

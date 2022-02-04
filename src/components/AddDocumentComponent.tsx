@@ -20,7 +20,6 @@ import {CustomButton, DatePickerComponent} from './core';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
 import Moment from 'moment';
-import RNDateTimePicker from '@react-native-community/datetimepicker';
 import WebView from 'react-native-webview';
 import analytics from '@segment/analytics-react-native';
 
@@ -32,7 +31,7 @@ export interface AddDocumentComponentProps {
 
 const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 	const [isLoading, setIsLoading]: any = useState(true);
-	const [documentExpiry, setDocumentExpiry]: any = useState();
+	const [documentExpiry, setDocumentExpiry]: any = useState('');
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const [documentAvailable, setDocumentAvailable]: any = useState(false);
 	const currentDate = Moment().utcOffset(0, false);
@@ -53,6 +52,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 	const [fileViewModalVisible, setFileViewModalVisible] =
 		useState<boolean>(false);
 	const dimensions = useWindowDimensions();
+	// console.log(HcpUser._id);
 
 	const getAttachmentData = useCallback(() => {
 		setIsLoading(true);
@@ -513,7 +513,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						<TouchableOpacity
 							style={{
 								padding: 10,
-								backgroundColor: 'red',
 							}}
 							onPress={() => {
 								setFileViewModalVisible(!fileViewModalVisible);
@@ -549,7 +548,6 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 						<View>
 							<ImageConfig.DocumentPlaceholder height="50" />
 						</View>
-						{modalViewImage()}
 						<View
 							style={{
 								height: '100%',
@@ -566,17 +564,20 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									}}>
 									{title}
 								</Text>
-								{!isLoading && isLoaded && (
-									<Text
-										style={{
-											color: Colors.textLight,
-											fontFamily: FontConfig.primary.regular,
-											fontSize: 14,
-											display: documentAvailable ? 'flex' : 'none',
-										}}>
-										Expires on: {Moment(documentExpiry).format('DD-MM-YYYY')}
-									</Text>
-								)}
+								{!isLoading &&
+									isLoaded &&
+									title != 'Resume' &&
+									title != 'SSN Card' && (
+										<Text
+											style={{
+												color: Colors.textLight,
+												fontFamily: FontConfig.primary.regular,
+												fontSize: 14,
+												display: documentAvailable ? 'flex' : 'none',
+											}}>
+											Expires on: {Moment(documentExpiry).format('DD-MM-YYYY')}
+										</Text>
+									)}
 							</View>
 							{isLoading && <ActivityIndicator color={Colors.primary} />}
 							{documentAvailable && !isLoading && isLoaded && (
@@ -651,7 +652,12 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 										textTransform: 'none',
 									}}
 									onPress={() => {
-										setSelectDateModalVisible(!selectDateModalVisible);
+										console.log(title);
+										if (title === 'Resume' || title === 'SSN Card') {
+											setSelectPickerModalVisible(!selectPickerModalVisible);
+										} else {
+											setSelectDateModalVisible(!selectDateModalVisible);
+										}
 									}}
 								/>
 							)}
@@ -660,6 +666,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 					{selectDeleteFileModal()}
 					{selectDateModal()}
 					{selectPickerModal()}
+					{modalViewImage()}
 				</>
 			}
 		</>

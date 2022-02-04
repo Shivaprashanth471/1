@@ -224,6 +224,12 @@ const AttendanceScreen = (props: any) => {
 	useEffect(() => {
 		getShiftDetails();
 	}, [getShiftDetails, shiftID]);
+	useEffect(() => {
+		const focusListener = navigation.addListener('focus', getShiftDetails);
+		return () => {
+			focusListener();
+		};
+	}, [getShiftDetails, navigation, shiftID]);
 
 	const checkInClick = () => {
 		const time = dt;

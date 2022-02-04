@@ -259,10 +259,9 @@ const MyShiftsScreen = (props: any) => {
 	}, [getHCPShiftDetails, getHcpApplicationList, getHcpStatusCount]);
 
 	useEffect(() => {
-		const focusListener2 = navigation.addListener('focus', resetInitialState);
-
+		const focusListener = navigation.addListener('focus', resetInitialState);
 		return () => {
-			focusListener2();
+			focusListener();
 		};
 	}, [resetInitialState, navigation]);
 
@@ -462,7 +461,14 @@ const MyShiftsScreen = (props: any) => {
 															screen: NavigateTo.AttendanceChartScreen,
 															params: {shiftID: item._id},
 														});
-													} else {
+													}
+													//  else if (item.shift_status === 'closed') {
+													// 	navigation.navigate(NavigateTo.Attendance, {
+													// 		screen: NavigateTo.FeedbackScreen,
+													// 		params: {shiftID: item._id},
+													// 	});
+													// }
+													else {
 														return;
 													}
 												}}

@@ -7,6 +7,7 @@ const Dashboard = 'Dashboard';
 const Welcome = 'Welcome';
 const Home = 'Home';
 const Attendance = 'Attendance';
+const AttendanceScreen = 'AttendanceScreen';
 const FindShifts = 'FindShifts';
 const MyShifts = 'MyShifts';
 const ShiftDetailsScreen = 'ShiftDetailsScreen';
@@ -49,6 +50,8 @@ const GetWorkExperienceScreen = 'GetWorkExperienceScreen';
 const GetDocumentsScreen = 'GetDocumentsScreen';
 const GetLegallyAuthorisedToWorkScreen = 'GetLegallyAuthorisedToWorkScreen';
 const GetRequireSponsorshipScreen = 'GetRequireSponsorshipScreen';
+const FeedbackScreen = 'FeedbackScreen';
+const ThankYouScreen = 'ThankYouScreen';
 export default {
 	Start,
 	Main,
@@ -59,6 +62,7 @@ export default {
 	Welcome,
 	Home,
 	Attendance,
+	AttendanceScreen,
 	FindShifts,
 	MyShifts,
 	Profile,
@@ -101,4 +105,6 @@ export default {
 	GetDocumentsScreen,
 	GetLegallyAuthorisedToWorkScreen,
 	GetRequireSponsorshipScreen,
+	FeedbackScreen,
+	ThankYouScreen,
 };

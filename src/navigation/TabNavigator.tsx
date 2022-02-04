@@ -28,6 +28,8 @@ import ProfileReferenceScreen from '../screens/Profile/ProfileReferenceScreen';
 import ProfileDocumentScreen from '../screens/Profile/ProfileDocumentScreen';
 import UpcomingShiftCountdownScreen from '../screens/Attendance/UpcomingShiftCountdownScreen';
 import AttendanceChartScreen from '../screens/Attendance/AttendanceChartScreen';
+import FeedbackScreen from '../screens/Attendance/FeedbackScreen';
+import ThankYouScreen from '../screens/Attendance/ThankYouScreen';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const defaultNavigationOptions: StackNavigationOptions = {
@@ -81,12 +83,12 @@ const AttendanceStack = createStackNavigator();
 const AttendanceNavigator = () => {
 	return (
 		<AttendanceStack.Navigator
-			key={NavigateTo.Attendance + '-Nav'}
+			key={NavigateTo.UpcomingShiftCountdownScreen + '-Nav'}
 			initialRouteName={NavigateTo.UpcomingShiftCountdownScreen}
 			screenOptions={defaultNavigationOptions}>
 			<AttendanceStack.Screen
-				key={NavigateTo.Attendance + '-Screen'}
-				name={NavigateTo.Attendance}
+				key={NavigateTo.AttendanceScreen + '-Screen'}
+				name={NavigateTo.AttendanceScreen}
 				options={{headerTitle: 'Attendance'}}
 				listeners={listeners}
 				component={AttendanceScreen}
@@ -115,6 +117,24 @@ const AttendanceNavigator = () => {
 				options={{headerTitle: 'Attendance'}}
 				listeners={listeners}
 				component={AttendanceChartScreen}
+			/>
+			<AttendanceStack.Screen
+				key={NavigateTo.FeedbackScreen + '-Screen'}
+				name={NavigateTo.FeedbackScreen}
+				options={{headerTitle: 'Feedback'}}
+				listeners={listeners}
+				component={FeedbackScreen}
+			/>
+			<AttendanceStack.Screen
+				key={NavigateTo.ThankYouScreen + '-Screen'}
+				name={NavigateTo.ThankYouScreen}
+				options={{
+					headerTitle: '',
+					headerStyle: {backgroundColor: '#00243F'},
+					headerShown: false,
+				}}
+				listeners={listeners}
+				component={ThankYouScreen}
 			/>
 		</AttendanceStack.Navigator>
 	);

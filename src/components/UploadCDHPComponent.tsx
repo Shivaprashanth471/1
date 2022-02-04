@@ -6,6 +6,9 @@ import {
 	Alert,
 	TouchableOpacity,
 	Modal,
+	useWindowDimensions,
+	Linking,
+	Image,
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import {Colors, FontConfig, ImageConfig, ENV} from '../constants';
@@ -13,12 +16,14 @@ import {ApiFunctions, CommonFunctions, ToastAlert} from '../helpers';
 import {LoadingComponent, CustomButton} from './core';
 import LinearGradient from 'react-native-linear-gradient';
 import analytics from '@segment/analytics-react-native';
+import WebView from 'react-native-webview';
 
 export interface UploadCDHPComponentProps {
 	title: string;
 	navigation?: any;
 	shiftID: any;
 	state: any;
+	showOnlyDocument?: boolean;
 }
 
 const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
@@ -32,6 +37,14 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 	const title = props.title;
 	const shiftID = props.shiftID;
 	const state = props.state;
+	const showOnlyDocument = props.showOnlyDocument || false;
+
+	const dimensions = useWindowDimensions();
+	const [url, setURL]: any = useState();
+	const [type, setType]: any = useState();
+	const [fileViewModalVisible, setFileViewModalVisible] =
+		useState<boolean>(false);
+	const [showFullscreen, setShowFullscreen] = useState<any | null>(null);
 
 	const uploadPut = useCallback((dataURL, file) => {
 		setIsLoading(true);
@@ -139,7 +152,12 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 						state(true);
 					} else {
 						state(false);
+						let url = wantedData[0].url;
+						let type = wantedData[0].ContentType;
 						setDocumentAvailable(true);
+						setShowFullscreen({url, type});
+						setURL(wantedData[0].url);
+						setType(wantedData[0].ContentType);
 					}
 				} else {
 					Alert.alert('Error');
@@ -370,6 +388,56 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 		);
 	};
 
+	const modalViewImage = () => {
+		return (
+			<Modal
+				animationType="slide"
+				transparent={true}
+				visible={fileViewModalVisible}
+				onRequestClose={() => {
+					setFileViewModalVisible(!fileViewModalVisible);
+				}}>
+				<View
+					style={{
+						flex: 1,
+						backgroundColor: '#fff',
+					}}>
+					<View
+						style={{
+							alignItems: 'flex-end',
+							justifyContent: 'center',
+							paddingHorizontal: 20,
+							paddingVertical: 10,
+							marginTop: 15,
+						}}>
+						<TouchableOpacity
+							style={{
+								padding: 10,
+							}}
+							onPress={() => {
+								setFileViewModalVisible(!fileViewModalVisible);
+							}}>
+							<ImageConfig.CloseIconModal height={'25'} width={'25'} />
+						</TouchableOpacity>
+					</View>
+					{showFullscreen && (
+						<>
+							{
+								<Image
+									style={{
+										width: dimensions.width,
+										height: dimensions.height,
+									}}
+									source={{uri: showFullscreen.url}}
+								/>
+							}
+						</>
+					)}
+				</View>
+			</Modal>
+		);
+	};
+
 	return (
 		<>
 			{isLoading && <LoadingComponent />}
@@ -430,18 +498,45 @@ const UploadCDHPComponent = (props: UploadCDHPComponentProps) => {
 											{title}
 										</Text>
 									</View>
-									<TouchableOpacity
-										onPress={() => {
-											setSelectDeleteFileModalVisible(
-												!selectDeleteFileModalVisible,
-											);
-										}}>
-										<ImageConfig.CloseOrangeIcon width="12" height="12" />
-									</TouchableOpacity>
+									{showOnlyDocument ? (
+										<>
+											<TouchableOpacity
+												onPress={() => {
+													if (type === 'application/pdf') {
+														Linking.openURL(url);
+													} else {
+														setFileViewModalVisible(true);
+													}
+												}}>
+												<Text
+													style={{
+														color: Colors.primary,
+														fontFamily: FontConfig.primary.bold,
+														fontSize: 14,
+														textDecorationLine: 'underline',
+														marginRight: 20,
+													}}>
+													View
+												</Text>
+											</TouchableOpacity>
+										</>
+									) : (
+										<>
+											<TouchableOpacity
+												onPress={() => {
+													setSelectDeleteFileModalVisible(
+														!selectDeleteFileModalVisible,
+													);
+												}}>
+												<ImageConfig.CloseOrangeIcon width="12" height="12" />
+											</TouchableOpacity>
+										</>
+									)}
 								</View>
 							)}
 						</View>
 					</View>
+					{modalViewImage()}
 					{selectDeleteFileModal()}
 					{selectPickerModal()}
 				</>

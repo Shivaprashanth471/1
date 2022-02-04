@@ -476,6 +476,7 @@ export const regionsList = [
 ]
 
 export const ProfileDocumentsArray = [
+	'Resume',
 	'Physical Test',
 	'TB Test',
 	'SSN Card',

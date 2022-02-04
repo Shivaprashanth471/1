@@ -109,27 +109,6 @@ const FeedbackScreen = (props: any) => {
 			});
 	};
 
-	// const getShiftDetails = useCallback(() => {
-	// 	setIsLoading(true);
-	// 	if (shiftID) {
-	// 		ApiFunctions.get(ENV.apiUrl + 'shift/' + shiftID)
-	// 			.then(async resp => {
-	// 				if (resp) {
-	// 					setShiftDetails(resp.data);
-	// 				} else {
-	// 					console.log('error');
-	// 				}
-	// 				setIsLoading(false);
-	// 				setIsLoaded(true);
-	// 			})
-	// 			.catch((err: any) => {
-	// 				setIsLoading(false);
-	// 				setIsLoaded(true);
-	// 				console.log(err);
-	// 			});
-	// 	}
-	// }, [shiftID]);
-
 	const tConvert = (time: any) => {
 		// Check correct time format and split into components
 		time = time
@@ -264,7 +243,8 @@ const FeedbackScreen = (props: any) => {
 															flexDirection: 'row',
 															justifyContent: 'space-between',
 															paddingHorizontal: 10,
-														}}></View>
+														}}
+													/>
 													<View style={{}}>
 														<Field name={'is_covid_protocols_followed'}>
 															{(field: FieldProps) => (

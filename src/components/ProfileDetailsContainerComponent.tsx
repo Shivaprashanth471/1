@@ -27,6 +27,7 @@ export interface ProfileDetailsContainerComponentProps {
 	getDate?: boolean;
 	id: any;
 	status: string;
+	phoneNum?: any;
 }
 
 const ProfileDetailsContainerComponent = (
@@ -41,6 +42,7 @@ const ProfileDetailsContainerComponent = (
 	const status = props.status;
 	const getDate = props.getDate;
 	const email = props.email;
+	const phoneNum = props.phoneNum;
 	// getDate should be true if you want to display start date & end date
 
 	const {hcpDetails} = useSelector((state: StateParams) => state);
@@ -213,7 +215,9 @@ const ProfileDetailsContainerComponent = (
 						justifyContent: 'center',
 					}}>
 					<View style={{width: '70%'}}>
-						<Text style={[styles.titleText]}>{titleName}</Text>
+						<Text numberOfLines={2} style={[styles.titleText, {}]}>
+							{titleName}
+						</Text>
 						<View
 							style={{
 								flexDirection: 'row',
@@ -221,26 +225,43 @@ const ProfileDetailsContainerComponent = (
 								alignItems: 'center',
 							}}>
 							<Text
-								style={[styles.subText, {maxWidth: '60%'}]}
+								style={[
+									styles.subText,
+									{maxWidth: phoneNum != '' ? '40%' : '25%'},
+								]}
 								numberOfLines={5}>
 								{location}
 							</Text>
 							<Text style={styles.subText}>{'  |  '}</Text>
+							{phoneNum && (
+								<>
+									<Text
+										style={[styles.subText, {maxWidth: '50%'}]}
+										numberOfLines={2}>
+										{phoneNum}
+									</Text>
+								</>
+							)}
 							{degree && (
-								<Text
-									style={[styles.subText, {maxWidth: '30%'}]}
-									numberOfLines={2}>
-									{degree}
-								</Text>
+								<>
+									<Text
+										style={[styles.subText, {maxWidth: '25%'}]}
+										numberOfLines={2}>
+										{degree}
+									</Text>
+									<Text style={styles.subText}>{'  |  '}</Text>
+								</>
 							)}
 							{getDate && (
-								<Text style={styles.subText}>
-									{start_date} - {end_date ? end_date : 'Current'}
-								</Text>
+								<>
+									<Text style={[styles.subText, {}]}>
+										{start_date} - {end_date ? end_date : 'Current'}
+									</Text>
+								</>
 							)}
 						</View>
 						{email != '' && (
-							<Text style={[styles.subText]} numberOfLines={1}>
+							<Text style={[styles.subText]} numberOfLines={2}>
 								{email}
 							</Text>
 						)}

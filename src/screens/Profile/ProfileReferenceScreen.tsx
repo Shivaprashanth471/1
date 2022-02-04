@@ -117,7 +117,8 @@ const ProfileReferenceScreen = (props: any) => {
 											id={item._id}
 											status="reference"
 											title={item.reference_name}
-											location={item.job_title + '  |  ' + item.phone}
+											location={item.job_title}
+											phoneNum={item.phone}
 											email={item.email}
 											getDate={false}
 										/>

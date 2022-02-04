@@ -124,7 +124,7 @@ const ProfileEducationScreen = (props: any) => {
 											id={item._id}
 											title={item.institute_name}
 											location={item.location}
-											degree={item.degree + '  |  '}
+											degree={item.degree}
 											startDate={item.start_date}
 											endDate={item.graduation_date}
 											getDate={true}

@@ -282,12 +282,10 @@ const FacilityShiftPreviewScreen = (props: any) => {
 														maxWidth: '90%',
 														marginLeft: 2,
 													}}>
-													{item.address.street + ' '},
-													{' ' + item.address.city + ' '},
-													{' ' + item.address.region_name + ' '},
-													{' ' + item.address.state + ' '},
-													{' ' + item.address.country + ' '},
-													{' ' + item.address.zip_code + ' '}
+													{item.address.street},{' ' + item.address.city},
+													{' ' + item.address.state},
+													{' ' + item.address.country},
+													{' ' + item.address.zip_code}
 												</Text>
 											</View>
 											<View

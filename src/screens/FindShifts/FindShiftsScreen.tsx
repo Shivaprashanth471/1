@@ -1125,12 +1125,11 @@ const FindShiftsScreen = (props: any) => {
 																	maxWidth: '90%',
 																	marginLeft: 5,
 																}}>
-																{item.address.street + ' '},
-																{' ' + item.address.city + ' '},
-																{' ' + item.address.region_name + ' '},
-																{' ' + item.address.state + ' '},
-																{' ' + item.address.country + ' '},
-																{' ' + item.address.zip_code + ' '}
+																{item.address.street},{' ' + item.address.city},
+																{' ' + item.address.region_name},
+																{' ' + item.address.state},
+																{' ' + item.address.country},
+																{' ' + item.address.zip_code}
 															</Text>
 														</View>
 													</View>

@@ -131,122 +131,124 @@ const GetDistanceToTravelScreen = (props: any) => {
 
 	return (
 		<>
-			{/* {isLoading && <LoadingComponent />}
-			{!isLoading && isLoaded && !setHcpDetails && (
+			{isLoading && <LoadingComponent />}
+			{!isLoading && isLoaded && !hcpDetails && (
 				<ErrorComponent text={'HCP details not available'} />
 			)}
-			{!isLoading && isLoaded && setHcpDetails && ( */}
-			<BaseViewComponent>
-				<StatusBar
-					barStyle={'light-content'}
-					animated={true}
-					backgroundColor={Colors.backdropColor}
-				/>
-				<View
-					style={{
-						flex: 1,
-						marginTop: 20,
-						marginHorizontal: 20,
-					}}>
-					<View style={[styles.header]}>
-						<TouchableOpacity
-							onPress={() => {
-								navigation.goBack();
-							}}>
-							<ImageConfig.backArrow
-								width="20"
-								height="20"
-								style={{marginBottom: 10}}
-							/>
-						</TouchableOpacity>
-						<Text
-							style={{
-								fontFamily: FontConfig.primary.semiBold,
-								color: Colors.textDark,
-								fontSize: 16,
-							}}>
-							Profile
-						</Text>
+			{!isLoading && isLoaded && hcpDetails && (
+				<>
+					<BaseViewComponent>
+						<StatusBar
+							barStyle={'light-content'}
+							animated={true}
+							backgroundColor={Colors.backdropColor}
+						/>
 						<View
 							style={{
-								width: loadingPercent + '%',
-								backgroundColor: Colors.approved,
-								height: 4,
-								borderRadius: 8,
-								marginBottom: 20,
+								flex: 1,
+								marginTop: 20,
+								marginHorizontal: 20,
+							}}>
+							<View style={[styles.header]}>
+								<TouchableOpacity
+									onPress={() => {
+										navigation.goBack();
+									}}>
+									<ImageConfig.backArrow
+										width="20"
+										height="20"
+										style={{marginBottom: 10}}
+									/>
+								</TouchableOpacity>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.semiBold,
+										color: Colors.textDark,
+										fontSize: 16,
+									}}>
+									Profile
+								</Text>
+								<View
+									style={{
+										width: loadingPercent + '%',
+										backgroundColor: Colors.approved,
+										height: 4,
+										borderRadius: 8,
+										marginBottom: 20,
+									}}
+								/>
+								<View style={{}}>
+									<Text style={styles.headerText}>
+										How far are you willing to travel?
+									</Text>
+								</View>
+								<View style={styles.subHeadingHolder}>
+									<Text style={styles.subHeading}>
+										Please select appropriate response
+									</Text>
+								</View>
+							</View>
+							{distanceVariables.map((item: any) => (
+								<>
+									<DistanceCheckComponent
+										distanceText={item}
+										selectedValue={selectedValue}
+										onUpdate={e => {
+											if (e.length === 0) {
+												setShowError(true);
+											} else {
+												setShowError(false);
+											}
+										}}
+									/>
+								</>
+							))}
+							{showError && (
+								<View
+									style={{
+										alignItems: 'flex-end',
+									}}>
+									<Text
+										style={{
+											fontFamily: FontConfig.primary.light,
+											color: Colors.warn,
+											fontSize: 13,
+											textTransform: 'capitalize',
+										}}>
+										Select at least one value
+									</Text>
+								</View>
+							)}
+						</View>
+					</BaseViewComponent>
+					<View
+						style={{
+							height: 150,
+							justifyContent: 'center',
+							alignItems: 'center',
+							marginHorizontal: 20,
+						}}>
+						<CustomButton
+							title={'Continue'}
+							isLoading={isSubmitting}
+							disabled={showError ? true : false}
+							onPress={() => {
+								console.log(selectedValue.length);
+								if (selectedValue.length === 0) {
+									setShowError(true);
+								} else {
+									setShowError(false);
+									updateDistanceToTravelDetails();
+								}
+							}}
+							style={{
+								backgroundColor: Colors.primary,
+								width: '100%',
 							}}
 						/>
-						<View style={{}}>
-							<Text style={styles.headerText}>
-								How far are you willing to travel?
-							</Text>
-						</View>
-						<View style={styles.subHeadingHolder}>
-							<Text style={styles.subHeading}>
-								Please select appropriate response
-							</Text>
-						</View>
 					</View>
-					{distanceVariables.map((item: any) => (
-						<>
-							<DistanceCheckComponent
-								distanceText={item}
-								selectedValue={selectedValue}
-								onUpdate={e => {
-									if (e.length === 0) {
-										setShowError(true);
-									} else {
-										setShowError(false);
-									}
-								}}
-							/>
-						</>
-					))}
-					{showError && (
-						<View
-							style={{
-								alignItems: 'flex-end',
-							}}>
-							<Text
-								style={{
-									fontFamily: FontConfig.primary.light,
-									color: Colors.warn,
-									fontSize: 13,
-									textTransform: 'capitalize',
-								}}>
-								Select at least one value
-							</Text>
-						</View>
-					)}
-				</View>
-			</BaseViewComponent>
-			<View
-				style={{
-					height: 150,
-					justifyContent: 'center',
-					alignItems: 'center',
-					marginHorizontal: 20,
-				}}>
-				<CustomButton
-					title={'Continue'}
-					isLoading={isSubmitting}
-					disabled={showError ? true : false}
-					onPress={() => {
-						console.log(selectedValue.length);
-						if (selectedValue.length === 0) {
-							setShowError(true);
-						} else {
-							setShowError(false);
-							updateDistanceToTravelDetails();
-						}
-					}}
-					style={{
-						backgroundColor: Colors.primary,
-						width: '100%',
-					}}
-				/>
-			</View>
-			{/* )} */}
+				</>
+			)}
 		</>
 	);
 };

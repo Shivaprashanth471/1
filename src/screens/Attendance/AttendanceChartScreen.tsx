@@ -1,7 +1,20 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {StyleSheet, Text, View, StatusBar, Alert, Modal} from 'react-native';
-import {ApiFunctions, ToastAlert} from '../../helpers';
-import {Colors, ENV, FontConfig, NavigateTo} from '../../constants';
+import {
+	StyleSheet,
+	Text,
+	View,
+	StatusBar,
+	Alert,
+	TouchableOpacity,
+} from 'react-native';
+import {ApiFunctions} from '../../helpers';
+import {
+	Colors,
+	ENV,
+	FontConfig,
+	ImageConfig,
+	NavigateTo,
+} from '../../constants';
 import AttendanceStatusBoxComponent from '../../components/AttendanceStatusBoxComponent';
 import {
 	BaseViewComponent,
@@ -12,19 +25,22 @@ import {
 import UploadCDHPComponent from '../../components/UploadCDHPComponent';
 import AttendanceTimelineComponent from '../../components/AttendanceTimelineComponent';
 import {ShiftDocumentsArray} from '../../constants/CommonVariables';
+import {AirbnbRating} from 'react-native-ratings';
 
 const AttendanceChartScreen = (props: any) => {
 	const navigation = props.navigation;
 	const {shiftID} = props.route.params;
+
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
-	const [shift, setShift]: any = useState<null | {}>({});
-	const [closedButtonLoading, setClosedButtonLoading] = useState(false);
-	const [closedButtonDisabled, setClosedButtonDisabled] = useState(false);
+	const [shiftTimings, setShiftTimings]: any = useState<null | {}>({});
+	// const [closedButtonLoading, setClosedButtonLoading] = useState(false);
+	// const [closedButtonDisabled, setClosedButtonDisabled] = useState(false);
 	const [stateBtn, setStateBtn] = useState(true);
 	const [checkInTime, setCheckInTime]: any = useState();
 	const [checkOutTime, setCheckOutTime]: any = useState();
-	const [shiftCloseModalVisible, setShiftCloseModalVisible] = useState(false);
+	// const [shiftCloseModalVisible, setShiftCloseModalVisible] = useState(false);
+	const [shift, setShift] = useState<any>();
 
 	const tConvert = (time: any) => {
 		// Check correct time format and split into components
@@ -60,7 +76,8 @@ const AttendanceChartScreen = (props: any) => {
 							: ''
 						: {};
 					setCheckOutTime(checkOutTime);
-					setShift(resp.data.time_breakup);
+					setShift(resp.data);
+					setShiftTimings(resp.data.time_breakup);
 				} else {
 					Alert.alert('Error', resp);
 				}
@@ -81,79 +98,79 @@ const AttendanceChartScreen = (props: any) => {
 		getShiftDetails();
 	}, [getShiftDetails]);
 
-	const closeShift = () => {
-		setClosedButtonLoading(true);
+	// const closeShift = () => {
+	// 	setClosedButtonLoading(true);
 
-		ApiFunctions.patch(ENV.apiUrl + 'shift/' + shiftID + '/closed')
-			.then(async resp => {
-				if (resp) {
-					ToastAlert.show('Shift closed');
-					setClosedButtonDisabled(true);
-					setClosedButtonLoading(false);
-					setStateBtn(true);
-					setShiftCloseModalVisible(!shiftCloseModalVisible);
-				} else {
-					console.log('error');
-				}
-				setClosedButtonDisabled(false);
-				setClosedButtonLoading(false);
-			})
-			.catch((err: any) => {
-				console.log('error: ', err);
-				ToastAlert.show(err.error);
-				setClosedButtonLoading(false);
-			});
-	};
+	// 	ApiFunctions.patch(ENV.apiUrl + 'shift/' + shiftID + '/closed')
+	// 		.then(async resp => {
+	// 			if (resp) {
+	// 				ToastAlert.show('Shift closed');
+	// 				setClosedButtonDisabled(true);
+	// 				setClosedButtonLoading(false);
+	// 				setStateBtn(true);
+	// 				setShiftCloseModalVisible(!shiftCloseModalVisible);
+	// 			} else {
+	// 				console.log('error');
+	// 			}
+	// 			setClosedButtonDisabled(false);
+	// 			setClosedButtonLoading(false);
+	// 		})
+	// 		.catch((err: any) => {
+	// 			console.log('error: ', err);
+	// 			ToastAlert.show(err.error);
+	// 			setClosedButtonLoading(false);
+	// 		});
+	// };
 
-	const modalShiftClose = () => {
-		return (
-			<View style={styles.ModalContainer}>
-				<Modal
-					animationType="slide"
-					transparent={true}
-					visible={shiftCloseModalVisible}
-					onRequestClose={() => {
-						setShiftCloseModalVisible(!shiftCloseModalVisible);
-					}}>
-					<View style={[styles.centeredView, {backgroundColor: '#000000A0'}]}>
-						<View style={styles.modalView}>
-							<Text style={styles.modalTitle}>Shift Complete</Text>
-							<Text style={styles.modalTextSub}>
-								Thank You!! Your shift has been completed
-							</Text>
-							<View
-								style={{
-									marginHorizontal: 10,
-									marginTop: 40,
-								}}>
-								<CustomButton
-									style={{
-										flex: 0,
-										borderRadius: 8,
-										marginVertical: 0,
-										height: 45,
-									}}
-									title={'Done'}
-									onPress={() => {
-										navigation.replace(NavigateTo.UpcomingShiftCountdownScreen);
-										setShiftCloseModalVisible(!shiftCloseModalVisible);
-									}}
-									isLoading={closedButtonLoading}
-									disabled={closedButtonDisabled}
-								/>
-							</View>
-						</View>
-					</View>
-				</Modal>
-			</View>
-		);
-	};
+	// const modalShiftClose = () => {
+	// 	return (
+	// 		<View style={styles.ModalContainer}>
+	// 			<Modal
+	// 				animationType="slide"
+	// 				transparent={true}
+	// 				visible={shiftCloseModalVisible}
+	// 				onRequestClose={() => {
+	// 					setShiftCloseModalVisible(!shiftCloseModalVisible);
+	// 				}}>
+	// 				<View style={[styles.centeredView, {backgroundColor: '#000000A0'}]}>
+	// 					<View style={styles.modalView}>
+	// 						<Text style={styles.modalTitle}>Shift Complete</Text>
+	// 						<Text style={styles.modalTextSub}>
+	// 							Thank You!! Your shift has been completed
+	// 						</Text>
+	// 						<View
+	// 							style={{
+	// 								marginHorizontal: 10,
+	// 								marginTop: 40,
+	// 							}}>
+	// 							<CustomButton
+	// 								style={{
+	// 									flex: 0,
+	// 									borderRadius: 8,
+	// 									marginVertical: 0,
+	// 									height: 45,
+	// 								}}
+	// 								title={'Done'}
+	// 								onPress={() => {
+	// 									navigation.replace(NavigateTo.UpcomingShiftCountdownScreen);
+	// 									setShiftCloseModalVisible(!shiftCloseModalVisible);
+	// 								}}
+	// 								isLoading={closedButtonLoading}
+	// 								disabled={closedButtonDisabled}
+	// 							/>
+	// 						</View>
+	// 					</View>
+	// 				</View>
+	// 			</Modal>
+	// 		</View>
+	// 	);
+	// };
 
 	return (
 		<>
 			{isLoading && <LoadingComponent />}
-			{!isLoading && isLoaded && !shift && <ErrorComponent />}
-			{!isLoading && isLoaded && shift && (
+			{!isLoading && isLoaded && !shiftTimings && <ErrorComponent />}
+			{!isLoading && isLoaded && shiftTimings && (
 				<BaseViewComponent
 					style={styles.screen}
 					backgroundColor={Colors.backgroundShiftColor}>
@@ -162,6 +179,31 @@ const AttendanceChartScreen = (props: any) => {
 						animated={true}
 						backgroundColor={Colors.backdropColor}
 					/>
+					<View
+						style={{
+							marginHorizontal: 20,
+							marginTop: 10,
+							flexDirection: 'row',
+							alignItems: 'center',
+						}}>
+						<TouchableOpacity
+							onPress={() => {
+								// navigation.goBack();
+								navigation.navigate(NavigateTo.UpcomingShiftCountdownScreen);
+							}}>
+							<ImageConfig.backArrow width="20" height="20" />
+						</TouchableOpacity>
+						<Text
+							style={{
+								textTransform: 'capitalize',
+								fontFamily: FontConfig.primary.bold,
+								color: Colors.navigationHeaderText,
+								fontSize: 20,
+								marginLeft: 20,
+							}}>
+							Attendance
+						</Text>
+					</View>
 					<View style={styles.timeSheetContainer}>
 						<Text style={styles.timeLineText}>Timeline</Text>
 						<AttendanceStatusBoxComponent
@@ -185,32 +227,95 @@ const AttendanceChartScreen = (props: any) => {
 								/>
 							</>
 						))}
-
-						<View
-							style={{
-								margin: 20,
-								marginTop: 100,
-							}}>
-							<CustomButton
-								style={{
-									flex: 0,
-									borderRadius: 8,
-									marginVertical: 0,
-									height: 45,
-								}}
-								title={'Complete Shift'}
-								onPress={() => {
-									closeShift();
-									// navigation.navigate(NavigateTo.FeedbackScreen, {
-									// 	shiftID: shiftID,
-									// });
-								}}
-								disabled={stateBtn}
-								isLoading={closedButtonLoading}
-							/>
-						</View>
+						{shift.facility_rating ? (
+							<>
+								<View
+									style={{
+										margin: 20,
+										marginTop: 100,
+										marginHorizontal: 10,
+									}}>
+									<Text
+										style={{
+											fontFamily: FontConfig.primary.bold,
+											fontSize: 18,
+											color: Colors.textDark,
+											// marginHorizontal: 10,
+										}}>
+										Review
+									</Text>
+									<Text
+										style={{
+											fontFamily: FontConfig.primary.semiBold,
+											fontSize: 15,
+											color: Colors.textDark,
+											// marginHorizontal: 10,
+										}}>
+										{shift.facility_rating}/5
+									</Text>
+									<View
+										style={{
+											flexDirection: 'row',
+											// marginHorizontal: 10,
+											paddingVertical: 5,
+										}}>
+										<AirbnbRating
+											reviewSize={16}
+											defaultRating={shift.facility_rating}
+											size={20}
+											count={5}
+											showRating={false}
+											isDisabled={true}
+											starStyle={{
+												margin: 0,
+											}}
+										/>
+									</View>
+									<View
+										style={{
+											marginVertical: 15,
+										}}>
+										<Text
+											style={{
+												fontFamily: FontConfig.primary.italic,
+												fontSize: 15,
+												color: Colors.textOnInput,
+											}}>
+											You will be notified after your application has been
+											approved by the facility
+										</Text>
+									</View>
+								</View>
+							</>
+						) : (
+							<>
+								<View
+									style={{
+										margin: 20,
+										marginTop: 100,
+									}}>
+									<CustomButton
+										style={{
+											flex: 0,
+											borderRadius: 8,
+											marginVertical: 0,
+											height: 45,
+										}}
+										title={'Complete Shift'}
+										onPress={() => {
+											// closeShift();
+											navigation.navigate(NavigateTo.FeedbackScreen, {
+												shiftID: shiftID,
+											});
+										}}
+										disabled={stateBtn}
+										// isLoading={closedButtonLoading}
+									/>
+								</View>
+							</>
+						)}
 					</View>
-					{modalShiftClose()}
+					{/* {modalShiftClose()} */}
 				</BaseViewComponent>
 			)}
 		</>

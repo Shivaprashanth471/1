@@ -30,28 +30,28 @@ const loginSchema = yup.object().shape({
 		.required('Required')
 		.min(6, 'Invalid')
 		.max(16, 'Invalid'),
-	newPassword: yup
+	password: yup
 		.string()
 		.required('Required')
 		.min(6, 'Invalid')
 		.max(16, 'Invalid'),
-	confirmPassword: yup
+	confirm: yup
 		.string()
 		.required('Required')
-		.min(6, 'Invalid')
-		.max(16, 'Invalid'),
+		.min(6, 'must be at least 6 characters')
+		.oneOf([yup.ref('password'), null], "Confirmation Doesn't match"),
 });
 
 export interface LoginSchemaType {
 	currentPassword: string;
-	newPassword: string;
-	confirmPassword: string;
+	password: string;
+	confirm?: string;
 }
 
 const initialValues: LoginSchemaType = {
 	currentPassword: '',
-	newPassword: '',
-	confirmPassword: '',
+	password: '',
+	confirm: '',
 };
 
 export interface LoginAPIResponse {
@@ -66,13 +66,20 @@ const ProfileChangePasswordScreen = (props: any) => {
 	const [eyeIcon, setEyeIcon] = useState(false);
 	const [isPassword, setIsPassword] = useState(true);
 	const dispatch = useDispatch();
+	const [isNewPassword, setNewIsPassword] = useState(true);
+	const [isCurrentPassword, setCurrentIsPassword] = useState(true);
 
-	const getForgotPassword = () => {
-		navigation.replace(NavigateTo.Main);
-	};
 	const VisibilityPassword = () => {
-		setEyeIcon(isPassword ? true : false);
+		// setPasswordEyeIcon(isPassword ? true : false);
 		setIsPassword(prevState => !prevState);
+	};
+	const VisibilityNewPassword = () => {
+		// setNewPasswordEyeIcon(isNewPassword ? true : false);
+		setNewIsPassword(prevState => !prevState);
+	};
+	const VisibilityOldPassword = () => {
+		// setNewPasswordEyeIcon(isNewPassword ? true : false);
+		setCurrentIsPassword(prevState => !prevState);
 	};
 
 	const loginHandler = (
@@ -80,8 +87,10 @@ const ProfileChangePasswordScreen = (props: any) => {
 		formikHelpers: FormikHelpers<LoginSchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
+		delete values.confirm;
 		const payload = {...values};
 		console.log(values);
+		formikHelpers.setSubmitting(false);
 		// ApiFunctions.post(ENV.apiUrl + 'account/login', payload)
 		// 	.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {
 		// 		formikHelpers.setSubmitting(false);
@@ -106,7 +115,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 					animated={true}
 					backgroundColor={Colors.backdropColor}
 				/>
-				<View style={styles.wrapper}>
+				{/* <View style={styles.wrapper}>
 					<View style={styles.header}>
 						<View style={{}}>
 							<Text style={styles.headerText}>Create New Password</Text>
@@ -117,7 +126,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 							</Text>
 						</View>
 					</View>
-				</View>
+				</View> */}
 				<View style={styles.formBlock}>
 					<View style={styles.formHolder}>
 						<Formik
@@ -135,7 +144,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 														labelText="Enter Current Password"
 														inputProperties={{
 															maxLength: 20,
-															secureTextEntry: isPassword,
+															secureTextEntry: isCurrentPassword,
 															placeholder: 'Enter Current Password',
 														}}
 														inputStyles={{
@@ -151,28 +160,45 @@ const ProfileChangePasswordScreen = (props: any) => {
 													<TouchableOpacity
 														style={{
 															position: 'absolute',
-															bottom: 15,
+															bottom: 20,
 															right: 10,
 														}}
-														onPress={VisibilityPassword}>
-														<ImageConfig.EyeIcon
-															color={'red'}
-															style={{
-																borderRadius: 100,
-																marginRight: 10,
-															}}
-															height={'25'}
-															width={'25'}
-														/>
+														onPress={VisibilityOldPassword}>
+														{isCurrentPassword ? (
+															<>
+																<ImageConfig.EyeIcon
+																	color={'red'}
+																	style={{
+																		borderRadius: 100,
+																		marginRight: 10,
+																	}}
+																	height={'25'}
+																	width={'25'}
+																/>
+															</>
+														) : (
+															<>
+																<ImageConfig.IconEyeOpen
+																	color={'red'}
+																	style={{
+																		borderRadius: 100,
+																		marginRight: 10,
+																	}}
+																	height={'25'}
+																	width={'25'}
+																/>
+															</>
+														)}
 													</TouchableOpacity>
 												</View>
 											)}
 										</Field>
-										<Field name={'newPassword'}>
+										<Field name={'password'}>
 											{(field: FieldProps) => (
 												<View style={styles.rowElements}>
 													<FormikInputComponent
-														labelText="Enter New Password"
+														trimSpaces={true}
+														labelText="New Password"
 														inputProperties={{
 															maxLength: 20,
 															secureTextEntry: isPassword,
@@ -180,7 +206,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 														}}
 														inputStyles={{
 															fontFamily: FontConfig.primary.semiBold,
-															fontSize: 18,
+															fontSize: 16,
 														}}
 														formikField={field}
 														style={{
@@ -191,37 +217,53 @@ const ProfileChangePasswordScreen = (props: any) => {
 													<TouchableOpacity
 														style={{
 															position: 'absolute',
-															bottom: 15,
+															bottom: 20,
 															right: 10,
 														}}
 														onPress={VisibilityPassword}>
-														<ImageConfig.EyeIcon
-															color={'red'}
-															style={{
-																borderRadius: 100,
-																marginRight: 10,
-															}}
-															height={'25'}
-															width={'25'}
-														/>
+														{isPassword ? (
+															<>
+																<ImageConfig.EyeIcon
+																	color={'red'}
+																	style={{
+																		borderRadius: 100,
+																		marginRight: 10,
+																	}}
+																	height={'25'}
+																	width={'25'}
+																/>
+															</>
+														) : (
+															<>
+																<ImageConfig.IconEyeOpen
+																	color={'red'}
+																	style={{
+																		borderRadius: 100,
+																		marginRight: 10,
+																	}}
+																	height={'25'}
+																	width={'25'}
+																/>
+															</>
+														)}
 													</TouchableOpacity>
 												</View>
 											)}
 										</Field>
-										<Field name={'confirmPassword'}>
+										<Field name={'confirm'}>
 											{(field: FieldProps) => (
 												<View style={styles.rowElements}>
 													<FormikInputComponent
-														labelText="Confirm  New Password"
+														trimSpaces={true}
+														labelText="Confirm Password"
 														inputProperties={{
 															maxLength: 20,
-															secureTextEntry: isPassword,
+															secureTextEntry: isNewPassword,
 															placeholder: 'Confirm Password',
 														}}
 														inputStyles={{
 															fontFamily: FontConfig.primary.semiBold,
-															fontSize: 18,
-															color: Colors.textLight,
+															fontSize: 16,
 														}}
 														formikField={field}
 														style={{
@@ -232,19 +274,35 @@ const ProfileChangePasswordScreen = (props: any) => {
 													<TouchableOpacity
 														style={{
 															position: 'absolute',
-															bottom: 15,
+															bottom: 20,
 															right: 10,
 														}}
-														onPress={VisibilityPassword}>
-														<ImageConfig.EyeIcon
-															color={'red'}
-															style={{
-																borderRadius: 100,
-																marginRight: 10,
-															}}
-															height={'25'}
-															width={'25'}
-														/>
+														onPress={VisibilityNewPassword}>
+														{isNewPassword ? (
+															<>
+																<ImageConfig.EyeIcon
+																	color={'red'}
+																	style={{
+																		borderRadius: 100,
+																		marginRight: 10,
+																	}}
+																	height={'25'}
+																	width={'25'}
+																/>
+															</>
+														) : (
+															<>
+																<ImageConfig.IconEyeOpen
+																	color={'red'}
+																	style={{
+																		borderRadius: 100,
+																		marginRight: 10,
+																	}}
+																	height={'25'}
+																	width={'25'}
+																/>
+															</>
+														)}
 													</TouchableOpacity>
 												</View>
 											)}
@@ -253,7 +311,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 									<View
 										style={{
 											flexDirection: 'row',
-											marginTop: 20,
+											marginTop: 150,
 										}}>
 										<View
 											style={{
@@ -290,9 +348,9 @@ const ProfileChangePasswordScreen = (props: any) => {
 													marginVertical: 0,
 													height: 40,
 												}}
-												title={'Update Password'}
+												title={'Update'}
 												// isLoading={isSubmitting}
-												// onPress={handleSubmit}
+												onPress={handleSubmit}
 												disabled={!isValid}
 												textStyle={{
 													textTransform: 'none',
@@ -302,13 +360,6 @@ const ProfileChangePasswordScreen = (props: any) => {
 											/>
 										</View>
 									</View>
-									{/* <CustomButton
-										isLoading={isSubmitting}
-										title={'Login'}
-										onPress={handleSubmit}
-										style={[styles.button, {backgroundColor: Colors.primary}]}
-										disabled={!isValid}
-									/> */}
 								</>
 							)}
 						</Formik>
@@ -363,7 +414,7 @@ const styles = StyleSheet.create({
 	},
 	headerText: {
 		// textAlign: 'center',
-		fontSize: 26,
+		fontSize: 24,
 		fontFamily: FontConfig.primary.bold,
 		// fontFamily: 'NunitoSans-Bold',
 		color: Colors.textDark,

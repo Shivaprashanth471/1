@@ -45,7 +45,6 @@ import * as yup from 'yup';
 import {TSAPIResponseType} from '../../../helpers/ApiFunctions';
 import FormikInputComponent from '../../../components/core/FormikInputComponent';
 import DropdownComponent from '../../../components/core/DropdownComponent';
-import {currentList, regionsList} from '../../../constants/CommonVariables';
 const loginSchema = yup.object().shape({
 	region: yup.string().required('Required'),
 });
@@ -128,7 +127,7 @@ const GetRegionScreen = (props: any) => {
 												flex: 1,
 												justifyContent: 'space-between',
 											}}>
-											<Field name={'region'}>
+											{/* <Field name={'region'}>
 												{(field: FieldProps) => (
 													<DropdownComponent
 														contentWrapper={{marginHorizontal: 0}}
@@ -144,7 +143,7 @@ const GetRegionScreen = (props: any) => {
 														}}
 													/>
 												)}
-											</Field>
+											</Field> */}
 
 											<CustomButton
 												isLoading={isSubmitting}

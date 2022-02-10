@@ -12,6 +12,7 @@ const FindShifts = 'FindShifts';
 const MyShifts = 'MyShifts';
 const ShiftDetailsScreen = 'ShiftDetailsScreen';
 const FacilityShiftPreviewScreen = 'FacilityShiftPreviewScreen';
+const FacilityReviewScreen = 'FacilityReviewScreen';
 const ForgotPassword_Email_Screen = 'ForgotPassword_Email_Screen';
 const OTPVerificationScreen = 'OTPVerificationScreen';
 const AuthFirstNameScreen = 'AuthFirstNameScreen';
@@ -69,6 +70,7 @@ export default {
 	ProfileEditScreen,
 	ShiftDetailsScreen,
 	FacilityShiftPreviewScreen,
+	FacilityReviewScreen,
 	ForgotPassword_Email_Screen,
 	OTPVerificationScreen,
 	AuthFirstNameScreen,

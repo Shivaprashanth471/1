@@ -9,7 +9,6 @@ import {
 	View,
 } from 'react-native';
 import {ApiFunctions, CommonStyles} from '../../../helpers';
-import {currentList, regionsList} from '../../../constants/CommonVariables';
 import {Colors, ENV, FontConfig, NavigateTo} from '../../../constants';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import PickerComponent from '../../../components/core/PickerComponent';

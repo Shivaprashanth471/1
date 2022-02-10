@@ -39,7 +39,7 @@ const profileVolunteerSchema = yup.object().shape({
 		.string()
 		.matches(/\S/, 'cannot contain only blankspaces')
 		.required('Required'),
-	start_date: yup.string().required('Required'),
+	// start_date: yup.string().required('Required'),
 });
 
 export interface profileVolunteerSchemaType {
@@ -85,13 +85,19 @@ const ProfileAddVolunteerComponent = (
 		const payload = {
 			...values,
 			exp_type: 'volunteer',
-			end_date: isWorking ? '' : values.end_date,
+			// end_date: isWorking ? '' : values.end_date,
 		};
-		if (values.end_date.length === 0 && !isWorking) {
-			formikHelpers.setSubmitting(false);
-			ToastAlert.show('Please give an end date');
-			return;
-		} else if (values.start_date === values.end_date && !isWorking) {
+		// if (values.end_date.length === 0 && !isWorking) {
+		// 	formikHelpers.setSubmitting(false);
+		// 	ToastAlert.show('Please give an end date');
+		// 	return;
+		// } else
+		if (
+			values.start_date === values.end_date &&
+			!isWorking &&
+			values.start_date != '' &&
+			values.end_date != ''
+		) {
 			formikHelpers.setSubmitting(false);
 			ToastAlert.show('Start and end date should not be same');
 			return;

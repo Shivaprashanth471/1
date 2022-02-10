@@ -46,6 +46,7 @@ const GetHcpPositionScreen = (props: any) => {
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const [hcpDetails, setHcpDetails]: any = useState<null | {}>({});
+	const [hcpTypeList, setHcpTypeList] = useState<any>();
 
 	const hcpPositionHandler = (
 		values: HcpPositionSchemaType,
@@ -122,9 +123,29 @@ const GetHcpPositionScreen = (props: any) => {
 			.catch((err: any) => {
 				setIsLoading(false);
 				setIsLoaded(true);
-				console.log(err);
+				console.log('>>>>><<<<<<<<<<<<<<<<<<<<<', err);
 			});
 	}, [GetHcpBasicDetailsPayload._id]);
+
+	// const getHcpTypeList = useCallback(() => {
+	// 	setIsLoading(true);
+	// 	ApiFunctions.get(ENV.apiUrl + 'meta/hcp-types')
+	// 		.then((resp: any) => {
+	// 			if (resp && resp.success) {
+	// 				setHcpTypeList(resp.data);
+	// 			} else {
+	// 				ToastAlert.show('something went wrong');
+	// 			}
+	// 			setIsLoading(false);
+	// 			setIsLoaded(true);
+	// 		})
+	// 		.catch((err: any) => {
+	// 			ToastAlert.show(err.error || 'Something went wrong');
+	// 			setIsLoading(false);
+	// 			setIsLoaded(true);
+	// 			console.log('>>>>', err);
+	// 		});
+	// }, []);
 
 	useEffect(() => {
 		console.log('loading HCP details.....');
@@ -134,10 +155,10 @@ const GetHcpPositionScreen = (props: any) => {
 	return (
 		<>
 			{isLoading && <LoadingComponent />}
-			{!isLoading && isLoaded && !setHcpDetails && (
+			{!isLoading && isLoaded && !hcpDetails && (
 				<ErrorComponent text={'Facility details not available'} />
 			)}
-			{!isLoading && isLoaded && setHcpDetails && (
+			{!isLoading && isLoaded && hcpDetails && (
 				<KeyboardAvoidCommonView>
 					<BaseViewComponent noScroll={true}>
 						<StatusBar
@@ -219,7 +240,6 @@ const GetHcpPositionScreen = (props: any) => {
 															placeholder={'select your position'}
 															formikField={field}
 															search={false}
-															disabled={false}
 															onUpdate={() => {
 																// setDisableBtn(false);
 															}}

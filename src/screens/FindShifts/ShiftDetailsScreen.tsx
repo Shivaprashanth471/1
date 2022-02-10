@@ -272,7 +272,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 			)}
 			{!isLoading && isLoaded && facility && (
 				<>
-					<BaseViewComponent noScroll={true} style={[styles.wrapper]}>
+					<BaseViewComponent noScroll={false} style={[styles.wrapper]}>
 						<StatusBar
 							barStyle={'light-content'}
 							animated={true}
@@ -322,9 +322,11 @@ const FacilityShiftPreviewScreen = (props: any) => {
 										shiftStartTime={shiftStartTime}
 										shiftEndTime={shiftEndTime}
 										HCPLevel={HCPLevel}
-										style={{
-											marginTop: -70,
-										}}
+										style={
+											{
+												// marginTop: -70,
+											}
+										}
 										requirementID={requirementID}
 										warningType={warningType}
 										shiftType={shiftType}

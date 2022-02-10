@@ -53,12 +53,14 @@ const ProfileDetailsContainerComponent = (
 	const [selectDeleteModalVisible, setDeleteModalVisible] =
 		useState<boolean>(false);
 
+	let start_date =
+		startDate === '' || startDate === null
+			? 'NA'
+			: moment(startDate).format('MMM, YYYY');
 	let end_date =
 		endDate === '' || endDate === null
-			? 'Current'
+			? 'NA'
 			: moment(endDate).format('MMM, YYYY');
-
-	const start_date = moment(startDate).format('MMM, YYYY');
 
 	const removeExperience = useCallback(() => {
 		setIsloading(true);
@@ -255,7 +257,7 @@ const ProfileDetailsContainerComponent = (
 							{getDate && (
 								<>
 									<Text style={[styles.subText, {}]}>
-										{start_date} - {end_date ? end_date : 'Current'}
+										{start_date} - {end_date}
 									</Text>
 								</>
 							)}

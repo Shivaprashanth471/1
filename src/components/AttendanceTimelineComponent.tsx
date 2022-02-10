@@ -33,7 +33,6 @@ const AttendanceTimelineComponent = (
 			.then(async resp => {
 				if (resp) {
 					setShift(resp.data.time_breakup.break_timings);
-					console.log('>>>>>', resp.data.time_breakup.break_timings);
 				} else {
 					Alert.alert('Error', resp);
 				}

@@ -1,12 +1,21 @@
-import React from 'react';
-import {StyleSheet, Text, View, StatusBar} from 'react-native';
-import {Colors, FontConfig, NavigateTo} from '../../../constants';
+import React, {useState} from 'react';
+import {
+	StyleSheet,
+	Text,
+	View,
+	StatusBar,
+	TouchableOpacity,
+} from 'react-native';
+import {Colors, FontConfig, ImageConfig, NavigateTo} from '../../../constants';
 import {CustomButton} from '../../../components/core';
+import {ApiFunctions, CommonFunctions, ToastAlert} from '../../../helpers';
+import {CONTACTUS_PHONE_NUMBER} from '../../../helpers/CommonFunctions';
 
 const GetThankYouScreen = (props: any) => {
 	const navigation = props.navigation;
 	// const {GetHcpBasicDetailsPayload}: any = props.route.params;
 	// console.log(GetHcpBasicDetailsPayload);
+	const [phone, setPhone] = useState(CONTACTUS_PHONE_NUMBER);
 
 	return (
 		<>
@@ -54,6 +63,35 @@ const GetThankYouScreen = (props: any) => {
 							navigation.navigate(NavigateTo.Signin);
 						}}
 					/>
+				</View>
+				<View>
+					<View
+						style={{
+							// backgroundColor: 'red',
+							marginTop: 80,
+							alignItems: 'center',
+						}}>
+						<Text>For any queries, please contact</Text>
+						<TouchableOpacity
+							style={{
+								flexDirection: 'row',
+								marginTop: 15,
+							}}
+							onPress={() => {
+								CommonFunctions.openCall(phone);
+							}}>
+							<ImageConfig.CallIcon height={25} width={25} />
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.semiBold,
+									fontSize: 18,
+									color: Colors.textOnAccent,
+									marginLeft: 10,
+								}}>
+								+18187221230
+							</Text>
+						</TouchableOpacity>
+					</View>
 				</View>
 			</View>
 		</>

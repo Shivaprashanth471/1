@@ -10,15 +10,6 @@ import {ApiFunctions, CommonFunctions, ToastAlert} from '../helpers';
 import {Colors, ENV, FontConfig} from '../constants';
 import {useSelector} from 'react-redux';
 import {StateParams} from '../store/reducers';
-import {
-	currentList,
-	primarySpecialityList,
-	CnaSpecialityList,
-	RnSpecialityList,
-	LvnSpecialityList,
-	CareGiverSpecialityList,
-	MedTechSpecialityList,
-} from '../constants/CommonVariables';
 
 import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
@@ -43,7 +34,7 @@ const profileExperienceSchema = yup.object().shape({
 	position_title: yup.string().required('Required'),
 	still_working_here: yup.string().required('Required'),
 	specialisation: yup.string().required('Required'),
-	start_date: yup.string().required('Required'),
+	// start_date: yup.string().required('Required'),
 });
 
 export interface profileExperienceSchemaType {
@@ -69,6 +60,8 @@ const initialValues: profileExperienceSchemaType = {
 export interface ProfileAddExperienceComponentProps {
 	onUpdate?: () => void;
 	setDisplayAddText?: any;
+	hcpTypeList?: any;
+	hcpSpecialityList?: any;
 }
 
 const ProfileAddExperienceComponent = (
@@ -81,6 +74,8 @@ const ProfileAddExperienceComponent = (
 	const [isWorking, setIsWorking] = useState<boolean>(false);
 	const [hcpRole, setHcpRole] = useState<string>('');
 	const setDisplayAddText = props.setDisplayAddText;
+	const hcpTypeList = props.hcpTypeList;
+	const hcpSpecialityList = props.hcpSpecialityList;
 
 	const updateProfileExperienceDetails = (
 		values: profileExperienceSchemaType,
@@ -90,14 +85,20 @@ const ProfileAddExperienceComponent = (
 		const payload = {
 			...values,
 			exp_type: 'fulltime',
-			end_date: isWorking ? '' : values.end_date,
+			// end_date: isWorking ? '' : values.end_date,
 		};
-		if (values.end_date.length === 0 && !isWorking) {
-			formikHelpers.setSubmitting(false);
-			ToastAlert.show('Please give an end date');
-			return;
-		} else if (values.start_date === values.end_date && !isWorking) {
-			formikHelpers.setSubmitting(false);
+		// if (values.end_date.length === 0 && !isWorking) {
+		// 	formikHelpers.setSubmitting(false);
+		// 	ToastAlert.show('Please give an end date');
+		// 	return;
+		// }
+		// else
+		if (
+			values.start_date === values.end_date &&
+			!isWorking &&
+			values.start_date != '' &&
+			values.end_date != ''
+		) {
 			ToastAlert.show('Start and end date should not be same');
 			return;
 		} else if (values.start_date > values.end_date && !isWorking) {
@@ -187,14 +188,16 @@ const ProfileAddExperienceComponent = (
 										{(field: FieldProps) => (
 											<DropdownComponent
 												contentWrapper={{marginHorizontal: 0}}
-												// @ts-ignore
-												data={currentList}
-												placeholder={'select your role'}
+												data={hcpTypeList}
+												labelText={'Role'}
+												placeholder={'select the value'}
 												formikField={field}
 												search={false}
-												disabled={false}
 												onUpdate={selectedValue => {
 													setHcpRole(selectedValue);
+												}}
+												style={{
+													marginBottom: 10,
 												}}
 											/>
 										)}
@@ -203,24 +206,28 @@ const ProfileAddExperienceComponent = (
 										{(field: FieldProps) => (
 											<DropdownComponent
 												contentWrapper={{marginHorizontal: 0}}
-												// @ts-ignore
 												data={
 													hcpRole === 'RN'
-														? RnSpecialityList
+														? hcpSpecialityList.RN
 														: hcpRole === 'LVN'
-														? LvnSpecialityList
+														? hcpSpecialityList.LVN
 														: hcpRole === 'CNA'
-														? CnaSpecialityList
+														? hcpSpecialityList.CNA
 														: hcpRole === 'CareGiver'
-														? CareGiverSpecialityList
+														? hcpSpecialityList.CareGiver
 														: hcpRole === 'MedTech'
-														? MedTechSpecialityList
-														: primarySpecialityList
+														? hcpSpecialityList.MedTech
+														: [
+																{
+																	code: 'Please select your role first',
+																	name: 'Please select your role first',
+																},
+														  ]
 												}
+												labelText={'Your Specialisation'}
 												placeholder={'select your specialisation'}
 												formikField={field}
 												search={false}
-												disabled={false}
 											/>
 										)}
 									</Field>
@@ -266,9 +273,6 @@ const ProfileAddExperienceComponent = (
 												}}
 												placeholer="Start Date"
 												mode="MonthYear"
-												onUpdate={(e: any) => {
-													console.log('<><><><>', e, '<><><>>');
-												}}
 											/>
 										)}
 									</Field>

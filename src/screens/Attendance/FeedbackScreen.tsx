@@ -38,24 +38,13 @@ import {
 } from '../../components/core';
 import * as yup from 'yup';
 
-const FeedbackSchema = yup.object().shape({
-	is_covid_protocols_followed: yup.boolean().required('Required'),
-	is_facility_hygienic: yup.boolean().required('Required'),
-	is_facility_provided_assistance: yup.boolean().required('Required'),
-	experience: yup.string().required('Required'),
-});
+const FeedbackSchema = yup.object().shape({});
 
 export interface FeedbackType {
-	is_covid_protocols_followed: any;
-	is_facility_hygienic: any;
-	is_facility_provided_assistance: any;
 	experience: string;
 }
 
 const initialValues: FeedbackType = {
-	is_covid_protocols_followed: '',
-	is_facility_hygienic: '',
-	is_facility_provided_assistance: '',
 	experience: '',
 };
 
@@ -87,21 +76,21 @@ const FeedbackScreen = (props: any) => {
 			experience_details: {
 				...values,
 			},
-			shift_rating: rating,
+			facility_rating: rating,
 		};
 		// formikHelpers.setSubmitting(false);
-		console.log(payload);
+		// console.log(payload);
 
 		ApiFunctions.put(ENV.apiUrl + 'shift/' + shiftID, payload)
 			.then(async (resp: TSAPIResponseType<FeedbackType>) => {
 				formikHelpers.setSubmitting(false);
 				if (resp.success) {
-					console.log('resp', resp);
 					navigation.navigate(NavigateTo.ThankYouScreen);
-					setShowQuestionnaireModal(false);
+					// setShowQuestionnaireModal(false);
 				} else {
 					ToastAlert.show(resp.error || '');
 				}
+				// console.log('>>>>', resp);
 			})
 			.catch((err: any) => {
 				formikHelpers.setSubmitting(false);
@@ -167,394 +156,299 @@ const FeedbackScreen = (props: any) => {
 		setShowQuestionnaireModal(false);
 	}, [getShiftDetails]);
 
-	const modalQuestionnaireView = () => {
-		return (
-			<View style={styles.ModalContainer}>
-				<Modal
-					animationType="slide"
-					transparent={true}
-					visible={showQuestionnaireModal}
-					onRequestClose={() => {
-						setShowQuestionnaireModal(!showQuestionnaireModal);
-					}}>
-					<View style={[styles.centeredView, {backgroundColor: '#000000A0'}]}>
-						<View style={styles.modalView}>
-							<AirbnbRating
-								count={5}
-								reviews={['Terrible', 'Bad', 'Meh', 'OK', 'Good']}
-								reviewColor={'#2CD3C2'}
-								defaultRating={rating}
-								size={20}
-							/>
-							<View
-								style={{
-									alignItems: 'center',
-									marginVertical: 15,
-								}}>
-								<Text
-									style={{
-										fontFamily: FontConfig.primary.regular,
-										fontSize: 14,
-									}}>
-									Were these followed ?
-								</Text>
-								<View style={styles.underline} />
-							</View>
-							<ScrollView>
-								<View style={[styles.formBlock]}>
-									<View style={[styles.formHolder]}>
-										<Formik
-											onSubmit={updateCertifiedToPractiseDetails}
-											validationSchema={FeedbackSchema}
-											validateOnBlur={true}
-											initialValues={{
-												...initialValues,
-												...{
-													experience: shiftDetails.experience_details
-														? shiftDetails.experience_details.experience
-														: '',
-													is_covid_protocols_followed:
-														shiftDetails.experience_details
-															? shiftDetails.experience_details
-																	.is_covid_protocols_followed
-															: '',
-													is_facility_hygienic: shiftDetails.experience_details
-														? shiftDetails.experience_details
-																.is_facility_hygienic
-														: '',
-													is_facility_provided_assistance:
-														shiftDetails.experience_details
-															? shiftDetails.experience_details
-																	.is_facility_provided_assistance
-															: '',
-												},
-											}}>
-											{({
-												handleSubmit,
-												resetForm,
-												values,
-												isValid,
-												setFieldValue,
-												isSubmitting,
-											}) => (
-												<View>
-													<View
-														style={{
-															flexDirection: 'row',
-															justifyContent: 'space-between',
-															paddingHorizontal: 10,
-														}}
-													/>
-													<View style={{}}>
-														<Field name={'is_covid_protocols_followed'}>
-															{(field: FieldProps) => (
-																<FormikRadioGroupComponent
-																	formikField={field}
-																	labelDarkText={
-																		'Was the facility following covid protocol?'
-																	}
-																	textStyle={{
-																		color: Colors.primary,
-																	}}
-																	style={{
-																		height: 40,
-																	}}
-																	radioButtons={[
-																		{
-																			id: true,
-																			title: 'Yes',
-																		},
-																		{
-																			id: false,
-																			title: 'No',
-																		},
-																	]}
-																	direction={'column'}
-																/>
-															)}
-														</Field>
-														<Field name={'is_facility_hygienic'}>
-															{(field: FieldProps) => (
-																<FormikRadioGroupComponent
-																	formikField={field}
-																	labelDarkText={'Was the facility hygienic?'}
-																	textStyle={{
-																		color: Colors.primary,
-																	}}
-																	style={{
-																		height: 40,
-																	}}
-																	radioButtons={[
-																		{
-																			id: true,
-																			title: 'Yes',
-																		},
-																		{
-																			id: false,
-																			title: 'No',
-																		},
-																	]}
-																	direction={'column'}
-																/>
-															)}
-														</Field>
-														<Field name={'is_facility_provided_assistance'}>
-															{(field: FieldProps) => (
-																<FormikRadioGroupComponent
-																	formikField={field}
-																	labelDarkText={
-																		'Was the facility helpful in work assitance?'
-																	}
-																	textStyle={{
-																		color: Colors.primary,
-																	}}
-																	style={{
-																		height: 40,
-																	}}
-																	radioButtons={[
-																		{
-																			id: true,
-																			title: 'Yes',
-																		},
-																		{
-																			id: false,
-																			title: 'No',
-																		},
-																	]}
-																	direction={'column'}
-																/>
-															)}
-														</Field>
-														<Field name={'experience'}>
-															{(field: FieldProps) => (
-																<FormikInputComponent
-																	inputProperties={{
-																		multiline: true,
-																		keyboardType: 'default',
-																		placeholder:
-																			'Tell us more about your experience',
-																		maxLength: 300,
-																	}}
-																	style={{
-																		backgroundColor:
-																			Colors.backgroundShiftColor,
-																		height: 100,
-																		padding: 0,
-																		borderRadius: 10,
-																	}}
-																	inputStyles={{
-																		fontSize: 16,
-																	}}
-																	formikField={field}
-																/>
-															)}
-														</Field>
-													</View>
-													<View
-														style={{
-															flexDirection: 'row',
-															marginHorizontal: 10,
-															justifyContent: 'space-between',
-															marginTop: 10,
-														}}>
-														<CustomButton
-															isLoading={isSubmitting}
-															title={'Submit your feedback'}
-															onPress={() => {
-																handleSubmit();
-																// navigation.navigate(NavigateTo.ThankYouScreen);
-															}}
-															style={{
-																width: '100%',
-																height: 50,
-																marginBottom: 50,
-															}}
-															textStyle={{
-																textTransform: 'capitalize',
-															}}
-														/>
-													</View>
-												</View>
-											)}
-										</Formik>
-									</View>
-								</View>
-							</ScrollView>
-						</View>
-					</View>
-				</Modal>
-			</View>
-		);
-	};
+	// const modalQuestionnaireView = () => {
+	// 	return (
+	// 		<View style={styles.ModalContainer}>
+	// 			<Modal
+	// 				animationType="slide"
+	// 				transparent={true}
+	// 				visible={showQuestionnaireModal}
+	// 				onRequestClose={() => {
+	// 					setShowQuestionnaireModal(!showQuestionnaireModal);
+	// 				}}>
+	// 				<View style={[styles.centeredView, {backgroundColor: '#000000A0'}]}>
+	// 					<View style={styles.modalView}>
+	// 						<AirbnbRating
+	// 							count={5}
+	// 							reviews={['Terrible', 'Bad', 'Meh', 'OK', 'Good']}
+	// 							reviewColor={'#2CD3C2'}
+	// 							defaultRating={rating}
+	// 							size={20}
+	// 						/>
+	// 						<View
+	// 							style={{
+	// 								alignItems: 'center',
+	// 								marginVertical: 15,
+	// 							}}>
+	// 							<Text
+	// 								style={{
+	// 									fontFamily: FontConfig.primary.regular,
+	// 									fontSize: 14,
+	// 								}}>
+	// 								Were these followed ?
+	// 							</Text>
+	// 							<View style={styles.underline} />
+	// 						</View>
+	// 						<ScrollView>
+	// 							<View style={[styles.formBlock]}>
+	// 								<View style={[styles.formHolder]}>
+	// 									<Formik
+	// 										onSubmit={updateCertifiedToPractiseDetails}
+	// 										validationSchema={FeedbackSchema}
+	// 										validateOnBlur={true}
+	// 										initialValues={{
+	// 											...initialValues,
+	// 											...{
+	// 												experience: shiftDetails.experience_details
+	// 													? shiftDetails.experience_details.experience
+	// 													: '',
+	// 											},
+	// 										}}>
+	// 										{({
+	// 											handleSubmit,
+	// 											resetForm,
+	// 											values,
+	// 											isValid,
+	// 											setFieldValue,
+	// 											isSubmitting,
+	// 										}) => (
+	// 											<View>
+	// 												<View
+	// 													style={{
+	// 														flexDirection: 'row',
+	// 														justifyContent: 'space-between',
+	// 														paddingHorizontal: 10,
+	// 													}}
+	// 												/>
+	// 												<View style={{}}>
+	// 													<Field name={'experience'}>
+	// 														{(field: FieldProps) => (
+	// 															<FormikInputComponent
+	// 																inputProperties={{
+	// 																	multiline: true,
+	// 																	keyboardType: 'default',
+	// 																	placeholder:
+	// 																		'Tell us more about your experience',
+	// 																	// maxLength: 300,
+	// 																}}
+	// 																style={{
+	// 																	backgroundColor:
+	// 																		Colors.backgroundShiftColor,
+	// 																	height: 100,
+	// 																	padding: 0,
+	// 																	borderRadius: 10,
+	// 																}}
+	// 																inputStyles={{
+	// 																	fontSize: 16,
+	// 																}}
+	// 																formikField={field}
+	// 															/>
+	// 														)}
+	// 													</Field>
+	// 												</View>
+	// 												<View
+	// 													style={{
+	// 														flexDirection: 'row',
+	// 														marginHorizontal: 10,
+	// 														justifyContent: 'space-between',
+	// 														marginTop: 50,
+	// 													}}>
+	// 													<CustomButton
+	// 														isLoading={isSubmitting}
+	// 														title={'Submit your feedback'}
+	// 														onPress={() => {
+	// 															handleSubmit();
+	// 															// navigation.navigate(NavigateTo.ThankYouScreen);
+	// 														}}
+	// 														style={{
+	// 															width: '100%',
+	// 															height: 50,
+	// 															marginBottom: 50,
+	// 														}}
+	// 														textStyle={{
+	// 															textTransform: 'capitalize',
+	// 														}}
+	// 													/>
+	// 												</View>
+	// 											</View>
+	// 										)}
+	// 									</Formik>
+	// 								</View>
+	// 							</View>
+	// 						</ScrollView>
+	// 					</View>
+	// 				</View>
+	// 			</Modal>
+	// 		</View>
+	// 	);
+	// };
 
 	return (
 		<>
-			{viewMode === 'getRating' && (
-				<>
-					{isLoading && <LoadingComponent />}
-					{!isLoading && isLoaded && !shiftDetails && <ErrorComponent />}
-					{!isLoading && isLoaded && shiftDetails && (
-						<BaseViewComponent style={styles.screen}>
-							<StatusBar
-								barStyle={'light-content'}
-								animated={true}
-								backgroundColor={Colors.backdropColor}
-							/>
-							<View style={styles.imageContainer}>
-								<ImageConfig.Building
-									style={{
-										width: 220,
-										height: 220,
-									}}
-								/>
-							</View>
-							<View
-								style={[
-									CommonStyles.flexCenter,
-									{
-										marginVertical: 20,
-									},
-								]}>
-								<Text
-									style={{
-										fontFamily: FontConfig.primary.regular,
-										fontSize: 14,
-									}}>
-									Rate your experience
-								</Text>
-								<View style={styles.underline} />
-							</View>
-
-							<View style={[CommonStyles.flexCenter, {marginVertical: 20}]}>
-								<Text
-									style={{
-										fontFamily: FontConfig.primary.semiBold,
-										fontSize: 20,
-									}}>
-									{shiftDetails.facility.facility_name}
-								</Text>
-							</View>
-							<AirbnbRating
-								count={5}
-								reviews={['Terrible', 'Bad', 'Meh', 'OK', 'Great !']}
-								reviewColor={'#2CD3C2'}
-								reviewSize={16}
-								defaultRating={
-									shiftDetails.shift_rating ? shiftDetails.shift_rating : 0
-								}
-								size={20}
-								onFinishRating={rating => {
-									setRating(rating);
-									setShowQuestionnaireModal(true);
+			<>
+				{isLoading && <LoadingComponent />}
+				{!isLoading && isLoaded && !shiftDetails && <ErrorComponent />}
+				{!isLoading && isLoaded && shiftDetails && (
+					<BaseViewComponent style={styles.screen}>
+						<StatusBar
+							barStyle={'light-content'}
+							animated={true}
+							backgroundColor={Colors.backdropColor}
+						/>
+						<View style={styles.imageContainer}>
+							<ImageConfig.Building
+								style={{
+									width: 220,
+									height: 220,
 								}}
-								showRating={false}
 							/>
-							<View
+						</View>
+						<View
+							style={[
+								CommonStyles.flexCenter,
+								{
+									marginVertical: 20,
+								},
+							]}>
+							<Text
 								style={{
-									alignItems: 'center',
-									marginTop: 150,
+									fontFamily: FontConfig.primary.regular,
+									fontSize: 14,
 								}}>
-								<Text
-									style={{
-										color: Colors.textLight,
-										fontFamily: FontConfig.primary.regular,
-										fontSize: 14,
-									}}>
-									Your word makes the facility a better place
-								</Text>
-							</View>
+								Rate your experience
+							</Text>
+							<View style={styles.underline} />
+						</View>
 
-							{modalQuestionnaireView()}
-						</BaseViewComponent>
-					)}
-				</>
-			)}
-			{viewMode === 'alreadyRated' && (
-				<>
-					{isLoading && <LoadingComponent />}
-					{!isLoading && isLoaded && !shiftDetails && <ErrorComponent />}
-					{!isLoading && isLoaded && shiftDetails && (
-						<BaseViewComponent
-							style={styles.screen}
-							backgroundColor={Colors.backgroundShiftColor}>
-							<StatusBar
-								barStyle={'light-content'}
-								animated={true}
-								backgroundColor={Colors.backdropColor}
-							/>
-							<View style={styles.timeSheetContainer}>
-								<Text style={styles.timeLineText}>Timeline</Text>
-								<AttendanceStatusBoxComponent
-									status={'CheckIn'}
-									time={checkInTime}
-								/>
-								<AttendanceTimelineComponent shiftID={shiftID} />
-								<AttendanceStatusBoxComponent
-									status={'Check-Out'}
-									time={checkOutTime}
-								/>
-							</View>
-							<View>
-								{ShiftDocumentsArray.map((item: any) => (
-									<>
-										<UploadCDHPComponent
-											title={item}
-											shiftID={shiftID}
-											state={setStateBtn}
-											showOnlyDocument={true}
-										/>
-									</>
-								))}
-							</View>
-							<View
+						<View style={[CommonStyles.flexCenter, {marginTop: 15}]}>
+							<Text
 								style={{
-									marginHorizontal: 20,
-									marginTop: 50,
+									fontFamily: FontConfig.primary.semiBold,
+									fontSize: 20,
 								}}>
-								<Text
-									style={{
-										fontFamily: FontConfig.primary.bold,
-										fontSize: 18,
-										color: Colors.textDark,
+								{shiftDetails.facility.facility_name}
+							</Text>
+						</View>
+						<AirbnbRating
+							reviewSize={16}
+							defaultRating={
+								shiftDetails.shift_rating ? shiftDetails.shift_rating : 0
+							}
+							size={20}
+							onFinishRating={rating => {
+								setRating(rating);
+							}}
+							count={5}
+							reviews={[
+								'Bad',
+								'Not Satisfactory',
+								'Satisfactory',
+								'Good',
+								'Excellent',
+							]}
+							reviewColor={'#2CD3C2'}
+						/>
+						<View style={[styles.formBlock]}>
+							<View style={[styles.formHolder]}>
+								<Formik
+									onSubmit={updateCertifiedToPractiseDetails}
+									validationSchema={FeedbackSchema}
+									validateOnBlur={true}
+									initialValues={{
+										...initialValues,
+										...{
+											experience: shiftDetails.experience_details
+												? shiftDetails.experience_details.experience
+												: '',
+										},
 									}}>
-									Review
-								</Text>
-								<Text
-									style={{
-										fontFamily: FontConfig.primary.bold,
-										fontSize: 14,
-										color: Colors.textDark,
-									}}>
-									{rating}/5
-								</Text>
-								<View
-									style={{
-										alignItems: 'flex-start',
-										marginVertical: 5,
-									}}>
-									<AirbnbRating
-										count={5}
-										defaultRating={rating}
-										size={24}
-										showRating={false}
-										isDisabled={true}
-									/>
-								</View>
-								<Text
-									style={{
-										fontFamily: FontConfig.primary.italic,
-										fontSize: 14,
-										color: Colors.textLight,
-										marginTop: 10,
-									}}>
-									You will be notified after your application has been approved
-									by the facility
-								</Text>
+									{({
+										handleSubmit,
+										resetForm,
+										values,
+										isValid,
+										setFieldValue,
+										isSubmitting,
+									}) => (
+										<View>
+											<View
+												style={[
+													CommonStyles.flexCenter,
+													{
+														marginVertical: 20,
+													},
+												]}>
+												<Text
+													style={{
+														fontFamily: FontConfig.primary.regular,
+														fontSize: 14,
+													}}>
+													Please add your comments below
+												</Text>
+												<View
+													style={{
+														backgroundColor: 'blue',
+														width: 100,
+														height: 4,
+														borderRadius: 500,
+														marginTop: 5,
+													}}
+												/>
+											</View>
+											<View style={{}}>
+												<Field name={'experience'}>
+													{(field: FieldProps) => (
+														<FormikInputComponent
+															inputProperties={{
+																multiline: true,
+																keyboardType: 'default',
+																placeholder:
+																	'Tell us more about your experience',
+															}}
+															style={{
+																backgroundColor: Colors.backgroundShiftColor,
+																height: 150,
+																padding: 0,
+																borderRadius: 10,
+																marginHorizontal: 5,
+															}}
+															inputStyles={{
+																fontSize: 16,
+															}}
+															formikField={field}
+														/>
+													)}
+												</Field>
+											</View>
+											<View>
+												<CustomButton
+													isLoading={isSubmitting}
+													title={'Submit your feedback'}
+													onPress={() => {
+														if (rating === 0) {
+															ToastAlert.show('Please rate the facility');
+														} else {
+															handleSubmit();
+														}
+													}}
+													style={{
+														width: '100%',
+														height: 50,
+														marginTop: 20,
+													}}
+													textStyle={{
+														textTransform: 'capitalize',
+													}}
+												/>
+											</View>
+										</View>
+									)}
+								</Formik>
 							</View>
-						</BaseViewComponent>
-					)}
-				</>
-			)}
+						</View>
+					</BaseViewComponent>
+				)}
+			</>
 		</>
 	);
 };
@@ -570,6 +464,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginHorizontal: 10,
 		borderRadius: 20,
+		marginTop: 10,
 	},
 	underline: {
 		backgroundColor: 'blue',

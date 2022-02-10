@@ -17,6 +17,7 @@ import MyShiftsScreen from '../screens/MyShifts/MyShiftsScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
 import ShiftDetailsScreen from '../screens/FindShifts/ShiftDetailsScreen';
 import FacilityShiftPreviewScreen from '../screens/FindShifts/FacilityShiftPreviewScreen';
+import FacilityReviewScreen from '../screens/FindShifts/FacilityReviewScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
 import ProfileEditScreen from '../screens/Profile/ProfileEditScreen';
 import ProfileChangePasswordScreen from '../screens/Profile/ProfileChangePasswordScreen';
@@ -114,7 +115,11 @@ const AttendanceNavigator = () => {
 			<AttendanceStack.Screen
 				key={NavigateTo.AttendanceChartScreen + '-Screen'}
 				name={NavigateTo.AttendanceChartScreen}
-				options={{headerTitle: 'Attendance'}}
+				options={{
+					headerTitle: '',
+					headerStyle: {backgroundColor: '#00243F'},
+					headerShown: false,
+				}}
 				listeners={listeners}
 				component={AttendanceChartScreen}
 			/>
@@ -170,6 +175,13 @@ const FindShiftStackNavigator = () => {
 				options={{headerTitle: 'Available Shifts'}}
 				listeners={listeners}
 				component={FacilityShiftPreviewScreen}
+			/>
+			<FindShiftStack.Screen
+				key={NavigateTo.FacilityReviewScreen + '-Screen'}
+				name={NavigateTo.FacilityReviewScreen}
+				options={{headerTitle: 'Review Screen'}}
+				listeners={listeners}
+				component={FacilityReviewScreen}
 			/>
 		</FindShiftStack.Navigator>
 	);

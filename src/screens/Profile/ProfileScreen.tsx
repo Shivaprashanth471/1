@@ -593,6 +593,35 @@ const ProfileScreen = (props: any) => {
 									</View>
 								</View>
 							</TouchableOpacity>
+							<TouchableOpacity
+								style={{flexDirection: 'row'}}
+								onPress={() => {
+									navigation.navigate(NavigateTo.ProfileChangePasswordScreen);
+								}}>
+								<View style={styles.contentBoxRow}>
+									<View style={styles.rowLeftContent}>
+										<ImageConfig.IconLock
+											color={'red'}
+											style={{
+												borderRadius: 100,
+												marginRight: 10,
+											}}
+											height={'17'}
+											width={'17'}
+										/>
+										<Text style={styles.contentBoxText}>Change Password</Text>
+									</View>
+									<ImageConfig.ArrowBackIcon
+										color={Colors.textLight}
+										style={{
+											borderRadius: 100,
+											marginRight: 10,
+										}}
+										height={'17'}
+										width={'17'}
+									/>
+								</View>
+							</TouchableOpacity>
 						</View>
 						<View
 							style={[

@@ -33,8 +33,8 @@ const profileEducationSchema = yup.object().shape({
 		.string()
 		.matches(/\S/, 'cannot contain only blankspaces')
 		.required('Required'),
-	start_date: yup.string().required('Required'),
-	graduation_date: yup.string().required('Required'),
+	// start_date: yup.string().required('Required'),
+	// graduation_date: yup.string().required('Required'),
 });
 
 export interface profileEducationSchemaType {
@@ -71,14 +71,19 @@ const ProfileAddEducationComponent = (
 		values: profileEducationSchemaType,
 		formikHelpers: FormikHelpers<profileEducationSchemaType>,
 	) => {
-		if (values.start_date === '' || values.graduation_date === '') {
-			formikHelpers.setSubmitting(false);
-			return;
-		} else if (values.start_date > values.graduation_date) {
+		// if (values.start_date === '' || values.graduation_date === '') {
+		// 	formikHelpers.setSubmitting(false);
+		// 	return;
+		// } else
+		if (values.start_date > values.graduation_date) {
 			formikHelpers.setSubmitting(false);
 			ToastAlert.show('Start date cannot be greater than end date');
 			return;
-		} else if (values.start_date === values.graduation_date) {
+		} else if (
+			values.start_date === values.graduation_date &&
+			values.start_date != '' &&
+			values.graduation_date != ''
+		) {
 			formikHelpers.setSubmitting(false);
 			ToastAlert.show('Start and end date should not be same');
 			return;
@@ -87,7 +92,6 @@ const ProfileAddEducationComponent = (
 			const payload = {
 				...values,
 			};
-
 			if (HcpUser) {
 				ApiFunctions.post(
 					ENV.apiUrl + 'hcp/' + HcpUser._id + '/education',

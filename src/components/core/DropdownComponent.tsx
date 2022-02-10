@@ -59,8 +59,8 @@ const DropdownComponent = (
 		const options: any[] = [];
 		data.forEach((item: any) => {
 			const option = {
-				key: item.value,
-				label: item.label,
+				key: item.name,
+				label: item.code,
 			};
 			options.push(option);
 		});
@@ -87,9 +87,7 @@ const DropdownComponent = (
 			{showLabel && (
 				<View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
 					<LabelComponent title={labelText || ''} />
-					{isRequired && (
-						<Text style={{color: Colors.primary, top: -4}}>*</Text>
-					)}
+					{isRequired && <Text style={{color: Colors.primary, top: -4}}></Text>}
 				</View>
 			)}
 			<View

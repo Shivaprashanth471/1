@@ -5,7 +5,6 @@ import {
 	View,
 	Alert,
 	Text,
-	TextInput,
 	TouchableOpacity,
 	Platform,
 } from 'react-native';
@@ -26,7 +25,6 @@ import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import {TSAPIResponseType} from '../../helpers/ApiFunctions';
 import {StateParams} from '../../store/reducers';
 import DropdownComponent from '../../components/core/DropdownComponent';
-import {currentList, regionsList} from '../../constants/CommonVariables';
 import {updateHcpDetails} from '../../store/actions/hcpDetails.action';
 import analytics from '@segment/analytics-react-native';
 
@@ -56,7 +54,8 @@ const MyProfileScreen = (props: any) => {
 	const navigation = props.navigation;
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
-
+	const [regionList, setRegionList] = useState<any>();
+	const [hcpTypeList, setHcpTypeList] = useState<any>();
 	const [disableBtn, setDisableBtn] = useState<boolean>(true);
 
 	const getProfileDetails = useCallback(() => {
@@ -80,10 +79,6 @@ const MyProfileScreen = (props: any) => {
 				});
 		}
 	}, [HcpUser]);
-	useEffect(() => {
-		console.log('loading get profile');
-		getProfileDetails();
-	}, [getProfileDetails]);
 
 	const updateProfileDetails = (
 		values: ProfileSchemaType,
@@ -139,11 +134,59 @@ const MyProfileScreen = (props: any) => {
 			});
 	}, [dispatch, user._id]);
 
+	const getRegion = useCallback(() => {
+		setIsLoading(true);
+		ApiFunctions.get(ENV.apiUrl + 'meta/hcp-regions')
+			.then((resp: any) => {
+				if (resp && resp.success) {
+					setRegionList(resp.data);
+				} else {
+					ToastAlert.show('something went wrong');
+				}
+				setIsLoading(false);
+				setIsLoaded(true);
+			})
+			.catch((err: any) => {
+				ToastAlert.show(err.error || 'Something went wrong');
+				setIsLoading(false);
+				setIsLoaded(true);
+			});
+	}, []);
+	const getHcpTypeList = useCallback(() => {
+		setIsLoading(true);
+		ApiFunctions.get(ENV.apiUrl + 'meta/hcp-types')
+			.then((resp: any) => {
+				if (resp && resp.success) {
+					setHcpTypeList(resp.data);
+				} else {
+					ToastAlert.show('something went wrong');
+				}
+				setIsLoading(false);
+				setIsLoaded(true);
+			})
+			.catch((err: any) => {
+				ToastAlert.show(err.error || 'Something went wrong');
+				setIsLoading(false);
+				setIsLoaded(true);
+			});
+	}, []);
+
+	useEffect(() => {
+		console.log('loading get profile');
+		getProfileDetails();
+		getRegion();
+		getHcpTypeList();
+	}, [getProfileDetails, getRegion, getHcpTypeList]);
+
 	return (
 		<>
-			{isLoading && <LoadingComponent />}
-			{!isLoading && isLoaded && !profile && <ErrorComponent />}
-			{!isLoading && isLoaded && profile && (
+			{(isLoading || !profile || !regionList || !hcpTypeList) && (
+				<LoadingComponent />
+			)}
+			{!isLoading && isLoaded && !profile && !regionList && !hcpTypeList && (
+				<ErrorComponent />
+			)}
+			{!isLoading && isLoaded && profile && regionList && hcpTypeList && (
 				<KeyboardAvoidCommonView>
 					<BaseViewComponent>
 						<StatusBar
@@ -172,19 +215,12 @@ const MyProfileScreen = (props: any) => {
 												{(field: FieldProps) => (
 													<DropdownComponent
 														contentWrapper={{marginHorizontal: 0}}
-														// @ts-ignore
-														data={currentList}
-														textStyle={{
-															color: Colors.textLight,
-															fontSize: 14,
-															fontFamily: FontConfig.primary.bold,
-														}}
+														data={hcpTypeList}
 														labelText={'Current Role'}
 														placeholder={'select the value'}
 														formikField={field}
 														search={false}
-														disabled={false}
-														onUpdate={e => {
+														onUpdate={() => {
 															setDisableBtn(false);
 														}}
 														style={{
@@ -197,18 +233,11 @@ const MyProfileScreen = (props: any) => {
 												{(field: FieldProps) => (
 													<DropdownComponent
 														contentWrapper={{marginHorizontal: 0}}
-														// @ts-ignore
-														data={regionsList}
-														textStyle={{
-															color: Colors.textLight,
-															fontSize: 14,
-															fontFamily: FontConfig.primary.bold,
-														}}
+														data={regionList}
 														labelText={'Region'}
 														placeholder={'select the value'}
 														formikField={field}
 														search={false}
-														disabled={false}
 														onUpdate={() => {
 															setDisableBtn(false);
 														}}
@@ -256,23 +285,6 @@ const MyProfileScreen = (props: any) => {
 																: '0'}
 														</Text>
 													</View>
-													{/*<TextInput*/}
-													{/*	placeholderTextColor={Colors.textLight}*/}
-													{/*	style={{*/}
-													{/*		width: '100%',*/}
-													{/*		paddingHorizontal: 0,*/}
-													{/*		color: Colors.textLight,*/}
-													{/*		fontFamily: FontConfig.primary.regular,*/}
-													{/*		fontSize: 18,*/}
-													{/*		borderBottomColor: Colors.borderColor,*/}
-													{/*		borderBottomWidth: 2,*/}
-													{/*	}}*/}
-													{/*	value={profile.total_exp.toString()}*/}
-													{/*	autoCapitalize={'none'}*/}
-													{/*	autoCorrect={false}*/}
-													{/*	autoCompleteType={'off'}*/}
-													{/*	editable={false}*/}
-													{/*/>*/}
 												</TouchableOpacity>
 											</View>
 
@@ -318,23 +330,6 @@ const MyProfileScreen = (props: any) => {
 																			{item}
 																		</Text>
 																	</View>
-																	{/*<TextInput*/}
-																	{/*	placeholderTextColor={Colors.textLight}*/}
-																	{/*	style={{*/}
-																	{/*		width: '100%',*/}
-																	{/*		paddingHorizontal: 0,*/}
-																	{/*		color: Colors.textLight,*/}
-																	{/*		fontFamily: FontConfig.primary.regular,*/}
-																	{/*		fontSize: 18,*/}
-																	{/*		borderBottomColor: Colors.borderColor,*/}
-																	{/*		borderBottomWidth: 2,*/}
-																	{/*		textTransform: 'capitalize',*/}
-																	{/*	}}*/}
-																	{/*	value={item}*/}
-																	{/*	autoCorrect={false}*/}
-																	{/*	autoCompleteType={'off'}*/}
-																	{/*	editable={false}*/}
-																	{/*/>*/}
 																</TouchableOpacity>
 															</>
 														))}

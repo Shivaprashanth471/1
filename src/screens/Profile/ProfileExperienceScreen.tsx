@@ -7,7 +7,7 @@ import {
 	View,
 	StyleSheet,
 } from 'react-native';
-import {ApiFunctions, CommonFunctions} from '../../helpers';
+import {ApiFunctions, CommonFunctions, ToastAlert} from '../../helpers';
 import {Colors, ENV, FontConfig} from '../../constants';
 import {
 	BaseViewComponent,
@@ -23,7 +23,8 @@ const ProfileExperienceScreen = (props: any) => {
 	const [profile, setProfile] = useState<any | null>(null);
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
-
+	const [hcpTypeList, setHcpTypeList] = useState<any>();
+	const [hcpSpecialityList, setHcpSpecialityList] = useState<any>();
 	const {hcpDetails} = useSelector((state: StateParams) => state);
 	const {HcpUser} = hcpDetails;
 	const [inState, setInState] = useState([<View />]);
@@ -44,6 +45,8 @@ const ProfileExperienceScreen = (props: any) => {
 					setInState(inState => []);
 					getExperienceDetails();
 				}}
+				hcpTypeList={hcpTypeList}
+				hcpSpecialityList={hcpSpecialityList}
 			/>,
 		]);
 	};
@@ -72,18 +75,61 @@ const ProfileExperienceScreen = (props: any) => {
 				// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
 			});
 	}, [HcpUser._id]);
+
+	const getHcpTypeList = useCallback(() => {
+		setIsLoading(true);
+		ApiFunctions.get(ENV.apiUrl + 'meta/hcp-types')
+			.then((resp: any) => {
+				if (resp && resp.success) {
+					setHcpTypeList(resp.data);
+				} else {
+					ToastAlert.show('something went wrong');
+				}
+				setIsLoading(false);
+				setIsLoaded(true);
+			})
+			.catch((err: any) => {
+				ToastAlert.show(err.error || 'Something went wrong');
+				setIsLoading(false);
+				setIsLoaded(true);
+			});
+	}, []);
+	const getHcpSpecialityList = useCallback(() => {
+		setIsLoading(true);
+		ApiFunctions.get(ENV.apiUrl + 'meta/hcp-specialities')
+			.then((resp: any) => {
+				if (resp && resp.success) {
+					setHcpSpecialityList(resp.data);
+					console.log('>>>', resp.data);
+				} else {
+					ToastAlert.show('something went wrong');
+				}
+				setIsLoading(false);
+				setIsLoaded(true);
+			})
+			.catch((err: any) => {
+				ToastAlert.show(err.error || 'Something went wrong');
+				setIsLoading(false);
+				setIsLoaded(true);
+			});
+	}, []);
+
 	useEffect(() => {
 		console.log('loading get profile');
 		getExperienceDetails();
-	}, [getExperienceDetails]);
+		getHcpTypeList();
+		getHcpSpecialityList();
+	}, [getExperienceDetails, getHcpTypeList, getHcpSpecialityList]);
 
 	const sortedExperienceData =
 		(profile && CommonFunctions.sortDatesByLatest(profile, 'start_date')) || [];
 	return (
 		<>
 			{isLoading && <LoadingComponent />}
-			{!isLoading && isLoaded && !profile && <ErrorComponent />}
-			{!isLoading && isLoaded && profile && (
+			{!isLoading &&
+				isLoaded &&
+				(!profile || !hcpTypeList || !hcpSpecialityList) && <ErrorComponent />}
+			{!isLoading && isLoaded && profile && hcpTypeList && hcpSpecialityList && (
 				<>
 					{profile.length === 0 && (
 						<>

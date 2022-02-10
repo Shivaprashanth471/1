@@ -255,7 +255,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 												backgroundColor: Colors.backdropColor,
 												elevation: 10,
 												borderRadius: 5,
-												marginTop: -70,
+												// marginTop: -70,
 												width: '95%',
 											}}>
 											<Text

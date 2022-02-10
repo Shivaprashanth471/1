@@ -36,7 +36,8 @@ const MyShiftsScreen = (props: any) => {
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const {auth} = useSelector((state: StateParams) => state);
 	const {user} = auth;
-	const navigation = useNavigation();
+	const navigation = props.navigation;
+	// const navigation = useNavigation();
 	const [totalCount, setTotalCount] = useState<any>();
 	const [appliedCount, setAppliedCount] = useState<any>();
 	const [shiftCount, setShiftCount] = useState<any>();

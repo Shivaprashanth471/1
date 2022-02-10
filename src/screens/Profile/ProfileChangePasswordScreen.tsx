@@ -22,52 +22,51 @@ import * as yup from 'yup';
 import {Field, FieldProps, Formik, FormikHelpers} from 'formik';
 import FormikInputComponent from '../../components/core/FormikInputComponent';
 import {TSAPIResponseType} from '../../helpers/ApiFunctions';
+import {StateParams} from '../../store/reducers';
+import {useSelector} from 'react-redux';
 
 // Login api
-const loginSchema = yup.object().shape({
-	currentPassword: yup
+const ChangePasswordSchema = yup.object().shape({
+	old_password: yup
 		.string()
 		.required('Required')
 		.min(6, 'Invalid')
 		.max(16, 'Invalid'),
-	password: yup
+	new_password: yup
 		.string()
 		.required('Required')
 		.min(6, 'Invalid')
 		.max(16, 'Invalid'),
-	confirm: yup
+	confirm_password: yup
 		.string()
 		.required('Required')
 		.min(6, 'must be at least 6 characters')
-		.oneOf([yup.ref('password'), null], "Confirmation Doesn't match"),
+		.oneOf([yup.ref('new_password'), null], "Confirmation Doesn't match"),
 });
 
-export interface LoginSchemaType {
-	currentPassword: string;
-	password: string;
-	confirm?: string;
+export interface ChangePasswordSchema {
+	old_password: string;
+	new_password: string;
+	confirm_password?: string;
 }
 
-const initialValues: LoginSchemaType = {
-	currentPassword: '',
-	password: '',
-	confirm: '',
+const initialValues: ChangePasswordSchema = {
+	old_password: '',
+	new_password: '',
+	confirm_password: '',
 };
-
-export interface LoginAPIResponse {
-	user: {name: string; role: string};
-	token: string;
-}
 
 // end login api
 
 const ProfileChangePasswordScreen = (props: any) => {
 	const navigation = props.navigation;
-	const [eyeIcon, setEyeIcon] = useState(false);
+	// const [eyeIcon, setEyeIcon] = useState(false);
 	const [isPassword, setIsPassword] = useState(true);
 	const dispatch = useDispatch();
 	const [isNewPassword, setNewIsPassword] = useState(true);
 	const [isCurrentPassword, setCurrentIsPassword] = useState(true);
+	const {auth} = useSelector((state: StateParams) => state);
+	const {user} = auth;
 
 	const VisibilityPassword = () => {
 		// setPasswordEyeIcon(isPassword ? true : false);
@@ -82,30 +81,30 @@ const ProfileChangePasswordScreen = (props: any) => {
 		setCurrentIsPassword(prevState => !prevState);
 	};
 
-	const loginHandler = (
-		values: LoginSchemaType,
-		formikHelpers: FormikHelpers<LoginSchemaType>,
+	const changePasswordHandler = (
+		values: ChangePasswordSchema,
+		formikHelpers: FormikHelpers<ChangePasswordSchema>,
 	) => {
 		formikHelpers.setSubmitting(true);
-		delete values.confirm;
-		const payload = {...values};
-		console.log(values);
-		formikHelpers.setSubmitting(false);
-		// ApiFunctions.post(ENV.apiUrl + 'account/login', payload)
-		// 	.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		if (resp.success) {
-		// 			ToastAlert.show(resp.msg || 'Login Successful!');
-		// 			await dispatch(loginUser(resp.data.user, resp.data.token));
-		// 			navigation.replace(NavigateTo.Main);
-		// 		} else {
-		// 			ToastAlert.show(resp.error || '');
-		// 		}
-		// 	})
-		// 	.catch((err: any) => {
-		// 		formikHelpers.setSubmitting(false);
-		// 		CommonFunctions.handleErrors(err, formikHelpers.setErrors);
-		// 	});
+		// delete values.confirm_password;
+		const payload = {...values,user_id:user._id};
+		console.log(payload);
+		// formikHelpers.setSubmitting(false);
+		ApiFunctions.post(ENV.apiUrl + 'changePassword', payload)
+			.then(async (resp: TSAPIResponseType<ChangePasswordSchema>) => {
+				formikHelpers.setSubmitting(false);
+				if (resp.success) {
+					ToastAlert.show(resp.msg || 'You have changed password!');
+					// await dispatch(loginUser(resp.data.user, resp.data.token));
+					navigation.navigate(NavigateTo.FindShifts);
+				} else {
+					ToastAlert.show(resp.error || '');
+				}
+			})
+			.catch((err: any) => {
+				formikHelpers.setSubmitting(false);
+				CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+			});
 	};
 	return (
 		<KeyboardAvoidCommonView>
@@ -130,14 +129,14 @@ const ProfileChangePasswordScreen = (props: any) => {
 				<View style={styles.formBlock}>
 					<View style={styles.formHolder}>
 						<Formik
-							onSubmit={loginHandler}
-							validationSchema={loginSchema}
+							onSubmit={changePasswordHandler}
+							validationSchema={ChangePasswordSchema}
 							validateOnBlur={true}
 							initialValues={initialValues}>
 							{({handleSubmit, isValid, isSubmitting}) => (
 								<>
 									<View>
-										<Field name={'currentPassword'}>
+										<Field name={'old_password'}>
 											{(field: FieldProps) => (
 												<View style={styles.rowElements}>
 													<FormikInputComponent
@@ -193,7 +192,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 												</View>
 											)}
 										</Field>
-										<Field name={'password'}>
+										<Field name={'new_password'}>
 											{(field: FieldProps) => (
 												<View style={styles.rowElements}>
 													<FormikInputComponent
@@ -250,7 +249,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 												</View>
 											)}
 										</Field>
-										<Field name={'confirm'}>
+										<Field name={'confirm_password'}>
 											{(field: FieldProps) => (
 												<View style={styles.rowElements}>
 													<FormikInputComponent
@@ -349,7 +348,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 													height: 40,
 												}}
 												title={'Update'}
-												// isLoading={isSubmitting}
+												isLoading={isSubmitting}
 												onPress={handleSubmit}
 												disabled={!isValid}
 												textStyle={{

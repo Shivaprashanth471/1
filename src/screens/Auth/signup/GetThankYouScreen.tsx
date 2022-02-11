@@ -13,31 +13,28 @@ import {
 	NavigateTo,
 	ENV,
 } from '../../../constants';
-import {
-	CustomButton,
-	LoadingComponent,
-	ErrorComponent,
-} from '../../../components/core';
+import {CustomButton} from '../../../components/core';
 import {ApiFunctions, CommonFunctions, ToastAlert} from '../../../helpers';
 import {CONTACTUS_PHONE_NUMBER} from '../../../helpers/CommonFunctions';
 
 const GetThankYouScreen = (props: any) => {
 	const navigation = props.navigation;
 	const GetHcpBasicDetailsPayload: any = props.route.params;
-	console.log('>>>>>>>>>>>>>>>>>>', GetHcpBasicDetailsPayload, '<><<>');
 
 	const [phone, setPhone] = useState(CONTACTUS_PHONE_NUMBER);
 	const [isLoading, setIsLoading]: any = useState(false);
 
 	const signupClose = useCallback(() => {
 		setIsLoading(true);
-		const payload = {hcp_id: GetHcpBasicDetailsPayload};
-		ApiFunctions.get(ENV.apiUrl + 'hcp/signUPNotification', payload)
+		const payload = {
+			hcp_id: GetHcpBasicDetailsPayload.GetHcpBasicDetailsPayload,
+		};
+
+		ApiFunctions.post(ENV.apiUrl + 'hcp/signUPNotification', payload)
 			.then(async resp => {
 				if (resp && resp.success) {
 					navigation.navigate(NavigateTo.Signin);
 				} else {
-					// Alert.alert('Error', resp);
 					ToastAlert.show('Something went wrong!!');
 				}
 				setIsLoading(false);
@@ -47,7 +44,7 @@ const GetThankYouScreen = (props: any) => {
 				console.log('Error in api', err);
 				ToastAlert.show('Something went wrong!!');
 			});
-	}, []);
+	}, [GetHcpBasicDetailsPayload.GetHcpBasicDetailsPayload, navigation]);
 
 	return (
 		<>

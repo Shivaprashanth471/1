@@ -85,7 +85,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 	) => {
 		formikHelpers.setSubmitting(true);
 		// delete values.confirm_password;
-		const payload = {...values,user_id:user._id};
+		const payload = {...values, user_id: user._id};
 		console.log(payload);
 		// formikHelpers.setSubmitting(false);
 		ApiFunctions.post(ENV.apiUrl + 'changePassword', payload)

@@ -256,7 +256,15 @@ const ProfileDetailsContainerComponent = (
 							)}
 							{getDate && (
 								<>
-									<Text style={[styles.subText, {}]}>
+									<Text
+										style={[
+											// styles.subText,
+											{
+												fontFamily: FontConfig.primary.regular,
+												fontSize: 14,
+												color: Colors.textOnTextLight,
+											},
+										]}>
 										{start_date} - {end_date}
 									</Text>
 								</>

@@ -128,7 +128,9 @@ const ProfileExperienceScreen = (props: any) => {
 			{isLoading && <LoadingComponent />}
 			{!isLoading &&
 				isLoaded &&
-				(!profile || !hcpTypeList || !hcpSpecialityList) && <ErrorComponent />}
+				!profile &&
+				!hcpTypeList &&
+				!hcpSpecialityList && <ErrorComponent />}
 			{!isLoading && isLoaded && profile && hcpTypeList && hcpSpecialityList && (
 				<>
 					{profile.length === 0 && (

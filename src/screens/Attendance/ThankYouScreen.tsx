@@ -38,7 +38,7 @@ const ThankYouScreen = (props: any) => {
 						color: Colors.primary,
 						marginVertical: 20,
 					}}>
-					Thanks for you feedback
+					Thanks for your feedback
 				</Text>
 				<Text
 					style={{

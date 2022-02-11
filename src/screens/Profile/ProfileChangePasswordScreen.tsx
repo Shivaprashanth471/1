@@ -30,13 +30,11 @@ const ChangePasswordSchema = yup.object().shape({
 	old_password: yup
 		.string()
 		.required('Required')
-		.min(6, 'Invalid')
-		.max(16, 'Invalid'),
+		.min(6, 'must be at least 6 characters'),
 	new_password: yup
 		.string()
 		.required('Required')
-		.min(6, 'Invalid')
-		.max(16, 'Invalid'),
+		.min(6, 'must be at least 6 characters'),
 	confirm_password: yup
 		.string()
 		.required('Required')
@@ -140,6 +138,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 											{(field: FieldProps) => (
 												<View style={styles.rowElements}>
 													<FormikInputComponent
+													   trimSpaces={true}
 														labelText="Enter Current Password"
 														inputProperties={{
 															maxLength: 20,

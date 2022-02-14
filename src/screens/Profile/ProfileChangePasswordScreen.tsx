@@ -30,15 +30,15 @@ const ChangePasswordSchema = yup.object().shape({
 	old_password: yup
 		.string()
 		.required('Required')
-		.min(6, 'must be at least 6 characters'),
+		.min(6, 'Enter at least 6 characters'),
 	new_password: yup
 		.string()
 		.required('Required')
-		.min(6, 'must be at least 6 characters'),
+		.min(6, 'Enter at least 6 characters'),
 	confirm_password: yup
 		.string()
 		.required('Required')
-		.min(6, 'must be at least 6 characters')
+		.min(6, 'Enter at least 6 characters')
 		.oneOf([yup.ref('new_password'), null], "Confirmation Doesn't match"),
 });
 
@@ -139,7 +139,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 												<View style={styles.rowElements}>
 													<FormikInputComponent
 													   trimSpaces={true}
-														labelText="Enter Current Password"
+														labelText="Current Password"
 														inputProperties={{
 															maxLength: 20,
 															secureTextEntry: isCurrentPassword,
@@ -153,6 +153,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 														style={{
 															backgroundColor: Colors.backgroundShiftColor,
 															marginTop: 5,
+															// marginBottom: 10,
 														}}
 													/>
 													<TouchableOpacity

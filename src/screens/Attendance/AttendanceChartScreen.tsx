@@ -6,6 +6,7 @@ import {
 	StatusBar,
 	Alert,
 	TouchableOpacity,
+	Dimensions,
 } from 'react-native';
 import {ApiFunctions} from '../../helpers';
 import {
@@ -26,10 +27,13 @@ import UploadCDHPComponent from '../../components/UploadCDHPComponent';
 import AttendanceTimelineComponent from '../../components/AttendanceTimelineComponent';
 import {ShiftDocumentsArray} from '../../constants/CommonVariables';
 import {AirbnbRating} from 'react-native-ratings';
+import WebView from 'react-native-webview';
+import {PieChart} from 'react-native-svg-charts';
 
 const AttendanceChartScreen = (props: any) => {
 	const navigation = props.navigation;
 	const {shiftID} = props.route.params;
+	// console.log('>>>', shiftID);
 
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [isLoaded, setIsLoaded]: any = useState(false);
@@ -78,6 +82,7 @@ const AttendanceChartScreen = (props: any) => {
 					setCheckOutTime(checkOutTime);
 					setShift(resp.data);
 					setShiftTimings(resp.data.time_breakup);
+					console.log('>>>', resp.data.actuals.shift_start_time);
 				} else {
 					Alert.alert('Error', resp);
 				}
@@ -166,11 +171,39 @@ const AttendanceChartScreen = (props: any) => {
 	// 	);
 	// };
 
+	const [selectedSlice, setSelectedSlice] = useState({
+		label: '',
+		value: 0,
+	});
+	const [labelWidth, setLabelWidth] = useState(0);
+	const keys = ['actual', 'break'];
+	const colors = ['#3CDCB9', '#0C80E3'];
+	const values = [8, 1.5];
+	const data = keys.map((key, index) => {
+		return {
+			key,
+			value: values[index],
+			svg: {fill: colors[index]},
+			arc: {
+				// outerRadius: 70 + values[index] + '%',
+				// padAngle: selectedSlice.label === key ? 0.1 : 0,
+				// outerRadius: 70,
+				padAngle: 0.06,
+			},
+			// onPress: () => this.setState({ selectedSlice: { label: key, value: values[index] } })
+			// onpress: () => {
+			// 	setSelectedSlice({...selectedSlice, label: key, value: values[index]});
+			// 	console.log('here');
+			// },
+		};
+	});
+	const deviceWidth = Dimensions.get('window').width;
+
 	return (
 		<>
 			{isLoading && <LoadingComponent />}
 			{!isLoading && isLoaded && !shiftTimings && <ErrorComponent />}
-			{!isLoading && isLoaded && shiftTimings && (
+			{!isLoading && isLoaded && shiftTimings && shift && (
 				<BaseViewComponent
 					style={styles.screen}
 					backgroundColor={Colors.backgroundShiftColor}>
@@ -181,12 +214,15 @@ const AttendanceChartScreen = (props: any) => {
 					/>
 					<View
 						style={{
-							marginHorizontal: 20,
-							marginTop: 10,
+							paddingTop: 10,
 							flexDirection: 'row',
 							alignItems: 'center',
+							backgroundColor: 'white',
 						}}>
 						<TouchableOpacity
+							style={{
+								marginHorizontal: 20,
+							}}
 							onPress={() => {
 								// navigation.goBack();
 								navigation.navigate(NavigateTo.UpcomingShiftCountdownScreen);
@@ -199,11 +235,146 @@ const AttendanceChartScreen = (props: any) => {
 								fontFamily: FontConfig.primary.bold,
 								color: Colors.navigationHeaderText,
 								fontSize: 20,
-								marginLeft: 20,
 							}}>
 							Attendance
 						</Text>
 					</View>
+					{/* /////////////////////////////////////CHARTS/////////////////////////////////////////// */}
+					<View
+						style={{
+							justifyContent: 'center',
+							flex: 1,
+							backgroundColor: 'white',
+							borderBottomRightRadius: 25,
+							borderBottomLeftRadius: 25,
+							paddingTop: 20,
+						}}>
+						<View style={{alignItems: 'center'}}>
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.bold,
+									fontSize: 24,
+									color: Colors.textDark,
+								}}>
+								Great Work!
+							</Text>
+						</View>
+						<PieChart
+							style={{height: 250}}
+							outerRadius={'60%'}
+							innerRadius={'53%'}
+							data={data}
+						/>
+						<View
+							style={{
+								position: 'absolute',
+								// left: deviceWidth / 2 - labelWidth,
+								alignItems: 'center',
+								width: '100%',
+								// backgroundColor: 'red',
+							}}>
+							<Text
+								onLayout={({
+									nativeEvent: {
+										layout: {width},
+									},
+								}) => {
+									setLabelWidth(width);
+								}}
+								style={{
+									fontFamily: FontConfig.primary.semiBold,
+									fontSize: 17,
+									color: Colors.textOnInput,
+									marginTop: 15,
+								}}>
+								Total
+							</Text>
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.bold,
+									fontSize: 36,
+									color: Colors.textOnInput,
+								}}>
+								10:30
+							</Text>
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.semiBold,
+									fontSize: 18,
+									color: Colors.textOnInput,
+								}}>
+								hrs
+							</Text>
+						</View>
+						<View
+							style={{
+								marginHorizontal: 20,
+								marginBottom: 20,
+							}}>
+							<View
+								style={{
+									flexDirection: 'row',
+								}}>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.semiBold,
+										fontSize: 14,
+										color: Colors.primary,
+									}}>
+									Wed, May 25, 2021
+								</Text>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.semiBold,
+										fontSize: 14,
+										color: Colors.primary,
+									}}>
+									{' '}
+									|{' '}
+								</Text>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.semiBold,
+										fontSize: 14,
+										color: Colors.primary,
+									}}>
+									Morning shift
+								</Text>
+							</View>
+							<View
+								style={{
+									flexDirection: 'row',
+									marginTop: 5,
+								}}>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.semiBold,
+										fontSize: 14,
+										color: Colors.textOnInput,
+									}}>
+									Check-in - 09:55AM
+								</Text>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.semiBold,
+										fontSize: 14,
+										color: Colors.textOnInput,
+									}}>
+									{' '}
+									|{' '}
+								</Text>
+								<Text
+									style={{
+										fontFamily: FontConfig.primary.semiBold,
+										fontSize: 14,
+										color: Colors.textOnInput,
+									}}>
+									Check-out - 04:55PM
+								</Text>
+							</View>
+						</View>
+					</View>
+					{/* //////////////////////////////////////////////////////////////////////////////////////// */}
 					<View style={styles.timeSheetContainer}>
 						<Text style={styles.timeLineText}>Timeline</Text>
 						<AttendanceStatusBoxComponent
@@ -393,8 +564,10 @@ export default AttendanceChartScreen;
 // 	TouchableOpacity,
 // 	ScrollView,
 // 	StyleSheet,
+// 	Dimensions,
 // } from 'react-native';
 // import WebView from 'react-native-webview';
+// import {PieChart} from 'react-native-svg-charts';
 
 // const HTML_PieChart = `
 // <!DOCTYPE html>\n
@@ -417,7 +590,6 @@ export default AttendanceChartScreen;
 //         data.addRows([
 //           ['actual', 3],
 //           ['break', 6],
-//           ['overtime', 4],
 //         ]);
 
 //         var optionsPie = {
@@ -428,7 +600,7 @@ export default AttendanceChartScreen;
 //                        pieHole: 0.5,
 //                     // pieStartAngle: 180,
 //                     // backgroundColor: 'silver',
-//                        colors: ['#3CDCB9','#0C80E3', '#FFA200']};
+//                        colors: ['#3CDCB9','#0C80E3']};
 //         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 //         chart.draw(data, optionsPie);
 //       }
@@ -443,16 +615,68 @@ export default AttendanceChartScreen;
 
 // const AttendanceChartScreen = (props: any) => {
 // 	const [barShow, setBarShow] = useState<'none' | 'flex' | undefined>('none');
+
+// 	const [selectedSlice, setSelectedSlice] = useState({
+// 		label: '',
+// 		value: 0,
+// 	});
+// 	const [labelWidth, setLabelWidth] = useState(0);
+// 	const keys = ['google', 'facebook'];
+// 	const values = [8, 1.5];
+// 	const colors = ['#3CDCB9', '#0C80E3'];
+// 	const data = keys.map((key, index) => {
+// 		return {
+// 			key,
+// 			value: values[index],
+// 			svg: {fill: colors[index]},
+// 			arc: {
+// 				// outerRadius: 70 + values[index] + '%',
+// 				// padAngle: selectedSlice.label === key ? 0.1 : 0,
+// 				// outerRadius: 70,
+// 				padAngle: 0.06,
+// 			},
+// 			// onPress: () => this.setState({ selectedSlice: { label: key, value: values[index] } })
+// 			// onpress: () => {
+// 			// 	setSelectedSlice({...selectedSlice, label: key, value: values[index]});
+// 			// 	console.log('here');
+// 			// },
+// 		};
+// 	});
+
+// 	const deviceWidth = Dimensions.get('window').width;
 // 	return (
-// 		<ScrollView>
-// 			<View
-// 				style={{
-// 					height: 500,
-// 					width: 800,
-// 				}}>
-// 				<WebView source={{html: HTML_PieChart}} />
-// 			</View>
-// 		</ScrollView>
+// 		// <ScrollView>
+// 		// 	<View
+// 		// 		style={{
+// 		// 			height: 500,
+// 		// 			width: 800,
+// 		// 		}}>
+// 		// 		<WebView source={{html: HTML_PieChart}} />
+// 		// 	</View>
+// 		// </ScrollView>
+// <View style={{justifyContent: 'center', flex: 1}}>
+// 	<PieChart
+// 		style={{height: 200}}
+// 		outerRadius={'50%'}
+// 		innerRadius={'60%'}
+// 		data={data}
+// 	/>
+// 	<Text
+// 		onLayout={({
+// 			nativeEvent: {
+// 				layout: {width},
+// 			},
+// 		}) => {
+// 			setLabelWidth(width);
+// 		}}
+// 		style={{
+// 			position: 'absolute',
+// 			left: deviceWidth / 2 - labelWidth / 2,
+// 			textAlign: 'center',
+// 		}}>
+// 		{`${selectedSlice.label} \n ${selectedSlice.value}`}
+// 	</Text>
+// </View>
 // 	);
 // };
 

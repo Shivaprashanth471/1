@@ -54,6 +54,7 @@ const AttendanceScreen = (props: any) => {
 	const [showBreakOutBtn, setShowBreakOutBtn] = useState<
 		'none' | 'flex' | undefined
 	>('none');
+	const [btnLoading, setBtnLoading] = useState<boolean>(false);
 
 	useEffect(() => {
 		let secTimer = setInterval(() => {
@@ -188,9 +189,11 @@ const AttendanceScreen = (props: any) => {
 							if (resp.data.is_in_break) {
 								setShowBreakInBtn('none');
 								setShowBreakOutBtn('flex');
+								setDisableCheckInOutBtn(true);
 							} else {
 								setShowBreakInBtn('flex');
 								setShowBreakOutBtn('none');
+								setDisableCheckInOutBtn(false);
 							}
 						}
 					}
@@ -276,8 +279,7 @@ const AttendanceScreen = (props: any) => {
 
 	const checkInModalClose = () => {
 		const payload = {hcp_user_id: user._id, time: timeInMinutes};
-		setCheckInModalVisible(!checkInModalVisible);
-
+		setBtnLoading(true);
 		ApiFunctions.post(ENV.apiUrl + 'shift/' + shiftID + '/checkIn', payload)
 			.then(async resp => {
 				// setIsLoading(false);
@@ -290,15 +292,20 @@ const AttendanceScreen = (props: any) => {
 				} else {
 					Alert.alert('Error', resp);
 				}
+				setCheckInModalVisible(!checkInModalVisible);
+				setBtnLoading(false);
 			})
 			.catch((err: any) => {
 				console.log(err);
 				// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
+				setCheckInModalVisible(!checkInModalVisible);
+				setBtnLoading(false);
 			});
 	};
 
 	const breakInModalClose = () => {
-		setBreakInModalVisible(!breakInModalVisible);
+		setBtnLoading(true);
+		setDisableCheckInOutBtn(true);
 		const payload = {
 			hcp_user_id: user._id,
 			time: timeInMinutes,
@@ -315,15 +322,20 @@ const AttendanceScreen = (props: any) => {
 					// ToastAlert.show(resp.error || 'failed to update');
 					Alert.alert('Error', resp);
 				}
+				setBreakInModalVisible(!breakInModalVisible);
+				setBtnLoading(false);
+				setDisableCheckInOutBtn(true);
 			})
 			.catch((err: any) => {
 				console.log(err);
+				setBreakInModalVisible(!breakInModalVisible);
+				setBtnLoading(false);
+				setDisableCheckInOutBtn(false);
 				// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
 			});
 	};
 	const breakOutModalClose = () => {
-		setBreakOutModalVisible(!breakOutModalVisible);
-
+		setBtnLoading(true);
 		const payload = {
 			hcp_user_id: user._id,
 			time: timeInMinutes,
@@ -336,18 +348,24 @@ const AttendanceScreen = (props: any) => {
 					setShowBreakOutBtn('none');
 					setShowBreakInBtn('flex');
 					ToastAlert.show('break ended');
+					setDisableCheckInOutBtn(false);
 				} else {
 					Alert.alert('error');
 					// ToastAlert.show(resp.error || 'failed to update');
 				}
+				setBreakOutModalVisible(!breakOutModalVisible);
+				setBtnLoading(false);
 			})
 			.catch((err: any) => {
 				console.log(err);
+				setBreakOutModalVisible(!breakOutModalVisible);
+				setDisableCheckInOutBtn(true);
+				setBtnLoading(false);
 				// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
 			});
 	};
 	const checkOutModalClose = () => {
-		setCheckOutModalVisible(!checkOutModalVisible);
+		setBtnLoading(true);
 
 		const payload = {
 			hcp_user_id: user._id,
@@ -369,9 +387,13 @@ const AttendanceScreen = (props: any) => {
 					Alert.alert('error', resp);
 					// ToastAlert.show(resp.error || 'failed to update');
 				}
+				setCheckOutModalVisible(!checkOutModalVisible);
+				setBtnLoading(false);
 			})
 			.catch((err: any) => {
 				console.log(err);
+				setBtnLoading(false);
+				setCheckOutModalVisible(!checkOutModalVisible);
 				// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
 			});
 	};
@@ -436,6 +458,7 @@ const AttendanceScreen = (props: any) => {
 										}}
 										title={'Check-in'}
 										onPress={checkInModalClose}
+										isLoading={btnLoading}
 									/>
 								</View>
 							</View>
@@ -504,6 +527,7 @@ const AttendanceScreen = (props: any) => {
 										}}
 										title={'Yes'}
 										onPress={breakInModalClose}
+										isLoading={btnLoading}
 									/>
 								</View>
 							</View>
@@ -574,6 +598,7 @@ const AttendanceScreen = (props: any) => {
 										}}
 										title={'Yes'}
 										onPress={breakOutModalClose}
+										isLoading={btnLoading}
 									/>
 								</View>
 							</View>
@@ -639,6 +664,7 @@ const AttendanceScreen = (props: any) => {
 										}}
 										title={'Check-out'}
 										onPress={checkOutModalClose}
+										isLoading={btnLoading}
 									/>
 								</View>
 							</View>

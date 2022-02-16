@@ -29,6 +29,8 @@ import {ShiftDocumentsArray} from '../../constants/CommonVariables';
 import {AirbnbRating} from 'react-native-ratings';
 import WebView from 'react-native-webview';
 import {PieChart} from 'react-native-svg-charts';
+import PlainCardComponent from '../../components/PlainCardComponent';
+import { HeaderBackground } from '@react-navigation/stack';
 
 const AttendanceChartScreen = (props: any) => {
 	const navigation = props.navigation;
@@ -43,6 +45,10 @@ const AttendanceChartScreen = (props: any) => {
 	const [stateBtn, setStateBtn] = useState(true);
 	const [checkInTime, setCheckInTime]: any = useState();
 	const [checkOutTime, setCheckOutTime]: any = useState();
+	const [shiftDurationMinutes,setShiftDurationMinutes]: any = useState('');
+	const [shiftDurationHours,setShiftDurationHours]: any = useState('');
+	const [breakDurationMinutes,setBreakDurationMinutes]: any = useState('');
+	const [breakDurationHours,setBreakDurationHours]: any = useState('');
 	// const [shiftCloseModalVisible, setShiftCloseModalVisible] = useState(false);
 	const [shift, setShift] = useState<any>();
 
@@ -80,9 +86,21 @@ const AttendanceChartScreen = (props: any) => {
 							: ''
 						: {};
 					setCheckOutTime(checkOutTime);
+					const actualTimings = resp.data ? resp.data.actuals ? resp.data.actuals.shift_duration_minutes : {} : {};
+					const hourTimings = actualTimings/60;
+					const minuteTimings = actualTimings % 60;
+					setShiftDurationMinutes(minuteTimings);
+					setShiftDurationHours(hourTimings);
+					
+					const breakTimings = resp.data ? resp.data.actuals ? resp.data.actuals.break_duration_minutes : {} : {};
+					const breakHourTimings = breakTimings/60;
+					const breakMinuteTimings = breakTimings % 60;
+					setBreakDurationMinutes(breakMinuteTimings);
+					setBreakDurationHours(breakHourTimings);
+					
 					setShift(resp.data);
 					setShiftTimings(resp.data.time_breakup);
-					console.log('>>>', resp.data.actuals.shift_start_time);
+					console.log('>>>', resp.data.actuals.shift_duration_minutes);
 				} else {
 					Alert.alert('Error', resp);
 				}
@@ -374,7 +392,40 @@ const AttendanceChartScreen = (props: any) => {
 							</View>
 						</View>
 					</View>
+				
 					{/* //////////////////////////////////////////////////////////////////////////////////////// */}
+					<View style={{display:'flex',flexDirection:'row',marginTop:25}}>
+						<PlainCardComponent style={{borderTopWidth:8,borderTopColor:'#4FE6AF',shadowColor:'#4FE6AF'}}>
+							<ImageConfig.SunGreen width="25" height="25" style={{marginBottom:15}} />
+							  <Text>Actual shift time</Text>
+							  <Text
+								style={{
+									fontFamily: FontConfig.primary.bold,
+									fontSize: 25,
+									color: Colors.textOnInput,
+								}}>
+									{shiftDurationHours + ':' + shiftDurationMinutes}
+									{/* <AttendanceTimelineComponent shiftID={shiftID} /> */}
+						{/* <AttendanceStatusBoxComponent
+							status={'Actual-Time'}
+							time={shiftDurationMinutes}
+						/> */}
+							</Text>
+
+						</PlainCardComponent>
+						<PlainCardComponent style={{borderTopWidth:8,borderTopColor:'#0C80E3',shadowColor:'#0C80E3'}}>
+						<ImageConfig.IconBreakin width="20" height="20" style={{marginBottom:15}} />
+							<Text>Break time</Text>
+							<Text
+								style={{
+									fontFamily: FontConfig.primary.bold,
+									fontSize: 25,
+									color: Colors.textOnInput,
+								}}>
+								{breakDurationHours + ':' + breakDurationMinutes}
+							</Text>
+						</PlainCardComponent>
+					</View>
 					<View style={styles.timeSheetContainer}>
 						<Text style={styles.timeLineText}>Timeline</Text>
 						<AttendanceStatusBoxComponent
@@ -437,9 +488,9 @@ const AttendanceChartScreen = (props: any) => {
 											count={5}
 											showRating={false}
 											isDisabled={true}
-											starStyle={{
-												margin: 0,
-											}}
+											// starStyle={{
+											// 	margin: 0,
+											// }}
 										/>
 									</View>
 									<View

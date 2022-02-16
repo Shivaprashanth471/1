@@ -102,6 +102,8 @@ const AttendanceStatusBoxComponent = (
 								getImageConfig()}
 							{(status === 'Break-Out' || status === 'break_out_time') &&
 								getImageConfig()}
+							{/* {(status === 'Actual-Time' || status === 'shift_duration_minutes')}
+							{(status === 'Break-Time' || status === 'break_duration_minutes')} */}
 							<Text
 								style={{
 									fontFamily: FontConfig.primary.bold,

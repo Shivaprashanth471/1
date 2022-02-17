@@ -34,11 +34,11 @@ const GetCertifiedToPractise = yup.object().shape({
 });
 
 export interface GetCertifiedToPractiseType {
-	is_certified_to_practice: boolean;
+	is_certified_to_practice: string;
 }
 
 const initialValues: GetCertifiedToPractiseType = {
-	is_certified_to_practice: false,
+	is_certified_to_practice: '',
 };
 
 const GetCertifiedToPractiseScreen = (props: any) => {
@@ -92,7 +92,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 			},
 		};
 		// formikHelpers.setSubmitting(false);
-		// console.log(payload.nc_details.is_certified_to_practice);
+		// console.log(payload.nc_details);
 
 		ApiFunctions.put(
 			ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload._id,
@@ -102,7 +102,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 				formikHelpers.setSubmitting(false);
 				if (resp.success) {
 					if (!documentAvailable) {
-						if (values.is_certified_to_practice === true) {
+						if (values.is_certified_to_practice === 'true') {
 							// setSelectPickerModalVisible(true);
 							setSelectDateModalVisible(true);
 						} else {
@@ -111,7 +111,7 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 							});
 						}
 					} else {
-						if (values.is_certified_to_practice === true) {
+						if (values.is_certified_to_practice === 'true') {
 							ToastAlert.show(
 								'You have already uploaded the license, Contact team vitawerks team to update it',
 							);
@@ -360,8 +360,8 @@ const GetCertifiedToPractiseScreen = (props: any) => {
 													<FormikRadioGroupComponent
 														formikField={field}
 														radioButtons={[
-															{id: true, title: 'Yes'},
-															{id: false, title: 'No'},
+															{id: 'true', title: 'Yes'},
+															{id: 'false', title: 'No'},
 														]}
 														direction={'column'}
 													/>

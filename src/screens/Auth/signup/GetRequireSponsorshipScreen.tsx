@@ -30,11 +30,11 @@ const GetVaccineForCovid = yup.object().shape({
 });
 
 export interface GetRequireSponsorshipType {
-	is_require_employment_sponsorship: boolean;
+	is_require_employment_sponsorship: string;
 }
 
 const initialValues: GetRequireSponsorshipType = {
-	is_require_employment_sponsorship: false,
+	is_require_employment_sponsorship: '',
 };
 
 const GetRequireSponsorshipScreen = (props: any) => {
@@ -206,8 +206,8 @@ const GetRequireSponsorshipScreen = (props: any) => {
 													<FormikRadioGroupComponent
 														formikField={field}
 														radioButtons={[
-															{id: true, title: 'Yes'},
-															{id: false, title: 'No'},
+															{id: 'true', title: 'Yes'},
+															{id: 'false', title: 'No'},
 														]}
 														direction={'column'}
 													/>

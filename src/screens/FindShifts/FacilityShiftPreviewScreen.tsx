@@ -8,8 +8,15 @@ import {
 	Text,
 	View,
 	Modal,
+	TouchableOpacity,
 } from 'react-native';
-import {Colors, ENV, FontConfig, ImageConfig} from '../../constants';
+import {
+	Colors,
+	ENV,
+	FontConfig,
+	ImageConfig,
+	NavigateTo,
+} from '../../constants';
 import {
 	ApiFunctions,
 	CommonFunctions,
@@ -40,13 +47,21 @@ const FacilityShiftPreviewScreen = (props: any) => {
 	const [isShiftLoading, setIsShiftLoading]: any = useState(false);
 	const [isShiftLoaded, setIsShiftLoaded]: any = useState(false);
 
+	const [isFacilitReviewDetailsLoading, setIsFacilitReviewDetailsLoading]: any =
+		useState(false);
+	const [isFacilitReviewDetailsLoaded, setIsFacilitReviewDetailsLoaded]: any =
+		useState(false);
+
 	const [shift, setShift] = useState<requirementsList[] | null>(null);
 	const [pagination, setPagination] = useState<PaginationType | null>(null);
 	const [facility, setFacility]: any = useState<null | {}>({});
+	const [facilityReviewDetails, setFacilityReviewDetails] = useState<any>();
 
 	const [textShown, setTextShown] = useState(false);
 	const [lengthMore, setLengthMore] = useState(false);
 	const {facilityID} = props.route.params;
+	// console.log('>>>>', facilityID);
+
 	const {facilityName} = props.route.params;
 	const {item} = props.route.params;
 
@@ -134,6 +149,25 @@ const FacilityShiftPreviewScreen = (props: any) => {
 			});
 	}, [facilityID]);
 
+	const getFacilityReviewDetails = useCallback(() => {
+		setIsFacilitReviewDetailsLoading(true);
+		ApiFunctions.get(ENV.apiUrl + 'facility/' + facilityID + '/reviews')
+			.then(resp => {
+				if (resp && resp.success) {
+					setFacilityReviewDetails(resp.data);
+				} else {
+					Alert.alert('Error', resp.error);
+				}
+				setIsFacilitReviewDetailsLoading(false);
+				setIsFacilitReviewDetailsLoaded(true);
+			})
+			.catch((err: any) => {
+				setIsFacilitReviewDetailsLoading(false);
+				setIsFacilitReviewDetailsLoaded(true);
+				Alert.alert('Error', err.error || 'Oops... Something went wrong!');
+			});
+	}, [facilityID]);
+
 	useEffect(() => {
 		const focusListener = navigation.addListener('focus', getShiftDetails);
 		const focusListener2 = navigation.addListener('focus', getFacilityDetails);
@@ -152,6 +186,11 @@ const FacilityShiftPreviewScreen = (props: any) => {
 		console.log('loading facility.....');
 		getFacilityDetails();
 	}, [getFacilityDetails]);
+
+	useEffect(() => {
+		console.log('loading facility review.....');
+		getFacilityReviewDetails();
+	}, [getFacilityReviewDetails]);
 	//
 	const loadNextPage = useCallback(() => {
 		console.log('next page ....', pagination);
@@ -211,178 +250,269 @@ const FacilityShiftPreviewScreen = (props: any) => {
 
 	return (
 		<>
-			{(isLoading || (isShiftLoading && !isShiftLoaded)) && (
+			{(isLoading ||
+				(isShiftLoading && !isShiftLoaded) ||
+				(isFacilitReviewDetailsLoading && !isFacilitReviewDetailsLoaded)) && (
 				<LoadingComponent />
 			)}
 			{!isLoading && isLoaded && !facility && (
 				<ErrorComponent text={'Facility details not available'} />
 			)}
-			{!isLoading && isLoaded && isShiftLoaded && facility && (
-				<>
-					<StatusBar
-						barStyle={'light-content'}
-						animated={true}
-						backgroundColor={Colors.backdropColor}
-					/>
-					<View>
-						<View style={{flexGrow: 1}}>
-							<FlatList
-								data={shift}
-								onRefresh={getShiftDetails}
-								refreshing={isShiftLoading}
-								onEndReached={loadNextPage}
-								showsVerticalScrollIndicator={false}
-								ListHeaderComponent={
-									<>
-										<ImageBackground
-											resizeMethod={'auto'}
-											resizeMode={facility.image_url ? 'cover' : 'contain'}
-											source={
-												facility.image_url
-													? {uri: facility.image_url}
-													: ImageConfig.placeholder
-											}
-											style={[
-												styles.dashMainItem,
-												{backgroundColor: Colors.backdropColor},
-											]}
-										/>
-										<View
-											style={{
-												marginVertical: 10,
-												marginHorizontal: 10,
-												padding: 20,
-												backgroundColor: Colors.backdropColor,
-												elevation: 10,
-												borderRadius: 5,
-												// marginTop: -70,
-												width: '95%',
-											}}>
-											<Text
-												style={{
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 18,
-													color: Colors.textDark,
-													textTransform: 'capitalize',
-												}}>
-												{facilityName}
-											</Text>
+			{!isFacilitReviewDetailsLoading &&
+				isFacilitReviewDetailsLoaded &&
+				!facilityReviewDetails && (
+					<ErrorComponent text={'Facility details not available'} />
+				)}
+			{!isLoading &&
+				isLoaded &&
+				isShiftLoaded &&
+				facility &&
+				facilityReviewDetails && (
+					<>
+						<StatusBar
+							barStyle={'light-content'}
+							animated={true}
+							backgroundColor={Colors.backdropColor}
+						/>
+						<View>
+							<View style={{flexGrow: 1}}>
+								<FlatList
+									data={shift}
+									onRefresh={getShiftDetails}
+									refreshing={isShiftLoading}
+									onEndReached={loadNextPage}
+									showsVerticalScrollIndicator={false}
+									ListHeaderComponent={
+										<>
+											<ImageBackground
+												resizeMethod={'auto'}
+												resizeMode={facility.image_url ? 'cover' : 'contain'}
+												source={
+													facility.image_url
+														? {uri: facility.image_url}
+														: ImageConfig.placeholder
+												}
+												style={[
+													styles.dashMainItem,
+													{backgroundColor: Colors.backdropColor},
+												]}
+											/>
 											<View
 												style={{
-													flexDirection: 'row',
-													alignItems: 'center',
 													marginVertical: 10,
+													marginHorizontal: 10,
+													padding: 20,
+													backgroundColor: Colors.backdropColor,
+													elevation: 10,
+													borderRadius: 5,
+													// marginTop: -70,
+													width: '95%',
 												}}>
-												<ImageConfig.LocationIconBlue width="20" height="20" />
 												<Text
 													style={{
+														fontFamily: FontConfig.primary.bold,
+														fontSize: 18,
+														color: Colors.textDark,
+														textTransform: 'capitalize',
+													}}>
+													{facilityName}
+												</Text>
+												<View
+													style={{
+														flexDirection: 'row',
+														alignItems: 'center',
+														marginVertical: 10,
+													}}>
+													<ImageConfig.LocationIconBlue
+														width="20"
+														height="20"
+													/>
+													<Text
+														style={{
+															fontFamily: FontConfig.primary.regular,
+															fontSize: 14,
+															color: Colors.textOnTextLight,
+															maxWidth: '90%',
+															marginLeft: 2,
+														}}>
+														{item.address.street},{' ' + item.address.city},
+														{' ' + item.address.state},
+														{' ' + item.address.country},
+														{' ' + item.address.zip_code}
+													</Text>
+												</View>
+												<View
+													style={[
+														CommonStyles.horizontalLine,
+														{marginVertical: 15},
+													]}
+												/>
+												<View
+													style={{
+														flexDirection: 'row',
+														alignItems: 'center',
+														justifyContent: 'space-between',
+													}}>
+													<Text
+														style={{
+															fontFamily: FontConfig.primary.bold,
+															fontSize: 18,
+															color: Colors.textDark,
+														}}>
+														About Facility
+													</Text>
+													<TouchableOpacity
+														onPress={() => {
+															navigation.navigate(
+																NavigateTo.FacilityReviewScreen,
+																{
+																	facilityReviewDetails: facilityReviewDetails,
+																	facilityDetails: facility,
+																},
+															);
+														}}
+														style={{
+															width: 70,
+															shadowColor: '#000',
+															shadowOffset: {
+																width: 0,
+																height: 2,
+															},
+															shadowOpacity: 0.25,
+															shadowRadius: 4,
+															elevation: 10,
+															backgroundColor: 'white',
+															borderRadius: 9,
+															marginVertical: 5,
+														}}>
+														<View
+															style={{
+																backgroundColor: Colors.primary,
+																justifyContent: 'center',
+																alignItems: 'center',
+																height: 35,
+																borderTopLeftRadius: 9,
+																borderTopRightRadius: 9,
+															}}>
+															<Text
+																style={{
+																	fontFamily: FontConfig.primary.semiBold,
+																	fontSize: 12,
+																	color: 'white',
+																	textAlign: 'center',
+																}}>
+																{facility.rating ? facility.rating : 0} ☆
+															</Text>
+														</View>
+														<View
+															style={{
+																backgroundColor: Colors.backdropColor,
+																justifyContent: 'center',
+																alignItems: 'center',
+																borderBottomLeftRadius: 9,
+																borderBottomRightRadius: 9,
+																height: 35,
+															}}>
+															<Text
+																style={{
+																	fontFamily: FontConfig.primary.semiBold,
+																	fontSize: 12,
+																	color: Colors.primary,
+																}}>
+																({facilityReviewDetails.length})
+															</Text>
+															<Text
+																style={{
+																	fontFamily: FontConfig.primary.semiBold,
+																	fontSize: 12,
+																	color: Colors.primary,
+																}}>
+																Reviews
+															</Text>
+														</View>
+													</TouchableOpacity>
+												</View>
+												<Text
+													onTextLayout={onTextLayout}
+													numberOfLines={textShown ? undefined : 4}
+													style={{
+														lineHeight: 21,
 														fontFamily: FontConfig.primary.regular,
 														fontSize: 14,
 														color: Colors.textOnTextLight,
-														maxWidth: '90%',
-														marginLeft: 2,
+														marginTop: 5,
 													}}>
-													{item.address.street},{' ' + item.address.city},
-													{' ' + item.address.state},
-													{' ' + item.address.country},
-													{' ' + item.address.zip_code}
+													{facility.about}
 												</Text>
+												{lengthMore ? (
+													<Text
+														onPress={toggleNumberOfLines}
+														style={{
+															lineHeight: 21,
+															marginTop: 10,
+															color: Colors.primary,
+															fontFamily: FontConfig.primary.semiBold,
+															fontSize: 12,
+														}}>
+														{textShown ? 'Read less...' : 'Read more...'}
+													</Text>
+												) : null}
 											</View>
 											<View
-												style={[
-													CommonStyles.horizontalLine,
-													{marginVertical: 15},
-												]}
-											/>
-											<Text
 												style={{
-													fontFamily: FontConfig.primary.bold,
-													fontSize: 18,
-													color: Colors.textDark,
+													marginHorizontal: 20,
+													marginVertical: 10,
 												}}>
-												About Facility
-											</Text>
-											<Text
-												onTextLayout={onTextLayout}
-												numberOfLines={textShown ? undefined : 4}
-												style={{
-													lineHeight: 21,
-													fontFamily: FontConfig.primary.regular,
-													fontSize: 14,
-													color: Colors.textOnTextLight,
-													marginTop: 5,
-												}}>
-												{facility.about}
-											</Text>
-											{lengthMore ? (
 												<Text
-													onPress={toggleNumberOfLines}
 													style={{
-														lineHeight: 21,
-														marginTop: 10,
-														color: Colors.primary,
-														fontFamily: FontConfig.primary.semiBold,
-														fontSize: 12,
+														color: Colors.textDark,
+														fontSize: 18,
+														fontFamily: FontConfig.primary.bold,
 													}}>
-													{textShown ? 'Read less...' : 'Read more...'}
+													Available Shifts
 												</Text>
-											) : null}
-										</View>
-										<View
-											style={{
-												marginHorizontal: 20,
-												marginVertical: 10,
-											}}>
-											<Text
-												style={{
-													color: Colors.textDark,
-													fontSize: 18,
-													fontFamily: FontConfig.primary.bold,
-												}}>
-												Available Shifts
-											</Text>
-										</View>
-										{modalShiftApply()}
-									</>
-								}
-								ListEmptyComponent={
-									<ErrorComponent
-										// icon={ImageConfig.IconAutomobile}
-										text={'List is empty!'}
-										style={{minHeight: 250}}
-									/>
-								}
-								onEndReachedThreshold={0.7}
-								keyExtractor={(item, index) => item._id + '_' + index}
-								renderItem={({item}) => {
-									return (
-										<View key={item._id + '--'}>
-											<View>
-												<TotalShiftComponent
-													id={facilityID}
-													facility={facility}
-													item={item}
-													dateOfShift={item.shift_date}
-													shiftStartTime={item.shift_timings.start_time}
-													shiftEndTime={item.shift_timings.end_time}
-													HCPLevel={item.hcp_type}
-													requirementID={item._id}
-													warningType={item.warning_type}
-													shiftType={item.shift_type}
-													navigation={navigation}
-													showModal={() => {
-														setShiftApplyModalVisible(true);
-													}}
-												/>
 											</View>
-										</View>
-									);
-								}}
-							/>
+											{modalShiftApply()}
+										</>
+									}
+									ListEmptyComponent={
+										<ErrorComponent
+											// icon={ImageConfig.IconAutomobile}
+											text={'List is empty!'}
+											style={{minHeight: 250}}
+										/>
+									}
+									onEndReachedThreshold={0.7}
+									keyExtractor={(item, index) => item._id + '_' + index}
+									renderItem={({item}) => {
+										return (
+											<View key={item._id + '--'}>
+												<View>
+													<TotalShiftComponent
+														id={facilityID}
+														facility={facility}
+														item={item}
+														dateOfShift={item.shift_date}
+														shiftStartTime={item.shift_timings.start_time}
+														shiftEndTime={item.shift_timings.end_time}
+														HCPLevel={item.hcp_type}
+														requirementID={item._id}
+														warningType={item.warning_type}
+														shiftType={item.shift_type}
+														navigation={navigation}
+														showModal={() => {
+															setShiftApplyModalVisible(true);
+														}}
+													/>
+												</View>
+											</View>
+										);
+									}}
+								/>
+							</View>
 						</View>
-					</View>
-				</>
-			)}
+					</>
+				)}
 		</>
 	);
 };

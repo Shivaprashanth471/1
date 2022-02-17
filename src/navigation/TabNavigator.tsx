@@ -179,7 +179,9 @@ const FindShiftStackNavigator = () => {
 			<FindShiftStack.Screen
 				key={NavigateTo.FacilityReviewScreen + '-Screen'}
 				name={NavigateTo.FacilityReviewScreen}
-				options={{headerTitle: 'Review Screen'}}
+				options={{
+					headerShown: false,
+				}}
 				listeners={listeners}
 				component={FacilityReviewScreen}
 			/>

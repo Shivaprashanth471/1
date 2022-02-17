@@ -30,11 +30,11 @@ const GetVaccineForCovid = yup.object().shape({
 });
 
 export interface GetAuthorisationForWorkType {
-	is_authorized_to_work: boolean;
+	is_authorized_to_work: string;
 }
 
 const initialValues: GetAuthorisationForWorkType = {
-	is_authorized_to_work: false,
+	is_authorized_to_work: '',
 };
 
 const GetLegallyAuthorisedToWorkScreen = (props: any) => {
@@ -205,8 +205,8 @@ const GetLegallyAuthorisedToWorkScreen = (props: any) => {
 													<FormikRadioGroupComponent
 														formikField={field}
 														radioButtons={[
-															{id: true, title: 'Yes'},
-															{id: false, title: 'No'},
+															{id: 'true', title: 'Yes'},
+															{id: 'false', title: 'No'},
 														]}
 														direction={'column'}
 													/>

@@ -33,13 +33,13 @@ const GetVaccineForCovid = yup.object().shape({
 });
 
 export interface GetVaccineForCovidType {
-	is_vaccinated: boolean;
+	is_vaccinated: string;
 	first_shot: any;
 	latest_shot: any;
 }
 
 const initialValues: GetVaccineForCovidType = {
-	is_vaccinated: false,
+	is_vaccinated: '',
 	first_shot: '',
 	latest_shot: '',
 };
@@ -67,11 +67,11 @@ const GetVaccineForCovidScreen = (props: any) => {
 				is_vaccinated: values.is_vaccinated,
 				vaccination_dates: {
 					first_shot:
-						values.is_vaccinated === true
+						values.is_vaccinated === 'true'
 							? Moment(values.first_shot).format('MM-DD-YYYY')
 							: hcpDetails.nc_details.vaccination_dates.first_shot,
 					latest_shot:
-						values.is_vaccinated === true
+						values.is_vaccinated === 'true'
 							? Moment(values.latest_shot).format('MM-DD-YYYY')
 							: hcpDetails.nc_details.vaccination_dates.latest_shot,
 				},
@@ -98,6 +98,8 @@ const GetVaccineForCovidScreen = (props: any) => {
 				other_information: '',
 			},
 		};
+		// formikHelpers.setSubmitting(false);
+		// console.log(payload.nc_details);
 		ApiFunctions.put(ENV.apiUrl + 'hcp/' + GetHcpBasicDetailsPayload, payload)
 			.then(async (resp: TSAPIResponseType<GetVaccineForCovidType>) => {
 				formikHelpers.setSubmitting(false);
@@ -239,8 +241,8 @@ const GetVaccineForCovidScreen = (props: any) => {
 														formikField={field}
 														// labelText={'Shift Prefer'}
 														radioButtons={[
-															{id: true, title: 'Yes'},
-															{id: false, title: 'No'},
+															{id: 'true', title: 'Yes'},
+															{id: 'false', title: 'No'},
 														]}
 														direction={'column'}
 													/>
@@ -355,7 +357,7 @@ const GetVaccineForCovidScreen = (props: any) => {
 												isLoading={isSubmitting}
 												title={'Continue'}
 												onPress={() => {
-													if (values.is_vaccinated) {
+													if (values.is_vaccinated === 'true') {
 														setSelectPickerModalVisible(true);
 													} else {
 														handleSubmit();

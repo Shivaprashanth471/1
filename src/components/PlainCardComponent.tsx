@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		marginHorizontal: 20,
 		marginVertical: 10,
-		paddingHorizontal: 20,
+		paddingHorizontal: 10,
 		paddingVertical: 14,
 		...CommonFunctions.getElevationStyle(8),
 	},

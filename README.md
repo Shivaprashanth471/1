@@ -24,7 +24,7 @@ Start the dev server with `react-native start`
 
 Run with `ENVFILE=.env.development react-native run-android`
 
-- **Get Android credentials from dev**
+- **Get credentials from dev**
   ```
   keyAlias
   keyPassword
@@ -34,15 +34,15 @@ Run with `ENVFILE=.env.development react-native run-android`
 
 ## CICD Trigger
 
-- **For Staging Android**
+- **For Staging Android/iOS**
   ```
   Push code to main branch
   ```
-- **For Staging and QA Android together**
+- **For Staging and QA Android/iOS together**
   ```
   After commiting the code. Use the Command "yarn version patch/minor/major".
   ```
-- **For UAT Android**
+- **For UAT Android/iOS**
   ```
   First commit the code
   ```
@@ -52,7 +52,7 @@ Run with `ENVFILE=.env.development react-native run-android`
   ```
   Approach Mobile Team Lead or Devops Team Lead to trigger the UAT build.
   ```
-- **For PROD Android**
+- **For PROD AndroidiOS**
   ```
   First commit the code to main branch.
   ```

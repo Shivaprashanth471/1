@@ -532,20 +532,6 @@ const AttendanceChartScreen = (props: any) => {
 											// }}
 										/>
 									</View>
-									<View
-										style={{
-											marginVertical: 15,
-										}}>
-										<Text
-											style={{
-												fontFamily: FontConfig.primary.italic,
-												fontSize: 15,
-												color: Colors.textOnInput,
-											}}>
-											You will be notified after your application has been
-											approved by the facility
-										</Text>
-									</View>
 								</View>
 							</>
 						) : (

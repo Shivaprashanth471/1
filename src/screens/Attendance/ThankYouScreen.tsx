@@ -59,7 +59,7 @@ const ThankYouScreen = (props: any) => {
 				<CustomButton
 					title={'Go!'}
 					onPress={() => {
-						navigation.navigate(NavigateTo.FindShifts);
+						navigation.popToTop(NavigateTo.AttendanceScreen);
 					}}
 					style={{
 						width: '50%',

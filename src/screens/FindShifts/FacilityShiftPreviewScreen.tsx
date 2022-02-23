@@ -171,11 +171,21 @@ const FacilityShiftPreviewScreen = (props: any) => {
 	useEffect(() => {
 		const focusListener = navigation.addListener('focus', getShiftDetails);
 		const focusListener2 = navigation.addListener('focus', getFacilityDetails);
+		const focusListener3 = navigation.addListener(
+			'focus',
+			getFacilityReviewDetails,
+		);
 		return () => {
 			focusListener();
 			focusListener2();
+			focusListener3();
 		};
-	}, [getShiftDetails, getFacilityDetails, navigation]);
+	}, [
+		getShiftDetails,
+		getFacilityDetails,
+		getFacilityReviewDetails,
+		navigation,
+	]);
 
 	useEffect(() => {
 		console.log('loading shift list.....');
@@ -401,7 +411,10 @@ const FacilityShiftPreviewScreen = (props: any) => {
 																	color: 'white',
 																	textAlign: 'center',
 																}}>
-																{facility.rating ? facility.rating : 0} ☆
+																{facility.rating
+																	? facility.rating.toFixed(2)
+																	: 0}{' '}
+																☆
 															</Text>
 														</View>
 														<View

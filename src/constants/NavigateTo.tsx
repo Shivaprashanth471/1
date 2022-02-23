@@ -9,7 +9,7 @@ const Home = 'Home';
 const Attendance = 'Attendance';
 const AttendanceScreen = 'AttendanceScreen';
 const FindShifts = 'FindShifts';
-const MyShifts = 'MyShifts';
+const MyShiftsScreen = 'MyShiftsScreen';
 const ShiftDetailsScreen = 'ShiftDetailsScreen';
 const FacilityShiftPreviewScreen = 'FacilityShiftPreviewScreen';
 const FacilityReviewScreen = 'FacilityReviewScreen';
@@ -65,7 +65,7 @@ export default {
 	Attendance,
 	AttendanceScreen,
 	FindShifts,
-	MyShifts,
+	MyShiftsScreen,
 	Profile,
 	ProfileEditScreen,
 	ShiftDetailsScreen,

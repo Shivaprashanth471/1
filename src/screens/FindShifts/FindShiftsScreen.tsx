@@ -1246,7 +1246,7 @@ const styles = StyleSheet.create({
 	// card
 	cardContainer: {
 		position: 'absolute',
-		bottom: Platform.OS === 'android' ? 20 : 35,
+		bottom: Platform.OS === 'android' ? 20 : 40,
 		...CommonFunctions.getElevationStyle(4),
 		zIndex: 2,
 		backgroundColor: '#fff',

@@ -193,15 +193,44 @@ const MyShiftStack = createStackNavigator();
 const MyShiftStackNavigator = () => {
 	return (
 		<MyShiftStack.Navigator
-			key={NavigateTo.MyShifts + '-Nav'}
-			initialRouteName={NavigateTo.MyShifts}
+			key={NavigateTo.MyShiftsScreen + '-Nav'}
+			initialRouteName={NavigateTo.MyShiftsScreen}
 			screenOptions={defaultNavigationOptions}>
 			<MyShiftStack.Screen
-				key={NavigateTo.MyShifts + '-Screen'}
+				key={NavigateTo.MyShiftsScreen + '-Screen'}
 				name={'History'}
 				options={{headerTitle: 'Shift History'}}
 				listeners={listeners}
 				component={MyShiftsScreen}
+			/>
+			<MyShiftStack.Screen
+				key={NavigateTo.AttendanceChartScreen + '-Screen'}
+				name={NavigateTo.AttendanceChartScreen}
+				options={{
+					headerTitle: '',
+					headerStyle: {backgroundColor: '#00243F'},
+					headerShown: false,
+				}}
+				listeners={listeners}
+				component={AttendanceChartScreen}
+			/>
+			<MyShiftStack.Screen
+				key={NavigateTo.FeedbackScreen + '-Screen'}
+				name={NavigateTo.FeedbackScreen}
+				options={{headerTitle: 'Feedback'}}
+				listeners={listeners}
+				component={FeedbackScreen}
+			/>
+			<MyShiftStack.Screen
+				key={NavigateTo.ThankYouScreen + '-Screen'}
+				name={NavigateTo.ThankYouScreen}
+				options={{
+					headerTitle: '',
+					headerStyle: {backgroundColor: '#00243F'},
+					headerShown: false,
+				}}
+				listeners={listeners}
+				component={ThankYouScreen}
 			/>
 		</MyShiftStack.Navigator>
 	);
@@ -389,7 +418,7 @@ const VitaTabNavigator = () => {
 			/>
 
 			<VitaTab.Screen
-				key={NavigateTo.MyShifts + '-Tab'}
+				key={NavigateTo.MyShiftsScreen + '-Tab'}
 				name={'History'}
 				component={MyShiftStackNavigator}
 				options={() => {

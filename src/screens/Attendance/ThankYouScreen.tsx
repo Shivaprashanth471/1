@@ -1,18 +1,7 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {StyleSheet, Text, View, StatusBar, Modal, Alert} from 'react-native';
-import {ApiFunctions, ToastAlert} from '../../helpers';
-import {
-	Colors,
-	ENV,
-	FontConfig,
-	ImageConfig,
-	NavigateTo,
-} from '../../constants';
-import {
-	BaseViewComponent,
-	CustomButton,
-	KeyboardAvoidCommonView,
-} from '../../components/core';
+import React from 'react';
+import {Text, View, StatusBar} from 'react-native';
+import {Colors, FontConfig, ImageConfig, NavigateTo} from '../../constants';
+import {CustomButton} from '../../components/core';
 
 const ThankYouScreen = (props: any) => {
 	const navigation = props.navigation;
@@ -59,7 +48,14 @@ const ThankYouScreen = (props: any) => {
 				<CustomButton
 					title={'Go!'}
 					onPress={() => {
-						navigation.popToTop(NavigateTo.AttendanceScreen);
+						// navigation.replace(NavigateTo.Home, {
+						// 	screen: NavigateTo.Home,
+						// });
+						navigation.reset({
+							index: 0,
+							routes: [{name: NavigateTo.FindShifts}],
+						});
+						// navigation.dispatch(StackActions.replace(NavigateTo.FindShifts));
 					}}
 					style={{
 						width: '50%',
@@ -74,7 +70,5 @@ const ThankYouScreen = (props: any) => {
 		</>
 	);
 };
-
-const styles = StyleSheet.create({});
 
 export default ThankYouScreen;

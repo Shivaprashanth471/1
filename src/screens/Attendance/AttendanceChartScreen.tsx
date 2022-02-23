@@ -128,6 +128,13 @@ const AttendanceChartScreen = (props: any) => {
 	}, [shiftID]);
 
 	useEffect(() => {
+		const focusListener = navigation.addListener('focus', getShiftDetails);
+		return () => {
+			focusListener();
+		};
+	}, [getShiftDetails, navigation]);
+
+	useEffect(() => {
 		console.log('loading get shift main screen');
 		getShiftDetails();
 	}, [getShiftDetails]);
@@ -248,8 +255,7 @@ const AttendanceChartScreen = (props: any) => {
 								marginHorizontal: 20,
 							}}
 							onPress={() => {
-								// navigation.goBack();
-								navigation.navigate(NavigateTo.UpcomingShiftCountdownScreen);
+								navigation.goBack();
 							}}>
 							<ImageConfig.backArrow width="20" height="20" />
 						</TouchableOpacity>
@@ -345,7 +351,7 @@ const AttendanceChartScreen = (props: any) => {
 										fontSize: 14,
 										color: Colors.primary,
 									}}>
-									{moment(shift.expected.shift_start_time).format(
+									{moment(shift.actuals.shift_start_time).format(
 										'ddd, MMM Do, YYYY',
 									)}
 								</Text>
@@ -364,7 +370,7 @@ const AttendanceChartScreen = (props: any) => {
 										fontSize: 14,
 										color: Colors.primary,
 									}}>
-									Morning shift
+									{shift.shift_type} Shift
 								</Text>
 							</View>
 							<View

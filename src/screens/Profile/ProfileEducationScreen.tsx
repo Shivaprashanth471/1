@@ -77,7 +77,9 @@ const ProfileEducationScreen = (props: any) => {
 	}, [getEducationDetails]);
 
 	const sortedEducationData =
-		(profile && CommonFunctions.sortDatesByLatest(profile, 'start_date')) || [];
+		(profile &&
+			CommonFunctions.sortDatesByLatest(profile, 'graduation_date')) ||
+		[];
 	return (
 		<>
 			{isLoading && <LoadingComponent />}

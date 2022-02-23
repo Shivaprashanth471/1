@@ -211,22 +211,22 @@ const GetVaccineForCovidScreen = (props: any) => {
 										...initialValues,
 										...{
 											is_vaccinated: hcpDetails.nc_details.is_vaccinated,
-											first_shot:
-												hcpDetails.nc_details.vaccination_dates.first_shot != ''
-													? Moment(
-															hcpDetails.nc_details.vaccination_dates
-																.first_shot,
-															'MM-DD-YYYY',
-													  ).format('YYYY-MM-DD')
-													: '',
-											latest_shot:
-												hcpDetails.nc_details.vaccination_dates.first_shot != ''
-													? Moment(
-															hcpDetails.nc_details.vaccination_dates
-																.latest_shot,
-															'MM-DD-YYYY',
-													  ).format('YYYY-MM-DD')
-													: '',
+											// first_shot:
+											// 	hcpDetails.nc_details.vaccination_dates.first_shot != ''
+											// 		? Moment(
+											// 				hcpDetails.nc_details.vaccination_dates
+											// 					.first_shot,
+											// 				'MM-DD-YYYY',
+											// 		  ).format('YYYY-MM-DD')
+											// 		: '',
+											// latest_shot:
+											// 	hcpDetails.nc_details.vaccination_dates.first_shot != ''
+											// 		? Moment(
+											// 				hcpDetails.nc_details.vaccination_dates
+											// 					.latest_shot,
+											// 				'MM-DD-YYYY',
+											// 		  ).format('YYYY-MM-DD')
+											// 		: '',
 										},
 									}}>
 									{({handleSubmit, isValid, isSubmitting, values}) => (

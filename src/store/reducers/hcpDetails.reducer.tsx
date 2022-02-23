@@ -17,6 +17,7 @@ const hcpDetailsReducer = (
 		case HCPDETAILS:
 			state = {...state, HcpUser: action.HcpUser};
 			localStorage.setItem('hcpDetailsData', action);
+			console.log('state reducer', state);
 
 			// Communications.updateLoginUserTokenSubject.next(action.token);
 			return state;

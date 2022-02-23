@@ -458,10 +458,13 @@ const MyShiftsScreen = (props: any) => {
 												appliedPending={showAppliedShifts ? true : false}
 												onNext={() => {
 													if (item.shift_status === 'complete') {
-														navigation.navigate(NavigateTo.Attendance, {
-															screen: NavigateTo.AttendanceChartScreen,
-															params: {shiftID: item._id},
-														});
+														navigation.navigate(
+															NavigateTo.AttendanceChartScreen,
+															{
+																shiftID: item._id,
+																navBackHistory: true,
+															},
+														);
 													}
 													//  else if (item.shift_status === 'closed') {
 													// 	navigation.navigate(NavigateTo.Attendance, {

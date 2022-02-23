@@ -63,7 +63,7 @@ const MyProfileScreen = (props: any) => {
 		if (HcpUser) {
 			ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile')
 				.then(async resp => {
-					if (resp) {					
+					if (resp) {
 						setProfile(resp.data);
 					} else {
 						Alert.alert('Error', resp);
@@ -174,9 +174,15 @@ const MyProfileScreen = (props: any) => {
 	useEffect(() => {
 		console.log('loading get profile');
 		getProfileDetails();
-		getRegion();
+	}, [getProfileDetails]);
+	useEffect(() => {
+		console.log('loading get profile');
 		getHcpTypeList();
-	}, [getProfileDetails, getRegion, getHcpTypeList]);
+	}, [getHcpTypeList]);
+	useEffect(() => {
+		console.log('loading get profile');
+		getRegion();
+	}, [getRegion]);
 
 	return (
 		<>
@@ -209,7 +215,7 @@ const MyProfileScreen = (props: any) => {
 												profile.shift_type_preference || '',
 										},
 									}}>
-									{({handleSubmit, isValid, isSubmitting, values}) => (
+									{({handleSubmit, isSubmitting}) => (
 										<>
 											<Field name={'hcp_type'}>
 												{(field: FieldProps) => (

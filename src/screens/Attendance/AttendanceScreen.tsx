@@ -278,7 +278,11 @@ const AttendanceScreen = (props: any) => {
 	};
 
 	const checkInModalClose = () => {
-		const payload = {hcp_user_id: user._id, time: timeInMinutes};
+		const payload = {
+			hcp_user_id: user._id,
+			time: timeInMinutes,
+			date: currentDate,
+		};
 		setBtnLoading(true);
 		ApiFunctions.post(ENV.apiUrl + 'shift/' + shiftID + '/checkIn', payload)
 			.then(async resp => {
@@ -402,6 +406,7 @@ const AttendanceScreen = (props: any) => {
 
 		navigation.replace(NavigateTo.AttendanceChartScreen, {
 			shiftID: shiftID,
+			navBackHistory: false,
 		});
 	};
 
@@ -738,7 +743,8 @@ const AttendanceScreen = (props: any) => {
 										fontSize: 16,
 										marginLeft: 5,
 										marginTop: 10,
-									}}></Text>
+									}}
+								/>
 							</View>
 							<View style={styles.test}>
 								{showCheckInBtn && (

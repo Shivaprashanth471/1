@@ -63,7 +63,7 @@ const MyProfileScreen = (props: any) => {
 		if (HcpUser) {
 			ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile')
 				.then(async resp => {
-					if (resp) {
+					if (resp) {					
 						setProfile(resp.data);
 					} else {
 						Alert.alert('Error', resp);

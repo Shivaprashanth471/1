@@ -329,13 +329,16 @@ const LoginScreen = (props: any) => {
 										</Field>
 									</View>
 
-									<TouchableOpacity
+						        <View style={{flex:1, alignItems:'flex-end'}}> 
+								<TouchableOpacity
 										onPress={getForgotPassword}
 										style={styles.forgotPasswordHolder}>
 										<Text style={styles.forgotPasswordText}>
 											Forgot Password?
 										</Text>
 									</TouchableOpacity>
+								</View>
+									
 
 									<CustomButton
 										isLoading={isSubmitting}

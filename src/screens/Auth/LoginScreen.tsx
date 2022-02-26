@@ -88,6 +88,10 @@ const LoginScreen = (props: any) => {
 		formikHelpers: FormikHelpers<LoginSchemaType>,
 	) => {
 		const payload = {...values};
+		// const payload = {
+		// 	email: values.email.toLocaleLowerCase(),
+		// 	password: values.password,
+		// };
 		formikHelpers.setSubmitting(true);
 		ApiFunctions.post(ENV.apiUrl + 'user/login', payload)
 			.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {
@@ -329,16 +333,15 @@ const LoginScreen = (props: any) => {
 										</Field>
 									</View>
 
-						        <View style={{flex:1, alignItems:'flex-end'}}> 
-								<TouchableOpacity
-										onPress={getForgotPassword}
-										style={styles.forgotPasswordHolder}>
-										<Text style={styles.forgotPasswordText}>
-											Forgot Password?
-										</Text>
-									</TouchableOpacity>
-								</View>
-									
+									<View style={{flex: 1, alignItems: 'flex-end'}}>
+										<TouchableOpacity
+											onPress={getForgotPassword}
+											style={styles.forgotPasswordHolder}>
+											<Text style={styles.forgotPasswordText}>
+												Forgot Password?
+											</Text>
+										</TouchableOpacity>
+									</View>
 
 									<CustomButton
 										isLoading={isSubmitting}

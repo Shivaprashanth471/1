@@ -88,7 +88,12 @@ const ForgotPasswordScreen = (props: any) => {
 		formikHelpers.setSubmitting(true);
 		delete values.confirm;
 		values.email = email.email;
-		const payload = {...values};
+		const payload = {
+			code: values.code,
+			email: values.email.toLocaleLowerCase(),
+			password: values.password,
+		};
+		console.log(payload);
 		ApiFunctions.post(ENV.apiUrl + 'resetPassword', payload)
 			.then(async resp => {
 				formikHelpers.setSubmitting(false);

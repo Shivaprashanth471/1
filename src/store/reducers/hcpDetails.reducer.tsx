@@ -2,7 +2,7 @@ import {HCPDETAILS} from '../actions/hcpDetails.action';
 import {Communications, localStorage} from '../../helpers';
 
 export interface HcpDetailsParams {
-	HcpUser?: any;
+	HcpUser?: string;
 }
 
 const initialData: HcpDetailsParams = {

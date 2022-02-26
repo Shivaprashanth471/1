@@ -406,7 +406,6 @@ const AttendanceScreen = (props: any) => {
 
 		navigation.replace(NavigateTo.AttendanceChartScreen, {
 			shiftID: shiftID,
-			navBackHistory: false,
 		});
 	};
 

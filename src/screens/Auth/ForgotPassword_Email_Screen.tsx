@@ -52,6 +52,7 @@ const AuthPhoneScreen = (props: any) => {
 	) => {
 		formikHelpers.setSubmitting(true);
 		const payload = {...values};
+		// const payload = {email: values.email.toLocaleLowerCase()};
 		console.log('payload out>>>', payload);
 		ApiFunctions.post(ENV.apiUrl + 'forgotPassword', payload)
 			.then(resp => {

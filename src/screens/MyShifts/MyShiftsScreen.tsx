@@ -16,7 +16,7 @@ import {
 } from '../../constants';
 import MyShiftsStatusContainerComponent from '../../components/MyShiftsStatusContainerComponent';
 import {ApiFunctions, ToastAlert, CommonStyles} from '../../helpers';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {StateParams} from '../../store/reducers';
 import {useNavigation} from '@react-navigation/native';
 import {ErrorComponent, LoadingComponent} from '../../components/core';
@@ -29,6 +29,7 @@ import {
 import {hcpShiftsList} from '../../constants/CommonTypes';
 import moment from 'moment';
 import analytics from '@segment/analytics-react-native';
+import {updateNavHistory} from '../../store/actions/navHistory.action';
 
 const MyShiftsScreen = (props: any) => {
 	const [isLoading, setIsLoading]: any = useState(true);
@@ -36,6 +37,12 @@ const MyShiftsScreen = (props: any) => {
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const {auth} = useSelector((state: StateParams) => state);
 	const {user} = auth;
+	const {navHistory} = useSelector((state: StateParams) => state);
+	const {NavHistory} = navHistory;
+	console.log('<><><><><>', NavHistory);
+
+	const dispatch = useDispatch();
+
 	const navigation = props.navigation;
 	// const navigation = useNavigation();
 	const [totalCount, setTotalCount] = useState<any>();
@@ -462,9 +469,9 @@ const MyShiftsScreen = (props: any) => {
 															NavigateTo.AttendanceChartScreen,
 															{
 																shiftID: item._id,
-																navBackHistory: true,
 															},
 														);
+														dispatch(updateNavHistory('complete'));
 													}
 													//  else if (item.shift_status === 'closed') {
 													// 	navigation.navigate(NavigateTo.Attendance, {

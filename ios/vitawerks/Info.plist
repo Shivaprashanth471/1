@@ -41,6 +41,10 @@
 	<string>Need Access to take photo of medical documents</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need access to find nearest facilities for the user</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Need access to find nearest facilities for the user</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need access to find nearest facilities for the user</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Need Access to upload supporting medical documents</string>
 	<key>UIAppFonts</key>

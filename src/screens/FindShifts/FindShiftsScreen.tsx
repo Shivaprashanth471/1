@@ -375,7 +375,9 @@ const FindShiftsScreen = (props: any) => {
 				switch (result) {
 					case RESULTS.UNAVAILABLE:
 						errText =
-							'This feature is not available (on this device / in this context)';
+							Platform.OS === 'ios'
+								? 'Please check the Location services in your settings. If not enabled, Please enable it'
+								: 'Please check the App permissions in App Info. If Location is not enabled, Please enable it';
 						break;
 					case RESULTS.DENIED:
 						errText =
@@ -396,7 +398,10 @@ const FindShiftsScreen = (props: any) => {
 						);
 						break;
 					case RESULTS.BLOCKED:
-						errText = 'The permission is denied and not requestable anymore';
+						errText =
+							Platform.OS === 'ios'
+								? 'Please check the Location services in your settings. If the app is not enabled to view locations, Please enable it!'
+								: 'Please check the App permissions in App Info. If Location is not enabled, Please enable it';
 						break;
 				}
 				setAccessText(errText);
@@ -825,8 +830,30 @@ const FindShiftsScreen = (props: any) => {
 							{width: dimensions.width, height: dimensions.height - 180},
 						]}>
 						{!hasLocationPermission && (
-							<View>
-								<Text>{accessText}</Text>
+							<View
+								style={{
+									flex: 1,
+									justifyContent: 'center',
+									alignItems: 'center',
+									width: '75%',
+								}}>
+								<Text
+									style={{
+										textAlign: 'center',
+										fontFamily: FontConfig.primary.semiBold,
+										fontSize: 14,
+									}}>
+									{accessText}
+								</Text>
+								<CustomButton
+									textStyle={{textTransform: 'none'}}
+									style={{marginTop: 30}}
+									autoWidth={true}
+									title={'Refresh'}
+									onPress={() => {
+										getCurrentLocation();
+									}}
+								/>
 							</View>
 						)}
 						{!!currentLocation && (

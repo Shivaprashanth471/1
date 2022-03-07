@@ -772,7 +772,7 @@ const FindShiftsScreen = (props: any) => {
 							}}
 							value={search}
 							underlineColorAndroid="transparent"
-							placeholder="Search Here"
+							placeholder="Search Facility"
 							selectionColor="#4FE6AF"
 							placeholderTextColor={Colors.textLight}
 						/>

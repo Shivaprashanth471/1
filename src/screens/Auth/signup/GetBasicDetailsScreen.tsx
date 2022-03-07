@@ -47,7 +47,7 @@ const GetBasicDetailsScreen = (props: any) => {
 		const payload = {
 			first_name: values.first_name,
 			last_name: values.last_name,
-			email: values.email,
+			email: values.email.toLowerCase,
 			contact_number: contact_number,
 			address: {
 				street: values.address,

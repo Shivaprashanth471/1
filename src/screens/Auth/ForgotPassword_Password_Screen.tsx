@@ -90,7 +90,7 @@ const ForgotPasswordScreen = (props: any) => {
 		values.email = email.email;
 		const payload = {
 			code: values.code,
-			email: values.email.toLocaleLowerCase(),
+			email: values.email.toLowerCase(),
 			password: values.password,
 		};
 		console.log(payload);

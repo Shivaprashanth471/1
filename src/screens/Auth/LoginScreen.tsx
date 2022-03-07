@@ -87,11 +87,11 @@ const LoginScreen = (props: any) => {
 		values: LoginSchemaType,
 		formikHelpers: FormikHelpers<LoginSchemaType>,
 	) => {
-		const payload = {...values};
-		// const payload = {
-		// 	email: values.email.toLocaleLowerCase(),
-		// 	password: values.password,
-		// };
+		// const payload = {...values};
+		const payload = {
+			email: values.email.toLowerCase(),
+			password: values.password,
+		};
 		formikHelpers.setSubmitting(true);
 		ApiFunctions.post(ENV.apiUrl + 'user/login', payload)
 			.then(async (resp: TSAPIResponseType<LoginAPIResponse>) => {

@@ -69,7 +69,13 @@ const ProfileAddReferenceComponent = (
 		formikHelpers: FormikHelpers<profileReferenceSchemaType>,
 	) => {
 		formikHelpers.setSubmitting(true);
-		const payload = {...values, contact_method: 'phone'};
+		const payload = {
+			job_title: values.job_title,
+			phone: values.phone,
+			reference_name: values.reference_name,
+			email: values.email.toLowerCase(),
+			contact_method: 'phone',
+		};
 
 		if (HcpUser) {
 			ApiFunctions.post(

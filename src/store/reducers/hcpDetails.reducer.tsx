@@ -1,12 +1,14 @@
-import {HCPDETAILS} from '../actions/hcpDetails.action';
+import {HCPDETAILS, NAVHISTORY} from '../actions/hcpDetails.action';
 import {Communications, localStorage} from '../../helpers';
 
 export interface HcpDetailsParams {
-	HcpUser?: string;
+	HcpUser?: any;
+	navHistory?: any;
 }
 
 const initialData: HcpDetailsParams = {
 	HcpUser: undefined,
+	navHistory: '',
 };
 
 const hcpDetailsReducer = (
@@ -17,9 +19,14 @@ const hcpDetailsReducer = (
 		case HCPDETAILS:
 			state = {...state, HcpUser: action.HcpUser};
 			localStorage.setItem('hcpDetailsData', action);
-			console.log('state reducer', state);
+			console.log('state reducer', state.HcpUser);
 
 			// Communications.updateLoginUserTokenSubject.next(action.token);
+			return state;
+		case NAVHISTORY:
+			state = {...state, navHistory: action.navHistory};
+			localStorage.setItem('NavHistoryData', action);
+			console.log('NavHistory reducer', state.navHistory);
 			return state;
 		default:
 			return state;

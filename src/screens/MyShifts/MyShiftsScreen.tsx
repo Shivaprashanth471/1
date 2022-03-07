@@ -7,18 +7,11 @@ import {
 	StatusBar,
 	FlatList,
 } from 'react-native';
-import {
-	Colors,
-	ENV,
-	FontConfig,
-	ImageConfig,
-	NavigateTo,
-} from '../../constants';
+import {Colors, ENV, FontConfig, ImageConfig} from '../../constants';
 import MyShiftsStatusContainerComponent from '../../components/MyShiftsStatusContainerComponent';
 import {ApiFunctions, ToastAlert, CommonStyles} from '../../helpers';
 import {useSelector, useDispatch} from 'react-redux';
 import {StateParams} from '../../store/reducers';
-import {useNavigation} from '@react-navigation/native';
 import {ErrorComponent, LoadingComponent} from '../../components/core';
 import MyShiftComponent from './MyShiftComponent';
 import {
@@ -29,18 +22,16 @@ import {
 import {hcpShiftsList} from '../../constants/CommonTypes';
 import moment from 'moment';
 import analytics from '@segment/analytics-react-native';
-import {updateNavHistory} from '../../store/actions/navHistory.action';
+import {updateNavHistory} from '../../store/actions/hcpDetails.action';
 
 const MyShiftsScreen = (props: any) => {
 	const [isLoading, setIsLoading]: any = useState(true);
 	const [shift, setShift] = useState<hcpShiftsList[] | null>(null);
 	const [isLoaded, setIsLoaded]: any = useState(false);
 	const {auth} = useSelector((state: StateParams) => state);
+	const {hcpDetails} = useSelector((state: StateParams) => state);
+	const {navHistory} = hcpDetails;
 	const {user} = auth;
-	const {navHistory} = useSelector((state: StateParams) => state);
-	const {NavHistory} = navHistory;
-	console.log('<><><><><>', NavHistory);
-
 	const dispatch = useDispatch();
 
 	const navigation = props.navigation;
@@ -256,15 +247,49 @@ const MyShiftsScreen = (props: any) => {
 	const resetInitialState = useCallback(() => {
 		setIsLoading(true);
 		setIsLoading(true);
-		setShowComplete(false);
-		setShowPending(false);
-		setShowApplied(true);
-		setShowClosed(false);
-		setShowAppliedShifts(true);
-		getHCPShiftDetails(1, 20, 'complete');
-		getHcpApplicationList();
 		getHcpStatusCount();
-	}, [getHCPShiftDetails, getHcpApplicationList, getHcpStatusCount]);
+		console.log('>>>>navHistory>>>>>', navHistory);
+
+		if (navHistory === 'complete') {
+			getHCPShiftDetails(1, 20, 'complete');
+			setShowComplete(true);
+			setShowPending(false);
+			setShowApplied(false);
+			setShowClosed(false);
+			setShowAppliedShifts(false);
+			console.log('in complete');
+		} else if (navHistory === 'closed') {
+			getHCPShiftDetails(1, 20, 'closed');
+			setShowComplete(false);
+			setShowPending(false);
+			setShowApplied(false);
+			setShowClosed(true);
+			setShowAppliedShifts(false);
+			console.log('in closed');
+		} else if (navHistory === 'upcoming') {
+			getHCPShiftDetails(1, 20, 'pending');
+			setShowComplete(false);
+			setShowPending(true);
+			setShowApplied(false);
+			setShowClosed(false);
+			setShowAppliedShifts(false);
+			console.log('in upcoming');
+		} else if (navHistory === 'pending') {
+			getHcpApplicationList();
+			setShowComplete(false);
+			setShowPending(false);
+			setShowClosed(false);
+			setShowApplied(true);
+			setShowAppliedShifts(true);
+			console.log('in pending');
+		}
+	}, [
+		getHCPShiftDetails,
+		getHcpApplicationList,
+		getHcpStatusCount,
+		hcpDetails,
+		navHistory,
+	]);
 
 	useEffect(() => {
 		const focusListener = navigation.addListener('focus', resetInitialState);
@@ -314,7 +339,10 @@ const MyShiftsScreen = (props: any) => {
 										{appliedCount > 0 ? (
 											<TouchableOpacity
 												style={CommonStyles.flex}
-												onPress={selectApplied}>
+												onPress={() => {
+													selectApplied();
+													dispatch(updateNavHistory('pending'));
+												}}>
 												<MyShiftsStatusContainerComponent
 													title={'Pending Shifts'}
 													count={
@@ -338,7 +366,10 @@ const MyShiftsScreen = (props: any) => {
 										{shiftCount.pending > 0 ? (
 											<TouchableOpacity
 												style={CommonStyles.flex}
-												onPress={selectPending}>
+												onPress={() => {
+													selectPending();
+													dispatch(updateNavHistory('upcoming'));
+												}}>
 												<MyShiftsStatusContainerComponent
 													title={'Upcoming Shifts'}
 													count={shiftCount.pending || '0'}
@@ -359,7 +390,10 @@ const MyShiftsScreen = (props: any) => {
 										{shiftCount.complete > 0 ? (
 											<TouchableOpacity
 												style={CommonStyles.flex}
-												onPress={selectComplete}>
+												onPress={() => {
+													selectComplete();
+													dispatch(updateNavHistory('complete'));
+												}}>
 												<MyShiftsStatusContainerComponent
 													title={'Completed Shifts'}
 													count={shiftCount.complete || '0'}
@@ -378,7 +412,10 @@ const MyShiftsScreen = (props: any) => {
 										{shiftCount.closed > 0 ? (
 											<TouchableOpacity
 												style={CommonStyles.flex}
-												onPress={selectClosed}>
+												onPress={() => {
+													selectClosed();
+													dispatch(updateNavHistory('closed'));
+												}}>
 												<MyShiftsStatusContainerComponent
 													title={'Closed Shifts'}
 													count={shiftCount.closed || '0'}
@@ -465,13 +502,12 @@ const MyShiftsScreen = (props: any) => {
 												appliedPending={showAppliedShifts ? true : false}
 												onNext={() => {
 													if (item.shift_status === 'complete') {
-														navigation.navigate(
-															NavigateTo.AttendanceChartScreen,
-															{
-																shiftID: item._id,
-															},
-														);
-														dispatch(updateNavHistory('complete'));
+														// navigation.navigate(
+														// 	NavigateTo.AttendanceChartScreen,
+														// 	{
+														// 		shiftID: item._id,
+														// 	},
+														// );
 													}
 													//  else if (item.shift_status === 'closed') {
 													// 	navigation.navigate(NavigateTo.Attendance, {

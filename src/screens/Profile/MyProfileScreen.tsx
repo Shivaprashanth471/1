@@ -240,7 +240,7 @@ const MyProfileScreen = (props: any) => {
 													<DropdownComponent
 														contentWrapper={{marginHorizontal: 0}}
 														data={regionList}
-														labelText={'Region'}
+														labelText={'Address'}
 														placeholder={'select the value'}
 														formikField={field}
 														search={false}

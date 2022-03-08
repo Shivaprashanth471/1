@@ -7,7 +7,7 @@ import {
 	StatusBar,
 	FlatList,
 } from 'react-native';
-import {Colors, ENV, FontConfig, ImageConfig} from '../../constants';
+import {Colors, ENV, FontConfig, ImageConfig, NavigateTo} from '../../constants';
 import MyShiftsStatusContainerComponent from '../../components/MyShiftsStatusContainerComponent';
 import {ApiFunctions, ToastAlert, CommonStyles} from '../../helpers';
 import {useSelector, useDispatch} from 'react-redux';
@@ -502,12 +502,12 @@ const MyShiftsScreen = (props: any) => {
 												appliedPending={showAppliedShifts ? true : false}
 												onNext={() => {
 													if (item.shift_status === 'complete') {
-														// navigation.navigate(
-														// 	NavigateTo.AttendanceChartScreen,
-														// 	{
-														// 		shiftID: item._id,
-														// 	},
-														// );
+														navigation.navigate(
+															NavigateTo.AttendanceChartScreen,
+															{
+																shiftID: item._id,
+															},
+														);
 													}
 													//  else if (item.shift_status === 'closed') {
 													// 	navigation.navigate(NavigateTo.Attendance, {

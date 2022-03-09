@@ -255,8 +255,10 @@ const FindShiftsScreen = (props: any) => {
 
 	useEffect(() => {
 		const focusListener = navigation.addListener('focus', getFacilityMapList);
+		const tabPress = navigation.addListener('tabPress', getFacilityMapList);
 		return () => {
 			focusListener();
+			tabPress();
 		};
 	}, [getFacilityMapList, navigation]);
 
@@ -296,59 +298,94 @@ const FindShiftsScreen = (props: any) => {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerRight: () => (
-				<TouchableOpacity
+				<View
 					style={{
-						flex: 1,
-						marginRight: 24,
+						flexDirection: 'row',
 						justifyContent: 'center',
 						alignItems: 'center',
 					}}>
-					<CustomButton
-						icon={
-							viewMode === 'list' ? (
-								<ImageConfig.mapIcon
-									color={Colors.textLight}
-									style={{
-										borderRadius: 100,
-										marginLeft: 10,
-									}}
-									height={'15'}
-									width={'15'}
-								/>
-							) : (
-								<ImageConfig.listIcon
-									color={Colors.textLight}
-									style={{
-										borderRadius: 100,
-										marginLeft: 10,
-									}}
-									height={'15'}
-									width={'15'}
-								/>
-							)
-						}
-						iconPosition="right"
-						onPress={() => {
-							setViewMode(prevState => (prevState === 'map' ? 'list' : 'map'));
-							if (viewMode === 'list') {
-								analytics.screen('Find Shift - List View Screen Opened');
-							} else {
-								analytics.screen('Find Shift - Map View Screen Opened');
-							}
-						}}
+					<TouchableOpacity
 						style={{
-							flex: 0,
-							borderRadius: 8,
-							marginVertical: 0,
-							height: 30,
-							backgroundColor: Colors.backgroundShiftColor,
+							flex: 1,
+							marginRight: 20,
+							justifyContent: 'center',
 							alignItems: 'center',
-						}}
-						title={viewMode === 'list' ? 'Map View' : 'List View'}
-						class={'secondary'}
-						textStyle={{color: Colors.primary, textTransform: 'none'}}
-					/>
-				</TouchableOpacity>
+						}}>
+						<CustomButton
+							icon={
+								viewMode === 'list' ? (
+									<ImageConfig.mapIcon
+										color={Colors.textLight}
+										style={{
+											borderRadius: 100,
+											marginLeft: 10,
+										}}
+										height={'15'}
+										width={'15'}
+									/>
+								) : (
+									<View
+										style={{
+											flexDirection: 'row',
+										}}>
+										<ImageConfig.listIcon
+											color={Colors.textLight}
+											style={{
+												borderRadius: 100,
+												marginLeft: 5,
+											}}
+											height={'15'}
+											width={'15'}
+										/>
+									</View>
+								)
+							}
+							iconPosition="right"
+							onPress={() => {
+								setViewMode(prevState =>
+									prevState === 'map' ? 'list' : 'map',
+								);
+								if (viewMode === 'list') {
+									analytics.screen('Find Shift - List View Screen Opened');
+								} else {
+									analytics.screen('Find Shift - Map View Screen Opened');
+								}
+							}}
+							style={{
+								flex: 0,
+								borderRadius: 8,
+								marginVertical: 0,
+								height: 30,
+								backgroundColor: Colors.backgroundShiftColor,
+								alignItems: 'center',
+							}}
+							title={viewMode === 'list' ? 'Map View' : 'List View'}
+							class={'secondary'}
+							textStyle={{color: Colors.primary, textTransform: 'none'}}
+						/>
+					</TouchableOpacity>
+					{viewMode === 'map' ? (
+						<TouchableOpacity
+							onPress={() => {
+								setFilterOutModalVisible(!filterModalVisible);
+								analytics.track('Map Filters Opened');
+							}}
+							style={[styles.iconFilterContainer]}>
+							<ImageConfig.IconFilter height={'15'} width={'15'} />
+						</TouchableOpacity>
+					) : (
+						<View
+							style={{
+								backgroundColor: Colors.backgroundShiftColor,
+								// width: 30,
+								// height: 31,
+								justifyContent: 'center',
+								alignItems: 'center',
+								marginRight: 10,
+							}}
+						/>
+					)}
+				</View>
 			),
 		});
 	}, [navigation, viewMode]);
@@ -758,35 +795,38 @@ const FindShiftsScreen = (props: any) => {
 						alignItems: 'center',
 						// backgroundColor: 'red',
 					}}>
-					<View style={styles.searchBarContainer}>
-						<ImageConfig.IconSearch width={20} height={20} />
-						<TextInput
-							style={styles.searchBarInput}
-							onChangeText={text => {
-								setSearch(text);
-								getFacilityMapList(hcp_type, text);
-								getFacilityListView(text);
-								analytics.track('Searched Facility', {
-									facilitySearchedName: text,
-								});
-							}}
-							value={search}
-							underlineColorAndroid="transparent"
-							placeholder="Search Facility"
-							selectionColor="#4FE6AF"
-							placeholderTextColor={Colors.textLight}
-						/>
+					{viewMode === 'list' && (
+						<View style={styles.searchBarContainer}>
+							<ImageConfig.IconSearch width={20} height={20} />
+							<TextInput
+								style={styles.searchBarInput}
+								onChangeText={text => {
+									setSearch(text);
+									// getFacilityMapList(hcp_type, text);
+									getFacilityListView(text);
+									analytics.track('Searched Facility', {
+										facilitySearchedName: text,
+									});
+								}}
+								value={search}
+								underlineColorAndroid="transparent"
+								placeholder="Search Facility"
+								selectionColor="#4FE6AF"
+								placeholderTextColor={Colors.textLight}
+							/>
 
-						<TouchableOpacity
-							onPress={() => {
-								setSearch('');
-								getFacilityMapList(hcp_type, '');
-								getFacilityListView('');
-							}}>
-							<ImageConfig.CloseIconModal width={18} height={18} />
-						</TouchableOpacity>
-					</View>
-					{viewMode === 'map' ? (
+							<TouchableOpacity
+								onPress={() => {
+									setSearch('');
+									// getFacilityMapList(hcp_type, '');
+									getFacilityListView('');
+								}}>
+								<ImageConfig.CloseIconModal width={18} height={18} />
+							</TouchableOpacity>
+						</View>
+					)}
+
+					{/* {viewMode === 'map' ? (
 						<TouchableOpacity
 							onPress={() => {
 								setFilterOutModalVisible(!filterModalVisible);
@@ -803,7 +843,7 @@ const FindShiftsScreen = (props: any) => {
 								marginRight: 10,
 							}}
 						/>
-					)}
+					)} */}
 				</View>
 			</KeyboardAvoidCommonView>
 			{isLoading && (
@@ -827,7 +867,7 @@ const FindShiftsScreen = (props: any) => {
 					<View
 						style={[
 							styles.container,
-							{width: dimensions.width, height: dimensions.height - 180},
+							{width: dimensions.width, height: dimensions.height},
 						]}>
 						{!hasLocationPermission && (
 							<View
@@ -870,7 +910,7 @@ const FindShiftsScreen = (props: any) => {
 									provider={PROVIDER_GOOGLE} // remove if not using Google Maps
 									style={[
 										styles.map,
-										{width: dimensions.width, height: dimensions.height - 180},
+										{width: dimensions.width, height: dimensions.height - 120},
 									]}
 									initialRegion={{
 										latitude: currentLocation.latitude,
@@ -1206,7 +1246,7 @@ const styles = StyleSheet.create({
 		textTransform: 'capitalize',
 	},
 	searchBarContainer: {
-		marginHorizontal: 10,
+		// marginHorizontal: 10,
 		marginBottom: 5,
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -1273,7 +1313,7 @@ const styles = StyleSheet.create({
 	// card
 	cardContainer: {
 		position: 'absolute',
-		bottom: Platform.OS === 'android' ? 20 : 40,
+		bottom: Platform.OS === 'android' ? 150 : 170,
 		...CommonFunctions.getElevationStyle(4),
 		zIndex: 2,
 		backgroundColor: '#fff',
@@ -1285,13 +1325,13 @@ const styles = StyleSheet.create({
 
 	//
 	iconFilterContainer: {
-		zIndex: 2,
 		backgroundColor: Colors.backgroundShiftColor,
 		width: 30,
-		height: 40,
+		height: 30,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginRight: 10,
+		marginTop: 2,
 		borderColor: Colors.primary,
 		borderWidth: 1,
 		borderRadius: 8,

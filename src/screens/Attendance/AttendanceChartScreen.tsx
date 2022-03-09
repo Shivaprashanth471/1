@@ -351,9 +351,7 @@ const AttendanceChartScreen = (props: any) => {
 										fontSize: 14,
 										color: Colors.primary,
 									}}>
-									{moment(shift.actuals.shift_start_time).format(
-										'ddd, MMM Do, YYYY',
-									)}
+									{moment(shift.shift_date).format('ddd, MMM Do, YYYY')}
 								</Text>
 								<Text
 									style={{

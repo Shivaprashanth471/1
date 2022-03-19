@@ -149,12 +149,44 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 							style,
 							{borderWidth: 1.5, borderColor: Colors.backgroundShiftBoxColor},
 						]}>
-						<View>
-							<Text style={[styles.shiftDateText, CommonStyles.paddingBottom]}>
+						<View
+							style={[
+								{
+									flexDirection: 'row',
+									alignItems: 'center',
+									justifyContent: 'space-between',
+								},
+								CommonStyles.paddingBottom,
+							]}>
+							<Text style={[styles.shiftDateText]}>
 								{date}
 								{'   '}|{'   '}
 								{HCPLevel}
 							</Text>
+							{item.is_shift_rate && item.is_shift_rate === 'true' && (
+								<View
+									style={{
+										flexDirection: 'row',
+										alignItems: 'center',
+									}}>
+									<Text
+										style={{
+											color: Colors.textOnAccent,
+											fontFamily: FontConfig.primary.bold,
+											fontSize: 18,
+										}}>
+										${item.shift_rate}{' '}
+									</Text>
+									<Text
+										style={{
+											color: Colors.textDark,
+											fontFamily: FontConfig.primary.regular,
+											fontSize: 16,
+										}}>
+										/ hr
+									</Text>
+								</View>
+							)}
 						</View>
 						<View
 							style={[styles.shiftTimeContainer, CommonStyles.paddingBottom]}>

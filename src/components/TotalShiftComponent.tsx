@@ -136,6 +136,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 			shiftDetails: item.shift_details,
 			phoneNumber: item.facility.phone_number,
 			disable: disableApplyBtnOnNextScreen,
+			item: item,
 		});
 	};
 

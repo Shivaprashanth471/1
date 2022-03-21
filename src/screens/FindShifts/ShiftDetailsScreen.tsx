@@ -52,6 +52,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 		shiftDetails,
 		phoneNumber,
 		disable,
+		item,
 	} = props.route.params;
 
 	const [disableApplyBtn, setDisableApplyBtn]: any = useState(disable);
@@ -310,6 +311,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 												style={{
 													width: 15,
 													height: 15,
+													padding: 10,
 												}}
 											/>
 										</TouchableOpacity>
@@ -322,11 +324,7 @@ const FacilityShiftPreviewScreen = (props: any) => {
 										shiftStartTime={shiftStartTime}
 										shiftEndTime={shiftEndTime}
 										HCPLevel={HCPLevel}
-										style={
-											{
-												// marginTop: -70,
-											}
-										}
+										item={item}
 										requirementID={requirementID}
 										warningType={warningType}
 										shiftType={shiftType}

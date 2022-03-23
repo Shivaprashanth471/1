@@ -87,7 +87,7 @@ const TotalShiftComponent = (props: ShiftDetailsComponentProps) => {
 
 	let endShiftTime = moment(EndTime, ['YYYY-MM-DD h:mm:ss A']);
 
-	var TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds');
+	var TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds') - 1800;
 
 	var hours = Math.floor(TotalSeconds / 3600);
 	var minutes = Math.floor((TotalSeconds / 60) % 60);

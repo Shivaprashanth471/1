@@ -21,15 +21,9 @@ import {
 	NavigateTo,
 } from '../../constants';
 import moment from 'moment';
-import {ApiFunctions, CommonFunctions, ToastAlert} from '../../helpers';
-import {
-	BaseViewComponent,
-	CustomButton,
-	KeyboardAvoidCommonView,
-	ErrorComponent,
-	LoadingComponent,
-} from '../../components/core';
-import {useDispatch, useSelector} from 'react-redux';
+import {ApiFunctions} from '../../helpers';
+import {ErrorComponent} from '../../components/core';
+import {useSelector} from 'react-redux';
 import {StateParams} from '../../store/reducers';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -98,21 +92,12 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 			: shiftName === 'rejected'
 			? Colors.gradientShiftStatus[3]
 			: Colors.gradientShiftStatus[1];
-	// shiftName === 'pending'
-	// 	? Colors.gradientShiftStatus[3]
-	// 	: shiftName === 'complete'
-	// 	? Colors.gradientShiftStatus[0]
-	// 	: shiftName === 'closed'
-	// 	? Colors.gradientShiftStatus[2]
-	// 	: Colors.gradientShiftStatus[1];
 
 	const shiftDate = new Date(dateOfShift);
 	const StartTime = new Date(shiftStartTime);
 	const EndTime = new Date(shiftEndTime);
-	// var dateInLocal = shiftDate.toLocaleDateString().replace('/', '-');
 	var startTimeInLocal = StartTime.toLocaleTimeString();
 	var endTimeInLocal = EndTime.toLocaleTimeString();
-	// var repDateInLocal = dateInLocal.replace('/', '-');
 	var mydate = new Date(shiftDate);
 	var date = moment(mydate).utcOffset(0, false).format('DD MMM, YYYY');
 	var shiftStartTimeExtract = moment(startTimeInLocal, ['h:mm:ss A'])
@@ -140,7 +125,7 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 		false,
 	);
 
-	var TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds');
+	var TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds') - 1800;
 
 	var hours = Math.floor(TotalSeconds / 3600);
 	var minutes = Math.floor((TotalSeconds / 60) % 60);
@@ -181,21 +166,13 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 			{!isLoading && isLoaded && !facility && <ErrorComponent />}
 			{!isLoading && isLoaded && facility && (
 				<>
-					{/* <TouchableOpacity
-						// underlayColor={'#F2F9FE'}
-						activeOpacity={0.8}
-						onPress={() => {
-							console.log('click');
-						}}> */}
 					<View
 						style={[
 							styles.container,
 							style,
 							{
-								// elevation: 6,
 								borderWidth: 1.5,
 								borderColor: Colors.backgroundShiftBoxColor,
-								// display: shiftStatus === 'complete' ? 'none' : 'flex',
 							},
 						]}>
 						<View>
@@ -207,14 +184,7 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 						</View>
 
 						<View>
-							<Text
-								style={[
-									styles.shiftDateText,
-									CommonStyles.paddingBottom,
-									{
-										// textTransform: 'uppercase',
-									},
-								]}>
+							<Text style={[styles.shiftDateText, CommonStyles.paddingBottom]}>
 								{date}
 								{'   '}|{'   '}
 								{HCPLevel}
@@ -244,9 +214,6 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 
 						<View
 							style={{
-								// flexDirection: 'row',
-								// justifyContent: 'space-between',
-								// alignItems: 'center',
 								marginVertical: 10,
 							}}>
 							<View
@@ -290,15 +257,6 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 													fontFamily: FontConfig.primary.regular,
 													fontSize: 11,
 													color: Colors.textOnTextLight,
-													// shiftType === 'AM'
-													// 	? '#FC8600'
-													// 	: shiftType === 'AM-12'
-													// 	? '#FC8600'
-													// 	: shiftType === 'PM'
-													// 	? '#667B8B'
-													// 	: shiftType === 'PM-12'
-													// 	? '#667B8B'
-													// 	: '#667B8B',
 												}}>
 												{shiftType} {'Shifts'}
 											</Text>
@@ -314,15 +272,6 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 											marginRight: 10,
 										}}>
 										<ImageConfig.warningType width="22" height="22" />
-										{/* {warningType === 'red' && (
-											<ImageConfig.warningZoneRed width="20" height="20" />
-										)}
-										{warningType === 'yellow' && (
-											<ImageConfig.warningZoneYellow width="20" height="20" />
-										)}
-										{warningType === 'green' && (
-											<ImageConfig.warningZoneGreen width="20" height="20" />
-										)} */}
 										<View
 											style={{
 												marginLeft: 5,
@@ -335,11 +284,6 @@ const MyShiftComponent = (props: MyShiftComponentProps) => {
 													fontFamily: FontConfig.primary.regular,
 													fontSize: 11,
 													color: Colors.textOnTextLight,
-													// warningType === 'red'
-													// 	? '#FF1329'
-													// 	: warningType === 'yellow'
-													// 	? '#E8EF1D'
-													// 	: '#4FCE5D',
 												}}>
 												{warningType} {'zone'}
 											</Text>

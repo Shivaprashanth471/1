@@ -82,7 +82,7 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 	let startShiftTime = moment(StartTime, ['YYYY-MM-DD h:mm:ss A']);
 	let endShiftTime = moment(EndTime, ['YYYY-MM-DD h:mm:ss A']);
 
-	const TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds');
+	const TotalSeconds = endShiftTime.diff(startShiftTime, 'seconds') - 1800;
 	const hours = Math.floor(TotalSeconds / 3600);
 	const minutes = Math.floor((TotalSeconds / 60) % 60);
 

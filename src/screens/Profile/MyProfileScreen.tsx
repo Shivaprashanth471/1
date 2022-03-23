@@ -61,7 +61,7 @@ const MyProfileScreen = (props: any) => {
 	const getProfileDetails = useCallback(() => {
 		setIsLoading(true);
 		if (HcpUser) {
-			ApiFunctions.get(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile')
+			ApiFunctions.get(ENV.apiUrl + 'profile')
 				.then(async resp => {
 					if (resp) {
 						setProfile(resp.data);
@@ -89,13 +89,13 @@ const MyProfileScreen = (props: any) => {
 		const payload = {...values};
 
 		if (HcpUser) {
-			ApiFunctions.put(ENV.apiUrl + 'hcp/' + HcpUser._id + '/profile', payload)
+			ApiFunctions.put(ENV.apiUrl + 'profile', payload)
 				.then(async (resp: TSAPIResponseType<ProfileSchemaType>) => {
-					formikHelpers.setSubmitting(false);
+					// formikHelpers.setSubmitting(false);
 					if (resp.success) {
 						ToastAlert.show('Profile Successfully Updated');
 						setDisableBtn(true);
-						dispatchProfileDetails();
+						dispatchProfileDetails(formikHelpers);
 					} else {
 						ToastAlert.show(resp.error || '');
 					}
@@ -109,30 +109,35 @@ const MyProfileScreen = (props: any) => {
 
 	const dispatch = useDispatch();
 
-	const dispatchProfileDetails = useCallback(() => {
-		ApiFunctions.get(ENV.apiUrl + 'hcp/user/' + user._id)
-			.then((resp: any) => {
-				if (resp && resp.success) {
-					if (resp.data != null) {
-						dispatch(updateHcpDetails(resp.data));
-						analytics.identify(resp.data._id, {
-							firstName: resp.data.first_name,
-							lastName: resp.data.last_name,
-							email: resp.data.email,
-							hcpType: resp.data.hcp_type,
-							region: resp.data.address.region,
-						});
+	const dispatchProfileDetails = useCallback(
+		formikHelpers => {
+			ApiFunctions.get(ENV.apiUrl + 'hcp/user/' + user._id)
+				.then((resp: any) => {
+					if (resp && resp.success) {
+						if (resp.data != null) {
+							dispatch(updateHcpDetails(resp.data));
+							formikHelpers.setSubmitting(false);
+							ToastAlert.show('Profile Successfully Updated');
+							analytics.identify(resp.data._id, {
+								firstName: resp.data.first_name,
+								lastName: resp.data.last_name,
+								email: resp.data.email,
+								hcpType: resp.data.hcp_type,
+								region: resp.data.address.region,
+							});
+						} else {
+							ToastAlert.show('HCP data not found, please contact vitawerks');
+						}
 					} else {
-						ToastAlert.show('HCP data not found, please contact vitawerks');
+						ToastAlert.show('something went wrong');
 					}
-				} else {
-					ToastAlert.show('something went wrong');
-				}
-			})
-			.catch((err: any) => {
-				ToastAlert.show(err.error || 'Something went wrong');
-			});
-	}, [dispatch, user._id]);
+				})
+				.catch((err: any) => {
+					ToastAlert.show(err.error || 'Something went wrong');
+				});
+		},
+		[dispatch, user._id],
+	);
 
 	const getRegion = useCallback(() => {
 		setIsLoading(true);

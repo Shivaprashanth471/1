@@ -279,7 +279,7 @@ const AttendanceScreen = (props: any) => {
 
 	const checkInModalClose = () => {
 		const payload = {
-			hcp_user_id: user._id,
+			// hcp_user_id: user._id,
 			time: timeInMinutes,
 			date: currentDate,
 		};
@@ -311,7 +311,7 @@ const AttendanceScreen = (props: any) => {
 		setBtnLoading(true);
 		setDisableCheckInOutBtn(true);
 		const payload = {
-			hcp_user_id: user._id,
+			// hcp_user_id: user._id,
 			time: timeInMinutes,
 			date: currentDate,
 		};
@@ -341,7 +341,7 @@ const AttendanceScreen = (props: any) => {
 	const breakOutModalClose = () => {
 		setBtnLoading(true);
 		const payload = {
-			hcp_user_id: user._id,
+			// hcp_user_id: user._id,
 			time: timeInMinutes,
 			date: currentDate,
 		};
@@ -372,7 +372,7 @@ const AttendanceScreen = (props: any) => {
 		setBtnLoading(true);
 
 		const payload = {
-			hcp_user_id: user._id,
+			// hcp_user_id: user._id,
 			time: timeInMinutes,
 			date: currentDate,
 		};

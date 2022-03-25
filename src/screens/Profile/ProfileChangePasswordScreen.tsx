@@ -85,7 +85,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 	) => {
 		formikHelpers.setSubmitting(true);
 		// delete values.confirm_password;
-		const payload = {...values, user_id: user._id};
+		const payload = {...values};
 		console.log(payload);
 		// formikHelpers.setSubmitting(false);
 		ApiFunctions.post(ENV.apiUrl + 'changePassword', payload)
@@ -138,7 +138,7 @@ const ProfileChangePasswordScreen = (props: any) => {
 											{(field: FieldProps) => (
 												<View style={styles.rowElements}>
 													<FormikInputComponent
-													   trimSpaces={true}
+														trimSpaces={true}
 														labelText="Current Password"
 														inputProperties={{
 															maxLength: 20,

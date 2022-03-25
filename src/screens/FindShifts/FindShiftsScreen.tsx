@@ -199,7 +199,7 @@ const FindShiftsScreen = (props: any) => {
 				.catch((err: any) => {
 					setIsLoading(false);
 					setIsLoaded(true);
-					console.log(err);
+					console.log('getFacilityListView', err);
 				});
 		},
 		[
@@ -277,6 +277,8 @@ const FindShiftsScreen = (props: any) => {
 
 	const getFacilityImage = useCallback(facilityID => {
 		setFacilityImageUrlLoading(true);
+		console.log(facilityID);
+
 		ApiFunctions.get(ENV.apiUrl + 'facility/' + facilityID)
 			.then(resp => {
 				if (resp && resp.success) {
@@ -290,7 +292,7 @@ const FindShiftsScreen = (props: any) => {
 			.catch((err: any) => {
 				setFacilityImageUrlLoading(false);
 				setFacilityImageUrlLoaded(true);
-				console.log(err);
+				console.log('getFacilityImage', err);
 				// Alert.alert('Error', err.error || 'Oops... Something went wrong!');
 			});
 	}, []);

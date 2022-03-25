@@ -57,10 +57,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 		setIsLoading(true);
 		if (user) {
 			const payload = {shift_status: 'in_progress'};
-			ApiFunctions.post(
-				ENV.apiUrl + 'shift/hcp/' + user._id + '/shift',
-				payload,
-			)
+			ApiFunctions.post(ENV.apiUrl + 'shift/hcp/', payload)
 				.then(async resp => {
 					if (resp) {
 						let getToday = moment().utcOffset(0, false);
@@ -96,10 +93,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 			let date = new Date();
 			const curDate = moment(date).format('YYYY-MM-DD');
 			const payload = {new_shifts: curDate, shift_status: 'pending'};
-			ApiFunctions.post(
-				ENV.apiUrl + 'shift/hcp/' + user._id + '/shift',
-				payload,
-			)
+			ApiFunctions.post(ENV.apiUrl + 'shift/hcp/', payload)
 				.then(async resp => {
 					if (resp) {
 						let getToday = moment().utcOffset(0, false);

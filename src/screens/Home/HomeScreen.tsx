@@ -59,10 +59,7 @@ const HomeScreen = (props: any) => {
 					new_shifts: curDate,
 					status: ['pending'],
 				};
-				ApiFunctions.post(
-					ENV.apiUrl + 'shift/hcp/' + user._id + '/shift',
-					payload,
-				)
+				ApiFunctions.post(ENV.apiUrl + 'shift/hcp', payload)
 					.then(
 						async (resp: TSAPIResponseType<PaginationResponseType<any>>) => {
 							setIsLoading(false);

@@ -7,7 +7,13 @@ import {
 	StatusBar,
 	FlatList,
 } from 'react-native';
-import {Colors, ENV, FontConfig, ImageConfig, NavigateTo} from '../../constants';
+import {
+	Colors,
+	ENV,
+	FontConfig,
+	ImageConfig,
+	NavigateTo,
+} from '../../constants';
 import MyShiftsStatusContainerComponent from '../../components/MyShiftsStatusContainerComponent';
 import {ApiFunctions, ToastAlert, CommonStyles} from '../../helpers';
 import {useSelector, useDispatch} from 'react-redux';
@@ -70,10 +76,7 @@ const MyShiftsScreen = (props: any) => {
 					new_shifts: mode === 'pending' ? curDate : null,
 				};
 
-				ApiFunctions.post(
-					ENV.apiUrl + 'shift/hcp/' + user._id + '/shift',
-					payload,
-				)
+				ApiFunctions.post(ENV.apiUrl + 'shift/hcp/', payload)
 					.then(
 						async (resp: TSAPIResponseType<PaginationResponseType<any>>) => {
 							setIsLoading(false);
@@ -118,9 +121,7 @@ const MyShiftsScreen = (props: any) => {
 	const getHcpApplicationList = useCallback(() => {
 		setIsLoading(true);
 		if (user) {
-			ApiFunctions.get(
-				ENV.apiUrl + 'shift/hcp/' + user._id + '/application?status=pending',
-			)
+			ApiFunctions.get(ENV.apiUrl + 'shift/hcp/application?status=pending')
 				.then(async resp => {
 					if (resp) {
 						setAppliedShifts(resp.data);
@@ -146,7 +147,7 @@ const MyShiftsScreen = (props: any) => {
 			const payload = {
 				hcp_user_id: user._id,
 			};
-			ApiFunctions.get(ENV.apiUrl + 'shift/stats', payload)
+			ApiFunctions.get(ENV.apiUrl + 'shift/stats')
 				.then(async resp => {
 					if (resp) {
 						setShiftCount(resp.data);

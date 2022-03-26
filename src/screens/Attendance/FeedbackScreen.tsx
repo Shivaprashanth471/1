@@ -44,7 +44,7 @@ const FeedbackScreen = (props: any) => {
 	const [rating, setRating] = useState<any>(0);
 	// console.log(shiftID);
 
-	const updateCertifiedToPractiseDetails = useCallback(
+	const updateShiftFeedbackDetails = useCallback(
 		(values: FeedbackType, formikHelpers: FormikHelpers<FeedbackType>) => {
 			formikHelpers.setSubmitting(true);
 			const payload = {
@@ -63,6 +63,7 @@ const FeedbackScreen = (props: any) => {
 				.catch((err: any) => {
 					formikHelpers.setSubmitting(false);
 					CommonFunctions.handleErrors(err, formikHelpers.setErrors);
+					console.log(err);
 				});
 		},
 		[navigation, rating, shiftID],
@@ -161,7 +162,7 @@ const FeedbackScreen = (props: any) => {
 						<View style={[styles.formBlock]}>
 							<View style={[styles.formHolder]}>
 								<Formik
-									onSubmit={updateCertifiedToPractiseDetails}
+									onSubmit={updateShiftFeedbackDetails}
 									validationSchema={FeedbackSchema}
 									validateOnBlur={true}
 									initialValues={{

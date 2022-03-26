@@ -124,7 +124,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 				file_name: file.name,
 				file_type: file.type,
 				attachment_type: title,
-				expiry_date: changedDate,
+				expiry_date: title === 'SSN Card' ? '' : changedDate,
 			};
 			setIsLoaded(false);
 			setIsLoading(true);

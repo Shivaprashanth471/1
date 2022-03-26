@@ -169,6 +169,7 @@ const UpcomingShiftCountdownScreen = (props: any) => {
 				? facilityShift.facility.phone_number
 				: '',
 			disable: true,
+			item: facilityShift,
 		});
 	};
 

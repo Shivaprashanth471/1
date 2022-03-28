@@ -1,5 +1,13 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {StyleSheet, Text, View, StatusBar, Alert} from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	StatusBar,
+	Alert,
+	Platform,
+	KeyboardAvoidingView,
+} from 'react-native';
 import {
 	ApiFunctions,
 	CommonStyles,
@@ -22,6 +30,7 @@ import {
 	ErrorComponent,
 	LoadingComponent,
 	FormikInputComponent,
+	KeyboardAvoidCommonView,
 } from '../../components/core';
 import * as yup from 'yup';
 
@@ -41,6 +50,7 @@ const FeedbackScreen = (props: any) => {
 	const [shiftDetails, setShiftDetails] = useState<any>();
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
+	const [focusText, setFocusText] = useState<boolean>(false);
 	const [rating, setRating] = useState<any>(0);
 	// console.log(shiftID);
 
@@ -90,17 +100,27 @@ const FeedbackScreen = (props: any) => {
 			});
 	}, [shiftID]);
 
+	console.log(focusText, 'focussing the text');
+
 	useEffect(() => {
 		getShiftDetails();
 	}, [getShiftDetails]);
 
 	return (
 		<>
-			<>
-				{isLoading && <LoadingComponent />}
-				{!isLoading && isLoaded && !shiftDetails && <ErrorComponent />}
-				{!isLoading && isLoaded && shiftDetails && (
-					<BaseViewComponent style={styles.screen}>
+			{isLoading && <LoadingComponent />}
+			{!isLoading && isLoaded && !shiftDetails && <ErrorComponent />}
+			{!isLoading && isLoaded && shiftDetails && (
+				<KeyboardAvoidCommonView>
+					<BaseViewComponent
+						style={[
+							styles.screen,
+							{marginBottom: Platform.OS === 'ios' ? (focusText ? 150 : 0) : 0},
+						]}
+						contentContainerStyle={{
+							flexGrow: 1,
+							// marginBottom: focusText ? 150 : 0,
+						}}>
 						<StatusBar
 							barStyle={'light-content'}
 							animated={true}
@@ -204,6 +224,12 @@ const FeedbackScreen = (props: any) => {
 													{(field: FieldProps) => (
 														<FormikInputComponent
 															inputProperties={{
+																onFocus: () => {
+																	setFocusText(true);
+																},
+																onBlur: () => {
+																	setFocusText(false);
+																},
 																multiline: true,
 																keyboardType: 'default',
 																placeholder:
@@ -251,8 +277,8 @@ const FeedbackScreen = (props: any) => {
 							</View>
 						</View>
 					</BaseViewComponent>
-				)}
-			</>
+				</KeyboardAvoidCommonView>
+			)}
 		</>
 	);
 };

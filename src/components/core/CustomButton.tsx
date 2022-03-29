@@ -36,9 +36,11 @@ export interface CustomButtonProps {
 	ImageConfigMap?: boolean;
 	ImageConfigList?: boolean;
 	ImageConfigFilter?: boolean;
+	testID?: string;
 }
 
 const CustomButton = (props: CustomButtonProps) => {
+	
 	// const ImageConfigIcon = ImageConfig.ArrowBackIcon;
 	const ImageConfigCallIcon = props.ImageConfigCall || false;
 	const ImageConfigSMS = props.ImageConfigSMS || false;
@@ -48,6 +50,7 @@ const CustomButton = (props: CustomButtonProps) => {
 	const ImageConfigFilter = props.ImageConfigFilter || false;
 
 	const title = props.title;
+	const testID = props.testID;
 	const onPress = props.onPress;
 	const touchProps = props.touchProps || {};
 	const style = props.style || {};
@@ -188,6 +191,7 @@ const CustomButton = (props: CustomButtonProps) => {
 					disabledStyle,
 				]}>
 				<TouchableOpacity
+					testID={testID}
 					activeOpacity={disabled ? 1 : 0.6}
 					{...touchProps}
 					disabled={disabled}
@@ -240,6 +244,7 @@ const CustomButton = (props: CustomButtonProps) => {
 					colors={disabled ? ['#CACACA', '#BDBDBD'] : ['#10C4D3', '#4FE6AF']}
 					style={[styles.button, styles.buttonPrimary, style, disabledStyle]}>
 					<TouchableOpacity
+						testID={testID}
 						activeOpacity={disabled ? 1 : 0.6}
 						{...touchProps}
 						disabled={disabled}
@@ -286,6 +291,7 @@ const CustomButton = (props: CustomButtonProps) => {
 							: {},
 					]}>
 					<TouchableOpacity
+						testID={testID}
 						activeOpacity={disabled ? 1 : 0.6}
 						{...touchProps}
 						disabled={disabled}

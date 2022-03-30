@@ -268,6 +268,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									justifyContent: 'space-evenly',
 								}}>
 								<TouchableOpacity
+									testID={'pdf_btn'}
 									onPress={openImageUpload.bind(null, 'pdf')}
 									style={{
 										justifyContent: 'center',
@@ -284,6 +285,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									<Text style={styles.uploadText}>PDF</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
+									testID={'camera_btn'}
 									onPress={openImageUpload.bind(null, 'camera')}
 									style={{
 										justifyContent: 'center',
@@ -300,6 +302,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									<Text style={styles.uploadText}>CAMERA</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
+									testID={'img_btn'}
 									onPress={openImageUpload.bind(null, 'image')}
 									style={{
 										justifyContent: 'center',
@@ -356,6 +359,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 								Please give expiry date of {title}{' '}
 							</Text>
 							<View
+								testID={'select_date_picker'}
 								style={{
 									width: '100%',
 
@@ -377,6 +381,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 								/>
 							</View>
 							<CustomButton
+								testID={'upload_btn'}
 								style={{
 									flex: 0,
 									borderRadius: 8,

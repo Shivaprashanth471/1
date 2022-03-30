@@ -347,6 +347,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									marginBottom: 10,
 								}}>
 								<TouchableOpacity
+									testID={'close_modal_btn'}
 									onPress={() => {
 										setSelectDateModalVisible(!selectDateModalVisible);
 										setChangedDate(null);
@@ -518,6 +519,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 							marginTop: 15,
 						}}>
 						<TouchableOpacity
+							testID={'close_img_modal_btn'}
 							style={{
 								padding: 10,
 							}}
@@ -593,6 +595,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 										flexDirection: 'row',
 									}}>
 									<TouchableOpacity
+										testID={'view_doc_btn'}
 										onPress={() => {
 											if (type === 'application/pdf') {
 												Linking.openURL(url);
@@ -612,6 +615,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 										</Text>
 									</TouchableOpacity>
 									<TouchableOpacity
+										testID={'delete_doc_btn'}
 										// onPress={deleteData}
 										onPress={() => {
 											setSelectDeleteFileModalVisible(

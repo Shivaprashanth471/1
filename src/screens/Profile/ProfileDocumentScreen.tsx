@@ -22,7 +22,7 @@ const ProfileDocumentScreen = () => {
 					<View style={styles.container}>
 						{ProfileDocumentsArray.map((item: any) => (
 							<>
-								<AddDocumentComponent title={item} />
+								<AddDocumentComponent testID={item + '_btn'} title={item} />
 							</>
 						))}
 					</View>

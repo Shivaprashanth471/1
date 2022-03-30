@@ -26,6 +26,7 @@ import analytics from '@segment/analytics-react-native';
 export interface AddDocumentComponentProps {
 	title: string;
 	navigation?: any;
+	testID?: string;
 	style?: StyleProp<ViewStyle>;
 }
 
@@ -43,6 +44,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 		useState(false);
 	const [selectDateModalVisible, setSelectDateModalVisible] = useState(false);
 	const title = props.title;
+	const testID = props.testID;
 	const style = props.style || {};
 	const [url, setURL]: any = useState();
 	const [type, setType]: any = useState();
@@ -625,6 +627,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 							)}
 							{!documentAvailable && !isLoading && isLoaded && (
 								<CustomButton
+									testID={testID}
 									icon={
 										<ImageConfig.AddCircleIcon
 											color={Colors.textLight}

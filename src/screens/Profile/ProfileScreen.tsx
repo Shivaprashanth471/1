@@ -414,6 +414,7 @@ const ProfileScreen = (props: any) => {
 						</View>
 						<View style={styles.contentBoxContainer}>
 							<TouchableOpacity
+								testID={'profile_btn'}
 								onPress={gotoMyProfileScreen}
 								style={{flexDirection: 'row'}}>
 								<View style={styles.contentBoxRow}>
@@ -549,6 +550,7 @@ const ProfileScreen = (props: any) => {
 								</View>
 							</TouchableOpacity>
 							<TouchableOpacity
+								testID={'my_documents_btn'}
 								style={{flexDirection: 'row'}}
 								onPress={gotoProfileDocumentScreen}>
 								<View style={styles.contentBoxRow}>

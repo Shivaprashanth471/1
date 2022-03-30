@@ -352,6 +352,7 @@ const VitaTabNavigator = () => {
 				options={() => {
 					// const badgeCount = getBadgeCount(props);
 					return {
+						tabBarTestID: 'home_tab_btn',
 						tabBarIcon: (props: any) =>
 							props.focused ? (
 								<ImageConfig.HomeIconOn
@@ -376,6 +377,7 @@ const VitaTabNavigator = () => {
 				options={() => {
 					// const badgeCount = getBadgeCount(props);
 					return {
+						tabBarTestID: 'attendance_tab_btn',
 						tabBarIcon: (props: any) =>
 							props.focused ? (
 								<ImageConfig.AttendanceIconOn
@@ -400,6 +402,7 @@ const VitaTabNavigator = () => {
 				options={props => {
 					return {
 						title: '',
+						tabBarTestID: 'find_shifts_tab_btn',
 						tabBarIcon: props => {
 							return (
 								<CircularSearchButtonComponent
@@ -424,6 +427,7 @@ const VitaTabNavigator = () => {
 				options={() => {
 					// const badgeCount = getBadgeCount(props);
 					return {
+						tabBarTestID: 'history_tab_btn',
 						tabBarIcon: (props: any) =>
 							props.focused ? (
 								<ImageConfig.MyShiftIconOn
@@ -448,6 +452,7 @@ const VitaTabNavigator = () => {
 				options={() => {
 					// const badgeCount = getBadgeCount(props);
 					return {
+						tabBarTestID: 'profile_tab_btn',
 						tabBarIcon: (props: any) =>
 							props.focused ? (
 								<ImageConfig.ProfileIconOn

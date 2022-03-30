@@ -442,6 +442,7 @@ const ProfileScreen = (props: any) => {
 								</View>
 							</TouchableOpacity>
 							<TouchableOpacity
+								testID={'work_exp_btn'}
 								style={{flexDirection: 'row'}}
 								onPress={gotoProfileExperienceScreen}>
 								<View style={styles.contentBoxRow}>
@@ -469,6 +470,7 @@ const ProfileScreen = (props: any) => {
 								</View>
 							</TouchableOpacity>
 							<TouchableOpacity
+								testID={'education_btn'}
 								style={{flexDirection: 'row'}}
 								onPress={gotoProfileEducationScreen}>
 								<View style={styles.contentBoxRow}>
@@ -496,6 +498,7 @@ const ProfileScreen = (props: any) => {
 								</View>
 							</TouchableOpacity>
 							<TouchableOpacity
+								testID={'volunteer_btn'}
 								style={{flexDirection: 'row'}}
 								onPress={gotoProfileVolunteerScreen}>
 								<View style={styles.contentBoxRow}>
@@ -523,6 +526,7 @@ const ProfileScreen = (props: any) => {
 								</View>
 							</TouchableOpacity>
 							<TouchableOpacity
+								testID={'refs_btn'}
 								style={{flexDirection: 'row'}}
 								onPress={gotoProfileReferenceScreen}>
 								<View style={styles.contentBoxRow}>
@@ -578,6 +582,7 @@ const ProfileScreen = (props: any) => {
 								</View>
 							</TouchableOpacity>
 							<TouchableOpacity
+								testID={'help_btn'}
 								style={{flexDirection: 'row'}}
 								onPress={() => setModalVisible(true)}>
 								<View style={styles.contentBoxRow}>
@@ -596,6 +601,7 @@ const ProfileScreen = (props: any) => {
 								</View>
 							</TouchableOpacity>
 							<TouchableOpacity
+								testID={'change_pwd_btn'}
 								style={{flexDirection: 'row'}}
 								onPress={() => {
 									navigation.navigate(NavigateTo.ProfileChangePasswordScreen);
@@ -636,6 +642,7 @@ const ProfileScreen = (props: any) => {
 							]}
 						/>
 						<TouchableOpacity
+							testID={'logout_btn'}
 							onPress={() => {
 								setLogoutOutModalVisible(true);
 							}}>

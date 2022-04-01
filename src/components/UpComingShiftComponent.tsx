@@ -58,7 +58,7 @@ const UpComingShiftComponent = (props: ShiftDetailsComponentProps) => {
 	var mydate = new Date(shiftDate);
 	var date = moment(mydate).utcOffset(0, false).format('DD MMM, YYYY');
 
-	var shiftStartTimeExtract = moment(startTimeInLocal, ['h:mm:ss A'])
+	var shiftStartTimeExtract = moment(StartTime, ['h:mm:ss A'])
 		.utcOffset(0, false)
 		.format('hh:mm A');
 	var shiftEndTimeExtract = moment(endTimeInLocal, ['h:mm:ss A'])

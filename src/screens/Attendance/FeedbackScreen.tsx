@@ -119,7 +119,6 @@ const FeedbackScreen = (props: any) => {
 						]}
 						contentContainerStyle={{
 							flexGrow: 1,
-							// marginBottom: focusText ? 150 : 0,
 						}}>
 						<StatusBar
 							barStyle={'light-content'}

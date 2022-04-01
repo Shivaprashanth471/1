@@ -51,9 +51,7 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 	// -------------------------countdown time---------------------------------------
 	useEffect(() => {
 		const interval = setInterval(() => {
-			let curTime = moment()
-				.utcOffset(0, false)
-				.format('DD-MM-YYYY hh:mm:ss A');
+			let curTime = moment().format('DD-MM-YYYY hh:mm:ss A');
 
 			let startShiftTime = moment(StartTime, ['DD-MM-YYYY h:mm:ss A'])
 				.utcOffset(0, false)
@@ -240,7 +238,10 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 							marginVertical: 15,
 							paddingHorizontal: 20,
 						}}>
-						<View>
+						<View
+							style={{
+								width: '75%',
+							}}>
 							<Text
 								style={{
 									fontFamily: FontConfig.primary.bold,
@@ -258,12 +259,11 @@ const UpComingShiftCountdownComponent = (props: ShiftDetailsComponentProps) => {
 										fontSize: 11,
 										color: Colors.textOnTextLight,
 										marginVertical: 3,
-										width: '70%',
 										marginLeft: 4,
 									}}>
 									{facilityAddress.street}, {facilityAddress.city},{' '}
 									{facilityAddress.region_name}, {facilityAddress.state},
-									{facilityAddress.country}, {facilityAddress.zip_code},
+									{facilityAddress.country}, {facilityAddress.zip_code}
 								</Text>
 							</View>
 						</View>

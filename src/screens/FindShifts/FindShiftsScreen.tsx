@@ -1158,7 +1158,14 @@ const FindShiftsScreen = (props: any) => {
 																	height={17}
 																/>
 															</View>
-															<Text style={[styles.itemStyle, {marginLeft: 5}]}>
+															<Text
+																style={[
+																	styles.itemStyle,
+																	{
+																		marginLeft: 5,
+																		width: '85%',
+																	},
+																]}>
 																{item.facility_name}
 															</Text>
 														</View>

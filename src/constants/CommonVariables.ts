@@ -1,24 +1,24 @@
 export const currentList = [
 	{
-			code: "RN",
-			name: "RN"
+		code: 'RN',
+		name: 'RN',
 	},
 	{
-			code: "LVN",
-			name: "LVN"
+		code: 'LVN',
+		name: 'LVN',
 	},
 	{
-			code: "CNA",
-			name: "CNA"
+		code: 'CNA',
+		name: 'CNA',
 	},
 	{
-			code: "CareGiver",
-			name: "CareGiver"
+		code: 'CareGiver',
+		name: 'CareGiver',
 	},
 	{
-			code: "MedTech",
-			name: "MedTech"
-	}
+		code: 'MedTech',
+		name: 'MedTech',
+	},
 ];
 export const ProfileDocumentsArray = [
 	'Resume',

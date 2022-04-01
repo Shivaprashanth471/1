@@ -26,6 +26,7 @@ import analytics from '@segment/analytics-react-native';
 export interface AddDocumentComponentProps {
 	title: string;
 	navigation?: any;
+	testID?: string;
 	style?: StyleProp<ViewStyle>;
 }
 
@@ -43,6 +44,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 		useState(false);
 	const [selectDateModalVisible, setSelectDateModalVisible] = useState(false);
 	const title = props.title;
+	const testID = props.testID;
 	const style = props.style || {};
 	const [url, setURL]: any = useState();
 	const [type, setType]: any = useState();
@@ -267,6 +269,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									justifyContent: 'space-evenly',
 								}}>
 								<TouchableOpacity
+									testID={'pdf_btn'}
 									onPress={openImageUpload.bind(null, 'pdf')}
 									style={{
 										justifyContent: 'center',
@@ -283,6 +286,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									<Text style={styles.uploadText}>PDF</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
+									testID={'camera_btn'}
 									onPress={openImageUpload.bind(null, 'camera')}
 									style={{
 										justifyContent: 'center',
@@ -299,6 +303,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									<Text style={styles.uploadText}>CAMERA</Text>
 								</TouchableOpacity>
 								<TouchableOpacity
+									testID={'img_btn'}
 									onPress={openImageUpload.bind(null, 'image')}
 									style={{
 										justifyContent: 'center',
@@ -343,6 +348,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 									marginBottom: 10,
 								}}>
 								<TouchableOpacity
+									testID={'close_modal_btn'}
 									onPress={() => {
 										setSelectDateModalVisible(!selectDateModalVisible);
 										setChangedDate(null);
@@ -355,6 +361,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 								Please give expiry date of {title}{' '}
 							</Text>
 							<View
+								testID={'select_date_picker'}
 								style={{
 									width: '100%',
 
@@ -376,6 +383,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 								/>
 							</View>
 							<CustomButton
+								testID={'upload_btn'}
 								style={{
 									flex: 0,
 									borderRadius: 8,
@@ -512,6 +520,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 							marginTop: 15,
 						}}>
 						<TouchableOpacity
+							testID={'close_img_modal_btn'}
 							style={{
 								padding: 10,
 							}}
@@ -587,6 +596,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 										flexDirection: 'row',
 									}}>
 									<TouchableOpacity
+										testID={'view_doc_btn'}
 										onPress={() => {
 											if (type === 'application/pdf') {
 												Linking.openURL(url);
@@ -606,6 +616,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 										</Text>
 									</TouchableOpacity>
 									<TouchableOpacity
+										testID={'delete_doc_btn'}
 										// onPress={deleteData}
 										onPress={() => {
 											setSelectDeleteFileModalVisible(
@@ -626,6 +637,7 @@ const AddDocumentComponent = (props: AddDocumentComponentProps) => {
 							)}
 							{!documentAvailable && !isLoading && isLoaded && (
 								<CustomButton
+									testID={testID}
 									icon={
 										<ImageConfig.AddCircleIcon
 											color={Colors.textLight}

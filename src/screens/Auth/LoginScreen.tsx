@@ -344,6 +344,7 @@ const LoginScreen = (props: any) => {
 									</View>
 
 									<CustomButton
+										testID={'login_btn'}
 										isLoading={isSubmitting}
 										title={'Login'}
 										onPress={handleSubmit}
